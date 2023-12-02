@@ -1,0 +1,18 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "TOTK Damage Calculator";
+}
+
+<h1>Weapon</h1>
+
+<select id="dropdown" class="js-example-basic-single" style="width: 300px;" name="SelectedWeapon" onchange="updateSelectedWeapon()">
+    @foreach (var weapon in Model.Weapons)
+    {
+        <option value="@weapon.Name">@weapon.Name</option>
+    }
+</select>
+
+<div id="selectedWeaponDisplay">
+    <h2>Selected Weapon: @Model.SelectedWeapon</h2>
+</div>
