@@ -1,7 +1,3 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using TOTK.Website;
-
 namespace TOTK.Website
 {
     public class Program

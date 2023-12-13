@@ -1,85 +1,9 @@
-img {
-    width: inherit;
-}
-
-.checked {
-    color: orange;
-}
-
-.fa-star {
-    cursor: pointer;
-}
-
-/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-.card {
-    max-width: 150px;
-    margin: 0.2em;
-}
-
-.card-columns {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-    .card-columns .card:hover .card-img {
-    }
-
-    .card-columns .card-title {
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    .card-columns .card-text {
-        font-size: 9.5px;
-    }
-
-    .card-columns .card-body {
-        height: 160px;
-        font-family: 'Nunito', sans-serif;
-        background: #fbfafd;
-    }
-
-.modal .card-img {
-    width: 256px;
-    height: 256px;
-}
-
-.card-columns .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(37,33,82,.12), 0 4px 8px rgba(37,33,82,.06);
-}
-
-
-a.navbar-brand {
-    white-space: normal;
-    font-family: 'Roboto', sans-serif;
-    font-size: xx-large;
-    text-align: center;
-    word-break: break-all;
-}
-
-/* Provide sufficient contrast against white background */
-a {
-    color: #0366d6;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
     font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -100,20 +24,7 @@ html {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-button.accept-policy {
-    font-size: 1rem;
-    line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-    position: relative;
-    min-height: 100%;
-}
-
 body {
-    /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
 
@@ -153,9 +64,5 @@ ul {
 }
 
 .dropdown {
-
-}
-
-.searchBox {
 
 }

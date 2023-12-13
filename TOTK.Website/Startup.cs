@@ -1,4 +1,4 @@
-﻿using TOTK.Website.Services;
+﻿using TOTK.Website.Models;
 
 namespace TOTK.Website
 {
@@ -16,7 +16,14 @@ namespace TOTK.Website
             services.AddServerSideBlazor();
             services.AddHttpClient();
             services.AddControllers();
-            services.AddTransient<JsonService>();
+            services.AddScoped<ImportData>();
+            services.AddScoped<CalculateDamage>();
+            services.AddLogging();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,10 +42,9 @@ namespace TOTK.Website
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

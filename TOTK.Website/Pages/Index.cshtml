@@ -3,16 +3,329 @@
 @{
     ViewData["Title"] = "TOTK Damage Calculator";
 }
+@Html.AntiForgeryToken()
 
-<h1>Weapon</h1>
-
-<select id="dropdown" class="js-example-basic-single" style="width: 300px;" name="SelectedWeapon" onchange="updateSelectedWeapon()">
-    @foreach (var weapon in Model.Weapons)
-    {
-        <option value="@weapon.Name">@weapon.Name</option>
+<style>
+    body {
+        background-image: url("background.webp");
     }
-</select>
 
-<div id="selectedWeaponDisplay">
-    <h2>Selected Weapon: @Model.SelectedWeapon</h2>
+    h5 {
+        color: white;
+    }
+</style>
+
+<div class="container" >
+    <div class="row">
+        <!--WEAPON-->
+        <div class="col-md-auto py-2">
+            <h5>Weapon</h5>
+            <select name="SelectedWeaponName" class="form-select" id="weaponDropdown" style="width:17rem;" onchange="updateWeapon();">
+                @if (Model.Weapons != null) {
+                    @foreach (var weapon in Model.Weapons)
+                    {
+                        <option value="@weapon.Name">@weapon.Name</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <!--ATTACK UP MOD-->
+        <div class="col-md-auto py-2">
+            <h5>Attack Up Mod</h5>
+            <div class="form-outline" style="width: 8rem;">
+                <input asp-for="Input.AttackUpMod" class="form-control" id="numberAttackUpMod" type="number" value="0" min="0" max="2147483647" onchange="updateInput()" />
+            </div>
+        </div>
+
+        <!--FUSE-->
+        <div class="col-md-auto" style="margin-top:8px;">
+            <h5>Fuse</h5>
+            <select name="SelectedFuseName" class="form-select text-wrap" id="fuseDropdown" style="width:16rem; height:4rem;" onchange="updateFuse();">
+                @if (Model.Fuses != null) {
+                    @foreach (var fuse in Model.Fuses)
+                    {
+                        <option value="@fuse.Name">@fuse.Name</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <!--ATTACK TYPE-->
+        <div class="col-md-auto py-2">
+            <h5>Attack Type</h5>
+            <select asp-for="Input.AttackType" class="form-select" id="attacktypeDropdown" style="width:14rem;" onchange="updateInput()">
+                <option selected>Standard Attack</option>
+                <option value="1">Charge Attack</option>
+                <option value="2">Flurry Rush</option>
+                <option value="3">Sneakstrike</option>
+                <option value="4">Throw</option>
+                <option value="5">Headshot</option>
+                <option value="6">Rod Projectile</option>
+            </select>
+        </div>
+
+        <!--CHECKBOXES-->
+        <div class="col-md-3 py-2">
+            <div class="form-check">
+                <label class="form-check-label d-block" style="color:white;">
+                    <input asp-for="Input.LowDurability" id="checkboxLowDurability" class="form-check-input" type="checkbox" onchange="updateInput()">Low Durability
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label d-block" style="color:white;">
+                    <input asp-for="Input.Multishot" id="checkboxMultishot" class="form-check-input" type="checkbox" onchange="updateInput()">Multishot Modifier
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label d-block" style="color:white;">
+                    <input asp-for="Input.Wet" id="checkboxWet" class="form-check-input" type="checkbox" onchange="updateInput()">Wet
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row py-4">
+        <!--ENEMY-->
+        <div class="col-md-auto py-2">
+            <h5>Enemy</h5>
+            <select name="SelectedEnemyName" class="form-select" id="enemyDropdown" style="width:14rem;" onchange="updateEnemy();">
+                @if (Model.Enemies != null) {
+                    @foreach (var enemy in Model.Enemies)
+                    {
+                        <option value="@enemy.Name">@enemy.Name</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <!--ENEMY CONDITION-->
+        <div class="col-md-auto py-2">
+            <h5>Enemy Condition</h5>
+            <select asp-for="Input.EnemyCondition" class="form-select" id="enemyconditionDropdown" style="width:14rem;" onchange="updateInput()">
+                <option selected>None</option>
+                <option value="1">Frozen</option>
+                <option value="2">Wet</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <!--CURRENT HEARTS-->
+        <div class="col-md-auto py-2">
+            <h5>Current Hearts</h5>
+            <div class="form-outline" style="width: 5.5rem;">
+                <input asp-for="Input.HP" class="form-control" id="numberHP" type="number" value="38" step="0.25" min="0.25" max="40" onchange="updateInput()" />
+            </div>
+        </div>
+
+        <!--ARMOR/FOOD BUFF 1-->
+        <div class="col-md-auto py-2">
+            <h5>Armor/Food Buffs</h5>
+            <select asp-for="Input.Buff1" id="buffDropdown1" class="form-select" style="width:14rem;" onchange="updateInput()">
+                <option selected>None</option>
+                <option value="1">Attack Up (Lv1)</option>
+                <option value="2">Attack Up (Lv2)</option>
+                <option value="3">Attack Up (Lv3)</option>
+                <option value="4">Bone Weap. Prof.</option>
+                <option value="5">Hot Weather Attack</option>
+                <option value="6">Stormy Weather Attack</option>
+                <option value="7">Cold Weather Attack</option>
+                <option value="8">Master Sword Beam Up</option>
+            </select>
+        </div>
+
+        <!--ARMOR/FOOD BUFF 2-->
+        <div class="col-md-auto py-2">
+            <select asp-for="Input.Buff2" id="buffDropdown2" class="form-select" style="width:14rem; margin-top:32px;" onchange="updateInput()">
+                <option selected>None</option>
+                <option value="1">Attack Up (Lv1)</option>
+                <option value="2">Attack Up (Lv2)</option>
+                <option value="3">Attack Up (Lv3)</option>
+                <option value="4">Bone Weap. Prof.</option>
+                <option value="5">Hot Weather Attack</option>
+                <option value="6">Stormy Weather Attack</option>
+                <option value="7">Cold Weather Attack</option>
+                <option value="8">Master Sword Beam Up</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <!--WEAPON ICON-->
+        <div style="float:left;width:128px; height:128px; margin-top:50px;">
+            <img src="@Model.WeaponIconURL" id="weaponImage" class="rounded float-left" alt="Weapon Image" style="height:100%; width:100%; object-fit:contain;">
+        </div>
+        <!--FUSE ICON-->
+        <div style="float:left;width:80px; height:80px; margin-top:45px; margin-left:-25px">
+            <img src="@Model.FuseIconURL" id="fuseImage" class="rounded float-left" alt="Fuse Image" style="height:100%; width:100%; object-fit:contain;">
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <!--ENEMY ICON-->
+        <div style="float:left;width:128px; height:128px; margin-top:20px;">
+            <img src="@Model.EnemyIconURL" id="enemyImage" class="rounded float-left" alt="Enemy Image" style="height:100%; width:100%; object-fit:contain;">
+        </div>
+    </div>
+
+    <div class="row" id="DamageOutputText">
+        <h1 style="margin-top:-220px; margin-left: 320px; font-size: 38px; color:white;">Damage: @Model.DamageOutput</h1>
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        function findObjByName(objData, selectedName) {
+            return objData.find(function (w) {
+                return w.Name === selectedName;
+            });
+        }
+
+        function updateInput() {
+            var inputData = {
+                AttackUpMod: parseInt($('#numberAttackUpMod').val(), 10),
+                AttackType: $('#attacktypeDropdown').val(),
+                LowDurability: $('#checkboxLowDurability').is(':checked'),
+                Multishot: $('#checkboxMultishot').is(':checked'),
+                Wet: $('#checkboxWet').is(':checked'),
+                EnemyCondition: $('#enemyconditionDropdown').val(),
+                HP: parseFloat($('#numberHP').val()),
+                Buff1: $('#buffDropdown1').val(),
+                Buff2: $('#buffDropdown2').val(),
+            };
+
+            inputData.__RequestVerificationToken = $('input[name="__RequestVerificationToken"]').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Page("Index", "OnPost")',
+                contentType: 'application/x-www-form-urlencoded',
+                data: { ...inputData, source: 'updateInput' },
+                success: function (response) {
+                    $('#DamageOutputText').html('<h1 style="margin-top:-220px; margin-left: 320px; font-size: 38px; color:white;">Damage: ' + response.damageOutput + '</h1>');
+                    console.log('INPUT SUCCESS', response);
+                },
+                error: function (error) {
+                    console.error('INPUT ERROR', error);
+                }
+            });
+        }
+
+        function updateWeapon() {
+            var objData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Weapons));
+            var selectedName = $('#weaponDropdown').val();
+            var selectedObj = findObjByName(objData, selectedName);
+            $('#weaponImage').prop('src', selectedObj ? selectedObj.IconURL : '');
+
+            var weaponData = {
+                ActorID: selectedObj.ActorID,
+                Name: selectedObj.Name,
+                Type: selectedObj.Type,
+                CanCut: selectedObj.CanCut,
+                BaseAttack: selectedObj.BaseAttack,
+                Durability: selectedObj.Durability,
+                Property: selectedObj.Property,
+                CanFuseTo: selectedObj.CanFuseTo,
+                FuseExtraDurability: selectedObj.FuseExtraDurability,
+                FuseBaseName: selectedObj.FuseBaseName,
+                IconURL: selectedObj.IconURL
+            };
+
+            weaponData.__RequestVerificationToken = $('input[name="__RequestVerificationToken"]').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Page("Index")',
+                contentType: 'application/x-www-form-urlencoded',
+                data: { ...weaponData, source: 'UpdateWeapon' },
+                success: function (response) {
+                    $('#DamageOutputText').html('<h1 style="margin-top:-220px; margin-left: 320px; font-size: 38px; color:white;">Damage: ' + response.damageOutput + '</h1>');
+                    console.log('WEAPON SUCCESS', response);
+                },
+                error: function (error) {
+                    console.error('WEAPON ERROR', error);
+                }
+            });
+        }
+        function updateFuse() {
+            var objData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Fuses));
+            var selectedName = $('#fuseDropdown').val();
+            var selectedObj = findObjByName(objData, selectedName);
+            $('#fuseImage').prop('src', selectedObj ? selectedObj.IconURL : '');
+
+            var fuseData = {
+                ActorID: selectedObj.ActorID,
+                Name: selectedObj.Name,
+                BaseAttack: selectedObj.BaseAttack,
+                CanCut: selectedObj.CanCut,
+                AddsShieldAttack: selectedObj.AddsShieldAttack,
+                ReplaceProperties: selectedObj.ReplaceProperties,
+                Property1: selectedObj.Property1,
+                Property2: selectedObj.Property2,
+                Property3: selectedObj.Property3,
+                Property4: selectedObj.Property4,
+                IconURL: selectedObj.IconURL
+            };
+
+            fuseData.__RequestVerificationToken = $('input[name="__RequestVerificationToken"]').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Page("Index")',
+                contentType: 'application/x-www-form-urlencoded',
+                data: { ...fuseData, source: 'UpdateFuse' },
+                success: function (response) {
+                    $('#DamageOutputText').html('<h1 style="margin-top:-220px; margin-left: 320px; font-size: 38px; color:white;">Damage: ' + response.damageOutput + '</h1>');
+                    console.log('FUSE SUCCESS', response);
+                },
+                error: function (error) {
+                    console.error('FUSE ERROR', error);
+                }
+            });
+        }
+        function updateEnemy() {
+            var objData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Enemies));
+            var selectedName = $('#enemyDropdown').val();
+            var selectedObj = findObjByName(objData, selectedName);
+            $('#enemyImage').prop('src', selectedObj ? selectedObj.IconURL : '');
+
+            var enemyData = {
+                ActorID: selectedObj.ActorID,
+                Name: selectedObj.Name,
+                HasGloomVariant: selectedObj.HasGloomVariant,
+                HP: selectedObj.HP,
+                FireDamage: selectedObj.FireDamage,
+                FireDamageContinuous: selectedObj.FireDamageContinuous,
+                IceDamage: selectedObj.IceDamage,
+                ShockDamage: selectedObj.ShockDamage,
+                WaterDamage: selectedObj.WaterDamage,
+                WeakToWater: selectedObj.WeakToWater,
+                RijuDamage: selectedObj.RijuDamage,
+                AncientBladeDefeat: selectedObj.AncientBladeDefeat,
+                IsRock: selectedObj.IsRock,
+                CanSneakstrike: selectedObj.CanSneakstrike,
+                ArrowMultiplier: selectedObj.ArrowMultiplier,
+                BeamMultiplier: selectedObj.BeamMultiplier,
+                BombMultiplier: selectedObj.BombMultiplier,
+                IconURL: selectedObj.IconURL
+            };
+
+            enemyData.__RequestVerificationToken = $('input[name="__RequestVerificationToken"]').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Page("Index")',
+                contentType: 'application/x-www-form-urlencoded',
+                data: { ...enemyData, source: 'UpdateEnemy' },
+                success: function (response) {
+                    $('#DamageOutputText').html('<h1 style="margin-top:-220px; margin-left: 320px; font-size: 38px; color:white;">Damage: ' + response.damageOutput + '</h1>');
+                    console.log('ENEMY SUCCESS', response);
+                },
+                error: function (error) {
+                    console.error('ENEMY ERROR', error);
+                }
+            });
+        }
+    </script>
+}
