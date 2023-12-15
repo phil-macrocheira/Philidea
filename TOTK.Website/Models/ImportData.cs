@@ -9,8 +9,10 @@ namespace TOTK.Website.Models
         public byte? Type { get; set; }
         public bool? CanCut { get; set; }
         public byte? BaseAttack { get; set; }
+        public byte? ProjectileAttack { get; set; }
         public byte? Durability { get; set; }
         public string? Property { get; set; }
+        public bool? CanHaveAttackUpMod { get; set; }
         public bool? CanFuseTo { get; set; }
         public byte? FuseExtraDurability { get; set; }
         public string? FuseBaseName { get; set; }
@@ -21,6 +23,10 @@ namespace TOTK.Website.Models
         public string? ActorID { get; set; }
         public string? Name { get; set; }
         public byte? BaseAttack { get; set; }
+        public byte? ProjectileAttack { get; set; }
+        public byte? ElementPower { get; set; }
+        public bool? CanFuseToArrow { get; set; }
+        public byte? ArrowMultiplier { get; set; }
         public bool? CanCut { get; set; }
         public bool? AddsShieldAttack { get; set; }
         public bool? ReplaceProperties { get; set; }
@@ -36,12 +42,13 @@ namespace TOTK.Website.Models
         public string? Name { get; set; }
         public bool? HasGloomVariant { get; set; }
         public short? HP { get; set; }
+        public string? Element { get; set; }
         public short? FireDamage { get; set; }
         public short? FireDamageContinuous { get; set; }
+        public bool? CanFreeze { get; set; }
         public short? IceDamage { get; set; }
         public short? ShockDamage { get; set; }
         public byte? WaterDamage { get; set; }
-        public bool? WeakToWater { get; set; }
         public short? RijuDamage { get; set; }
         public bool? AncientBladeDefeat { get; set; }
         public bool? IsRock { get; set; }
@@ -77,8 +84,10 @@ namespace TOTK.Website.Models
                                 Type = (byte?)reader["Type"],
                                 CanCut = (bool?)reader["CanCut"],
                                 BaseAttack = (byte?)reader["BaseAttack"],
+                                ProjectileAttack = (byte?)reader["ProjectileAttack"],
                                 Durability = (byte?)reader["Durability"],
                                 Property = reader["Property"].ToString(),
+                                CanHaveAttackUpMod = (bool?)reader["CanHaveAttackUpMod"],
                                 CanFuseTo = (bool?)reader["CanFuseTo"],
                                 FuseExtraDurability = (byte?)reader["FuseExtraDurability"],
                                 FuseBaseName = reader["FuseBaseName"].ToString(),
@@ -112,6 +121,10 @@ namespace TOTK.Website.Models
                                 ActorID = reader["ActorID"].ToString(),
                                 Name = reader["Name"].ToString(),
                                 BaseAttack = (byte?)reader["BaseAttack"],
+                                ProjectileAttack = (byte?)reader["ProjectileAttack"],
+                                ElementPower = (byte?)reader["ElementPower"],
+                                CanFuseToArrow = (bool?)reader["CanFuseToArrow"],
+                                ArrowMultiplier = (byte?)reader["ArrowMultiplier"],
                                 CanCut = (bool?)reader["CanCut"],
                                 AddsShieldAttack = (bool?)reader["AddsShieldAttack"],
                                 ReplaceProperties = (bool?)reader["ReplaceProperties"],
@@ -152,6 +165,7 @@ namespace TOTK.Website.Models
                                 HP = (short?)reader["HP"],
                                 FireDamage = (short?)reader["FireDamage"],
                                 FireDamageContinuous = (short?)reader["FireDamageContinuous"],
+                                CanFreeze = (bool?)reader["CanFreeze"],
                                 IceDamage = (short?)reader["IceDamage"],
                                 ShockDamage = (short?)reader["ShockDamage"],
                                 WaterDamage = (byte?)reader["WaterDamage"],
@@ -171,6 +185,45 @@ namespace TOTK.Website.Models
                 }
             }
             return enemies;
+        }
+        public List<Fuse> LoadFuseArrow()
+        {
+            List<Fuse> fuses = new List<Fuse>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM fuse WHERE CanFuseToArrow=1 ORDER BY SortOrder";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Fuse fuse = new Fuse
+                            {
+                                ActorID = reader["ActorID"].ToString(),
+                                Name = reader["Name"].ToString(),
+                                BaseAttack = (byte?)reader["BaseAttack"],
+                                CanFuseToArrow = (bool?)reader["CanFuseToArrow"],
+                                ArrowMultiplier = (byte?)reader["ArrowMultiplier"],
+                                CanCut = (bool?)reader["CanCut"],
+                                AddsShieldAttack = (bool?)reader["AddsShieldAttack"],
+                                ReplaceProperties = (bool?)reader["ReplaceProperties"],
+                                Property1 = reader["Property1"].ToString(),
+                                Property2 = reader["Property2"].ToString(),
+                                Property3 = reader["Property3"].ToString(),
+                                Property4 = reader["Property4"].ToString(),
+                                IconURL = reader["IconURL"].ToString()
+                            };
+
+                            fuses.Add(fuse);
+                        }
+                    }
+                }
+            }
+            return fuses;
         }
     }
 }
