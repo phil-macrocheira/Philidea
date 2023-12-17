@@ -65,11 +65,29 @@ namespace TOTK.Website.Models
     }
     public class ImportData
     {
-        string connectionString = Environment.GetEnvironmentVariable("SQLAZURECONNSTR_connectionString");
-        //private string connectionString = "Data Source=(localdb)\\mssqllocaldb;Integrated Security=True;Encrypt=False";
+        private string connectionString = Environment.GetEnvironmentVariable("SQLAZURECONNSTR_connectionString");
+        public string GetLocalConnectionStringIfOffline()
+        {
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connectionString);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                {
+                    connection.Open();
+                    return connectionString;
+                }
+            }
+            catch (Exception)
+            {
+                return "Data Source=(localdb)\\mssqllocaldb;Integrated Security=True;Encrypt=False";
+            }
+        }
         public List<Weapon> LoadWeapons()
         {
             List<Weapon> weapons = new List<Weapon>();
+
+            connectionString = GetLocalConnectionStringIfOffline();
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
