@@ -178,7 +178,7 @@
                 <div class="col py-2" style="margin-top:40px;">
                     <div class="form-check">
                         <label class="form-check-label d-block" style="color:white;">
-                            <input asp-for="Input.Frozen" id="checkboxFrozen" class="form-check-input" type="checkbox" onchange="update()">Frozen
+                            <input asp-for="Input.Frozen" id="checkboxFrozen" class="form-check-input" type="checkbox" onchange="update()" disabled>Frozen
                         </label>
                     </div>
                 </div>
@@ -343,6 +343,18 @@
                     });
 
                     fuseDropdown.val(selectedFuseName);
+                }
+            }
+
+            // Freeze Frozen Checkbox if enemy unfreezable
+            if (dropdownEdited === 'enemy') {
+                var checkbox = document.getElementById('checkboxFrozen');
+                if (!selectedEnemyObj.CanFreeze) {
+                    checkbox.checked = false;
+                    checkbox.disabled = true;
+                }
+                else {
+                    checkbox.disabled = false;
                 }
             }
 
