@@ -10,12 +10,12 @@ namespace TOTK.Website
     public class CalculateDamage
     {
         private readonly ILogger<CalculateDamage> _logger;
-        public IndexModel Data;
+        public totk_calculatorModel Data;
         public CalculateDamage(ILogger<CalculateDamage> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-        public float Calculate(IndexModel data)
+        public float Calculate(totk_calculatorModel data)
         {
             Data = data;
 
@@ -34,8 +34,8 @@ namespace TOTK.Website
             float FlurryRush = (float)GetFlurryRush();
             float Shatter = (float)GetShatter();
             float AttackUp = (float)GetAttackUp();
+            float Throw = (float)GetThrow(AttackUp);
             float Headshot = (float)GetHeadshot();
-            float Throw = (float)GetThrow();
             float Frozen = (float)GetFrozen();
             float TreeCutter = (float)GetTreeCutter();
             float ArrowEnemyMult = (float)GetArrowEnemyMult();
@@ -86,7 +86,7 @@ namespace TOTK.Website
 
             DamageOutput = BaseAttack + FuseUIAdjust((FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
             DamageOutput *= LowHealth * WetPlayer * Sneakstrike * LowDurability * Bone * FlurryRush * Shatter;
-            DamageOutput *= AttackUp * Headshot * (Throw * AttackUp) * OneDurability * Frozen * TreeCutter;
+            DamageOutput *= AttackUp * Headshot * Throw * OneDurability * Frozen * TreeCutter;
             DamageOutput *= ArrowEnemyMult * ComboFinisher;
             DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
             DamageOutput += ElementalDamage;
@@ -98,7 +98,8 @@ namespace TOTK.Website
                                    $"WetPlayer: {WetPlayer}, Sneakstrike: {Sneakstrike}, LowDurability: {LowDurability}, " +
                                    $"Bone: {Bone}, FlurryRush: {FlurryRush}, Shatter: {Shatter}, AttackUp: {AttackUp}, " +
                                    $"Headshot: {Headshot}, Throw: {Throw}, OneDurability: {OneDurability}, Frozen: {Frozen}, " +
-                                   $"TreeCutter: {TreeCutter}, ArrowEnemyMult: {ArrowEnemyMult}, ComboFinisher: {ComboFinisher}" +
+                                   $"TreeCutter: {TreeCutter}, ArrowEnemyMult: {ArrowEnemyMult}, ComboFinisher: {ComboFinisher}, " +
+                                   $"MoldugaBelly: {MoldugaBelly}, " + 
                                    $"ElementalDamage: {ElementalDamage}, ElementalMult: {ElementalMult}, ContinuousFire: {ContinuousFire}");
 
             return (float)Math.Floor(DamageOutput);
@@ -355,7 +356,7 @@ namespace TOTK.Website
             }
             return 1;
         }
-        public float GetThrow()
+        public float GetThrow(float AttackUp)
         {
             string FuseBaseName = Data.SelectedWeapon.FuseBaseName;
             var SelectedWeaponType = Data.SelectedWeapon.Type;
@@ -370,10 +371,10 @@ namespace TOTK.Website
 
             if (Data.SelectedWeapon.Property == "Boomerang")
             {
-                return 1.5f;
+                return 1.5f * AttackUp;
             }
 
-            return 2;
+            return 2 * AttackUp;
         }
         public float GetFrozen()
         {
