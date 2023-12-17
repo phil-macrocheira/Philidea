@@ -9,7 +9,14 @@
     body {
         background-image: url("background.webp");
     }
-
+    h2 {
+        color: white;
+        font-size: 24px;
+        position: absolute;
+        padding: 0 10px;
+        margin-top: -35px;
+        background-image: url('background.webp');
+    }
     h5 {
         color: white;
     }
@@ -20,7 +27,12 @@
 </style>
 
 <div class="container" >
-    <div class="row">
+    <!--WEAPON ROW/SECTION-->
+    <div class="row section">
+        <div class="botw-font" style="height:10px; margin-left:-12px; position:relative;">
+            <h2>WEAPON</h2>
+        </div>
+
         <!--WEAPON-->
         <div class="col-md-auto py-2">
             <h5>Weapon</h5>
@@ -35,7 +47,7 @@
         </div>
 
         <!--ATTACK UP MOD-->
-        <div class="col-md-auto py-2">
+        <div class="col-md-auto py-2" style="margin-right:3%">
             <h5>Attack Up Mod</h5>
             <div class="form-outline" style="width: 8rem;">
                 <input asp-for="Input.AttackUpMod" class="form-control" id="numberAttackUpMod" type="number" value="0" min="0" max="0" onchange="update()" />
@@ -43,9 +55,9 @@
         </div>
 
         <!--FUSE-->
-        <div class="col-md-auto" style="margin-top:8px;">
+        <div class="col-md-auto py-2" style="margin-right:3%;">
             <h5>Fuse</h5>
-            <select name="SelectedFuseName" class="form-select text-wrap" id="fuseDropdown" style="width:16rem; height:4rem;" onchange="update('fuse');">
+            <select name="SelectedFuseName" class="form-select text-wrap" id="fuseDropdown" style="width:17rem;" onchange="update('fuse');">
                 @if (Model.Fuses != null) {
                     @foreach (var fuse in Model.Fuses)
                     {
@@ -55,129 +67,157 @@
             </select>
         </div>
 
+        <!--DURABILITY-->
+        <div class="col-md-auto py-2" style="margin-right:3%">
+            <h5>Durability</h5>
+            <div class="form-outline" style="width: 4.5rem;">
+                <input asp-for="Input.Durability" class="form-control" id="numberDurability" type="number" value="40" min="1" max="40" onchange="update()" />
+            </div>
+        </div>
+
         <!--ATTACK TYPE-->
         <div class="col-md-auto py-2">
             <h5>Attack Type</h5>
-            <select asp-for="Input.AttackType" class="form-select" id="attacktypeDropdown" style="width:14rem;" onchange="update()">
+            <select asp-for="Input.AttackType" class="form-select" id="attacktypeDropdown" style="width:10.5rem;" onchange="update()">
                 <option selected>Standard Attack</option>
-                <option value="Charge Attack">Charge Attack</option>
-                <option value="Flurry Rush">Flurry Rush</option>
-                <option value="Sneakstrike">Sneakstrike</option>
+                <option value="Combo Finisher">Combo Finisher</option>
                 <option value="Throw">Throw</option>
+                <option value="Melee Projectile">Melee Projectile</option>
+                <option value="Sneakstrike">Sneakstrike</option>
+                <option value="Flurry Rush">Flurry Rush</option>
                 <option value="Headshot">Headshot</option>
-                <option value="Rod Projectile">Rod Projectile</option>
-            </select>
-        </div>
-
-        <!--CHECKBOXES-->
-        <div class="col-md-3 py-2">
-            <div class="form-check">
-                <label class="form-check-label d-block" style="color:white;">
-                    <input asp-for="Input.LowDurability" id="checkboxLowDurability" class="form-check-input" type="checkbox" onchange="update()">Low Durability
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label d-block" style="color:white;">
-                    <input asp-for="Input.Multishot" id="checkboxMultishot" class="form-check-input" type="checkbox" onchange="update()">Multishot Modifier
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label d-block" style="color:white;">
-                    <input asp-for="Input.Wet" id="checkboxWet" class="form-check-input" type="checkbox" onchange="update()">Player Wet
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label d-block" style="color:white;">
-                    <input asp-for="Input.Frozen" id="checkboxFrozen" class="form-check-input" type="checkbox" onchange="update()">Enemy Frozen
-                </label>
-            </div>
-        </div>
-    </div>
-
-    <div class="row py-4">
-        <!--ENEMY-->
-        <div class="col-md-auto py-2">
-            <h5>Enemy</h5>
-            <select name="SelectedEnemyName" class="form-select" id="enemyDropdown" style="width:14rem;" onchange="update('enemy');">
-                @if (Model.Enemies != null) {
-                    @foreach (var enemy in Model.Enemies)
-                    {
-                        <option value="@enemy.Name">@enemy.Name</option>
-                    }
-                }
-            </select>
-        </div>
-
-    <div class="row">
-        <!--CURRENT HEARTS-->
-        <div class="col-md-auto py-2">
-            <h5>Current Hearts</h5>
-            <div class="form-outline" style="width: 5.5rem;">
-                <input asp-for="Input.HP" class="form-control" id="numberHP" type="number" value="38" step="0.25" min="0.25" max="40" onchange="update()" />
-            </div>
-        </div>
-
-        <!--ARMOR/FOOD BUFF 1-->
-        <div class="col-md-auto py-2">
-            <h5>Armor/Food Buffs</h5>
-            <select asp-for="Input.Buff1" id="buffDropdown1" class="form-select" style="width:14rem;" onchange="update()">
-                <option selected>None</option>
-                <option value="Attack Up (Lv1)">Attack Up (Lv1)</option>
-                <option value="Attack Up (Lv2)">Attack Up (Lv2)</option>
-                <option value="Attack Up (Lv3)">Attack Up (Lv3)</option>
-                <option value="Bone Weap. Prof.">Bone Weap. Prof.</option>
-                <option value="Hot Weather Attack">Hot Weather Attack</option>
-                <option value="Stormy Weather Attack">Stormy Weather Attack</option>
-                <option value="Cold Weather Attack">Cold Weather Attack</option>
-                <option value="Master Sword Beam Up">Master Sword Beam Up</option>
-            </select>
-        </div>
-
-        <!--ARMOR/FOOD BUFF 2-->
-        <div class="col-md-auto py-2">
-            <select asp-for="Input.Buff2" id="buffDropdown2" class="form-select" style="width:14rem; margin-top:32px;" onchange="update()">
-                <option selected>None</option>
-                <option value="Attack Up (Lv1)">Attack Up (Lv1)</option>
-                <option value="Attack Up (Lv2)">Attack Up (Lv2)</option>
-                <option value="Attack Up (Lv3)">Attack Up (Lv3)</option>
-                <option value="Bone Weap. Prof.">Bone Weap. Prof.</option>
-                <option value="Hot Weather Attack">Hot Weather Attack</option>
-                <option value="Stormy Weather Attack">Stormy Weather Attack</option>
-                <option value="Cold Weather Attack">Cold Weather Attack</option>
-                <option value="Master Sword Beam Up">Master Sword Beam Up</option>
+                <option value="Riju Lightning">Riju Lightning</option>
             </select>
         </div>
     </div>
 
+    <!--PLAYER AND ENEMY ROW-->
     <div class="row">
-        <!--WEAPON ICON-->
-        <div style="float:left;width:128px; height:128px; margin-top:50px;">
-            <img src="@Model.WeaponIconURL" id="weaponImage" class="rounded float-left" alt="Weapon Image" style="height:100%; width:100%; object-fit:contain;">
-        </div>
-        <!--FUSE ICON-->
-        <div style="float:left;width:80px; height:80px; margin-top:45px; margin-left:-25px">
-            <img src="@Model.FuseIconURL" id="fuseImage" class="rounded float-left" alt="Fuse Image" style="height:100%; width:100%; object-fit:contain;">
+        <!--PLAYER SECTION-->
+        <div class="col-7 section" style="height:fit-content">
+            <div class="botw-font" style="height:10px; position:relative;">
+                <h2>PLAYER</h2>
+            </div>
+
+            <div class="row">
+                <!--CURRENT HEARTS-->
+                <div class="col-md-auto py-2">
+                    <h5>Current Hearts</h5>
+                    <div class="form-outline" style="width: 5.5rem;">
+                        <input asp-for="Input.HP" class="form-control" id="numberHP" type="number" value="38" step="0.25" min="0.25" max="40" onchange="update()" />
+                    </div>
+                </div>
+
+                <!--ARMOR/FOOD BUFF 1-->
+                <div class="col-md-auto py-2">
+                    <h5>Armor/Food Buffs</h5>
+                    <select asp-for="Input.Buff1" id="buffDropdown1" class="form-select" style="width:14rem;" onchange="update()">
+                        <option selected>None</option>
+                        <option value="Attack Up (Lv1)">Attack Up (Lv1)</option>
+                        <option value="Attack Up (Lv2)">Attack Up (Lv2)</option>
+                        <option value="Attack Up (Lv3)">Attack Up (Lv3)</option>
+                        <option value="Bone Weap. Prof.">Bone Weap. Prof.</option>
+                        <option value="Hot Weather Attack">Hot Weather Attack</option>
+                        <option value="Cold Weather Attack">Cold Weather Attack</option>
+                        <option value="Stormy Weather Attack">Stormy Weather Attack</option>
+                        <option value="Master Sword Beam Up">Master Sword Beam Up</option>
+                    </select>
+                </div>
+
+                <!--ARMOR/FOOD BUFF 2-->
+                <div class="col-md-auto py-2">
+                    <select asp-for="Input.Buff2" id="buffDropdown2" class="form-select" style="width:14rem; margin-top:32px;" onchange="update()">
+                        <option selected>None</option>
+                        <option value="Attack Up (Lv1)">Attack Up (Lv1)</option>
+                        <option value="Attack Up (Lv2)">Attack Up (Lv2)</option>
+                        <option value="Attack Up (Lv3)">Attack Up (Lv3)</option>
+                        <option value="Bone Weap. Prof.">Bone Weap. Prof.</option>
+                        <option value="Hot Weather Attack">Hot Weather Attack</option>
+                        <option value="Cold Weather Attack">Cold Weather Attack</option>
+                        <option value="Stormy Weather Attack">Stormy Weather Attack</option>
+                        <option value="Master Sword Beam Up">Master Sword Beam Up</option>
+                    </select>
+                </div>
+
+                <!--PLAYER CHECKBOXES-->
+                <div class="col-md-auto py-2" style="margin-top:40px;">
+                    <div class="form-check">
+                        <label class="form-check-label d-block" style="color:white;">
+                            <input asp-for="Input.Wet" id="checkboxWet" class="form-check-input" type="checkbox" onchange="update()">Wet
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div style="clear:both;"></div>
+        <!--SPACE BETWEEN SECTIONS-->
+        <div class="col-md-auto"></div>
 
-        <!--ENEMY ICON-->
-        <div style="float:left;width:128px; height:128px; margin-top:20px;">
-            <img src="@Model.EnemyIconURL" id="enemyImage" class="rounded float-left" alt="Enemy Image" style="height:100%; width:100%; object-fit:contain;">
+        <!--ENEMY SECTION-->
+        <div class="col-4 section-enemy" style="height:fit-content; width:fit-content;">
+            <div class="botw-font" style="height:10px; position:relative;">
+                <h2>ENEMY</h2>
+            </div>
+            
+            <div class="row">
+                <!--ENEMY-->
+                <div class="col py-2">
+                    <h5>Enemy</h5>
+                    <select name="SelectedEnemyName" class="form-select text-wrap" id="enemyDropdown" style="width:23.5rem;" onchange="update('enemy');">
+                        @if (Model.Enemies != null)
+                        {
+                            @foreach (var enemy in Model.Enemies)
+                            {
+                                <option value="@enemy.Name">@enemy.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <!--ENEMY CHECKBOXES-->
+                <div class="col py-2" style="margin-top:40px;">
+                    <div class="form-check">
+                        <label class="form-check-label d-block" style="color:white;">
+                            <input asp-for="Input.Frozen" id="checkboxFrozen" class="form-check-input" type="checkbox" onchange="update()">Frozen
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    
+    <!--RESULT-->
+    <div class="section-result" style="margin-top:45px; margin-left:-10px; height:fit-content;">
+        <div class="botw-font" style="height:10px; position:relative;">
+            <h2>RESULT</h2>
+        </div>
 
-    <!--OUTPUT TEXT-->
-    <div class="row">
-        <div class="col-md-auto py-2">
-            <h1 style="margin-top: -270px; margin-left: 230px; font-size: 28px; color:white;">Properties<br></h1>
-            <ul style="margin-left: 200px" id="PropertiesList">
-                <li>Cut</li>
-            </ul>
+        <!--Weapon/Enemy Name Row-->
+        <div class="row">
+            <h5 class="col-md-auto" style="margin-left:15px; margin-right:115px;" id="WeaponNameText">Master Sword</h5>
+            <h5 class="col-md-auto" style="margin-left:15px;" id="EnemyNameText">Chuchu (Small)</h5>
         </div>
-        <div class="col-md-auto py-2" id="DamageOutputText">
-            <h1 style="margin-top: -270px; margin-left: 30px; font-size: 28px; color:white;">Damage: @Model.DamageOutput</h1>
+
+        <!--Icon Row-->
+        <div class="row">
+            <div class="icon col-md-auto" style="width:128px; height:128px; margin-left:25px; margin-top:6px;">
+                <img src="@Model.WeaponIconURL" id="weaponImage" class="rounded float-left" alt="Weapon Image" style="height:100%; width:100%; object-fit:contain;">
+            </div>
+            <div class="icon" style="width:60px; height:60px; margin-right:7.5%; margin-left: 3px; margin-top:6px;">
+                <img src="@Model.FuseIconURL" id="fuseImage" class="rounded float-left" alt="Fuse Image" style="height:100%; width:100%; object-fit:contain;">
+            </div>
+            <div class="icon col-md-auto" style="width:128px; height:128px; margin-right:7.5%; margin-top:6px;">
+                <img src="@Model.EnemyIconURL" id="enemyImage" class="float-left matched-radius_inner" alt="Enemy Image" style="height:100%; width:100%; object-fit:contain; border-radius: 0.7rem;">
+            </div>
+
+            <!--DAMAGE OUTPUT TEXT-->
+            <div class="col-md-auto" id="DamageOutputText">
+                <h1 style="font-size: 28px; color:white;">Damage: @Model.DamageOutput</h1>
+            </div>
         </div>
+
+        <!--PROPERTIES TEXT-->
+        <ul id="PropertiesList" style="margin-left:-12px;margin-top:6px;margin-bottom:0px;"><li>Cut</li></ul>
     </div>
 </div>
 
@@ -202,10 +242,39 @@
             var selectedFuseObj = findObjByName(fuseData, selectedFuseName);
             var selectedEnemyObj = findObjByName(enemyData, selectedEnemyName);
 
+            // UPDATE MASTER SWORD ICON FOR FUSED/NOT FUSED
+            var MasterSwordIconSet = false;
+            if (dropdownEdited == 'weapon' || dropdownEdited == 'fuse') {
+                if (selectedWeaponObj.Name == "Master Sword") {
+                    if (selectedFuseObj.Name != "None") {
+                        $('#weaponImage').prop('src', selectedWeaponObj ?
+                            "https://raw.githubusercontent.com/TOTKSheet/TOTKImages/main/Weapons/Weapon_Sword_070_Attached.png" : '');
+                        MasterSwordIconSet = true;
+                    }
+                    else {
+                        $('#weaponImage').prop('src', selectedWeaponObj ? selectedWeaponObj.IconURL : '');
+                        MasterSwordIconSet = true;
+                    }
+                }
+                else if (selectedWeaponObj.Name == "Master Sword (Awakened +15)" || selectedWeaponObj.Name == "Master Sword (Awakened +30)") {
+                    if (selectedFuseObj.Name != "None") {
+                        $('#weaponImage').prop('src', selectedWeaponObj ?
+                            "https://raw.githubusercontent.com/TOTKSheet/TOTKImages/main/Weapons/Weapon_Sword_070_TrueForm_Attached.png" : '');
+                        MasterSwordIconSet = true;
+                    }
+                    else {
+                        $('#weaponImage').prop('src', selectedWeaponObj ? selectedWeaponObj.IconURL : '');
+                        MasterSwordIconSet = true;
+                    }
+                }
+            }
+
             // UPDATE ICON
             switch (dropdownEdited) {
                 case 'weapon':
-                    $('#weaponImage').prop('src', selectedWeaponObj ? selectedWeaponObj.IconURL : '');
+                    if (!MasterSwordIconSet) {
+                        $('#weaponImage').prop('src', selectedWeaponObj ? selectedWeaponObj.IconURL : '');
+                    }
                     break;
                 case 'fuse':
                     $('#fuseImage').prop('src', selectedFuseObj ? selectedFuseObj.IconURL : '');
@@ -213,6 +282,30 @@
                 case 'enemy':
                     $('#enemyImage').prop('src', selectedEnemyObj ? selectedEnemyObj.IconURL : '');
                     break;
+            }
+
+            // UPDATE MAX DURABILITY IF WEAPON OR FUSE EDITED
+            if (dropdownEdited === 'weapon' || dropdownEdited === 'fuse') {
+                var FuseDurability = 0;
+                var DurabilityMod = 0;
+                var FuseDurabilityWeapon = selectedFuseObj.WeaponDurability;
+
+                if (selectedWeaponObj.CanHaveAttackUpMod === true) {
+                    DurabilityMod = 10;
+                }
+
+                if (FuseDurabilityWeapon > 0) 
+                { 
+                    FuseDurability = FuseDurabilityWeapon
+                }
+                else if (selectedFuseObj.Name != "None")
+                {
+                    FuseDurability = selectedWeaponObj.FuseExtraDurability;
+                }
+
+                var MaxDurability = selectedWeaponObj.Durability + FuseDurability;
+                $('#numberDurability').attr('max', MaxDurability + DurabilityMod);
+                $('#numberDurability').val(MaxDurability);
             }
 
             // TRIGGER IF WEAPON DROPDOWN EDITED
@@ -253,14 +346,24 @@
                 }
             }
 
-            var AttackUpModClamped = Math.min(2147483647, parseInt($('#numberAttackUpMod').val(), 10));
-            var PlayerHPClamped = Math.min(40, parseFloat($('#numberHP').val()));
+            // Clamp numbers (0 if NaN)
+            var AttackUpModClamped = 0;
+            var PlayerHPClamped = 0;
+            var DurabilityClamped = 0;
+            if (!isNaN($('#numberAttackUpMod').val())) {
+                AttackUpModClamped = Math.min(2147483647, parseInt($('#numberAttackUpMod').val(), 10));
+            }
+            if (!isNaN($('#numberHP').val())) {
+                PlayerHPClamped = Math.min(40, parseFloat($('#numberHP').val()));
+            }
+            if (!isNaN($('#numberDurability').val())) {
+                DurabilityClamped = Math.min(810, parseInt($('#numberDurability').val(), 10));
+            }
 
             var data = {
                 AttackUpMod: AttackUpModClamped,
                 AttackType: $('#attacktypeDropdown').val(),
-                LowDurability: $('#checkboxLowDurability').is(':checked'),
-                Multishot: $('#checkboxMultishot').is(':checked'),
+                DurabilityInput: DurabilityClamped,
                 Wet: $('#checkboxWet').is(':checked'),
                 Frozen: $('#checkboxFrozen').is(':checked'),
                 PlayerHP: PlayerHPClamped,
@@ -283,6 +386,7 @@
                 BaseAttackFuse: selectedFuseObj.BaseAttack,
                 ProjectileAttackFuse: selectedFuseObj.ProjectileAttack,
                 ElementPower: selectedFuseObj.ElementPower,
+                WeaponDurability: selectedFuseObj.WeaponDurability,
                 CanFuseToArrow: selectedFuseObj.CanFuseToArrow,
                 ArrowMultiplierFuse: selectedFuseObj.ArrowMultiplier,
                 CanCutFuse: selectedFuseObj.CanCut,
@@ -291,10 +395,8 @@
                 Property1: selectedFuseObj.Property1,
                 Property2: selectedFuseObj.Property2,
                 Property3: selectedFuseObj.Property3,
-                Property4: selectedFuseObj.Property4,
 
                 NameEnemy: selectedEnemyObj.Name,
-                HasGloomVariant: selectedEnemyObj.HasGloomVariant,
                 EnemyHP: selectedEnemyObj.HP,
                 Element: selectedEnemyObj.Element,
                 FireDamage: selectedEnemyObj.FireDamage,
@@ -307,6 +409,8 @@
                 AncientBladeDefeat: selectedEnemyObj.AncientBladeDefeat,
                 IsRock: selectedEnemyObj.IsRock,
                 CanSneakstrike: selectedEnemyObj.CanSneakstrike,
+                CanMeleeHeadshot: selectedEnemyObj.CanMeleeHeadshot,
+                HeadshotMultiplier: selectedEnemyObj.HeadshotMultiplier,
                 ArrowMultiplierEnemy: selectedEnemyObj.ArrowMultiplier,
                 BeamMultiplier: selectedEnemyObj.BeamMultiplier,
                 BombMultiplier: selectedEnemyObj.BombMultiplier,
@@ -321,7 +425,7 @@
                 contentType: 'application/x-www-form-urlencoded',
                 data: data,
                 success: function (response) {
-                    $('#DamageOutputText').html('<h1 style="margin-top: -270px; margin-left: 30px; font-size: 28px; color:white;">Damage: ' + response.damageOutput + '</h1>');
+                    $('#DamageOutputText').html('<h1 style="font-size: 28px; color:white;">Damage: ' + response.damageOutput + '</h1>');
 
                     $('#PropertiesList').empty();
                     $.each(response.properties, function (index, property) {

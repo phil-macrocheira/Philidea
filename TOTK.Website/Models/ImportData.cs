@@ -1,4 +1,8 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Diagnostics.Metrics;
 
 namespace TOTK.Website.Models
 {
@@ -10,7 +14,7 @@ namespace TOTK.Website.Models
         public bool? CanCut { get; set; }
         public byte? BaseAttack { get; set; }
         public byte? ProjectileAttack { get; set; }
-        public byte? Durability { get; set; }
+        public short? Durability { get; set; }
         public string? Property { get; set; }
         public bool? CanHaveAttackUpMod { get; set; }
         public bool? CanFuseTo { get; set; }
@@ -25,6 +29,7 @@ namespace TOTK.Website.Models
         public byte? BaseAttack { get; set; }
         public byte? ProjectileAttack { get; set; }
         public byte? ElementPower { get; set; }
+        public short? WeaponDurability { get; set; }
         public bool? CanFuseToArrow { get; set; }
         public byte? ArrowMultiplier { get; set; }
         public bool? CanCut { get; set; }
@@ -33,14 +38,12 @@ namespace TOTK.Website.Models
         public string? Property1 { get; set; }
         public string? Property2 { get; set; }
         public string? Property3 { get; set; }
-        public string? Property4 { get; set; }
         public string? IconURL { get; set; }
     }
     public class Enemy
     {
         public string? ActorID { get; set; }
         public string? Name { get; set; }
-        public bool? HasGloomVariant { get; set; }
         public short? HP { get; set; }
         public string? Element { get; set; }
         public short? FireDamage { get; set; }
@@ -53,19 +56,20 @@ namespace TOTK.Website.Models
         public bool? AncientBladeDefeat { get; set; }
         public bool? IsRock { get; set; }
         public bool? CanSneakstrike { get; set; }
+        public bool? CanMeleeHeadshot { get; set; }
+        public float? HeadshotMultiplier { get; set; }
         public float? ArrowMultiplier { get; set; }
         public float? BeamMultiplier { get; set; }
         public float? BombMultiplier { get; set; }
         public string? IconURL { get; set; }
     }
-
     public class ImportData
     {
-        private string connectionString = "Data Source=(localdb)\\mssqllocaldb;Integrated Security=True;Encrypt=False";
+        string connectionString = Environment.GetEnvironmentVariable("SQLAZURECONNSTR_connectionString");
+        //private string connectionString = "Data Source=(localdb)\\mssqllocaldb;Integrated Security=True;Encrypt=False";
         public List<Weapon> LoadWeapons()
         {
             List<Weapon> weapons = new List<Weapon>();
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -85,7 +89,7 @@ namespace TOTK.Website.Models
                                 CanCut = (bool?)reader["CanCut"],
                                 BaseAttack = (byte?)reader["BaseAttack"],
                                 ProjectileAttack = (byte?)reader["ProjectileAttack"],
-                                Durability = (byte?)reader["Durability"],
+                                Durability = (short?)reader["Durability"],
                                 Property = reader["Property"].ToString(),
                                 CanHaveAttackUpMod = (bool?)reader["CanHaveAttackUpMod"],
                                 CanFuseTo = (bool?)reader["CanFuseTo"],
@@ -123,6 +127,7 @@ namespace TOTK.Website.Models
                                 BaseAttack = (byte?)reader["BaseAttack"],
                                 ProjectileAttack = (byte?)reader["ProjectileAttack"],
                                 ElementPower = (byte?)reader["ElementPower"],
+                                WeaponDurability = (short?)reader["WeaponDurability"],
                                 CanFuseToArrow = (bool?)reader["CanFuseToArrow"],
                                 ArrowMultiplier = (byte?)reader["ArrowMultiplier"],
                                 CanCut = (bool?)reader["CanCut"],
@@ -131,7 +136,6 @@ namespace TOTK.Website.Models
                                 Property1 = reader["Property1"].ToString(),
                                 Property2 = reader["Property2"].ToString(),
                                 Property3 = reader["Property3"].ToString(),
-                                Property4 = reader["Property4"].ToString(),
                                 IconURL = reader["IconURL"].ToString()
                             };
 
@@ -161,8 +165,8 @@ namespace TOTK.Website.Models
                             {
                                 ActorID = reader["ActorID"].ToString(),
                                 Name = reader["Name"].ToString(),
-                                HasGloomVariant = (bool?)reader["HasGloomVariant"],
                                 HP = (short?)reader["HP"],
+                                Element = reader["Element"].ToString(),
                                 FireDamage = (short?)reader["FireDamage"],
                                 FireDamageContinuous = (short?)reader["FireDamageContinuous"],
                                 CanFreeze = (bool?)reader["CanFreeze"],
@@ -173,6 +177,8 @@ namespace TOTK.Website.Models
                                 AncientBladeDefeat = (bool?)reader["AncientBladeDefeat"],
                                 IsRock = (bool?)reader["IsRock"],
                                 CanSneakstrike = (bool?)reader["CanSneakstrike"],
+                                CanMeleeHeadshot = (bool?)reader["CanMeleeHeadshot"],
+                                HeadshotMultiplier = (float?)reader["HeadshotMultiplier"],
                                 ArrowMultiplier = (float?)reader["ArrowMultiplier"],
                                 BeamMultiplier = (float?)reader["BeamMultiplier"],
                                 BombMultiplier = (float?)reader["BombMultiplier"],
@@ -206,6 +212,9 @@ namespace TOTK.Website.Models
                                 ActorID = reader["ActorID"].ToString(),
                                 Name = reader["Name"].ToString(),
                                 BaseAttack = (byte?)reader["BaseAttack"],
+                                ProjectileAttack = (byte?)reader["ProjectileAttack"],
+                                ElementPower = (byte?)reader["ElementPower"],
+                                WeaponDurability = (short?)reader["WeaponDurability"],
                                 CanFuseToArrow = (bool?)reader["CanFuseToArrow"],
                                 ArrowMultiplier = (byte?)reader["ArrowMultiplier"],
                                 CanCut = (bool?)reader["CanCut"],
@@ -214,7 +223,6 @@ namespace TOTK.Website.Models
                                 Property1 = reader["Property1"].ToString(),
                                 Property2 = reader["Property2"].ToString(),
                                 Property3 = reader["Property3"].ToString(),
-                                Property4 = reader["Property4"].ToString(),
                                 IconURL = reader["IconURL"].ToString()
                             };
 

@@ -3,40 +3,44 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TOTK.Website</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TOTK.Website.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="/Fonts/BOTW_FONT.woff">
     <link rel="icon" href="favicon.ico" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Damage Calculator for Tears of the Kingdom</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        @*@<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>*@
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <!--HEADER-->
+    <header class="bg-black border-bottom box-shadow mb-3" >
+        <div class="container">
+            <label class="botw-font" style="margin-top: 10px; color:white; font-size: 28px;">TEARS OF THE KINGDOM DAMAGE CALCULATOR (BETA)</label>
+        </div>
     </header>
+
+    <!--BODY-->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!--FOOTER-->
+    <footer class="bg-black border-top footer text-muted">
         <div class="container">
-            Discord
+            <style>
+                ul.horizontal-list { list-style-type: none; padding: 0; margin: 0; }
+                ul.horizontal-list li { display: inline-block; margin-right: 30px; }
+                ul.horizontal-list a { color: #5be2d4; text-decoration: none; }
+            </style>
+
+            <ul class="horizontal-list">
+                <li><a href="https://github.com/phil-macrocheira/TOTK-Damage-Calculator" target="">Github</a></li>
+                <li><a href="mailto:philip.underwood2@gmail.com" target="">Contact</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/1LGihwXFrp6FxqSsbrUVIHcw8Nis6Qr3nedVdVpWbpls" target="">Data Spreadsheet</a></li>
+                <li><a href="https://docs.google.com/document/d/1K5hLcxfnvSnY-nsIP-n8Ew7rm9EkqHtnn6iJqOnxlng" target="">TOTK Damage Resource Doc</a></li>
+                <li><a href="https://discord.gg/k4s5KY7ASj" target="">Datamining Discord</a></li>
+            </ul>
         </div>
     </footer>
 
