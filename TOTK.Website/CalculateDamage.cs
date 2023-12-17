@@ -25,29 +25,25 @@ namespace TOTK.Website
             float FuseBaseAttack = (float)GetFuseBaseAttack();
             float ZonaiBonus = (float)GetZonaiBonus();
             float GerudoBonus = (float)GetGerudoBonus();
-
             float LowHealth = (float)GetLowHealth();
             float WetPlayer = (float)GetWetPlayer();
             float Sneakstrike = (float)GetSneakstrike();
             float LowDurability = (float)GetLowDurability();
+            float OneDurability = (float)GetOneDurability();
             float Bone = (float)GetBone();
             float FlurryRush = (float)GetFlurryRush();
             float Shatter = (float)GetShatter();
-
             float AttackUp = (float)GetAttackUp();
             float Headshot = (float)GetHeadshot();
             float Throw = (float)GetThrow();
             float Frozen = (float)GetFrozen();
             float TreeCutter = (float)GetTreeCutter();
-
+            float ArrowEnemyMult = (float)GetArrowEnemyMult();
             float ElementalDamage = (float)GetElementalDamage();
             float ElementalMult = (float)GetElementalMult();
             float ContinuousFire = (float)GetContinuousFire();
-
-            float ArrowEnemyMult = (float)GetArrowEnemyMult();
-            //float BeamEnemyMult = (float)GetBeamEnemyMult();
-            // implement rod projectiles, rods do x2
-            // cannons do 40 as bomb arrows
+            float ComboFinisher = (float)GetComboFinisher();
+            float MoldugaBelly = (float)GetMoldugaBelly();
 
             // Return enemy's HP if ancient blade
             if (Data.SelectedFuse.Name == "Ancient Blade" && Data.SelectedEnemy.AncientBladeDefeat == true)
@@ -55,10 +51,44 @@ namespace TOTK.Website
                 return (float)Data.SelectedEnemy.HP;
             }
 
-            DamageOutput += BaseAttack + FuseUIAdjust((FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
+            // Melee Projectile
+            if (Data.Input.AttackType == "Melee Projectile")
+            {
+                // WIND RAZOR
+                bool CutProperty = ScanProperties("Cut");
+                if (Data.SelectedWeapon.Property == "Wind Razor" && CutProperty)
+                {
+                    DamageOutput = (10 + FuseUIAdjust(FuseBaseAttack + AttackUpMod)) * AttackUp;
+                    DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
+                    DamageOutput += ElementalDamage;
+                    DamageOutput *= ElementalMult;
+                    DamageOutput += ContinuousFire;
+                    return DamageOutput;
+                }
+
+                // PROJECTILES FROM FUSES
+                float ProjectileAttack = (float)Data.SelectedFuse.ProjectileAttack;
+                if (ProjectileAttack > 0)
+                {
+                    float RodMultiplier = 1;
+                    if (Data.SelectedWeapon.Property == "Rod")
+                    {
+                        RodMultiplier = 2;
+                    }
+                    DamageOutput = (ProjectileAttack * RodMultiplier) * AttackUp;
+                    DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
+                    DamageOutput += ElementalDamage;
+                    DamageOutput *= ElementalMult;
+                    DamageOutput += ContinuousFire;
+                    return DamageOutput;
+                }
+            }
+
+            DamageOutput = BaseAttack + FuseUIAdjust((FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
             DamageOutput *= LowHealth * WetPlayer * Sneakstrike * LowDurability * Bone * FlurryRush * Shatter;
-            DamageOutput *= AttackUp * Headshot * (Throw * AttackUp) * Frozen * TreeCutter; // Also multiply combo finisher later
-            DamageOutput = (float)Math.Floor(DamageOutput);
+            DamageOutput *= AttackUp * Headshot * (Throw * AttackUp) * OneDurability * Frozen * TreeCutter;
+            DamageOutput *= ArrowEnemyMult * ComboFinisher;
+            DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
             DamageOutput += ElementalDamage;
             DamageOutput *= ElementalMult;
             DamageOutput += ContinuousFire;
@@ -67,23 +97,33 @@ namespace TOTK.Website
                                    $"GerudoBonus: {GerudoBonus}, ZonaiBonus: {ZonaiBonus}, LowHealth: {LowHealth}, " +
                                    $"WetPlayer: {WetPlayer}, Sneakstrike: {Sneakstrike}, LowDurability: {LowDurability}, " +
                                    $"Bone: {Bone}, FlurryRush: {FlurryRush}, Shatter: {Shatter}, AttackUp: {AttackUp}, " +
-                                   $"Headshot: {Headshot}, Throw: {Throw}, Frozen: {Frozen}, TreeCutter: {TreeCutter}, " +
+                                   $"Headshot: {Headshot}, Throw: {Throw}, OneDurability: {OneDurability}, Frozen: {Frozen}, " +
+                                   $"TreeCutter: {TreeCutter}, ArrowEnemyMult: {ArrowEnemyMult}, ComboFinisher: {ComboFinisher}" +
                                    $"ElementalDamage: {ElementalDamage}, ElementalMult: {ElementalMult}, ContinuousFire: {ContinuousFire}");
 
             return (float)Math.Floor(DamageOutput);
         }
         public float GetBaseAttack()
         {
+            float BaseAttack = (float)Data.SelectedWeapon.BaseAttack;
             string SelectedWeapon = Data.SelectedWeapon.Name;
+            string FuseBaseName = Data.SelectedWeapon.FuseBaseName;
             float MasterSwordBeamUp = 1.0f;
 
+            // DEMON KING'S BOW
             if (SelectedWeapon == "Demon King's Bow")
             {
                 return (float)Math.Max(1, Math.Min(60, Math.Floor(Data.Input.HP) * 2));
             }
 
-            if (Data.Input.AttackType == "Throw" && (SelectedWeapon == "Master Sword" || SelectedWeapon == "Master Sword (Prologue)" ||
-                SelectedWeapon == "Master Sword (Awakened +15)" || SelectedWeapon == "Master Sword (Awakened +30)"))
+            // MASTER SWORD IF DEMON DRAGON
+            if (Data.SelectedEnemy.Name == "Demon Dragon" && (FuseBaseName == "Master Sword" || FuseBaseName == "Decayed Master Sword"))
+            {
+                return BaseAttack * 5;
+            }
+
+            // MASTER SWORD BEAM IF THROW
+            if (Data.Input.AttackType == "Throw" && FuseBaseName == "Master Sword")
             {
                 if (Data.Input.Buff1 == "Master Sword Beam Up" || Data.Input.Buff2 == "Master Sword Beam Up")
                 {
@@ -92,7 +132,7 @@ namespace TOTK.Website
                 return (float)Data.SelectedWeapon.ProjectileAttack * MasterSwordBeamUp;
             }
 
-            return (float)Data.SelectedWeapon.BaseAttack;
+            return BaseAttack;
         }
         public float GetFuseBaseAttack()
         {
@@ -216,9 +256,21 @@ namespace TOTK.Website
         {
             bool LowDurabilityProperty = ScanProperties("Low Durability x2");
 
-            if (LowDurabilityProperty == true && Data.Input.LowDurability == true)
+            if (LowDurabilityProperty == true && Data.Input.Durability <= 3)
             {
                 return 2;
+            }
+            return 1;
+        }
+        public float GetOneDurability()
+        {
+            if (Data.Input.Durability == 1 && Data.Input.Frozen == false && Data.Input.AttackType != "Combo Finisher")
+            {
+                _logger.LogInformation($"Passed first check");
+                if (Data.Input.AttackType != "Throw" || Data.SelectedWeapon.Property == "Boomerang")
+                {
+                    return 2;
+                }
             }
             return 1;
         }
@@ -289,7 +341,15 @@ namespace TOTK.Website
         }
         public float GetHeadshot()
         {
-            if (Data.SelectedWeapon.Type == 3 && Data.Input.AttackType == "Headshot")
+            if ((Data.SelectedWeapon.Type == 3 && Data.Input.AttackType == "Headshot") || Data.SelectedEnemy.CanMeleeHeadshot == true)
+            {
+                return (float)Data.SelectedEnemy.HeadshotMultiplier;
+            }
+            return 1;
+        }
+        public float GetComboFinisher()
+        {
+            if (Data.Input.AttackType == "Combo Finisher")
             {
                 return 2;
             }
@@ -297,11 +357,13 @@ namespace TOTK.Website
         }
         public float GetThrow()
         {
-            string SelectedWeapon = Data.SelectedWeapon.Name;
+            string FuseBaseName = Data.SelectedWeapon.FuseBaseName;
             var SelectedWeaponType = Data.SelectedWeapon.Type;
+            bool ProjectileProperty = ScanProperties("Melee Projectile");
 
             if (Data.Input.AttackType != "Throw" || SelectedWeaponType >= 3 ||
-                SelectedWeapon == "Decayed Master Sword" || SelectedWeapon == "Master Sword (Prologue)")
+                FuseBaseName == "Master Sword" || FuseBaseName == "Decayed Master Sword"
+                || ProjectileProperty)
             {
                 return 1;
             }
@@ -361,41 +423,82 @@ namespace TOTK.Website
             bool WaterProperty = ScanProperties("Water");
             bool BombProperty = ScanProperties("Bomb");
             float FireDamage = (float)Data.SelectedEnemy.FireDamage;
+            float IceDamage = (float)Data.SelectedEnemy.IceDamage;
+            float ShockDamage = (float)Data.SelectedEnemy.ShockDamage;
+            bool HotWeatherAttack = GetHotWeatherAttack();
+            bool ColdWeatherAttack = GetColdWeatherAttack();
+            bool StormyWeatherAttack = GetStormyWeatherAttack();
+            float HotWeatherPower = 0;
+            float ColdWeatherPower = 0;
+            float StormyWeatherPower = 0;
+            bool UsingFire = HotWeatherAttack || FireProperty || BombProperty;
+            bool UsingIce = ColdWeatherAttack || IceProperty;
+            bool UsingShock = StormyWeatherAttack || ShockProperty;
             float ElementPower = Data.SelectedFuse?.ElementPower ?? 0.0f;
 
-            if (FireProperty)
+            if (HotWeatherAttack) { HotWeatherPower = 5; }
+            if (ColdWeatherAttack) { ColdWeatherPower = 5; }
+            if (StormyWeatherAttack) { StormyWeatherPower = 5; }
+
+            if (UsingIce)
             {
-                return ElementPower + FireDamage;
+                return ElementPower + IceDamage + ColdWeatherPower;
             }
-            if (IceProperty)
+            if (UsingFire)
             {
-                return ElementPower + (float)Data.SelectedEnemy.IceDamage;
-            }
-            if (ShockProperty)
-            {
-                return ElementPower + (float)Data.SelectedEnemy.ShockDamage;
-            }
-            if (WaterProperty)
-            {
-                return ElementPower + (float)Data.SelectedEnemy.WaterDamage;
+                ElementPower += FireDamage + HotWeatherPower;
             }
             if (BombProperty)
             {
-                return (ElementPower + FireDamage) * (float)Data.SelectedEnemy.BombMultiplier;
+                ElementPower *= (float)Data.SelectedEnemy.BombMultiplier;
             }
-            return 0;
+            if (UsingShock)
+            {
+                ElementPower += ShockDamage + StormyWeatherPower;
+            }
+            if (WaterProperty)
+            {
+                ElementPower += (float)Data.SelectedEnemy.WaterDamage;
+            }
+            if (Data.SelectedFuse.Name == "Beam Emitter")
+            {
+                ElementPower += (12 * (float)Data.SelectedEnemy.BeamMultiplier);
+            }
+            return ElementPower;
+        }
+        public bool GetHotWeatherAttack()
+        {
+            string Buff1 = Data.Input.Buff1;
+            string Buff2 = Data.Input.Buff2;
+            return (Buff1 == "Hot Weather Attack" || Buff2 == "Hot Weather Attack");
+        }
+        public bool GetColdWeatherAttack()
+        {
+            string Buff1 = Data.Input.Buff1;
+            string Buff2 = Data.Input.Buff2;
+            return (Buff1 == "Cold Weather Attack" || Buff2 == "Cold Weather Attack");
+        }
+        public bool GetStormyWeatherAttack()
+        {
+            string Buff1 = Data.Input.Buff1;
+            string Buff2 = Data.Input.Buff2;
+            return (Buff1 == "Stormy Weather Attack" || Buff2 == "Stormy Weather Attack");
         }
         public float GetElementalMult()
         {
             bool FireProperty = ScanProperties("Fire") || ScanProperties("Fire Burst") || ScanProperties("Bomb");
             bool IceProperty = ScanProperties("Ice") || ScanProperties("Ice Burst");
+            bool ShockProperty = ScanProperties("Shock") || ScanProperties("Shock Burst");
             bool WaterProperty = ScanProperties("Water");
+            bool HotWeatherAttack = GetHotWeatherAttack();
+            bool ColdWeatherAttack = GetColdWeatherAttack();
+            bool StormyWeatherAttack = GetStormyWeatherAttack();
             string EnemyElement = Data.SelectedEnemy.Element;
 
             switch (EnemyElement)
             {
                 case "Fire":
-                    if (IceProperty)
+                    if (IceProperty || ColdWeatherAttack)
                     {
                         return 2;
                     }
@@ -403,11 +506,25 @@ namespace TOTK.Website
                     {
                         return 1.5f;
                     }
+                    if (FireProperty || HotWeatherAttack)
+                    {
+                        return 0;
+                    }
                     return 1;
                 case "Ice":
-                    if (FireProperty)
+                    if (FireProperty || HotWeatherAttack)
                     {
                         return 2;
+                    }
+                    if (IceProperty || ColdWeatherAttack)
+                    {
+                        return 0;
+                    }
+                    return 1;
+                case "Shock":
+                    if (ShockProperty)
+                    {
+                        return 0;
                     }
                     return 1;
                 default:
@@ -417,12 +534,21 @@ namespace TOTK.Website
         public float GetContinuousFire()
         {
             bool FireProperty = ScanProperties("Fire") || ScanProperties("Fire Burst");
+            bool HotWeatherAttack = GetHotWeatherAttack();
 
-            if (FireProperty)
+            if ((FireProperty || HotWeatherAttack) && Data.SelectedEnemy.Element != "Fire")
             {
                 return (float)Data.SelectedEnemy.FireDamageContinuous;
             }
             return 0;
+        }
+        public float GetMoldugaBelly()
+        {
+            if (Data.SelectedEnemy.Name == "Molduga (Belly)")
+            {
+                return 1.2f;
+            }
+            return 1;
         }
     }
 }

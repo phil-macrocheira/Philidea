@@ -2,14 +2,13 @@
 {
     public class InputModel
     {
-        public int AttackUpMod { get; set; }
-        public string? AttackType {  get; set; }
-        public bool LowDurability {  get; set; }
-        public bool Multishot {  get; set; }
-        public bool Wet {  get; set; }
-        public bool Frozen { get; set; }
-        public float HP {  get; set; }
-        public string? Buff1 {  get; set; }
-        public string? Buff2 { get; set; }
+        public int AttackUpMod { get; set; } = 0;
+        public string? AttackType { get; set; } = "Standard Attack";
+        public int Durability { get; set; } = 40;
+        public bool Wet { get; set; } = false;
+        public bool Frozen { get; set; } = false;
+        public float HP { get; set; } = 38;
+        public string? Buff1 { get; set; } = "None";
+        public string? Buff2 { get; set; } = "None";
     }
 }
