@@ -63,7 +63,7 @@ namespace TOTK.Website
                     DamageOutput += ElementalDamage;
                     DamageOutput *= ElementalMult;
                     DamageOutput += ContinuousFire;
-                    return DamageOutput;
+                    return (float)Math.Min(2147483647, Math.Floor(DamageOutput));
                 }
 
                 // PROJECTILES FROM FUSES
@@ -80,8 +80,20 @@ namespace TOTK.Website
                     DamageOutput += ElementalDamage;
                     DamageOutput *= ElementalMult;
                     DamageOutput += ContinuousFire;
-                    return DamageOutput;
+                    return (float)Math.Min(2147483647, Math.Floor(DamageOutput));
                 }
+            }
+
+            // MASTER SWORD BEAM
+            if (Data.Input.AttackType == "Throw" && Data.SelectedWeapon.FuseBaseName == "Master Sword")
+            {
+                float MasterSwordBeamUp = 1.0f;
+
+                if (Data.Input.Buff1 == "Master Sword Beam Up" || Data.Input.Buff2 == "Master Sword Beam Up")
+                {
+                    MasterSwordBeamUp = 1.5f;
+                }
+                return (float)Data.SelectedWeapon.ProjectileAttack * MasterSwordBeamUp;
             }
 
             DamageOutput = BaseAttack + FuseUIAdjust((FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
@@ -102,14 +114,13 @@ namespace TOTK.Website
                                    $"MoldugaBelly: {MoldugaBelly}, " + 
                                    $"ElementalDamage: {ElementalDamage}, ElementalMult: {ElementalMult}, ContinuousFire: {ContinuousFire}");
 
-            return (float)Math.Floor(DamageOutput);
+            return (float)Math.Min(2147483647, Math.Floor(DamageOutput));
         }
         public float GetBaseAttack()
         {
             float BaseAttack = (float)Data.SelectedWeapon.BaseAttack;
             string SelectedWeapon = Data.SelectedWeapon.Name;
             string FuseBaseName = Data.SelectedWeapon.FuseBaseName;
-            float MasterSwordBeamUp = 1.0f;
 
             // DEMON KING'S BOW
             if (SelectedWeapon == "Demon King's Bow")
@@ -121,16 +132,6 @@ namespace TOTK.Website
             if (Data.SelectedEnemy.Name == "Demon Dragon" && (FuseBaseName == "Master Sword" || FuseBaseName == "Decayed Master Sword"))
             {
                 return BaseAttack * 5;
-            }
-
-            // MASTER SWORD BEAM IF THROW
-            if (Data.Input.AttackType == "Throw" && FuseBaseName == "Master Sword")
-            {
-                if (Data.Input.Buff1 == "Master Sword Beam Up" || Data.Input.Buff2 == "Master Sword Beam Up")
-                {
-                    MasterSwordBeamUp = 1.5f;
-                }
-                return (float)Data.SelectedWeapon.ProjectileAttack * MasterSwordBeamUp;
             }
 
             return BaseAttack;
@@ -265,10 +266,11 @@ namespace TOTK.Website
         }
         public float GetOneDurability()
         {
-            if (Data.Input.Durability == 1 && Data.Input.Frozen == false && Data.Input.AttackType != "Combo Finisher")
+            string AttackType = Data.Input.AttackType;
+
+            if (Data.Input.Durability == 1 && Data.Input.Frozen == false && AttackType != "Combo Finisher")
             {
-                _logger.LogInformation($"Passed first check");
-                if (Data.Input.AttackType != "Throw" || Data.SelectedWeapon.Property == "Boomerang")
+                if ((AttackType != "Throw" || Data.SelectedWeapon.Property == "Boomerang") && AttackType != "Sneakstrike")
                 {
                     return 2;
                 }
@@ -379,12 +381,13 @@ namespace TOTK.Website
         public float GetFrozen()
         {
             var SelectedEnemy = Data.SelectedEnemy.Name;
+            string AttackType = Data.Input.AttackType;
 
             if (Data.SelectedEnemy.CanFreeze == false || SelectedEnemy == "Gibdo" || SelectedEnemy == "Moth Gibdo")
             {
                 return 1;
             }
-            if (Data.Input.Frozen == true)
+            if (Data.Input.Frozen == true && AttackType != "Sneakstrike" && AttackType != "Flurry Rush" && AttackType != "Headshot")
             {
                 return 3;
             }
