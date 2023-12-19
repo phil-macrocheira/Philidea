@@ -1,8 +1,4 @@
-﻿using System;
-using System.Data.SqlClient;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Diagnostics.Metrics;
+﻿using System.Data.SqlClient;
 
 namespace TOTK.Website.Models
 {
@@ -20,6 +16,7 @@ namespace TOTK.Website.Models
         public bool? CanFuseTo { get; set; }
         public byte? FuseExtraDurability { get; set; }
         public string? FuseBaseName { get; set; }
+        public string? NamingRule { get; set; }
         public string? IconURL { get; set; }
     }
     public class Fuse
@@ -38,6 +35,10 @@ namespace TOTK.Website.Models
         public string? Property1 { get; set; }
         public string? Property2 { get; set; }
         public string? Property3 { get; set; }
+        public string? NamingRule { get; set; }
+        public string? Adjective { get; set; }
+        public string? BindTypeSword { get; set; }
+        public string? BindTypeSpear { get; set; }
         public string? IconURL { get; set; }
     }
     public class Enemy
@@ -69,16 +70,13 @@ namespace TOTK.Website.Models
         public string GetLocalConnectionStringIfOffline()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connectionString);
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
-                {
+            try {
+                using (SqlConnection connection = new SqlConnection(builder.ConnectionString)) {
                     connection.Open();
                     return connectionString;
                 }
             }
-            catch (Exception)
-            {
+            catch (Exception) {
                 return "Data Source=(localdb)\\mssqllocaldb;Integrated Security=True;Encrypt=False";
             }
         }
@@ -88,19 +86,14 @@ namespace TOTK.Website.Models
 
             connectionString = GetLocalConnectionStringIfOffline();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
+            using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();
 
                 string query = "SELECT * FROM weapons ORDER BY SortOrder";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Weapon weapon = new Weapon
-                            {
+                using (SqlCommand command = new SqlCommand(query, connection)) {
+                    using (SqlDataReader reader = command.ExecuteReader()) {
+                        while (reader.Read()) {
+                            Weapon weapon = new Weapon {
                                 ActorID = reader["ActorID"].ToString(),
                                 Name = reader["Name"].ToString(),
                                 Type = (byte?)reader["Type"],
@@ -113,6 +106,7 @@ namespace TOTK.Website.Models
                                 CanFuseTo = (bool?)reader["CanFuseTo"],
                                 FuseExtraDurability = (byte?)reader["FuseExtraDurability"],
                                 FuseBaseName = reader["FuseBaseName"].ToString(),
+                                NamingRule = reader["NamingRule"].ToString(),
                                 IconURL = reader["IconURL"].ToString()
                             };
 
@@ -127,19 +121,14 @@ namespace TOTK.Website.Models
         {
             List<Fuse> fuses = new List<Fuse>();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
+            using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();
 
                 string query = "SELECT * FROM fuse ORDER BY SortOrder";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Fuse fuse = new Fuse
-                            {
+                using (SqlCommand command = new SqlCommand(query, connection)) {
+                    using (SqlDataReader reader = command.ExecuteReader()) {
+                        while (reader.Read()) {
+                            Fuse fuse = new Fuse {
                                 ActorID = reader["ActorID"].ToString(),
                                 Name = reader["Name"].ToString(),
                                 BaseAttack = (byte?)reader["BaseAttack"],
@@ -154,6 +143,10 @@ namespace TOTK.Website.Models
                                 Property1 = reader["Property1"].ToString(),
                                 Property2 = reader["Property2"].ToString(),
                                 Property3 = reader["Property3"].ToString(),
+                                NamingRule = reader["NamingRule"].ToString(),
+                                Adjective = reader["Adjective"].ToString(),
+                                BindTypeSword = reader["BindTypeSword"].ToString(),
+                                BindTypeSpear = reader["BindTypeSpear"].ToString(),
                                 IconURL = reader["IconURL"].ToString()
                             };
 
@@ -168,19 +161,14 @@ namespace TOTK.Website.Models
         {
             List<Enemy> enemies = new List<Enemy>();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
+            using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();
 
                 string query = "SELECT * FROM enemies ORDER BY SortOrder";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Enemy enemy = new Enemy
-                            {
+                using (SqlCommand command = new SqlCommand(query, connection)) {
+                    using (SqlDataReader reader = command.ExecuteReader()) {
+                        while (reader.Read()) {
+                            Enemy enemy = new Enemy {
                                 ActorID = reader["ActorID"].ToString(),
                                 Name = reader["Name"].ToString(),
                                 HP = (short?)reader["HP"],
@@ -214,19 +202,14 @@ namespace TOTK.Website.Models
         {
             List<Fuse> fuses = new List<Fuse>();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
+            using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();
 
                 string query = "SELECT * FROM fuse WHERE CanFuseToArrow=1 ORDER BY SortOrder";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Fuse fuse = new Fuse
-                            {
+                using (SqlCommand command = new SqlCommand(query, connection)) {
+                    using (SqlDataReader reader = command.ExecuteReader()) {
+                        while (reader.Read()) {
+                            Fuse fuse = new Fuse {
                                 ActorID = reader["ActorID"].ToString(),
                                 Name = reader["Name"].ToString(),
                                 BaseAttack = (byte?)reader["BaseAttack"],
@@ -241,6 +224,10 @@ namespace TOTK.Website.Models
                                 Property1 = reader["Property1"].ToString(),
                                 Property2 = reader["Property2"].ToString(),
                                 Property3 = reader["Property3"].ToString(),
+                                NamingRule = reader["NamingRule"].ToString(),
+                                Adjective = reader["Adjective"].ToString(),
+                                BindTypeSword = reader["BindTypeSword"].ToString(),
+                                BindTypeSpear = reader["BindTypeSpear"].ToString(),
                                 IconURL = reader["IconURL"].ToString()
                             };
 

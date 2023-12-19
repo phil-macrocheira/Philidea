@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics.Metrics;
 using TOTK.Website.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TOTK.Website.Pages
 {
@@ -9,8 +11,10 @@ namespace TOTK.Website.Pages
         private readonly ILogger<totk_calculatorModel> _logger;
         private readonly ImportData _importData;
         private readonly CalculateDamage _calculateDamage;
+        private readonly GetFusedName _getFusedName;
         public InputModel Input { get; set; } = new InputModel();
         public float DamageOutput { get; set; }
+        public string FusedName { get; set; } = "Master Sword";
         public List<string> Properties { get; set; } = new List<string>();
         public IEnumerable<Weapon>? Weapons { get; private set; } = Enumerable.Empty<Weapon>();
         public IEnumerable<Fuse>? Fuses { get; private set; } = Enumerable.Empty<Fuse>();
@@ -25,11 +29,12 @@ namespace TOTK.Website.Pages
         public string? WeaponIconURL { get; set; } = "";
         public string? FuseIconURL { get; set; } = "";
         public string? EnemyIconURL { get; set; } = "";
-        public totk_calculatorModel(ILogger<totk_calculatorModel> logger, ImportData importData, CalculateDamage calculateDamage)
+        public totk_calculatorModel(ILogger<totk_calculatorModel> logger, ImportData importData, CalculateDamage calculateDamage, GetFusedName getFusedName)
         {
             _logger = logger;
             _importData = importData;
             _calculateDamage = calculateDamage;
+            _getFusedName = getFusedName;
         }
 
         public IActionResult OnGet()
@@ -60,6 +65,7 @@ namespace TOTK.Website.Pages
             if (bool.TryParse(Request.Form["CanFuseTo"], out bool CanFuseToValue)) { SelectedWeapon.CanFuseTo = CanFuseToValue; }
             SelectedWeapon.FuseExtraDurability = Convert.ToByte(Request.Form["FuseExtraDurability"]);
             SelectedWeapon.FuseBaseName = Request.Form["FuseBaseName"];
+            SelectedWeapon.NamingRule = Request.Form["NamingRuleWeapon"];
 
             SelectedFuse.Name = Request.Form["NameFuse"];
             SelectedFuse.BaseAttack = Convert.ToByte(Request.Form["BaseAttackFuse"]);
@@ -74,6 +80,10 @@ namespace TOTK.Website.Pages
             SelectedFuse.Property1 = Request.Form["Property1"];
             SelectedFuse.Property2 = Request.Form["Property2"];
             SelectedFuse.Property3 = Request.Form["Property3"];
+            SelectedFuse.NamingRule = Request.Form["NamingRuleFuse"];
+            SelectedFuse.Adjective = Request.Form["Adjective"];
+            SelectedFuse.BindTypeSword = Request.Form["BindTypeSword"];
+            SelectedFuse.BindTypeSpear = Request.Form["BindTypeSpear"];
 
             SelectedEnemy.Name = Request.Form["NameEnemy"];
             SelectedEnemy.HP = Convert.ToInt16(Request.Form["EnemyHP"]);
@@ -95,16 +105,17 @@ namespace TOTK.Website.Pages
             SelectedEnemy.BombMultiplier = Convert.ToSingle(Request.Form["BombMultiplier"]);
 
             GetProperties();
+            FusedName = _getFusedName.GetName(this);
             DamageOutput = _calculateDamage.Calculate(this);
 
             //_logger.LogInformation($"{SelectedWeapon.Property} {SelectedFuse.Property1}");
 
-            return new JsonResult(new
-            {
+            return new JsonResult(new {
                 success = true,
                 message = "Success",
                 DamageOutput = DamageOutput,
                 Properties = Properties,
+                FusedName = FusedName,
             });
         }
         public void LoadData()
@@ -125,32 +136,26 @@ namespace TOTK.Website.Pages
             SelectedFuse = FusesArrow?.FirstOrDefault(w => w.Name == SelectedFuseName);
             FuseIconURL = SelectedFuse?.IconURL;
         }
+        
         public void GetProperties()
         {
             Properties.Clear();
-            if (SelectedFuse?.ReplaceProperties.GetValueOrDefault() == true)
-            {
-                if (SelectedFuse?.CanCut.GetValueOrDefault() == true)
-                {
+            if (SelectedFuse?.ReplaceProperties.GetValueOrDefault() == true) {
+                if (SelectedFuse?.CanCut.GetValueOrDefault() == true) {
                     Properties.Add("Cut");
                 }
             }
-            else
-            {
-                if (SelectedWeapon?.CanCut.GetValueOrDefault() == true)
-                {
+            else {
+                if (SelectedWeapon?.CanCut.GetValueOrDefault() == true) {
                     Properties.Add("Cut");
                 }
             }
-            if (SelectedWeapon.Property != "-")
-            {
+            if (SelectedWeapon.Property != "-") {
                 if ((SelectedWeapon.Property == "Shatter Rock" && SelectedFuse?.ReplaceProperties.GetValueOrDefault() == true) &&
-                   (SelectedFuse.Property1 != "Shatter Rock" && SelectedFuse.Property2 != "Shatter Rock" && SelectedFuse.Property3 != "Shatter Rock"))
-                {
+                   (SelectedFuse.Property1 != "Shatter Rock" && SelectedFuse.Property2 != "Shatter Rock" && SelectedFuse.Property3 != "Shatter Rock")) {
                     // Don't add Shatter property if the fuse replaces properties and doesn't have Shatter
                 }
-                else
-                {
+                else {
                     Properties.Add(SelectedWeapon.Property);
                 }
             }
@@ -159,8 +164,7 @@ namespace TOTK.Website.Pages
             if (SelectedFuse.Property2 != "-" && SelectedFuse.Property2 != SelectedWeapon.Property) { Properties.Add(SelectedFuse.Property2); }
             if (SelectedFuse.Property3 != "-" && SelectedFuse.Property3 != SelectedWeapon.Property) { Properties.Add(SelectedFuse.Property3); }
 
-            if (Properties.Count == 0)
-            {
+            if (Properties.Count == 0) {
                 Properties.Add("None");
             }
         }
