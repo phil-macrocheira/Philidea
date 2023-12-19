@@ -18,6 +18,7 @@
         background-image: url('background.webp');
     }
     h5 {
+        font-size: 18px;
         color: white;
     }
     ul {
@@ -194,8 +195,12 @@
 
         <!--Weapon/Enemy Name Row-->
         <div class="row">
-            <h5 class="col-md-auto" style="margin-left:15px; margin-right:115px;" id="WeaponNameText">Master Sword</h5>
-            <h5 class="col-md-auto" style="margin-left:15px;" id="EnemyNameText">Chuchu (Small)</h5>
+            <div class="col-md-5" style="margin-left:18px;">
+                <h5 id="WeaponNameText">Master Sword</h5>
+            </div>
+            <div class="col-md-5" style="margin-left:18px;">
+                <h5 class="ml-3" id="EnemyNameText">Chuchu (Small)</h5>
+            </div>
         </div>
 
         <!--Icon Row-->
@@ -203,10 +208,13 @@
             <div class="icon col-md-auto" style="width:128px; height:128px; margin-left:25px; margin-top:6px;">
                 <img src="@Model.WeaponIconURL" id="weaponImage" class="rounded float-left" alt="Weapon Image" style="height:100%; width:100%; object-fit:contain;">
             </div>
-            <div class="icon" style="width:60px; height:60px; margin-right:7.5%; margin-left: 3px; margin-top:6px;">
+            <div class="icon" style="width:60px; height:60px; margin-right:28%; margin-left: 3px; margin-top:6px;">
                 <img src="@Model.FuseIconURL" id="fuseImage" class="rounded float-left" alt="Fuse Image" style="height:100%; width:100%; object-fit:contain;">
             </div>
-            <div class="icon col-md-auto" style="width:128px; height:128px; margin-right:7.5%; margin-top:6px;">
+            <div class="icon col-md-auto position-relative" style="width:128px; height:128px; margin-right:20%; margin-top:6px; overflow: hidden;">
+                <div class="position-absolute" style="top: 0; right: 0; background-color: black; border-radius: 0.2rem; padding: 0.2rem;">
+                    <span id="HPText" class="text-white" style="font-size: 0.7rem;">10</span>
+                </div>
                 <img src="@Model.EnemyIconURL" id="enemyImage" class="float-left matched-radius_inner" alt="Enemy Image" style="height:100%; width:100%; object-fit:contain; border-radius: 0.7rem;">
             </div>
 
@@ -217,7 +225,11 @@
         </div>
 
         <!--PROPERTIES TEXT-->
-        <ul id="PropertiesList" style="margin-left:-12px;margin-top:6px;margin-bottom:0px;"><li>Cut</li></ul>
+        <div class="row">
+            <div class="col-md-5" style="margin-left:-12px;margin-top:6px;margin-right:78px;">
+                <ul id="PropertiesList"><li>Cut</li></ul>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -269,7 +281,7 @@
                 }
             }
 
-            // UPDATE ICON
+            // UPDATE ICON AND ENEMY TEXT
             switch (dropdownEdited) {
                 case 'weapon':
                     if (!MasterSwordIconSet) {
@@ -280,6 +292,10 @@
                     $('#fuseImage').prop('src', selectedFuseObj ? selectedFuseObj.IconURL : '');
                     break;
                 case 'enemy':
+                    var HP = selectedEnemyObj.HP.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    $('#HPText').text(HP);
+
+                    $('#EnemyNameText').text(selectedEnemyObj.Name);
                     $('#enemyImage').prop('src', selectedEnemyObj ? selectedEnemyObj.IconURL : '');
                     break;
             }
@@ -393,6 +409,7 @@
                 CanFuseTo: selectedWeaponObj.CanFuseTo,
                 FuseExtraDurability: selectedWeaponObj.FuseExtraDurability,
                 FuseBaseName: selectedWeaponObj.FuseBaseName,
+                NamingRuleWeapon: selectedWeaponObj.NamingRule,
 
                 NameFuse: selectedFuseObj.Name,
                 BaseAttackFuse: selectedFuseObj.BaseAttack,
@@ -407,6 +424,10 @@
                 Property1: selectedFuseObj.Property1,
                 Property2: selectedFuseObj.Property2,
                 Property3: selectedFuseObj.Property3,
+                NamingRuleFuse: selectedFuseObj.NamingRule,
+                Adjective: selectedFuseObj.Adjective,
+                BindTypeSword: selectedFuseObj.BindTypeSword,
+                BindTypeSpear: selectedFuseObj.BindTypeSpear,
 
                 NameEnemy: selectedEnemyObj.Name,
                 EnemyHP: selectedEnemyObj.HP,
@@ -437,6 +458,21 @@
                 contentType: 'application/x-www-form-urlencoded',
                 data: data,
                 success: function (response) {
+                    if (selectedFuseObj.Name == "None") {
+                        if (selectedWeaponName == "Master Sword (Prologue)") {
+                            $('#WeaponNameText').text("MsgNotFound");
+                        }
+                        else if (selectedWeaponName == "Master Sword (Awakened +15)" || selectedWeaponName == "Master Sword (Awakened +30)") {
+                            $('#WeaponNameText').text("Master Sword");
+                        }
+                        else {
+                            $('#WeaponNameText').text(selectedWeaponName);
+                        }
+                    }
+                    else {
+                        $('#WeaponNameText').text(response.fusedName);
+                    }
+
                     $('#DamageOutputText').html('<h1 style="font-size: 28px; color:white;">Damage: ' + response.damageOutput + '</h1>');
 
                     $('#PropertiesList').empty();

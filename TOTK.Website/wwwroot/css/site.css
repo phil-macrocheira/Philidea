@@ -55,12 +55,6 @@ html {
     min-height: 100%;
 }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
 .box-shadow {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
@@ -69,11 +63,26 @@ body {
     margin-bottom: 60px;
 }
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+ul.horizontal-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
     white-space: nowrap;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.footer {
+    position: relative;
+    width: 100%;
     line-height: 60px;
     font-family: 'Nunito', sans-serif;
+    transition: line-height 0.5s ease;
+}
+@media-phone (max-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+    .footer {
+    }
 }

@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using TOTK.Website.Models;
-using TOTK.Website.Pages;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using TOTK.Website.Pages;
 
 namespace TOTK.Website
 {
@@ -46,18 +41,15 @@ namespace TOTK.Website
             float MoldugaBelly = (float)GetMoldugaBelly();
 
             // Return enemy's HP if ancient blade
-            if (Data.SelectedFuse.Name == "Ancient Blade" && Data.SelectedEnemy.AncientBladeDefeat == true)
-            {
+            if (Data.SelectedFuse.Name == "Ancient Blade" && Data.SelectedEnemy.AncientBladeDefeat == true) {
                 return (float)Data.SelectedEnemy.HP;
             }
 
             // Melee Projectile
-            if (Data.Input.AttackType == "Melee Projectile")
-            {
+            if (Data.Input.AttackType == "Melee Projectile") {
                 // WIND RAZOR
                 bool CutProperty = ScanProperties("Cut");
-                if (Data.SelectedWeapon.Property == "Wind Razor" && CutProperty)
-                {
+                if (Data.SelectedWeapon.Property == "Wind Razor" && CutProperty) {
                     DamageOutput = (10 + FuseUIAdjust(FuseBaseAttack + AttackUpMod)) * AttackUp;
                     DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
                     DamageOutput += ElementalDamage;
@@ -68,11 +60,9 @@ namespace TOTK.Website
 
                 // PROJECTILES FROM FUSES
                 float ProjectileAttack = (float)Data.SelectedFuse.ProjectileAttack;
-                if (ProjectileAttack > 0)
-                {
+                if (ProjectileAttack > 0) {
                     float RodMultiplier = 1;
-                    if (Data.SelectedWeapon.Property == "Rod")
-                    {
+                    if (Data.SelectedWeapon.Property == "Rod") {
                         RodMultiplier = 2;
                     }
                     DamageOutput = (ProjectileAttack * RodMultiplier) * AttackUp;
@@ -85,12 +75,10 @@ namespace TOTK.Website
             }
 
             // MASTER SWORD BEAM
-            if (Data.Input.AttackType == "Throw" && Data.SelectedWeapon.FuseBaseName == "Master Sword")
-            {
+            if (Data.Input.AttackType == "Throw" && Data.SelectedWeapon.FuseBaseName == "Master Sword") {
                 float MasterSwordBeamUp = 1.0f;
 
-                if (Data.Input.Buff1 == "Master Sword Beam Up" || Data.Input.Buff2 == "Master Sword Beam Up")
-                {
+                if (Data.Input.Buff1 == "Master Sword Beam Up" || Data.Input.Buff2 == "Master Sword Beam Up") {
                     MasterSwordBeamUp = 1.5f;
                 }
                 return (float)Data.SelectedWeapon.ProjectileAttack * MasterSwordBeamUp;
@@ -111,7 +99,7 @@ namespace TOTK.Website
                                    $"Bone: {Bone}, FlurryRush: {FlurryRush}, Shatter: {Shatter}, AttackUp: {AttackUp}, " +
                                    $"Headshot: {Headshot}, Throw: {Throw}, OneDurability: {OneDurability}, Frozen: {Frozen}, " +
                                    $"TreeCutter: {TreeCutter}, ArrowEnemyMult: {ArrowEnemyMult}, ComboFinisher: {ComboFinisher}, " +
-                                   $"MoldugaBelly: {MoldugaBelly}, " + 
+                                   $"MoldugaBelly: {MoldugaBelly}, " +
                                    $"ElementalDamage: {ElementalDamage}, ElementalMult: {ElementalMult}, ContinuousFire: {ContinuousFire}");
 
             return (float)Math.Min(2147483647, Math.Floor(DamageOutput));
@@ -123,14 +111,12 @@ namespace TOTK.Website
             string FuseBaseName = Data.SelectedWeapon.FuseBaseName;
 
             // DEMON KING'S BOW
-            if (SelectedWeapon == "Demon King's Bow")
-            {
+            if (SelectedWeapon == "Demon King's Bow") {
                 return (float)Math.Max(1, Math.Min(60, Math.Floor(Data.Input.HP) * 2));
             }
 
             // MASTER SWORD IF DEMON DRAGON
-            if (Data.SelectedEnemy.Name == "Demon Dragon" && (FuseBaseName == "Master Sword" || FuseBaseName == "Decayed Master Sword"))
-            {
+            if (Data.SelectedEnemy.Name == "Demon Dragon" && (FuseBaseName == "Master Sword" || FuseBaseName == "Decayed Master Sword")) {
                 return BaseAttack * 5;
             }
 
@@ -140,13 +126,11 @@ namespace TOTK.Website
         {
             float FuseBaseAttack = (float)Data.SelectedFuse.BaseAttack;
 
-            switch (Data.SelectedWeapon.Type)
-            {
+            switch (Data.SelectedWeapon.Type) {
                 case 3:
                     return FuseBaseAttack * (float)Data.SelectedFuse.ArrowMultiplier;
                 case 4:
-                    if (Data.SelectedFuse.AddsShieldAttack == true)
-                    {
+                    if (Data.SelectedFuse.AddsShieldAttack == true) {
                         return FuseBaseAttack;
                     }
                     return 0;
@@ -156,8 +140,7 @@ namespace TOTK.Website
         }
         public float FuseUIAdjust(float input)
         {
-            switch (Data.SelectedWeapon.Type)
-            {
+            switch (Data.SelectedWeapon.Type) {
                 case 1:
                     return (float)Math.Floor(input * 1.052632f);
                 case 2:
@@ -168,11 +151,8 @@ namespace TOTK.Website
         }
         public bool ScanProperties(string search)
         {
-            foreach (var property in Data.Properties)
-            {
-                if (property == search)
-                {
-                    _logger.LogInformation($"true");
+            foreach (var property in Data.Properties) {
+                if (property == search) {
                     return true;
                 }
             }
@@ -183,13 +163,11 @@ namespace TOTK.Website
             var SelectedWeapon = Data.SelectedWeapon.Name;
             bool ZonaiFuseProperty = ScanProperties("Zonai Fuse");
 
-            if (ZonaiFuseProperty == false)
-            {
+            if (ZonaiFuseProperty == false) {
                 return 0;
             }
 
-            switch (Data.SelectedWeapon.Property)
-            {
+            switch (Data.SelectedWeapon.Property) {
                 case "Zonai Lv1":
                     return 3;
                 case "Zonai Lv2":
@@ -223,8 +201,7 @@ namespace TOTK.Website
         {
             bool LowHealthProperty = ScanProperties("Low Health x2");
 
-            if (LowHealthProperty == true && Data.Input.HP <= 1)
-            {
+            if (LowHealthProperty == true && Data.Input.HP <= 1) {
                 return 2;
             }
             return 1;
@@ -234,20 +211,17 @@ namespace TOTK.Website
             bool WetProperty = ScanProperties("Wet x2");
             bool WaterFuse = ScanProperties("Water");
 
-            if (WetProperty == true && (Data.Input.Wet == true || WaterFuse))
-            {
+            if (WetProperty == true && (Data.Input.Wet == true || WaterFuse)) {
                 return 2;
             }
             return 1;
         }
         public float GetSneakstrike()
         {
-            if (Data.Input.AttackType == "Sneakstrike" && Data.SelectedEnemy.CanSneakstrike == true)
-            {
+            if (Data.Input.AttackType == "Sneakstrike" && Data.SelectedEnemy.CanSneakstrike == true) {
                 bool SneakstrikeProperty = ScanProperties("Sneakstrike x2");
 
-                if (SneakstrikeProperty == true)
-                {
+                if (SneakstrikeProperty == true) {
                     return 16;
                 }
                 return 8;
@@ -258,8 +232,7 @@ namespace TOTK.Website
         {
             bool LowDurabilityProperty = ScanProperties("Low Durability x2");
 
-            if (LowDurabilityProperty == true && Data.Input.Durability <= 3)
-            {
+            if (LowDurabilityProperty == true && Data.Input.Durability <= 3) {
                 return 2;
             }
             return 1;
@@ -268,10 +241,8 @@ namespace TOTK.Website
         {
             string AttackType = Data.Input.AttackType;
 
-            if (Data.Input.Durability == 1 && Data.Input.Frozen == false && AttackType != "Combo Finisher")
-            {
-                if ((AttackType != "Throw" || Data.SelectedWeapon.Property == "Boomerang") && AttackType != "Sneakstrike")
-                {
+            if (Data.Input.Durability == 1 && Data.Input.Frozen == false && AttackType != "Combo Finisher") {
+                if ((AttackType != "Throw" || Data.SelectedWeapon.Property == "Boomerang") && AttackType != "Sneakstrike") {
                     return 2;
                 }
             }
@@ -281,8 +252,7 @@ namespace TOTK.Website
         {
             bool BoneProperty = ScanProperties("Bone");
 
-            if (BoneProperty == true && (Data.Input.Buff1 == "Bone Weap. Prof." || Data.Input.Buff2 == "Bone Weap. Prof."))
-            {
+            if (BoneProperty == true && (Data.Input.Buff1 == "Bone Weap. Prof." || Data.Input.Buff2 == "Bone Weap. Prof.")) {
                 return 1.8f;
             }
             return 1;
@@ -291,8 +261,7 @@ namespace TOTK.Website
         {
             bool FlurryRushProperty = ScanProperties("Flurry Rush x2");
 
-            if (FlurryRushProperty == true && Data.Input.AttackType == "Flurry Rush")
-            {
+            if (FlurryRushProperty == true && Data.Input.AttackType == "Flurry Rush") {
                 return 2;
             }
             return 1;
@@ -302,10 +271,8 @@ namespace TOTK.Website
             bool ShatterProperty = ScanProperties("Shatter Rock");
             byte WeaponType = (byte)Data.SelectedWeapon.Type;
 
-            if (ShatterProperty == true && Data.SelectedEnemy.IsRock == true)
-            {
-                switch (WeaponType)
-                {
+            if (ShatterProperty == true && Data.SelectedEnemy.IsRock == true) {
+                switch (WeaponType) {
                     case 0:
                         return 1.25f; // 1H
                     case 1:
@@ -327,16 +294,13 @@ namespace TOTK.Website
             string Buff1 = Data.Input.Buff1;
             string Buff2 = Data.Input.Buff2;
 
-            if (Buff1 == "Attack Up (Lv3)" || Buff2 == "Attack Up (Lv3)")
-            {
+            if (Buff1 == "Attack Up (Lv3)" || Buff2 == "Attack Up (Lv3)") {
                 return 1.5f;
             }
-            else if (Buff1 == "Attack Up (Lv2)" || Buff2 == "Attack Up (Lv2)")
-            {
+            else if (Buff1 == "Attack Up (Lv2)" || Buff2 == "Attack Up (Lv2)") {
                 return 1.3f;
             }
-            else if (Buff1 == "Attack Up (Lv1)" || Buff2 == "Attack Up (Lv1)")
-            {
+            else if (Buff1 == "Attack Up (Lv1)" || Buff2 == "Attack Up (Lv1)") {
                 return 1.2f;
             }
 
@@ -344,16 +308,14 @@ namespace TOTK.Website
         }
         public float GetHeadshot()
         {
-            if ((Data.SelectedWeapon.Type == 3 && Data.Input.AttackType == "Headshot") || Data.SelectedEnemy.CanMeleeHeadshot == true)
-            {
+            if ((Data.SelectedWeapon.Type == 3 && Data.Input.AttackType == "Headshot") || Data.SelectedEnemy.CanMeleeHeadshot == true) {
                 return (float)Data.SelectedEnemy.HeadshotMultiplier;
             }
             return 1;
         }
         public float GetComboFinisher()
         {
-            if (Data.Input.AttackType == "Combo Finisher")
-            {
+            if (Data.Input.AttackType == "Combo Finisher") {
                 return 2;
             }
             return 1;
@@ -366,13 +328,11 @@ namespace TOTK.Website
 
             if (Data.Input.AttackType != "Throw" || SelectedWeaponType >= 3 ||
                 FuseBaseName == "Master Sword" || FuseBaseName == "Decayed Master Sword"
-                || ProjectileProperty)
-            {
+                || ProjectileProperty) {
                 return 1;
             }
 
-            if (Data.SelectedWeapon.Property == "Boomerang")
-            {
+            if (Data.SelectedWeapon.Property == "Boomerang") {
                 return 1.5f * AttackUp;
             }
 
@@ -383,12 +343,10 @@ namespace TOTK.Website
             var SelectedEnemy = Data.SelectedEnemy.Name;
             string AttackType = Data.Input.AttackType;
 
-            if (Data.SelectedEnemy.CanFreeze == false || SelectedEnemy == "Gibdo" || SelectedEnemy == "Moth Gibdo")
-            {
+            if (Data.SelectedEnemy.CanFreeze == false || SelectedEnemy == "Gibdo" || SelectedEnemy == "Moth Gibdo") {
                 return 1;
             }
-            if (Data.Input.Frozen == true && AttackType != "Sneakstrike" && AttackType != "Flurry Rush" && AttackType != "Headshot")
-            {
+            if (Data.Input.Frozen == true && AttackType != "Sneakstrike" && AttackType != "Flurry Rush" && AttackType != "Headshot") {
                 return 3;
             }
             return 1;
@@ -398,14 +356,11 @@ namespace TOTK.Website
             bool CutProperty = ScanProperties("Cut");
             bool TreeCutterProperty = ScanProperties("Tree Cutter");
 
-            if (Data.SelectedEnemy.Name == "Evermean")
-            {
-                if (!CutProperty && !TreeCutterProperty)
-                {
+            if (Data.SelectedEnemy.Name == "Evermean") {
+                if (!CutProperty && !TreeCutterProperty) {
                     return 0;
                 }
-                if (TreeCutterProperty)
-                {
+                if (TreeCutterProperty) {
                     return 3;
                 }
             }
@@ -413,8 +368,7 @@ namespace TOTK.Website
         }
         public float GetArrowEnemyMult()
         {
-            if (Data.SelectedWeapon.Type == 3)
-            {
+            if (Data.SelectedWeapon.Type == 3) {
                 return (float)Data.SelectedEnemy.ArrowMultiplier;
             }
             return 1;
@@ -444,28 +398,22 @@ namespace TOTK.Website
             if (ColdWeatherAttack) { ColdWeatherPower = 5; }
             if (StormyWeatherAttack) { StormyWeatherPower = 5; }
 
-            if (UsingIce)
-            {
+            if (UsingIce) {
                 return ElementPower + IceDamage + ColdWeatherPower;
             }
-            if (UsingFire)
-            {
+            if (UsingFire) {
                 ElementPower += FireDamage + HotWeatherPower;
             }
-            if (BombProperty)
-            {
+            if (BombProperty) {
                 ElementPower *= (float)Data.SelectedEnemy.BombMultiplier;
             }
-            if (UsingShock)
-            {
+            if (UsingShock) {
                 ElementPower += ShockDamage + StormyWeatherPower;
             }
-            if (WaterProperty)
-            {
+            if (WaterProperty) {
                 ElementPower += (float)Data.SelectedEnemy.WaterDamage;
             }
-            if (Data.SelectedFuse.Name == "Beam Emitter")
-            {
+            if (Data.SelectedFuse.Name == "Beam Emitter") {
                 ElementPower += (12 * (float)Data.SelectedEnemy.BeamMultiplier);
             }
             return ElementPower;
@@ -499,35 +447,28 @@ namespace TOTK.Website
             bool StormyWeatherAttack = GetStormyWeatherAttack();
             string EnemyElement = Data.SelectedEnemy.Element;
 
-            switch (EnemyElement)
-            {
+            switch (EnemyElement) {
                 case "Fire":
-                    if (IceProperty || ColdWeatherAttack)
-                    {
+                    if (IceProperty || ColdWeatherAttack) {
                         return 2;
                     }
-                    if (WaterProperty)
-                    {
+                    if (WaterProperty) {
                         return 1.5f;
                     }
-                    if (FireProperty || HotWeatherAttack)
-                    {
+                    if (FireProperty || HotWeatherAttack) {
                         return 0;
                     }
                     return 1;
                 case "Ice":
-                    if (FireProperty || HotWeatherAttack)
-                    {
+                    if (FireProperty || HotWeatherAttack) {
                         return 2;
                     }
-                    if (IceProperty || ColdWeatherAttack)
-                    {
+                    if (IceProperty || ColdWeatherAttack) {
                         return 0;
                     }
                     return 1;
                 case "Shock":
-                    if (ShockProperty)
-                    {
+                    if (ShockProperty) {
                         return 0;
                     }
                     return 1;
@@ -540,16 +481,14 @@ namespace TOTK.Website
             bool FireProperty = ScanProperties("Fire") || ScanProperties("Fire Burst");
             bool HotWeatherAttack = GetHotWeatherAttack();
 
-            if ((FireProperty || HotWeatherAttack) && Data.SelectedEnemy.Element != "Fire")
-            {
+            if ((FireProperty || HotWeatherAttack) && Data.SelectedEnemy.Element != "Fire") {
                 return (float)Data.SelectedEnemy.FireDamageContinuous;
             }
             return 0;
         }
         public float GetMoldugaBelly()
         {
-            if (Data.SelectedEnemy.Name == "Molduga (Belly)")
-            {
+            if (Data.SelectedEnemy.Name == "Molduga (Belly)") {
                 return 1.2f;
             }
             return 1;
