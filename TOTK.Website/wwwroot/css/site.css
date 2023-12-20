@@ -101,6 +101,7 @@
     padding: 20px;
     position: relative;
     background: linear-gradient(to bottom right, transparent 10%, rgba(91, 226, 212, 0.4) 40%, rgba(91, 226, 212, 0.6) 100%);
+    padding-bottom:0px;
 }
 
 html {
@@ -128,12 +129,93 @@ ul.horizontal-list {
     font-size: 12px;
 }
 
+.collapsible {
+    cursor: pointer;
+    padding: 4px;
+    padding-right: 8px;
+    width: auto;
+    border: none;
+    text-align: left;
+    outline: none;
+    bottom: 0;
+    left: 0;
+    position: relative;
+    background: none;
+    color: white;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.content {
+    display: none;
+    position: relative;
+    padding-top: 8px;
+    font-size: 12px;
+    top: 100%;
+    left: 0;
+}
+
 .footer {
     position: relative;
     width: 100%;
     line-height: 60px;
     font-family: 'Nunito', sans-serif;
     transition: line-height 0.5s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+/* FEEDBACK BUTTON */
+.button {
+    background: none;
+    color: #5BE2D4;
+    border: none;
+    width:auto;
+    margin:0;
+}
+#feedbackFormContainer {
+    position: fixed;
+    background-color: #fff;
+    width:300px;
+    height:100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    bottom:5px;
+    left: 27.5%;
+    transform:translateX(-50%);
+}
+#feedbackInput {
+    width:100%;
+    height:80%;
+    resize:none;
+    padding:10px;
+    box-sizing:border-box;
+    overflow-y:auto;
+    vertical-align:top;
+    margin:0;
+    line-height:1.2;
+}
+#submitFeedback {
+    position: absolute;
+    left: 8%;
+    width: 92%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+#closeForm {
+    position: absolute;
+    width: 8%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 @media-phone (max-width: 768px) {

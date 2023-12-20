@@ -13,9 +13,10 @@ namespace TOTK.Website.Pages
         private readonly CalculateDamage _calculateDamage;
         private readonly GetFusedName _getFusedName;
         public InputModel Input { get; set; } = new InputModel();
-        public float DamageOutput { get; set; }
+        public float DamageOutput { get; set; } = 30;
         public string FusedName { get; set; } = "Master Sword";
         public int AttackPowerUI { get; set; } = 30;
+        public string Formula { get; set; }
         public List<string> Properties { get; set; } = new List<string>();
         public IEnumerable<Weapon>? Weapons { get; private set; } = Enumerable.Empty<Weapon>();
         public IEnumerable<Fuse>? Fuses { get; private set; } = Enumerable.Empty<Fuse>();
@@ -107,10 +108,15 @@ namespace TOTK.Website.Pages
 
             GetProperties();
             FusedName = _getFusedName.GetName(this);
+
             AttackPowerUI = _calculateDamage.CalculateAttackPowerUI(this);
             DamageOutput = _calculateDamage.Calculate(this);
 
-            //_logger.LogInformation($"{SelectedWeapon.Property} {SelectedFuse.Property1}");
+            Formula = $"(BaseAttack({_calculateDamage.BaseAttack}) + FuseUIAdjust((FuseBaseAttack({_calculateDamage.FuseBaseAttack}) * GerudoBonus({_calculateDamage.GerudoBonus})) + AttackUpMod({_calculateDamage.AttackUpMod}) + ZonaiBonus({_calculateDamage.ZonaiBonus})) * " +
+                $"LowHealth({_calculateDamage.LowHealth}) * WetPlayer({_calculateDamage.WetPlayer}) * Sneakstrike({_calculateDamage.Sneakstrike}) * LowDurability({_calculateDamage.LowDurability}) * Bone({_calculateDamage.Bone}) * FlurryRush({_calculateDamage.FlurryRush}) * " +
+                $"Shatter({_calculateDamage.Shatter}) * AttackUp({_calculateDamage.AttackUp}) * Headshot({_calculateDamage.Headshot}) * Throw({_calculateDamage.Throw}) * OneDurability({_calculateDamage.OneDurability}) * Frozen({_calculateDamage.Frozen}) * TreeCutter({_calculateDamage.TreeCutter}) * " +
+                $"ArrowEnemyMult({_calculateDamage.ArrowEnemyMult}) * ComboFinisher({_calculateDamage.ComboFinisher}) * DemonDragon({_calculateDamage.DemonDragon}) * MoldugaBelly({_calculateDamage.MoldugaBelly}) + ElementalDamage({_calculateDamage.ElementalDamage}); " +
+                $"Multiply result by ElementalMult({_calculateDamage.ElementalMult}) + ContinuousFire({_calculateDamage.ContinuousFire})";
 
             return new JsonResult(new {
                 success = true,
@@ -119,6 +125,7 @@ namespace TOTK.Website.Pages
                 DamageOutput = DamageOutput,
                 Properties = Properties,
                 FusedName = FusedName,
+                Formula = Formula,
             });
         }
         public void LoadData()

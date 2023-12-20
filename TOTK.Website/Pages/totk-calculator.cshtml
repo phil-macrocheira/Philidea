@@ -234,8 +234,13 @@
             <!--DAMAGE OUTPUT SECTION-->
             <div class="col-md-2">
                 <h5 style="margin-left:26px;">Damage</h5>
-                <h1 class="icon" id="DamageOutputText" style="width:128px; height:128px; font-size: 48px; background-color:rgba(40, 40, 40, 0.5); display: flex; align-items: center; justify-content: center;">@Model.DamageOutput</h1>
+                <h1 class="icon" id="DamageOutputText" style="width:128px; height:128px; font-size: 48px; background-color:rgba(40, 40, 40, 0.5); display: flex; align-items: center; justify-content: center;">30</h1>
             </div>
+        </div>
+
+        <button class="collapsible" onclick="toggleInfo()">Show More Info ▼</button>
+        <div class="content" id="contentSection">
+            <p id="FormulaText">BaseAttack(30)</p>
         </div>
     </div>
 </div>
@@ -264,6 +269,11 @@
                 }, 0);
             });
         });
+
+        function toggleInfo() {
+            var content = document.getElementById('contentSection');
+            content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+        }
 
         function findObjByName(objData, selectedName) {
             return objData.find(function (w) {
@@ -511,6 +521,8 @@
                     $.each(response.properties, function (index, property) {
                         $('#PropertiesList').append('<li>' + property + '</li>');
                     });
+
+                    $('#FormulaText').text(response.formula);
 
                     console.log('UPDATE SUCCESS', response);
                 },

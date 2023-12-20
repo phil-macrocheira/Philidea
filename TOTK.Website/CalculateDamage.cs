@@ -41,13 +41,16 @@ namespace TOTK.Website
         public int CalculateAttackPowerUI(totk_calculatorModel data)
         {
             Data = data;
-            float BaseAttack = GetBaseAttack();
+            BaseAttack = GetBaseAttack();
             float FuseAttackUI = GetFuseBaseAttack();
-            float AttackUpMod = (float)Data.Input.AttackUpMod;
-            float GerudoBonus = GetGerudoBonus();
+            AttackUpMod = (float)Data.Input.AttackUpMod;
+            GerudoBonus = GetGerudoBonus();
             float ZonaiBonusUI = GetZonaiBonusUI();
+            LowHealth = GetLowHealth();
+            LowDurability = GetLowDurability();
+            WetPlayer = GetWetPlayer();
 
-            float BaseAttackUI = WeaponUIAdjust(BaseAttack) + (FuseAttackUI * GerudoBonus) + AttackUpMod + ZonaiBonusUI;
+            float BaseAttackUI = (WeaponUIAdjust(BaseAttack) + (FuseAttackUI * GerudoBonus) + AttackUpMod + ZonaiBonusUI) * LowHealth * LowDurability * WetPlayer;
 
             //_logger.LogInformation($"BaseAttack: {BaseAttack}, AttackUpMod: {AttackUpMod}, FuseAttacKUI: {FuseAttackUI}, " +
             //                       $"GerudoBonus: {GerudoBonus}, ZonaiBonusUI: {ZonaiBonusUI}, Result: {BaseAttackUI}");
@@ -92,16 +95,11 @@ namespace TOTK.Website
         {
             Data = data;
 
+            //BaseAttack = GetBaseAttack();AttackUpMod = (float)Data.Input.AttackUpMod;GerudoBonus = GetGerudoBonus();LowHealth = GetLowHealth();LowDurability = GetLowDurability();WetPlayer = GetWetPlayer();
             AttackUp = GetAttackUp();
-            BaseAttack = GetBaseAttack();
-            AttackUpMod = (float)Data.Input.AttackUpMod;
             FuseBaseAttack = GetFuseBaseAttack();
             ZonaiBonus = GetZonaiBonus();
-            GerudoBonus = GetGerudoBonus();
-            LowHealth = GetLowHealth();
-            WetPlayer = GetWetPlayer();
             Sneakstrike = GetSneakstrike();
-            LowDurability = GetLowDurability();
             OneDurability = GetOneDurability();
             Bone = GetBone();
             FlurryRush = GetFlurryRush();
@@ -182,15 +180,6 @@ namespace TOTK.Website
                 DamageOutput *= ElementalMult;
             }
             DamageOutput += ContinuousFire; // Apply elemental mult to continuous fire?
-
-            _logger.LogInformation($"BaseAttack: {BaseAttack}, AttackUpMod: {AttackUpMod}, FuseBaseAttack: {FuseBaseAttack}, " +
-                                   $"GerudoBonus: {GerudoBonus}, ZonaiBonus: {ZonaiBonus}, LowHealth: {LowHealth}, " +
-                                   $"WetPlayer: {WetPlayer}, Sneakstrike: {Sneakstrike}, LowDurability: {LowDurability}, " +
-                                   $"Bone: {Bone}, FlurryRush: {FlurryRush}, Shatter: {Shatter}, AttackUp: {AttackUp}, " +
-                                   $"Headshot: {Headshot}, Throw: {Throw}, OneDurability: {OneDurability}, Frozen: {Frozen}, " +
-                                   $"TreeCutter: {TreeCutter}, ArrowEnemyMult: {ArrowEnemyMult}, ComboFinisher: {ComboFinisher}, " +
-                                   $"MoldugaBelly: {MoldugaBelly}, " +
-                                   $"ElementalDamage: {ElementalDamage}, ElementalMult: {ElementalMult}, ContinuousFire: {ContinuousFire}");
 
             return (float)Math.Min(2147483647, Math.Floor(DamageOutput));
         }
@@ -302,7 +291,7 @@ namespace TOTK.Website
         }
         public float GetSneakstrike()
         {
-            if (Data.Input.AttackType == "Sneakstrike" && Data.SelectedEnemy.CanSneakstrike == true) {
+            if (Data.Input.AttackType == "Sneakstrike" && Data.SelectedEnemy.CanSneakstrike == true && Data.Input.Frozen == false) {
                 bool SneakstrikeProperty = ScanProperties("Sneakstrike x2");
 
                 if (SneakstrikeProperty == true) {
@@ -392,7 +381,8 @@ namespace TOTK.Website
         }
         public float GetHeadshot()
         {
-            if ((Data.SelectedWeapon.Type == 3 && Data.Input.AttackType == "Headshot") || Data.SelectedEnemy.CanMeleeHeadshot == true) {
+            if ((Data.SelectedWeapon.Type == 3 && Data.Input.AttackType == "Headshot") || 
+                (Data.SelectedWeapon.Type != 3 && Data.SelectedEnemy.CanMeleeHeadshot == true)) {
                 return (float)Data.SelectedEnemy.HeadshotMultiplier;
             }
             return 1;
