@@ -42,6 +42,16 @@
     align-items: center;
     height: 100%;
 }
+#select2-fuseDropdown-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+#select2-enemyDropdown-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
 
 /* OTHER FORM COLORS */
 .form-control, .form-control:focus, .form-control:active {

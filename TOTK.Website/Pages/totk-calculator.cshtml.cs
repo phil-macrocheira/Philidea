@@ -15,6 +15,7 @@ namespace TOTK.Website.Pages
         public InputModel Input { get; set; } = new InputModel();
         public float DamageOutput { get; set; }
         public string FusedName { get; set; } = "Master Sword";
+        public int AttackPowerUI { get; set; } = 30;
         public List<string> Properties { get; set; } = new List<string>();
         public IEnumerable<Weapon>? Weapons { get; private set; } = Enumerable.Empty<Weapon>();
         public IEnumerable<Fuse>? Fuses { get; private set; } = Enumerable.Empty<Fuse>();
@@ -106,6 +107,7 @@ namespace TOTK.Website.Pages
 
             GetProperties();
             FusedName = _getFusedName.GetName(this);
+            AttackPowerUI = _calculateDamage.CalculateAttackPowerUI(this);
             DamageOutput = _calculateDamage.Calculate(this);
 
             //_logger.LogInformation($"{SelectedWeapon.Property} {SelectedFuse.Property1}");
@@ -113,6 +115,7 @@ namespace TOTK.Website.Pages
             return new JsonResult(new {
                 success = true,
                 message = "Success",
+                attackPowerUI = AttackPowerUI,
                 DamageOutput = DamageOutput,
                 Properties = Properties,
                 FusedName = FusedName,
