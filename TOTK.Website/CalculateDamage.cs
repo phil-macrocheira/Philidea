@@ -52,8 +52,10 @@ namespace TOTK.Website
                 if (Data.SelectedWeapon.Property == "Wind Razor" && CutProperty) {
                     DamageOutput = (10 + FuseUIAdjust(FuseBaseAttack + AttackUpMod)) * AttackUp;
                     DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
-                    DamageOutput += ElementalDamage;
-                    DamageOutput *= ElementalMult;
+                    if (ElementalMult != 0) {
+                        DamageOutput += ElementalDamage;
+                        DamageOutput *= ElementalMult;
+                    }
                     DamageOutput += ContinuousFire;
                     return (float)Math.Min(2147483647, Math.Floor(DamageOutput));
                 }
@@ -67,8 +69,10 @@ namespace TOTK.Website
                     }
                     DamageOutput = (ProjectileAttack * RodMultiplier) * AttackUp;
                     DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
-                    DamageOutput += ElementalDamage;
-                    DamageOutput *= ElementalMult;
+                    if (ElementalMult != 0) {
+                        DamageOutput += ElementalDamage;
+                        DamageOutput *= ElementalMult;
+                    }
                     DamageOutput += ContinuousFire;
                     return (float)Math.Min(2147483647, Math.Floor(DamageOutput));
                 }
@@ -89,9 +93,11 @@ namespace TOTK.Website
             DamageOutput *= AttackUp * Headshot * Throw * OneDurability * Frozen * TreeCutter;
             DamageOutput *= ArrowEnemyMult * ComboFinisher;
             DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
-            DamageOutput += ElementalDamage;
-            DamageOutput *= ElementalMult;
-            DamageOutput += ContinuousFire;
+            if (ElementalMult != 0) {
+                DamageOutput += ElementalDamage;
+                DamageOutput *= ElementalMult;
+            }
+            DamageOutput += ContinuousFire; // Apply elemental mult to continuous fire?
 
             _logger.LogInformation($"BaseAttack: {BaseAttack}, AttackUpMod: {AttackUpMod}, FuseBaseAttack: {FuseBaseAttack}, " +
                                    $"GerudoBonus: {GerudoBonus}, ZonaiBonus: {ZonaiBonus}, LowHealth: {LowHealth}, " +

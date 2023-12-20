@@ -4,17 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
+    <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TOTK.Website.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="/Fonts/BOTW_FONT.woff">
-    <link rel="icon" href="favicon.ico" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 </head>
 <body>
     <!--HEADER-->
     <header class="bg-black border-bottom box-shadow mb-3" >
         <div class="container">
-            <label class="botw-font" style="margin-top: 10px; color:white; font-size: 28px;">TEARS OF THE KINGDOM DAMAGE CALCULATOR (BETA)</label>
+            <label class="totk-title" style="margin-top: 10px; color:white; font-size: 28px;">TEARS OF THE KINGDOM DAMAGE CALCULATOR (BETA)</label>
         </div>
     </header>
 
@@ -43,10 +46,6 @@
             </ul>
         </div>
     </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
