@@ -6,39 +6,117 @@ namespace TOTK.Website
     {
         private readonly ILogger<CalculateDamage> _logger;
         public totk_calculatorModel Data;
+
+        public float DamageOutput = 0;
+        public float AttackUp;
+        public float BaseAttack;
+        public float AttackUpMod;
+        public float FuseBaseAttack;
+        public float ZonaiBonus;
+        public float GerudoBonus;
+        public float LowHealth;
+        public float WetPlayer;
+        public float Sneakstrike;
+        public float LowDurability;
+        public float OneDurability;
+        public float Bone;
+        public float FlurryRush;
+        public float Shatter;
+        public float Throw;
+        public float Headshot;
+        public float Frozen;
+        public float TreeCutter;
+        public float ArrowEnemyMult;
+        public float ElementalDamage;
+        public float ElementalMult;
+        public float ContinuousFire;
+        public float ComboFinisher;
+        public float MoldugaBelly;
+        public float DemonDragon;
         public CalculateDamage(ILogger<CalculateDamage> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
+
+        public int CalculateAttackPowerUI(totk_calculatorModel data)
+        {
+            Data = data;
+            float BaseAttack = GetBaseAttack();
+            float FuseAttackUI = GetFuseBaseAttack();
+            float AttackUpMod = (float)Data.Input.AttackUpMod;
+            float GerudoBonus = GetGerudoBonus();
+            float ZonaiBonusUI = GetZonaiBonusUI();
+
+            float BaseAttackUI = WeaponUIAdjust(BaseAttack) + (FuseAttackUI * GerudoBonus) + AttackUpMod + ZonaiBonusUI;
+
+            //_logger.LogInformation($"BaseAttack: {BaseAttack}, AttackUpMod: {AttackUpMod}, FuseAttacKUI: {FuseAttackUI}, " +
+            //                       $"GerudoBonus: {GerudoBonus}, ZonaiBonusUI: {ZonaiBonusUI}, Result: {BaseAttackUI}");
+
+            if (Data.SelectedWeapon.Type == 5) {
+                return (int)BaseAttack;
+            }
+            return (int)Math.Floor(BaseAttackUI);
+        }
+        public float WeaponUIAdjust(float input)
+        {
+            switch (Data.SelectedWeapon.Type) {
+                case 1:
+                    return (float)Math.Floor(input * 0.95f);
+                case 2:
+                    return (float)Math.Ceiling(input * 1.326856f);
+                default:
+                    return (float)Math.Floor(input);
+            }
+        }
+        public float GetZonaiBonusUI()
+        {
+            var SelectedWeapon = Data.SelectedWeapon.Name;
+            bool ZonaiFuseProperty = ScanProperties("Zonai Fuse");
+
+            if (ZonaiFuseProperty == false) {
+                return 0;
+            }
+
+            switch (Data.SelectedWeapon.Property) {
+                case "Zonai Lv1":
+                    return 3;
+                case "Zonai Lv2":
+                    return 5;
+                case "Zonai Lv3":
+                    return 10;
+                default:
+                    return 0;
+            }
         }
         public float Calculate(totk_calculatorModel data)
         {
             Data = data;
 
-            float DamageOutput = 0;
-            float BaseAttack = GetBaseAttack();
-            float AttackUpMod = (float)Data.Input.AttackUpMod;
-            float FuseBaseAttack = (float)GetFuseBaseAttack();
-            float ZonaiBonus = (float)GetZonaiBonus();
-            float GerudoBonus = (float)GetGerudoBonus();
-            float LowHealth = (float)GetLowHealth();
-            float WetPlayer = (float)GetWetPlayer();
-            float Sneakstrike = (float)GetSneakstrike();
-            float LowDurability = (float)GetLowDurability();
-            float OneDurability = (float)GetOneDurability();
-            float Bone = (float)GetBone();
-            float FlurryRush = (float)GetFlurryRush();
-            float Shatter = (float)GetShatter();
-            float AttackUp = (float)GetAttackUp();
-            float Throw = (float)GetThrow(AttackUp);
-            float Headshot = (float)GetHeadshot();
-            float Frozen = (float)GetFrozen();
-            float TreeCutter = (float)GetTreeCutter();
-            float ArrowEnemyMult = (float)GetArrowEnemyMult();
-            float ElementalDamage = (float)GetElementalDamage();
-            float ElementalMult = (float)GetElementalMult();
-            float ContinuousFire = (float)GetContinuousFire();
-            float ComboFinisher = (float)GetComboFinisher();
-            float MoldugaBelly = (float)GetMoldugaBelly();
+            AttackUp = GetAttackUp();
+            BaseAttack = GetBaseAttack();
+            AttackUpMod = (float)Data.Input.AttackUpMod;
+            FuseBaseAttack = GetFuseBaseAttack();
+            ZonaiBonus = GetZonaiBonus();
+            GerudoBonus = GetGerudoBonus();
+            LowHealth = GetLowHealth();
+            WetPlayer = GetWetPlayer();
+            Sneakstrike = GetSneakstrike();
+            LowDurability = GetLowDurability();
+            OneDurability = GetOneDurability();
+            Bone = GetBone();
+            FlurryRush = GetFlurryRush();
+            Shatter = GetShatter();
+            Throw = GetThrow(AttackUp);
+            Headshot = GetHeadshot();
+            Frozen = GetFrozen();
+            TreeCutter = GetTreeCutter();
+            ArrowEnemyMult = GetArrowEnemyMult();
+            ElementalDamage = GetElementalDamage();
+            ElementalMult = GetElementalMult();
+            ContinuousFire = GetContinuousFire();
+            ComboFinisher = GetComboFinisher();
+            MoldugaBelly = GetMoldugaBelly();
+            DemonDragon = GetDemonDragon();
 
             // Return enemy's HP if ancient blade
             if (Data.SelectedFuse.Name == "Ancient Blade" && Data.SelectedEnemy.AncientBladeDefeat == true) {
@@ -51,7 +129,9 @@ namespace TOTK.Website
                 bool CutProperty = ScanProperties("Cut");
                 if (Data.SelectedWeapon.Property == "Wind Razor" && CutProperty) {
                     DamageOutput = (10 + FuseUIAdjust(FuseBaseAttack + AttackUpMod)) * AttackUp;
-                    DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
+                    if (MoldugaBelly > 1) {
+                        DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
+                    }
                     if (ElementalMult != 0) {
                         DamageOutput += ElementalDamage;
                         DamageOutput *= ElementalMult;
@@ -68,7 +148,9 @@ namespace TOTK.Website
                         RodMultiplier = 2;
                     }
                     DamageOutput = (ProjectileAttack * RodMultiplier) * AttackUp;
-                    DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
+                    if (MoldugaBelly > 1) {
+                        DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
+                    }
                     if (ElementalMult != 0) {
                         DamageOutput += ElementalDamage;
                         DamageOutput *= ElementalMult;
@@ -91,8 +173,10 @@ namespace TOTK.Website
             DamageOutput = BaseAttack + FuseUIAdjust((FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
             DamageOutput *= LowHealth * WetPlayer * Sneakstrike * LowDurability * Bone * FlurryRush * Shatter;
             DamageOutput *= AttackUp * Headshot * Throw * OneDurability * Frozen * TreeCutter;
-            DamageOutput *= ArrowEnemyMult * ComboFinisher;
-            DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
+            DamageOutput *= ArrowEnemyMult * ComboFinisher * DemonDragon;
+            if (MoldugaBelly > 1) {
+                DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
+            }
             if (ElementalMult != 0) {
                 DamageOutput += ElementalDamage;
                 DamageOutput *= ElementalMult;
@@ -114,16 +198,10 @@ namespace TOTK.Website
         {
             float BaseAttack = (float)Data.SelectedWeapon.BaseAttack;
             string SelectedWeapon = Data.SelectedWeapon.Name;
-            string FuseBaseName = Data.SelectedWeapon.FuseBaseName;
 
             // DEMON KING'S BOW
             if (SelectedWeapon == "Demon King's Bow") {
                 return (float)Math.Max(1, Math.Min(60, Math.Floor(Data.Input.HP) * 2));
-            }
-
-            // MASTER SWORD IF DEMON DRAGON
-            if (Data.SelectedEnemy.Name == "Demon Dragon" && (FuseBaseName == "Master Sword" || FuseBaseName == "Decayed Master Sword")) {
-                return BaseAttack * 5;
             }
 
             return BaseAttack;
@@ -405,22 +483,22 @@ namespace TOTK.Website
             if (StormyWeatherAttack) { StormyWeatherPower = 5; }
 
             if (UsingIce) {
-                return ElementPower + IceDamage + ColdWeatherPower;
+                return ElementPower + IceDamage + ColdWeatherPower * AttackUp;
             }
             if (UsingFire) {
-                ElementPower += FireDamage + HotWeatherPower;
+                ElementPower += FireDamage + HotWeatherPower * AttackUp;
             }
             if (BombProperty) {
                 ElementPower *= (float)Data.SelectedEnemy.BombMultiplier;
             }
             if (UsingShock) {
-                ElementPower += ShockDamage + StormyWeatherPower;
+                ElementPower += ShockDamage + StormyWeatherPower * AttackUp;
             }
             if (WaterProperty) {
                 ElementPower += (float)Data.SelectedEnemy.WaterDamage;
             }
             if (Data.SelectedFuse.Name == "Beam Emitter") {
-                ElementPower += (12 * (float)Data.SelectedEnemy.BeamMultiplier);
+                ElementPower += (12 * (float)Data.SelectedEnemy.BeamMultiplier) * AttackUp;
             }
             return ElementPower;
         }
@@ -496,6 +574,15 @@ namespace TOTK.Website
         {
             if (Data.SelectedEnemy.Name == "Molduga (Belly)") {
                 return 1.2f;
+            }
+            return 1;
+        }
+        public float GetDemonDragon()
+        {
+            string FuseBaseName = Data.SelectedWeapon.FuseBaseName;
+
+            if (Data.SelectedEnemy.Name == "Demon Dragon" && (FuseBaseName == "Master Sword" || FuseBaseName == "Decayed Master Sword")) {
+                return (float)Data.SelectedWeapon.BaseAttack * 5;
             }
             return 1;
         }
