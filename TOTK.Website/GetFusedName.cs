@@ -99,7 +99,7 @@ namespace TOTK.Website
                 if (WeaponType < 2)
                     return Adjective + "Hammer"; // 1H or 2H
             }
-            if (WeaponProperty == "Shatter") {
+            if (WeaponProperty == "Shatter Rock") {
                 if (WeaponName == "Gloom Club" && !ReplaceProperties)
                     return Adjective + BaseName;
                 if (BindType == "Attach" && !ReplaceProperties)
@@ -111,11 +111,12 @@ namespace TOTK.Website
                     return Adjective + BaseName;
             }
 
-            if ((WeaponNamingRule == "ImpressiveGrip" || WeaponNamingRule == "UnlikeBat") && CanCut)
+            if ((WeaponNamingRule == "ImpressiveGrip" || WeaponNamingRule == "UnlikeBat") && !CanCut)
                 return Adjective + BaseName;
 
-            if (WeaponType == 2 && !FuseCanCut)
-                return Adjective + "Spear";
+            // Incorrect rule?
+            //if (WeaponType == 2 && !FuseCanCut)
+            //    return Adjective + "Spear";
 
             if (FuseNamingRule == "Fan") {
                 if (WeaponType == 2)
@@ -204,22 +205,6 @@ namespace TOTK.Website
                 }
             }
 
-            if (!CanCut || IsZonaiWeapon) {
-                switch (WeaponType) {
-                    case 0:
-                        return Adjective + "Club"; // 1H
-                    case 1:
-                        return Adjective + "Bat"; // 2H
-                    case 2:
-                        return Adjective + "Spear"; // Spear
-                    default:
-                        break;
-                }
-            }
-
-            if (CanCut && !ReplaceProperties && BindType == "Replace")
-                return Adjective + BaseName;
-
             if (CanCut && ReplaceProperties) {
                 switch (WeaponType) {
                     case 0:
@@ -232,6 +217,23 @@ namespace TOTK.Website
                         break;
                 }
             }
+
+            if ((!CanCut && WeaponType != 2) || ReplaceProperties || IsZonaiWeapon) {
+                switch (WeaponType) {
+                    case 0:
+                        return Adjective + "Club"; // 1H
+                    case 1:
+                        return Adjective + "Bat"; // 2H
+                    case 2:
+                        return Adjective + "Spear"; // Spear
+                    default:
+                        break;
+                }
+            }
+
+            // Pointless check?
+            //if (CanCut && !ReplaceProperties && BindType == "Replace")
+            //    return Adjective + BaseName;
 
             return Adjective + BaseName;
         }

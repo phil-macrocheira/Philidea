@@ -30,27 +30,27 @@
 <div class="container" >
     <!--WEAPON ROW/SECTION-->
     <div class="row section">
-        <div class="botw-font" style="height:10px; margin-left:-12px; position:relative;">
+        <div class="totk-title" style="height:10px; margin-left:-12px; position:relative;">
             <h2>WEAPON</h2>
         </div>
 
         <!--WEAPON-->
         <div class="col-md-auto py-2">
             <h5>Weapon</h5>
-            <select name="SelectedWeaponName" class="form-select" id="weaponDropdown" style="width:17rem;" onchange="update('weapon');">
-                @if (Model.Weapons != null) {
-                    @foreach (var weapon in Model.Weapons)
-                    {
-                        <option value="@weapon.Name">@weapon.Name</option>
-                    }
+            <!--WEAPON DROPDOWN-->
+            <select name="SelectedWeaponName" class="form-control select2" id="weaponDropdown" style="width:18rem;" onchange="update('weapon');">
+            @if (Model.Weapons != null) {
+                @foreach (var weapon in Model.Weapons) {
+                    <option value="@weapon.Name">@weapon.Name</option>
                 }
+            }
             </select>
         </div>
 
         <!--ATTACK UP MOD-->
         <div class="col-md-auto py-2" style="margin-right:3%">
             <h5>Attack Up Mod</h5>
-            <div class="form-outline" style="width: 8rem;">
+            <div class="form-outline" style="width: 10rem;">
                 <input asp-for="Input.AttackUpMod" class="form-control" id="numberAttackUpMod" type="number" value="0" min="0" max="0" onchange="update()" />
             </div>
         </div>
@@ -58,10 +58,10 @@
         <!--FUSE-->
         <div class="col-md-auto py-2" style="margin-right:3%;">
             <h5>Fuse</h5>
-            <select name="SelectedFuseName" class="form-select text-wrap" id="fuseDropdown" style="width:17rem;" onchange="update('fuse');">
+            <!--FUSE DROPDOWN-->
+            <select name="SelectedFuseName" class="form-control select2 text-wrap" id="fuseDropdown" style="width:18rem;" onchange="update('fuse');">
                 @if (Model.Fuses != null) {
-                    @foreach (var fuse in Model.Fuses)
-                    {
+                    @foreach (var fuse in Model.Fuses) {
                         <option value="@fuse.Name">@fuse.Name</option>
                     }
                 }
@@ -71,7 +71,7 @@
         <!--DURABILITY-->
         <div class="col-md-auto py-2" style="margin-right:3%">
             <h5>Durability</h5>
-            <div class="form-outline" style="width: 4.5rem;">
+            <div class="form-outline" style="width: 5rem;">
                 <input asp-for="Input.Durability" class="form-control" id="numberDurability" type="number" value="40" min="1" max="40" onchange="update()" />
             </div>
         </div>
@@ -79,7 +79,7 @@
         <!--ATTACK TYPE-->
         <div class="col-md-auto py-2">
             <h5>Attack Type</h5>
-            <select asp-for="Input.AttackType" class="form-select" id="attacktypeDropdown" style="width:10.5rem;" onchange="update()">
+            <select asp-for="Input.AttackType" class="form-select" id="attacktypeDropdown" style="width:11.5rem;" onchange="update()">
                 <option selected>Standard Attack</option>
                 <option value="Combo Finisher">Combo Finisher</option>
                 <option value="Throw">Throw</option>
@@ -96,7 +96,7 @@
     <div class="row">
         <!--PLAYER SECTION-->
         <div class="col-7 section" style="height:fit-content">
-            <div class="botw-font" style="height:10px; position:relative;">
+            <div class="totk-title" style="height:10px; position:relative;">
                 <h2>PLAYER</h2>
             </div>
 
@@ -104,7 +104,7 @@
                 <!--CURRENT HEARTS-->
                 <div class="col-md-auto py-2">
                     <h5>Current Hearts</h5>
-                    <div class="form-outline" style="width: 5.5rem;">
+                    <div class="form-outline" style="width: 6rem;">
                         <input asp-for="Input.HP" class="form-control" id="numberHP" type="number" value="38" step="0.25" min="0.25" max="40" onchange="update()" />
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                 <!--ARMOR/FOOD BUFF 1-->
                 <div class="col-md-auto py-2">
                     <h5>Armor/Food Buffs</h5>
-                    <select asp-for="Input.Buff1" id="buffDropdown1" class="form-select" style="width:14rem;" onchange="update()">
+                    <select asp-for="Input.Buff1" id="buffDropdown1" class="form-select" style="width:15rem;" onchange="update()">
                         <option selected>None</option>
                         <option value="Attack Up (Lv1)">Attack Up (Lv1)</option>
                         <option value="Attack Up (Lv2)">Attack Up (Lv2)</option>
@@ -127,7 +127,7 @@
 
                 <!--ARMOR/FOOD BUFF 2-->
                 <div class="col-md-auto py-2">
-                    <select asp-for="Input.Buff2" id="buffDropdown2" class="form-select" style="width:14rem; margin-top:32px;" onchange="update()">
+                    <select asp-for="Input.Buff2" id="buffDropdown2" class="form-select" style="width:15rem; margin-top:28px;" onchange="update()">
                         <option selected>None</option>
                         <option value="Attack Up (Lv1)">Attack Up (Lv1)</option>
                         <option value="Attack Up (Lv2)">Attack Up (Lv2)</option>
@@ -141,7 +141,7 @@
                 </div>
 
                 <!--PLAYER CHECKBOXES-->
-                <div class="col-md-auto py-2" style="margin-top:40px;">
+                <div class="col-md-auto py-2" style="margin-top:34px;">
                     <div class="form-check">
                         <label class="form-check-label d-block" style="color:white;">
                             <input asp-for="Input.Wet" id="checkboxWet" class="form-check-input" type="checkbox" onchange="update()">Wet
@@ -156,7 +156,7 @@
 
         <!--ENEMY SECTION-->
         <div class="col-4 section-enemy" style="height:fit-content; width:fit-content;">
-            <div class="botw-font" style="height:10px; position:relative;">
+            <div class="totk-title" style="height:10px; position:relative;">
                 <h2>ENEMY</h2>
             </div>
             
@@ -164,11 +164,10 @@
                 <!--ENEMY-->
                 <div class="col py-2">
                     <h5>Enemy</h5>
-                    <select name="SelectedEnemyName" class="form-select text-wrap" id="enemyDropdown" style="width:23.5rem;" onchange="update('enemy');">
-                        @if (Model.Enemies != null)
-                        {
-                            @foreach (var enemy in Model.Enemies)
-                            {
+                    <!--ENEMY DROPDOWN-->
+                    <select name="SelectedEnemyName" class="form-control select2 text-wrap" id="enemyDropdown" onchange="update('enemy');">
+                        @if (Model.Enemies != null) {
+                            @foreach (var enemy in Model.Enemies) {
                                 <option value="@enemy.Name">@enemy.Name</option>
                             }
                         }
@@ -176,7 +175,7 @@
                 </div>
 
                 <!--ENEMY CHECKBOXES-->
-                <div class="col py-2" style="margin-top:40px;">
+                <div class="col py-2" style="margin-top:34px;">
                     <div class="form-check">
                         <label class="form-check-label d-block" style="color:white;">
                             <input asp-for="Input.Frozen" id="checkboxFrozen" class="form-check-input" type="checkbox" onchange="update()" disabled>Frozen
@@ -189,7 +188,7 @@
     
     <!--RESULT-->
     <div class="section-result" style="margin-top:45px; margin-left:-10px; height:fit-content;">
-        <div class="botw-font" style="height:10px; position:relative;">
+        <div class="totk-title" style="height:10px; position:relative;">
             <h2>RESULT</h2>
         </div>
 
@@ -205,15 +204,18 @@
 
         <!--Icon Row-->
         <div class="row">
+            <!--WEAPON AND FUSE ICONS-->
             <div class="icon col-md-auto" style="width:128px; height:128px; margin-left:25px; margin-top:6px;">
                 <img src="@Model.WeaponIconURL" id="weaponImage" class="rounded float-left" alt="Weapon Image" style="height:100%; width:100%; object-fit:contain;">
             </div>
             <div class="icon" style="width:60px; height:60px; margin-right:28%; margin-left: 3px; margin-top:6px;">
                 <img src="@Model.FuseIconURL" id="fuseImage" class="rounded float-left" alt="Fuse Image" style="height:100%; width:100%; object-fit:contain;">
             </div>
+
+            <!--ENEMY ICON AND HP-->
             <div class="icon col-md-auto position-relative" style="width:128px; height:128px; margin-right:20%; margin-top:6px; overflow: hidden;">
-                <div class="position-absolute" style="top: 0; right: 0; background-color: black; border-radius: 0.2rem; padding: 0.2rem;">
-                    <span id="HPText" class="text-white" style="font-size: 0.7rem;">10</span>
+                <div class="position-absolute" style="bottom: 0; right:0; background-color: rgba(20,20,20,0.6); border-top-left-radius: 0.5rem; padding: 0.5rem;">
+                    <span id="HPText" class="text-white" style="font-size: 1rem;">10</span>
                 </div>
                 <img src="@Model.EnemyIconURL" id="enemyImage" class="float-left matched-radius_inner" alt="Enemy Image" style="height:100%; width:100%; object-fit:contain; border-radius: 0.7rem;">
             </div>
@@ -235,6 +237,29 @@
 
 @section Scripts {
     <script>
+        $(document).ready(function () {
+            $('#weaponDropdown').select2();
+            $('#weaponDropdown').on('select2:open', function () {
+                window.setTimeout(function () {
+                    document.querySelector('.select2-search__field').focus();
+                }, 0);
+            });
+
+            $('#fuseDropdown').select2();
+            $('#fuseDropdown').on('select2:open', function () {
+                window.setTimeout(function () {
+                    document.querySelector('.select2-search__field').focus();
+                }, 0);
+            });
+
+            $('#enemyDropdown').select2();
+            $('#enemyDropdown').on('select2:open', function () {
+                window.setTimeout(function () {
+                    document.querySelector('.select2-search__field').focus();
+                }, 0);
+            });
+        });
+
         function findObjByName(objData, selectedName) {
             return objData.find(function (w) {
                 return w.Name === selectedName;
@@ -312,7 +337,7 @@
 
                 if (FuseDurabilityWeapon > 0) 
                 { 
-                    FuseDurability = FuseDurabilityWeapon
+                    FuseDurability = Math.min(selectedWeaponObj.FuseExtraDurability, FuseDurabilityWeapon);
                 }
                 else if (selectedFuseObj.Name != "None")
                 {
@@ -487,5 +512,35 @@
                 }
             });
         }
+    </script>
+
+    <script>
+    // Armor/Food Buff Dropdown Duplicate Logic
+        function updateDropdowns() {
+            // Show all options
+            $('#buffDropdown1 option, #buffDropdown2 option').show();
+
+            // Hide selected options in the other dropdown
+            var selectedValue1 = $('#buffDropdown1').val();
+            var selectedValue2 = $('#buffDropdown2').val();
+
+            if (selectedValue1 !== 'None' && selectedValue1.startsWith('Attack Up')) {
+                $('#buffDropdown2').find('option[value^="Attack Up"]').not(':selected').hide();
+            } else if (selectedValue1 !== 'None') {
+                $('#buffDropdown2').find('option[value="' + selectedValue1 + '"]').not(':selected').hide();
+            }
+
+            if (selectedValue2 !== 'None' && selectedValue2.startsWith('Attack Up')) {
+                $('#buffDropdown1').find('option[value^="Attack Up"]').not(':selected').hide();
+            } else if (selectedValue2 !== 'None') {
+                $('#buffDropdown1').find('option[value="' + selectedValue2 + '"]').not(':selected').hide();
+            }
+        }
+
+        $(document).ready(function () {
+            $('#buffDropdown1, #buffDropdown2').on('change', function () {
+                updateDropdowns();
+            });
+        });
     </script>
 }

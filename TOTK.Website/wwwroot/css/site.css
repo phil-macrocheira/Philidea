@@ -1,11 +1,56 @@
+/* CUSTOM FONTS */
 @font-face {
-    font-family: 'BOTW_FONT';
-    src: url('/Fonts/BOTW_FONT.woff') format('woff');
+    font-family: 'totk-title';
+    src: url('/Fonts/totk-title.otf') format('opentype');
+}
+@font-face {
+    font-family: 'totk-rodin';
+    src: url('/Fonts/totk-rodin-bold.otf') format('opentype');
+}
+.totk-title {
+    font-family: 'totk-title', sans-serif;
+    word-spacing: 0.3em;
+    font-size: 12px;
 }
 
-.botw-font {
-    font-family: 'BOTW_FONT', sans-serif;
-    word-spacing: 0.3em;
+/* SELECT2 DROPDOWN COLORS */
+.select2-container--default .select2-selection--single, .select2-results, .select2-results__option, .select2-search {
+    background-color: rgba(20, 20, 20, 0.6) !important;
+}
+.select2-selection__rendered {
+    color: white !important;
+}
+.select2-search__field {
+    background-color: rgba(20, 20, 20, 0.6) !important;
+    color: white !important;
+}
+.select2-results__option--highlighted {
+    background-color: #b3e6e0 !important;
+    color: black !important;
+}
+.select2-container .select2-selection--single {
+    height: 34px !important;
+}
+.select2-container--default .select2-selection--single {
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+}
+
+/* SELECT2 DROPDOWN VERTICALLY ALIGN TEXT */
+#select2-weaponDropdown-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* OTHER FORM COLORS */
+.form-control, .form-control:focus, .form-control:active {
+    background-color: rgba(20, 20, 20, 0.6);
+    color: white;
+}
+.form-select {
+    background-color: rgba(20, 20, 20, 0.6);
+    color: white;
 }
 
 .icon {
@@ -13,7 +58,6 @@
     float: left;
     padding: unset;
     background-color: lightgray;
-
     --matched-radius-padding: 4px;
     --matched-radius-inner-size: 10px;
     border-radius: calc(var(--matched-radius-inner-size) + var(--matched-radius-padding));
@@ -61,6 +105,8 @@ html {
 
 body {
     margin-bottom: 60px;
+    font-family: 'totk-rodin', sans-serif;
+    color:white;
 }
 
 ul.horizontal-list {
@@ -79,6 +125,7 @@ ul.horizontal-list {
     font-family: 'Nunito', sans-serif;
     transition: line-height 0.5s ease;
 }
+
 @media-phone (max-width: 768px) {
     html {
         font-size: 16px;
