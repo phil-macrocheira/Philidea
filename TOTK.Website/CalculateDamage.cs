@@ -8,6 +8,7 @@ namespace TOTK.Website
         public totk_calculatorModel Data;
 
         public float DamageOutput = 0;
+        public float AttackPower;
         public float AttackUp;
         public float BaseAttack;
         public float AttackUpMod;
@@ -115,6 +116,8 @@ namespace TOTK.Website
             ComboFinisher = GetComboFinisher();
             MoldugaBelly = GetMoldugaBelly();
             DemonDragon = GetDemonDragon();
+
+            AttackPower = (BaseAttack + (FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
 
             // Return enemy's HP if ancient blade
             if (Data.SelectedFuse.Name == "Ancient Blade" && Data.SelectedEnemy.AncientBladeDefeat == true) {
@@ -466,13 +469,20 @@ namespace TOTK.Website
             bool UsingFire = HotWeatherAttack || FireProperty || BombProperty;
             bool UsingIce = ColdWeatherAttack || IceProperty;
             bool UsingShock = StormyWeatherAttack || ShockProperty;
-            float ElementPower = Data.SelectedFuse?.ElementPower ?? 0.0f;
+            float ElementPower = 0;
 
             if (HotWeatherAttack) { HotWeatherPower = 5; }
             if (ColdWeatherAttack) { ColdWeatherPower = 5; }
             if (StormyWeatherAttack) { StormyWeatherPower = 5; }
 
+            if (Data.SelectedWeapon.Type == 3 || Data.Input.AttackType == "Throw") {
+                ElementPower = Data.SelectedFuse?.ElementPower ?? 0.0f;
+            }
+
             if (UsingIce) {
+                if (Data.Input.Frozen == true) {
+                    return 0;
+                }
                 return ElementPower + IceDamage + ColdWeatherPower * AttackUp;
             }
             if (UsingFire) {
@@ -555,7 +565,7 @@ namespace TOTK.Website
             bool FireProperty = ScanProperties("Fire") || ScanProperties("Fire Burst");
             bool HotWeatherAttack = GetHotWeatherAttack();
 
-            if ((FireProperty || HotWeatherAttack) && Data.SelectedEnemy.Element != "Fire") {
+            if ((FireProperty || HotWeatherAttack) && Data.SelectedEnemy.Element != "Fire" && Data.SelectedEnemy.Name == "Evermean") {
                 return (float)Data.SelectedEnemy.FireDamageContinuous;
             }
             return 0;
