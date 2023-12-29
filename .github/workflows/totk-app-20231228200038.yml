@@ -55,7 +55,6 @@ jobs:
     - name: logout
       run: >
         az logout
-
     - name: Run EF
       run: |
         dotnet tool install --global dotnet-ef
