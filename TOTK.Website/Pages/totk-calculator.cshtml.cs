@@ -120,8 +120,8 @@ namespace TOTK.Website.Pages
                 $"LowHealth({_calculateDamage.LowHealth}) * WetPlayer({_calculateDamage.WetPlayer}) * Sneakstrike({_calculateDamage.Sneakstrike}) * LowDurability({_calculateDamage.LowDurability}) * Bone({_calculateDamage.Bone}) * FlurryRush({_calculateDamage.FlurryRush}) * " +
                 $"Shatter({_calculateDamage.Shatter}) * AttackUp({_calculateDamage.AttackUp}) * Headshot({_calculateDamage.Headshot}) * Throw({_calculateDamage.Throw}) * OneDurability({_calculateDamage.OneDurability}) * Frozen({_calculateDamage.Frozen}) * TreeCutter({_calculateDamage.TreeCutter}) * " +
                 $"ArrowEnemyMult({_calculateDamage.ArrowEnemyMult}) * ComboFinisher({_calculateDamage.ComboFinisher}) * DemonDragon({_calculateDamage.DemonDragon}) * MoldugaBelly({_calculateDamage.MoldugaBelly}) + ElementalDamage({_calculateDamage.ElementalDamage}); " +
-                $"Multiply result by ElementalMult({_calculateDamage.ElementalMult}) + ContinuousFire({_calculateDamage.ContinuousFire})/n/n" +
-                $"Base({TotalBaseAttack}) + Fuse({TotalFuseAttack}) = {TotalAttack}";
+                $"Multiply result by ElementalMult({_calculateDamage.ElementalMult}) + ContinuousFire({_calculateDamage.ContinuousFire})" +
+                $" ................................................... Base({TotalBaseAttack}) + Fuse({TotalFuseAttack}) = {TotalAttack}";
 
             return new JsonResult(new {
                 success = true,
