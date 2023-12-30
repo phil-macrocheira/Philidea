@@ -18,22 +18,7 @@ jobs:
       - run:
           name: "Build Application according to some given configuration"
           command: dotnet.exe build --configuration Release
-  deploy_to_heroku:
-    executor:
-      name: heroku/default
-    steps:
-      - heroku/install
-      - run:
-          name: "Set Private SSH Key"
-          command: echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          when: always
-      - run:
-          name: "Change Private Key Permissions"
-          command: chmod 600 ~/.ssh/id_rsa
-          when: always
-      - heroku/deploy-via-git:
-          app-name: totk-damage-calculator
-          branch: master
-
 workflows:
-  version: 2
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git
