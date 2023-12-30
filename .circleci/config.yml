@@ -28,9 +28,10 @@ jobs:
           branch: master
 
 workflows:
+  version: 2
   heroku_deploy:
     jobs:
-      - build:
+      - build
       - deploy_to_heroku:
           requires:
             - build
