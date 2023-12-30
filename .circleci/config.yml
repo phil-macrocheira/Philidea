@@ -8,7 +8,8 @@ jobs:
     executor:
       name: windows/default
     steps:
-      - checkout
+      - checkout:
+          key_path: C:/Users/Phil/.ssh/id_rsa
       - restore_cache:
           keys:
             - dotnet-packages-v1-{{ checksum "TOTK.Website.csproj" }}
