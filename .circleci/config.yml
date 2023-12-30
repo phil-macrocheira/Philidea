@@ -18,7 +18,19 @@ jobs:
       - run:
           name: "Build Application according to some given configuration"
           command: dotnet.exe build --configuration Release
+  deploy_to_heroku:
+    executor:
+      name: heroku/default
+    steps:
+      - heroku/install
+      - heroku/deploy-via-git:
+          app-name: totk-damage-calculator
+          branch: master
+
 workflows:
   heroku_deploy:
     jobs:
-      - heroku/deploy-via-git
+      - build:
+      - deploy_to_heroku:
+          requires:
+            - build
