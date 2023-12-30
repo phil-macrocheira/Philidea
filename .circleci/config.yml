@@ -8,8 +8,7 @@ jobs:
     executor:
       name: windows/default
     steps:
-      - checkout:
-          key_path: C:/Users/Phil/.ssh/id_rsa
+      - checkout
       - restore_cache:
           keys:
             - dotnet-packages-v1-{{ checksum "TOTK.Website.csproj" }}
@@ -24,15 +23,17 @@ jobs:
       name: heroku/default
     steps:
       - heroku/install
+      - run:
+          name: "Set Private SSH Key"
+          command: echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          when: always
+      - run:
+          name: "Change Private Key Permissions"
+          command: chmod 600 ~/.ssh/id_rsa
+          when: always
       - heroku/deploy-via-git:
           app-name: totk-damage-calculator
           branch: master
 
 workflows:
   version: 2
-  heroku_deploy:
-    jobs:
-      - build
-      - deploy_to_heroku:
-          requires:
-            - build
