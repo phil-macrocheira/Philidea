@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 # SQL Scripts Folder
 SQL_Scripts/
+
+# AppSettings
+TOTK.Website/appsettings.json
