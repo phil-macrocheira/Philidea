@@ -32,7 +32,6 @@ namespace TOTK.Website
         public float ElementalMult;
         public float ContinuousFire;
         public float ComboFinisher;
-        public float MoldugaBelly;
         public float DemonDragon;
         public CalculateDamage(ILogger<CalculateDamage> logger)
         {
@@ -114,7 +113,6 @@ namespace TOTK.Website
             ElementalMult = GetElementalMult();
             ContinuousFire = GetContinuousFire();
             ComboFinisher = GetComboFinisher();
-            MoldugaBelly = GetMoldugaBelly();
             DemonDragon = GetDemonDragon();
 
             AttackPower = (BaseAttack + (FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
@@ -122,43 +120,6 @@ namespace TOTK.Website
             // Return enemy's HP if ancient blade
             if (Data.SelectedFuse.Name == "Ancient Blade" && Data.SelectedEnemy.AncientBladeDefeat == true) {
                 return (float)Data.SelectedEnemy.HP;
-            }
-
-            // Melee Projectile
-            if (Data.Input.AttackType == "Melee Projectile") {
-                // WIND RAZOR
-                bool CutProperty = ScanProperties("Cut");
-                if (Data.SelectedWeapon.Property == "Wind Razor" && CutProperty) {
-                    DamageOutput = (10 + FuseUIAdjust(FuseBaseAttack + AttackUpMod)) * AttackUp;
-                    if (MoldugaBelly > 1) {
-                        DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
-                    }
-                    if (ElementalMult != 0) {
-                        DamageOutput += ElementalDamage;
-                        DamageOutput *= ElementalMult;
-                    }
-                    DamageOutput += ContinuousFire;
-                    return (float)Math.Min(2147483647, Math.Floor(DamageOutput));
-                }
-
-                // PROJECTILES FROM FUSES
-                float ProjectileAttack = (float)Data.SelectedFuse.ProjectileAttack;
-                if (ProjectileAttack > 0) {
-                    float RodMultiplier = 1;
-                    if (Data.SelectedWeapon.Property == "Rod") {
-                        RodMultiplier = 2;
-                    }
-                    DamageOutput = (ProjectileAttack * RodMultiplier) * AttackUp;
-                    if (MoldugaBelly > 1) {
-                        DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
-                    }
-                    if (ElementalMult != 0) {
-                        DamageOutput += ElementalDamage;
-                        DamageOutput *= ElementalMult;
-                    }
-                    DamageOutput += ContinuousFire;
-                    return (float)Math.Min(2147483647, Math.Floor(DamageOutput));
-                }
             }
 
             // MASTER SWORD BEAM
@@ -175,9 +136,6 @@ namespace TOTK.Website
             DamageOutput *= LowHealth * WetPlayer * Sneakstrike * LowDurability * Bone * FlurryRush * Shatter;
             DamageOutput *= AttackUp * Headshot * Throw * OneDurability * Frozen * TreeCutter;
             DamageOutput *= ArrowEnemyMult * ComboFinisher * DemonDragon;
-            if (MoldugaBelly > 1) {
-                DamageOutput = (float)Math.Ceiling(DamageOutput * MoldugaBelly);
-            }
             if (ElementalMult != 0) {
                 DamageOutput += ElementalDamage;
                 DamageOutput *= ElementalMult;
@@ -294,7 +252,7 @@ namespace TOTK.Website
         }
         public float GetSneakstrike()
         {
-            if (Data.Input.AttackType == "Sneakstrike" && Data.SelectedEnemy.CanSneakstrike == true && Data.Input.Frozen == false) {
+            if (Data.Input.AttackType == "Sneakstrike" && Data.Input.Frozen == false) {
                 bool SneakstrikeProperty = ScanProperties("Sneakstrike x2");
 
                 if (SneakstrikeProperty == true) {
@@ -384,8 +342,7 @@ namespace TOTK.Website
         }
         public float GetHeadshot()
         {
-            if ((Data.SelectedWeapon.Type == 3 && Data.Input.AttackType == "Headshot") || 
-                (Data.SelectedWeapon.Type != 3 && Data.SelectedEnemy.CanMeleeHeadshot == true)) {
+            if (Data.Input.Headshot == true) {
                 return (float)Data.SelectedEnemy.HeadshotMultiplier;
             }
             return 1;
@@ -423,7 +380,7 @@ namespace TOTK.Website
             if (Data.SelectedEnemy.CanFreeze == false || SelectedEnemy == "Gibdo" || SelectedEnemy == "Moth Gibdo") {
                 return 1;
             }
-            if (Data.Input.Frozen == true && AttackType != "Sneakstrike" && AttackType != "Flurry Rush" && AttackType != "Headshot") {
+            if (Data.Input.Frozen == true && AttackType != "Sneakstrike" && AttackType != "Flurry Rush") {
                 return 3;
             }
             return 1;
@@ -569,13 +526,6 @@ namespace TOTK.Website
                 return (float)Data.SelectedEnemy.FireDamageContinuous;
             }
             return 0;
-        }
-        public float GetMoldugaBelly()
-        {
-            if (Data.SelectedEnemy.Name == "Molduga (Belly)") {
-                return 1.2f;
-            }
-            return 1;
         }
         public float GetDemonDragon()
         {

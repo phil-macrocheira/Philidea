@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace TOTK.Website.Models
 {
@@ -13,7 +14,6 @@ namespace TOTK.Website.Models
         public short? Durability { get; set; }
         public string? Property { get; set; }
         public bool? CanHaveAttackUpMod { get; set; }
-        public bool? CanFuseTo { get; set; }
         public byte? FuseExtraDurability { get; set; }
         public string? FuseBaseName { get; set; }
         public string? NamingRule { get; set; }
@@ -66,7 +66,13 @@ namespace TOTK.Website.Models
     }
     public class ImportData
     {
-        private string connectionString = Environment.GetEnvironmentVariable("SQLAZURECONNSTR_connectionString");
+        private string connectionString;
+        public ImportData()
+        {
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
+            IConfiguration configuration = builder.Build();
+            connectionString = configuration.GetConnectionString("connectionString");
+        }
         public string GetLocalConnectionStringIfOffline()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connectionString);
@@ -84,7 +90,7 @@ namespace TOTK.Website.Models
         {
             List<Weapon> weapons = new List<Weapon>();
 
-            connectionString = GetLocalConnectionStringIfOffline();
+            //connectionString = GetLocalConnectionStringIfOffline();
 
             using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();
@@ -103,7 +109,6 @@ namespace TOTK.Website.Models
                                 Durability = (short?)reader["Durability"],
                                 Property = reader["Property"].ToString(),
                                 CanHaveAttackUpMod = (bool?)reader["CanHaveAttackUpMod"],
-                                CanFuseTo = (bool?)reader["CanFuseTo"],
                                 FuseExtraDurability = (byte?)reader["FuseExtraDurability"],
                                 FuseBaseName = reader["FuseBaseName"].ToString(),
                                 NamingRule = reader["NamingRule"].ToString(),

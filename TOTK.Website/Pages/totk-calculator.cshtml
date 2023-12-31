@@ -57,7 +57,7 @@
 
         <!--FUSE-->
         <div class="col-md-auto py-2" style="margin-right:3%;">
-            <h5>Fuse</h5>
+            <h5 id="FuseDropdownTitleText">Fuse</h5>
             <!--FUSE DROPDOWN-->
             <select name="SelectedFuseName" class="form-control select2 text-wrap" id="fuseDropdown" style="width:18rem;" onchange="update('fuse');">
                 @if (Model.Fuses != null) {
@@ -74,20 +74,21 @@
             <div class="form-outline" style="width: 5rem;">
                 <input asp-for="Input.Durability" class="form-control" id="numberDurability" type="number" value="40" min="1" max="40" onchange="update()" />
             </div>
+            <!--FREEZE DURABILITY-->
+            <label class="form-check-label d-block" style="color:white; font-size:11px;">
+                <input asp-for="Input.FreezeDurability" id="checkboxFreezeDurability" class="form-check-input" style="margin-right:3px" type="checkbox" onchange="update()">Freeze
+            </label>
         </div>
 
         <!--ATTACK TYPE-->
         <div class="col-md-auto py-2">
             <h5>Attack Type</h5>
-            <select asp-for="Input.AttackType" class="form-select" id="attacktypeDropdown" style="width:11.5rem;" onchange="update()">
+            <select asp-for="Input.AttackType" class="form-select" id="attacktypeDropdown" style="width:15.5rem;" onchange="update()">
                 <option selected>Standard Attack</option>
                 <option value="Combo Finisher">Combo Finisher</option>
                 <option value="Throw">Throw</option>
-                <option value="Melee Projectile">Melee Projectile</option>
-                <option value="Sneakstrike">Sneakstrike</option>
                 <option value="Flurry Rush">Flurry Rush</option>
-                <option value="Headshot">Headshot</option>
-                <option value="Riju Lightning">Riju Lightning</option>
+                <option value="Sidon's Water">Sidon's Water</option>
             </select>
         </div>
     </div>
@@ -112,7 +113,7 @@
                 <!--ARMOR/FOOD BUFF 1-->
                 <div class="col-md-auto py-2">
                     <h5>Armor/Food Buffs</h5>
-                    <select asp-for="Input.Buff1" id="buffDropdown1" class="form-select" style="width:15rem;" onchange="update()">
+                    <select asp-for="Input.Buff1" id="buffDropdown1" class="form-select" style="width:16.5rem;" onchange="update()">
                         <option selected>None</option>
                         <option value="Attack Up (Lv1)">Attack Up (Lv1)</option>
                         <option value="Attack Up (Lv2)">Attack Up (Lv2)</option>
@@ -127,7 +128,7 @@
 
                 <!--ARMOR/FOOD BUFF 2-->
                 <div class="col-md-auto py-2">
-                    <select asp-for="Input.Buff2" id="buffDropdown2" class="form-select" style="width:15rem; margin-top:28px;" onchange="update()">
+                    <select asp-for="Input.Buff2" id="buffDropdown2" class="form-select" style="width:16.5rem; margin-top:28px;" onchange="update()">
                         <option selected>None</option>
                         <option value="Attack Up (Lv1)">Attack Up (Lv1)</option>
                         <option value="Attack Up (Lv2)">Attack Up (Lv2)</option>
@@ -175,7 +176,12 @@
                 </div>
 
                 <!--ENEMY CHECKBOXES-->
-                <div class="col py-2" style="margin-top:34px;">
+                <div class="col py-2" style="margin-top:24px;">
+                    <div class="form-check">
+                        <label class="form-check-label d-block" style="color:white;">
+                            <input asp-for="Input.Headshot" id="checkboxHeadshot" class="form-check-input" type="checkbox" onchange="update()" disabled><span id="HeadshotText">Headshot</span>
+                        </label>
+                    </div>
                     <div class="form-check">
                         <label class="form-check-label d-block" style="color:white;">
                             <input asp-for="Input.Frozen" id="checkboxFrozen" class="form-check-input" type="checkbox" onchange="update()" disabled>Frozen
@@ -234,7 +240,7 @@
             <!--DAMAGE OUTPUT SECTION-->
             <div class="col-md-2">
                 <h5 style="margin-left:26px;">Damage</h5>
-                <h1 class="icon" id="DamageOutputText" style="width:128px; height:128px; font-size: 48px; background-color:rgba(40, 40, 40, 0.5); display: flex; align-items: center; justify-content: center;">30</h1>
+                <h1 class="icon" id="DamageOutputText" style="width:128px;height:128px;font-size:42px;background-color:rgba(40, 40, 40, 0.5);display:flex;align-items:center;justify-content:center;margin-top:5px;">30</h1>
             </div>
         </div>
 
@@ -321,7 +327,7 @@
                 }
             }
 
-            // UPDATE ICON AND ENEMY TEXT
+            // UPDATE ICONS AND ENEMY TEXT
             switch (dropdownEdited) {
                 case 'weapon':
                     if (!MasterSwordIconSet) {
@@ -340,8 +346,17 @@
                     break;
             }
 
+            // Freeze Durability
+            var checkbox = document.getElementById('checkboxFreezeDurability');
+            if (checkbox.checked) {
+                numberDurability.disabled = true;
+            }
+            else {
+                numberDurability.disabled = false;
+            }
+
             // UPDATE MAX DURABILITY IF WEAPON OR FUSE EDITED
-            if (dropdownEdited === 'weapon' || dropdownEdited === 'fuse') {
+            if ((numberDurability.disabled == false) && (dropdownEdited === 'weapon' || dropdownEdited === 'fuse')) {
                 var FuseDurability = 0;
                 var DurabilityMod = 0;
                 var FuseDurabilityWeapon = selectedFuseObj.WeaponDurability;
@@ -350,12 +365,10 @@
                     DurabilityMod = 10;
                 }
 
-                if (FuseDurabilityWeapon > 0) 
-                { 
+                if (FuseDurabilityWeapon > 0) {
                     FuseDurability = Math.min(selectedWeaponObj.FuseExtraDurability, FuseDurabilityWeapon);
                 }
-                else if (selectedFuseObj.Name != "None")
-                {
+                else if (selectedFuseObj.Name != "None") {
                     FuseDurability = selectedWeaponObj.FuseExtraDurability;
                 }
 
@@ -379,7 +392,6 @@
                 if (selectedWeaponObj.Type == 3) {
                     var FusesArrow = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.FusesArrow));
                     var fuseDropdown = $('#fuseDropdown');
-                    var selectedFuseName = fuseDropdown.val();
 
                     fuseDropdown.empty();
                     $.each(FusesArrow, function (index, fuse) {
@@ -387,12 +399,12 @@
                     });
 
                     fuseDropdown.val(FusesArrow[0].Name);
-                    $('#fuseImage').prop('src',"https://raw.githubusercontent.com/TOTKSheet/TOTKImages/main/Items/Obj_OneTouchBond.png");
+                    $('#fuseImage').prop('src', "https://raw.githubusercontent.com/TOTKSheet/TOTKImages/main/Items/Obj_OneTouchBond.png");
+                    selectedFuseObj = findObjByName(fuseData, "None");
                 }
                 else {
                     var Fuses = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Fuses));
                     var fuseDropdown = $('#fuseDropdown');
-                    var selectedFuseName = fuseDropdown.val();
 
                     fuseDropdown.empty();
                     $.each(Fuses, function (index, fuse) {
@@ -401,17 +413,123 @@
 
                     fuseDropdown.val(selectedFuseName);
                 }
-            }
 
-            // Freeze Frozen Checkbox if enemy unfreezable
-            if (dropdownEdited === 'enemy') {
-                var checkbox = document.getElementById('checkboxFrozen');
-                if (!selectedEnemyObj.CanFreeze) {
-                    checkbox.checked = false;
-                    checkbox.disabled = true;
+                // UPDATE FUSE DROPDOWN TITLE TEXT TO "THROW" IF EARTHWAKE
+                if (selectedWeaponObj.Type == 5) {
+                    $('#FuseDropdownTitleText').text('Throw');
                 }
                 else {
-                    checkbox.disabled = false;
+                    $('#FuseDropdownTitleText').text('Fuse');
+                }
+            }
+
+            var checkboxHeadshot = document.getElementById('checkboxHeadshot');
+            var checkboxFrozen = document.getElementById('checkboxFrozen');
+
+            // Disable headshot checkbox if frozen checked
+            if (checkboxFrozen.checked) {
+                checkboxHeadshot.checked = false;
+                checkboxHeadshot.disabled = true;
+            }
+            // Disable/Enable enemy checkboxes when enemy dropdown edited
+            else if (dropdownEdited === 'enemy' || dropdownEdited === 'weapon') {
+                var SelectedWeaponType = selectedWeaponObj.Type;
+
+                if ((SelectedWeaponType == 3 && selectedEnemyObj.HeadshotMultiplier > 1) || (SelectedWeaponType != 3 && selectedEnemyObj.CanMeleeHeadshot == true) || selectedEnemyObj.Name == "Molduga") {
+                    checkboxHeadshot.disabled = false;
+                }
+                else {
+                    checkboxHeadshot.checked = false;
+                    checkboxHeadshot.disabled = true;
+                }
+            }
+            else {
+                checkboxHeadshot.disabled = false;
+            }
+
+            // Disable Frozen Checkbox if enemy cannot be frozen
+            if (dropdownEdited === 'enemy') {
+                if (selectedEnemyObj.CanFreeze) {
+                    checkboxFrozen.disabled = false;
+                }
+                else {
+                    checkboxFrozen.checked = false;
+                    checkboxFrozen.disabled = true;
+                }
+            }
+
+            // Change 'Headshot' to 'Belly' if Molduga
+            if (dropdownEdited === 'enemy') {
+                if (selectedEnemyObj.Name === 'Molduga') {
+                    $('#HeadshotText').text('Belly');
+                }
+                else {
+                    $('#HeadshotText').text('Headshot');
+                }
+            }
+
+            // UPDATE ATTACK TYPE DROPDOWN
+            if (dropdownEdited === 'weapon' || dropdownEdited === 'fuse' || dropdownEdited === 'enemy') {
+                var dropdown = document.getElementById('attacktypeDropdown');
+                var dropdownvalue = dropdown.value;
+                var SelectedWeaponType = selectedWeaponObj.Type;
+                var StandardAttack = NewOption("Standard Attack");
+                var Shoot = NewOption("Shoot Arrow");
+                var ShieldBash = NewOption("Shield Bash");
+                var Earthwake = NewOption("Earthwake Technique");
+                var ComboFinisher = NewOption("Combo Finisher");
+                var Throw = NewOption("Throw");
+                var Sneakstrike = NewOption("Sneakstrike");
+                var FlurryRush = NewOption("Flurry Rush");
+                var Sidon = NewOption("Sidon's Water");
+                var Riju = NewOption("Riju's Lightning");
+
+                while (dropdown.options.length > 0) {
+                    dropdown.remove(0);
+                }
+                
+                if (SelectedWeaponType < 3) {
+                    dropdown.add(StandardAttack);
+                    dropdown.add(ComboFinisher);
+                    dropdown.add(Throw);
+                    if (selectedEnemyObj.CanSneakstrike == true) {
+                        dropdown.add(Sneakstrike);
+                    }
+                    dropdown.add(FlurryRush);
+                    dropdown.add(Sidon);
+                    if (dropdownvalue == "Sneakstrike" && selectedEnemyObj.CanSneakstrike == false) {
+                        dropdown.value = "Standard Attack";
+                    }
+                    else if (dropdownvalue == "Shoot Arrow" || dropdownvalue == "Riju's Lightning" || dropdownvalue == "Shield Bash" || dropdownvalue == "Earthwake Technique") {
+                        dropdown.value = "Standard Attack";
+                    }
+                    else {
+                        dropdown.value = dropdownvalue;
+                    }
+                }
+                else if (SelectedWeaponType == 3) {
+                    dropdown.add(Shoot);
+                    dropdown.add(Riju);
+                    if (dropdownvalue != "Riju's Lightning") {
+                        dropdown.value = "Shoot Arrow";
+                    }
+                    else {
+                        dropdown.value = dropdownvalue;
+                    }
+                }
+                else if (SelectedWeaponType == 4) {
+                    dropdown.add(ShieldBash);
+                    dropdown.value = "Shield Bash";
+                }
+                else if (SelectedWeaponType == 5) {
+                    dropdown.add(Earthwake);
+                    dropdown.add(Throw);
+                    if (dropdownvalue != "Throw") {
+                        dropdown.value = "Earthwake Technique";
+                    }
+                    else {
+                        dropdown.value = dropdownvalue;
+                    }
                 }
             }
 
@@ -434,6 +552,7 @@
                 AttackType: $('#attacktypeDropdown').val(),
                 DurabilityInput: DurabilityClamped,
                 Wet: $('#checkboxWet').is(':checked'),
+                Headshot: $('#checkboxHeadshot').is(':checked'),
                 Frozen: $('#checkboxFrozen').is(':checked'),
                 PlayerHP: PlayerHPClamped,
                 Buff1: $('#buffDropdown1').val(),
@@ -447,7 +566,6 @@
                 Durability: selectedWeaponObj.Durability,
                 Property: selectedWeaponObj.Property,
                 CanHaveAttackUpMod: selectedWeaponObj.CanHaveAttackUpMod,
-                CanFuseTo: selectedWeaponObj.CanFuseTo,
                 FuseExtraDurability: selectedWeaponObj.FuseExtraDurability,
                 FuseBaseName: selectedWeaponObj.FuseBaseName,
                 NamingRuleWeapon: selectedWeaponObj.NamingRule,
@@ -530,6 +648,12 @@
                     console.error('UPDATE ERROR', error);
                 }
             });
+        }
+        function NewOption(OptionName) {
+            var newOption = document.createElement('option');
+            newOption.value = OptionName;
+            newOption.text = OptionName;
+            return newOption;
         }
     </script>
 

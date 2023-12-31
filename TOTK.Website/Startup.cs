@@ -1,4 +1,5 @@
-﻿using TOTK.Website.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using TOTK.Website.Models;
 
 namespace TOTK.Website
 {

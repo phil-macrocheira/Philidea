@@ -51,6 +51,7 @@ namespace TOTK.Website.Pages
             Input.Durability = Convert.ToInt32(Request.Form["DurabilityInput"]);
             Input.AttackType = Request.Form["AttackType"];
             Input.Wet = Request.Form["Wet"] == "true";
+            Input.Headshot = Request.Form["Headshot"] == "true";
             Input.Frozen = Request.Form["Frozen"] == "true";
             Input.HP = Convert.ToSingle(Request.Form["PlayerHP"]);
             Input.Buff1 = Request.Form["Buff1"];
@@ -64,7 +65,6 @@ namespace TOTK.Website.Pages
             SelectedWeapon.Durability = Convert.ToInt16(Request.Form["Durability"]);
             SelectedWeapon.Property = Request.Form["Property"];
             if (bool.TryParse(Request.Form["CanHaveAttackUpMod"], out bool CanHaveAttackUpModValue)) { SelectedWeapon.CanHaveAttackUpMod = CanHaveAttackUpModValue; }
-            if (bool.TryParse(Request.Form["CanFuseTo"], out bool CanFuseToValue)) { SelectedWeapon.CanFuseTo = CanFuseToValue; }
             SelectedWeapon.FuseExtraDurability = Convert.ToByte(Request.Form["FuseExtraDurability"]);
             SelectedWeapon.FuseBaseName = Request.Form["FuseBaseName"];
             SelectedWeapon.NamingRule = Request.Form["NamingRuleWeapon"];
@@ -119,7 +119,7 @@ namespace TOTK.Website.Pages
             Formula = $"(BaseAttack({_calculateDamage.BaseAttack}) + FuseUIAdjust((FuseBaseAttack({_calculateDamage.FuseBaseAttack}) * GerudoBonus({_calculateDamage.GerudoBonus})) + AttackUpMod({_calculateDamage.AttackUpMod}) + ZonaiBonus({_calculateDamage.ZonaiBonus})) * " +
                 $"LowHealth({_calculateDamage.LowHealth}) * WetPlayer({_calculateDamage.WetPlayer}) * Sneakstrike({_calculateDamage.Sneakstrike}) * LowDurability({_calculateDamage.LowDurability}) * Bone({_calculateDamage.Bone}) * FlurryRush({_calculateDamage.FlurryRush}) * " +
                 $"Shatter({_calculateDamage.Shatter}) * AttackUp({_calculateDamage.AttackUp}) * Headshot({_calculateDamage.Headshot}) * Throw({_calculateDamage.Throw}) * OneDurability({_calculateDamage.OneDurability}) * Frozen({_calculateDamage.Frozen}) * TreeCutter({_calculateDamage.TreeCutter}) * " +
-                $"ArrowEnemyMult({_calculateDamage.ArrowEnemyMult}) * ComboFinisher({_calculateDamage.ComboFinisher}) * DemonDragon({_calculateDamage.DemonDragon}) * MoldugaBelly({_calculateDamage.MoldugaBelly}) + ElementalDamage({_calculateDamage.ElementalDamage}); " +
+                $"ArrowEnemyMult({_calculateDamage.ArrowEnemyMult}) * ComboFinisher({_calculateDamage.ComboFinisher}) * DemonDragon({_calculateDamage.DemonDragon}) + ElementalDamage({_calculateDamage.ElementalDamage}); " +
                 $"Multiply result by ElementalMult({_calculateDamage.ElementalMult}) + ContinuousFire({_calculateDamage.ContinuousFire})" +
                 $" ................................................... Base({TotalBaseAttack}) + Fuse({TotalFuseAttack}) = {TotalAttack}";
 

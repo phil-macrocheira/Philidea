@@ -63,6 +63,15 @@
     color: white;
 }
 
+/* Fix Dropdown Arrows Disappearing */
+.form-select {
+    -webkit-appearance: menulist !important;
+    -moz-appearance: menulist !important;
+    -ms-appearance: menulist !important;
+    -o-appearance: menulist !important;
+    appearance: menulist !important;
+}
+
 .icon {
     border: 4px solid gray;
     float: left;
