@@ -155,6 +155,12 @@ namespace TOTK.Website.Pages
         public void GetProperties()
         {
             Properties.Clear();
+
+            if (SelectedWeapon.Type == 5) {
+                Properties.Add("None");
+                return;
+            }
+
             if (SelectedFuse?.ReplaceProperties.GetValueOrDefault() == true) {
                 if (SelectedFuse?.CanCut.GetValueOrDefault() == true) {
                     Properties.Add("Cut");
@@ -165,6 +171,13 @@ namespace TOTK.Website.Pages
                     Properties.Add("Cut");
                 }
             }
+
+            // Don't add Wind Razor if not cut
+            if (SelectedWeapon.Property == "Wind Razor" && Properties.Count == 0) {
+                SelectedWeapon.Property = "-";
+            }
+
+            // Add weapon property
             if (SelectedWeapon.Property != "-") {
                 if ((SelectedWeapon.Property == "Shatter Rock" && SelectedFuse?.ReplaceProperties.GetValueOrDefault() == true) &&
                    (SelectedFuse.Property1 != "Shatter Rock" && SelectedFuse.Property2 != "Shatter Rock" && SelectedFuse.Property3 != "Shatter Rock")) {
@@ -175,6 +188,20 @@ namespace TOTK.Website.Pages
                 }
             }
 
+            // Don't add Bone from fuse if weapon is bow
+            if (SelectedWeapon.Type == 3) {
+                if (SelectedFuse.Property1 == "Bone") {
+                    SelectedFuse.Property1 = "-";
+                }
+                if (SelectedFuse.Property2 == "Bone") {
+                    SelectedFuse.Property2 = "-";
+                }
+                if (SelectedFuse.Property3 == "Bone") {
+                    SelectedFuse.Property3 = "-";
+                }
+            }
+
+            // Add fuse properties
             if (SelectedFuse.Property1 != "-" && SelectedFuse.Property1 != SelectedWeapon.Property) { Properties.Add(SelectedFuse.Property1); }
             if (SelectedFuse.Property2 != "-" && SelectedFuse.Property2 != SelectedWeapon.Property) { Properties.Add(SelectedFuse.Property2); }
             if (SelectedFuse.Property3 != "-" && SelectedFuse.Property3 != SelectedWeapon.Property) { Properties.Add(SelectedFuse.Property3); }

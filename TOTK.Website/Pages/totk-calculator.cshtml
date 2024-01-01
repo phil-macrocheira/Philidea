@@ -86,7 +86,7 @@
             <select asp-for="Input.AttackType" class="form-select" id="attacktypeDropdown" style="width:15.5rem;" onchange="update()">
                 <option selected>Standard Attack</option>
                 <option value="Combo Finisher">Combo Finisher</option>
-                <option value="Throw">Throw</option>
+                <option value="Master Sword Beam">Master Sword Beam</option>
                 <option value="Flurry Rush">Flurry Rush</option>
                 <option value="Sidon's Water">Sidon's Water</option>
             </select>
@@ -389,10 +389,17 @@
                 }
 
                 // UPDATE FUSE DROPDOWN AND ICON
-                if (selectedWeaponObj.Type == 3) {
-                    var FusesArrow = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.FusesArrow));
-                    var fuseDropdown = $('#fuseDropdown');
+                var fuseDropdown = $('#fuseDropdown');
 
+                if (selectedWeaponObj.Name == "Decayed Master Sword" || selectedWeaponObj.Name == "Master Sword (Prologue)") {
+                    fuseDropdown.empty();
+                    fuseDropdown.append('<option value="None">None</option>')
+                    fuseDropdown.val("None");
+                    $('#fuseImage').prop('src', "https://raw.githubusercontent.com/TOTKSheet/TOTKImages/main/Items/Obj_OneTouchBond.png");
+                    selectedFuseObj = findObjByName(fuseData, "None");
+                }
+                else if (selectedWeaponObj.Type == 3 || selectedWeaponObj.Type == 5) {
+                    var FusesArrow = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.FusesArrow));
                     fuseDropdown.empty();
                     $.each(FusesArrow, function (index, fuse) {
                         fuseDropdown.append('<option value="' + fuse.Name + '">' + fuse.Name + '</option>');
@@ -404,8 +411,6 @@
                 }
                 else {
                     var Fuses = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Fuses));
-                    var fuseDropdown = $('#fuseDropdown');
-
                     fuseDropdown.empty();
                     $.each(Fuses, function (index, fuse) {
                         fuseDropdown.append('<option value="' + fuse.Name + '">' + fuse.Name + '</option>');
@@ -425,27 +430,9 @@
 
             var checkboxHeadshot = document.getElementById('checkboxHeadshot');
             var checkboxFrozen = document.getElementById('checkboxFrozen');
-
-            // Disable headshot checkbox if frozen checked
-            if (checkboxFrozen.checked) {
-                checkboxHeadshot.checked = false;
-                checkboxHeadshot.disabled = true;
-            }
-            // Disable/Enable enemy checkboxes when enemy dropdown edited
-            else if (dropdownEdited === 'enemy' || dropdownEdited === 'weapon') {
-                var SelectedWeaponType = selectedWeaponObj.Type;
-
-                if ((SelectedWeaponType == 3 && selectedEnemyObj.HeadshotMultiplier > 1) || (SelectedWeaponType != 3 && selectedEnemyObj.CanMeleeHeadshot == true) || selectedEnemyObj.Name == "Molduga") {
-                    checkboxHeadshot.disabled = false;
-                }
-                else {
-                    checkboxHeadshot.checked = false;
-                    checkboxHeadshot.disabled = true;
-                }
-            }
-            else {
-                checkboxHeadshot.disabled = false;
-            }
+            var SelectedWeaponType = selectedWeaponObj.Type;
+            var dropdown = document.getElementById('attacktypeDropdown');
+            var dropdownvalue = dropdown.value;
 
             // Disable Frozen Checkbox if enemy cannot be frozen
             if (dropdownEdited === 'enemy') {
@@ -456,6 +443,16 @@
                     checkboxFrozen.checked = false;
                     checkboxFrozen.disabled = true;
                 }
+            }
+            
+            // Enable Headshot Checkbox if Bow on Headshottable enemy, Melee on Meleeheadshottable enemy, or Molduga; AND NOT FROZEN
+            if (((SelectedWeaponType == 3 && selectedEnemyObj.HeadshotMultiplier > 1) || (SelectedWeaponType != 3 && selectedEnemyObj.CanMeleeHeadshot == true) || selectedEnemyObj.Name == "Molduga")
+                  && (checkboxFrozen.checked == false)) {
+                checkboxHeadshot.disabled = false;
+            }
+            else {
+                checkboxHeadshot.checked = false;
+                checkboxHeadshot.disabled = true;
             }
 
             // Change 'Headshot' to 'Belly' if Molduga
@@ -470,9 +467,6 @@
 
             // UPDATE ATTACK TYPE DROPDOWN
             if (dropdownEdited === 'weapon' || dropdownEdited === 'fuse' || dropdownEdited === 'enemy') {
-                var dropdown = document.getElementById('attacktypeDropdown');
-                var dropdownvalue = dropdown.value;
-                var SelectedWeaponType = selectedWeaponObj.Type;
                 var StandardAttack = NewOption("Standard Attack");
                 var Shoot = NewOption("Shoot Arrow");
                 var ShieldBash = NewOption("Shield Bash");
@@ -483,6 +477,7 @@
                 var FlurryRush = NewOption("Flurry Rush");
                 var Sidon = NewOption("Sidon's Water");
                 var Riju = NewOption("Riju's Lightning");
+                var MasterSwordBeam = NewOption("Master Sword Beam");
 
                 while (dropdown.options.length > 0) {
                     dropdown.remove(0);
@@ -491,13 +486,25 @@
                 if (SelectedWeaponType < 3) {
                     dropdown.add(StandardAttack);
                     dropdown.add(ComboFinisher);
-                    dropdown.add(Throw);
-                    if (selectedEnemyObj.CanSneakstrike == true) {
+                    if (selectedWeaponObj.FuseBaseName == "Master Sword")
+                    {
+                        dropdown.add(MasterSwordBeam);
+                    }
+                    else {
+                        dropdown.add(Throw);
+                    }
+                    if (selectedEnemyObj.CanSneakstrike == true && checkboxFrozen.checked == false) {
                         dropdown.add(Sneakstrike);
                     }
                     dropdown.add(FlurryRush);
                     dropdown.add(Sidon);
                     if (dropdownvalue == "Sneakstrike" && selectedEnemyObj.CanSneakstrike == false) {
+                        dropdown.value = "Standard Attack";
+                    }
+                    else if (dropdownvalue == "Master Sword Beam" && selectedWeaponObj.FuseBaseName != "Master Sword") {
+                        dropdown.value = "Standard Attack";
+                    }
+                    else if (dropdownvalue == "Throw" && selectedWeaponObj.FuseBaseName == "Master Sword") {
                         dropdown.value = "Standard Attack";
                     }
                     else if (dropdownvalue == "Shoot Arrow" || dropdownvalue == "Riju's Lightning" || dropdownvalue == "Shield Bash" || dropdownvalue == "Earthwake Technique") {

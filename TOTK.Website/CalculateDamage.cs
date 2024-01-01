@@ -1,4 +1,6 @@
-﻿using TOTK.Website.Pages;
+﻿using System.Data.SqlTypes;
+using TOTK.Website.Pages;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TOTK.Website
 {
@@ -8,6 +10,9 @@ namespace TOTK.Website
         public totk_calculatorModel Data;
 
         public float DamageOutput = 0;
+        public string AttackType;
+        public byte WeaponType;
+        public string WeaponProperty;
         public float AttackPower;
         public float AttackUp;
         public float BaseAttack;
@@ -94,8 +99,9 @@ namespace TOTK.Website
         public float Calculate(totk_calculatorModel data)
         {
             Data = data;
-
-            //BaseAttack = GetBaseAttack();AttackUpMod = (float)Data.Input.AttackUpMod;GerudoBonus = GetGerudoBonus();LowHealth = GetLowHealth();LowDurability = GetLowDurability();WetPlayer = GetWetPlayer();
+            AttackType = Data.Input.AttackType;
+            WeaponType = (byte)Data.SelectedWeapon.Type;
+            WeaponProperty = Data.SelectedWeapon.Property;
             AttackUp = GetAttackUp();
             FuseBaseAttack = GetFuseBaseAttack();
             ZonaiBonus = GetZonaiBonus();
@@ -114,22 +120,80 @@ namespace TOTK.Website
             ContinuousFire = GetContinuousFire();
             ComboFinisher = GetComboFinisher();
             DemonDragon = GetDemonDragon();
+            bool WindRazor = ScanProperties("Wind Razor");
+            bool IsBomb = ScanProperties("Bomb");
+            bool IsChuchu = Data.SelectedEnemy.Name.IndexOf("Chuchu") != -1;
+            bool IsPebblit = Data.SelectedEnemy.Name.IndexOf("Pebblit") != -1;
 
             AttackPower = (BaseAttack + (FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
 
-            // Return enemy's HP if ancient blade
-            if (Data.SelectedFuse.Name == "Ancient Blade" && Data.SelectedEnemy.AncientBladeDefeat == true) {
+            // Return enemy's HP if ancient blade or wind razor chuchu
+            if ((Data.SelectedFuse.Name == "Ancient Blade" && Data.SelectedEnemy.AncientBladeDefeat == true) || (IsChuchu && WindRazor)) {
                 return (float)Data.SelectedEnemy.HP;
             }
 
+            // Pebblit Damage
+            if (IsPebblit) {
+                if (AttackType == "Master Sword Beam" || AttackType == "Sidon's Water") {
+                    return 0;
+                }
+                if (Shatter > 1 && AttackType == "Throw") {
+                    if (WeaponProperty == "Boomerang" && WeaponType == 0) {
+                        return (float)Data.SelectedEnemy.HP / 2;
+                    }
+                    return (float)Data.SelectedEnemy.HP;
+                }
+                if (Shatter == 1.5f || IsBomb || AttackType == "Riju's Lightning") {
+                    return (float)Data.SelectedEnemy.HP;
+                }
+                if (Shatter == 1.25f) {
+                    return (float)Data.SelectedEnemy.HP / 2;
+                }
+                return 0;
+            }
+
+            // Fire Chuchu Water Instakill
+            if (Data.SelectedEnemy.Name.IndexOf("Fire Chuchu") != -1) {
+                if (ScanProperties("Water") || AttackType == "Sidon's Water") {
+                    return (float)Data.SelectedEnemy.HP;
+                }
+            }
+
             // MASTER SWORD BEAM
-            if (Data.Input.AttackType == "Throw" && Data.SelectedWeapon.FuseBaseName == "Master Sword") {
+            if (AttackType == "Master Sword Beam") {
                 float MasterSwordBeamUp = 1.0f;
 
                 if (Data.Input.Buff1 == "Master Sword Beam Up" || Data.Input.Buff2 == "Master Sword Beam Up") {
                     MasterSwordBeamUp = 1.5f;
                 }
-                return (float)Data.SelectedWeapon.ProjectileAttack * MasterSwordBeamUp;
+                return (float)Data.SelectedWeapon.ProjectileAttack * MasterSwordBeamUp * AttackUp;
+            }
+
+            // Sidon's Water
+            if (AttackType == "Sidon's Water") {
+                float WaterMult = 1;
+                if (Data.SelectedEnemy.Element == "Fire") {
+                    WaterMult = 1.5f;
+                }
+
+                return (float)Math.Floor((BaseAttack + FuseUIAdjust((FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus)) * AttackUp * Frozen * WaterMult);
+            }
+
+            // Earthwake Technique / Throwing Materials
+            if (Data.SelectedWeapon.Name == "None (Earthwake Technique)") {
+                if (AttackType == "Throw") {
+                    if (Data.SelectedEnemy.Name == "Evermean") {
+                        return 0;
+                    }
+                    DamageOutput = FuseUIAdjust(FuseBaseAttack);
+                    if (ElementalMult != 0) {
+                        DamageOutput += ElementalDamage;
+                        DamageOutput *= ElementalMult;
+                    }
+                    DamageOutput += ContinuousFire;
+                    return DamageOutput;
+                }
+                return (float)(BaseAttack * AttackUp);
             }
 
             DamageOutput = BaseAttack + FuseUIAdjust((FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
@@ -140,7 +204,7 @@ namespace TOTK.Website
                 DamageOutput += ElementalDamage;
                 DamageOutput *= ElementalMult;
             }
-            DamageOutput += ContinuousFire; // Apply elemental mult to continuous fire?
+            DamageOutput += ContinuousFire;
 
             return (float)Math.Min(2147483647, Math.Floor(DamageOutput));
         }
@@ -160,7 +224,7 @@ namespace TOTK.Website
         {
             float FuseBaseAttack = (float)Data.SelectedFuse.BaseAttack;
 
-            switch (Data.SelectedWeapon.Type) {
+            switch (WeaponType) {
                 case 3:
                     return FuseBaseAttack * (float)Data.SelectedFuse.ArrowMultiplier;
                 case 4:
@@ -174,7 +238,7 @@ namespace TOTK.Website
         }
         public float FuseUIAdjust(float input)
         {
-            switch (Data.SelectedWeapon.Type) {
+            switch (WeaponType) {
                 case 1:
                     return (float)Math.Floor(input * 1.052632f);
                 case 2:
@@ -252,7 +316,7 @@ namespace TOTK.Website
         }
         public float GetSneakstrike()
         {
-            if (Data.Input.AttackType == "Sneakstrike" && Data.Input.Frozen == false) {
+            if (AttackType == "Sneakstrike" && Data.Input.Frozen == false) {
                 bool SneakstrikeProperty = ScanProperties("Sneakstrike x2");
 
                 if (SneakstrikeProperty == true) {
@@ -273,8 +337,6 @@ namespace TOTK.Website
         }
         public float GetOneDurability()
         {
-            string AttackType = Data.Input.AttackType;
-
             if (Data.Input.Durability == 1 && Data.Input.Frozen == false && AttackType != "Combo Finisher") {
                 if ((AttackType != "Throw" || Data.SelectedWeapon.Property == "Boomerang") && AttackType != "Sneakstrike") {
                     return 2;
@@ -295,7 +357,7 @@ namespace TOTK.Website
         {
             bool FlurryRushProperty = ScanProperties("Flurry Rush x2");
 
-            if (FlurryRushProperty == true && Data.Input.AttackType == "Flurry Rush") {
+            if (FlurryRushProperty == true && AttackType == "Flurry Rush") {
                 return 2;
             }
             return 1;
@@ -303,7 +365,6 @@ namespace TOTK.Website
         public float GetShatter()
         {
             bool ShatterProperty = ScanProperties("Shatter Rock");
-            byte WeaponType = (byte)Data.SelectedWeapon.Type;
 
             if (ShatterProperty == true && Data.SelectedEnemy.IsRock == true) {
                 switch (WeaponType) {
@@ -356,17 +417,13 @@ namespace TOTK.Website
         }
         public float GetThrow(float AttackUp)
         {
-            string FuseBaseName = Data.SelectedWeapon.FuseBaseName;
-            var SelectedWeaponType = Data.SelectedWeapon.Type;
             bool ProjectileProperty = ScanProperties("Melee Projectile");
 
-            if (Data.Input.AttackType != "Throw" || SelectedWeaponType >= 3 ||
-                FuseBaseName == "Master Sword" || FuseBaseName == "Decayed Master Sword"
-                || ProjectileProperty) {
+            if (AttackType != "Throw" || ProjectileProperty) {
                 return 1;
             }
 
-            if (Data.SelectedWeapon.Property == "Boomerang") {
+            if (WeaponProperty == "Boomerang") {
                 return 1.5f * AttackUp;
             }
 
@@ -375,12 +432,11 @@ namespace TOTK.Website
         public float GetFrozen()
         {
             var SelectedEnemy = Data.SelectedEnemy.Name;
-            string AttackType = Data.Input.AttackType;
 
-            if (Data.SelectedEnemy.CanFreeze == false || SelectedEnemy == "Gibdo" || SelectedEnemy == "Moth Gibdo") {
+            if (SelectedEnemy == "Gibdo" || SelectedEnemy == "Moth Gibdo") {
                 return 1;
             }
-            if (Data.Input.Frozen == true && AttackType != "Sneakstrike" && AttackType != "Flurry Rush") {
+            if (Data.Input.Frozen == true) {
                 return 3;
             }
             return 1;
@@ -402,7 +458,7 @@ namespace TOTK.Website
         }
         public float GetArrowEnemyMult()
         {
-            if (Data.SelectedWeapon.Type == 3) {
+            if (WeaponType == 3) {
                 return (float)Data.SelectedEnemy.ArrowMultiplier;
             }
             return 1;
@@ -432,7 +488,7 @@ namespace TOTK.Website
             if (ColdWeatherAttack) { ColdWeatherPower = 5; }
             if (StormyWeatherAttack) { StormyWeatherPower = 5; }
 
-            if (Data.SelectedWeapon.Type == 3 || Data.Input.AttackType == "Throw") {
+            if (WeaponType == 3 || AttackType == "Throw") {
                 ElementPower = Data.SelectedFuse?.ElementPower ?? 0.0f;
             }
 

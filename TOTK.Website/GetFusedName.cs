@@ -92,18 +92,15 @@ namespace TOTK.Website
             }
 
             if (ShatterProperty) {
+                if (WeaponName == "Gloom Club") { // Removed code about BindType == Attach?
+                    return Adjective + BaseName;
+                }
                 if (IsBoomerang)
                     return Adjective + "Boomerang";
                 if (WeaponType == 2)
                     return Adjective + "Sledge"; // Spear
                 if (WeaponType < 2)
                     return Adjective + "Hammer"; // 1H or 2H
-            }
-            if (WeaponProperty == "Shatter Rock") {
-                if (WeaponName == "Gloom Club" && !ReplaceProperties)
-                    return Adjective + BaseName;
-                if (BindType == "Attach" && !ReplaceProperties)
-                    return Adjective + BaseName;
             }
 
             if (WeaponNamingRule == "ImpressiveGrip") {
