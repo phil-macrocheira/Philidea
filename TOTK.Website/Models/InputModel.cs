@@ -10,6 +10,7 @@
         public bool Wet { get; set; } = false;
         public bool Headshot { get; set; } = false;
         public bool Frozen { get; set; } = false;
+        public bool WeakenedGibdo { get; set; } = false;
         public float HP { get; set; } = 38;
         public string? Buff1 { get; set; } = "None";
         public string? Buff2 { get; set; } = "None";

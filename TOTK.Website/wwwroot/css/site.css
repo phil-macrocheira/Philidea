@@ -176,6 +176,19 @@ ul.horizontal-list {
     display: none !important;
 }
 
+.btn {
+    background: none;
+    border: none;
+    padding-right: 5px;
+}
+.btn:hover {
+    background:none !important;
+}
+.btn:focus {
+    background: none !important;
+    box-shadow: none !important;
+}
+
 /* FEEDBACK BUTTON */
 .button {
     background: none;

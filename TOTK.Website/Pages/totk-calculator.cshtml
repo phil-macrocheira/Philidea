@@ -36,7 +36,13 @@
 
         <!--WEAPON-->
         <div class="col-md-auto py-2">
-            <h5>Weapon</h5>
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Weapon</h5>
+                <!--WEAPON RANDOMIZE-->
+                <button type="button" class="btn btn-primary" onclick="randomizeWeapon()">
+                    <img src="dice-shutterstock.webp" alt="Randomize" width="20" height="20" style="margin-left:5px;">
+                </button>
+            </div>
             <!--WEAPON DROPDOWN-->
             <select name="SelectedWeaponName" class="form-control select2" id="weaponDropdown" style="width:18rem;" onchange="update('weapon');">
             @if (Model.Weapons != null) {
@@ -49,7 +55,7 @@
 
         <!--ATTACK UP MOD-->
         <div class="col-md-auto py-2" style="margin-right:3%">
-            <h5>Attack Up Mod</h5>
+            <h5 style="margin-top:4px;">Attack Up Mod</h5>
             <div class="form-outline" style="width: 10rem;">
                 <input asp-for="Input.AttackUpMod" class="form-control" id="numberAttackUpMod" type="number" value="0" min="0" max="0" onchange="update()" />
             </div>
@@ -61,7 +67,13 @@
 
         <!--FUSE-->
         <div class="col-md-auto py-2" style="margin-right:3%;">
-            <h5 id="FuseDropdownTitleText">Fuse</h5>
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0" id="FuseDropdownTitleText">Fuse</h5>
+                <!--FUSE RANDOMIZE-->
+                <button type="button" class="btn btn-primary" onclick="randomizeFuse()">
+                    <img src="dice-shutterstock.webp" alt="Randomize" width="20" height="20" style="margin-left:5px;">
+                </button>
+            </div>
             <!--FUSE DROPDOWN-->
             <select name="SelectedFuseName" class="form-control select2 text-wrap" id="fuseDropdown" style="width:18rem;" onchange="update('fuse');">
                 @if (Model.Fuses != null) {
@@ -74,7 +86,7 @@
 
         <!--DURABILITY-->
         <div class="col-md-auto py-2" style="margin-right:3%">
-            <h5>Durability</h5>
+            <h5 style="margin-top:4px;">Durability</h5>
             <div class="form-outline" style="width: 5rem;">
                 <input asp-for="Input.Durability" class="form-control" id="numberDurability" type="number" value="40" min="1" max="40" onchange="update()" />
             </div>
@@ -86,7 +98,7 @@
 
         <!--ATTACK TYPE-->
         <div class="col-md-auto py-2">
-            <h5>Attack Type</h5>
+            <h5 style="margin-top:4px;">Attack Type</h5>
             <select asp-for="Input.AttackType" class="form-select" id="attacktypeDropdown" style="width:15.5rem;" onchange="update()">
                 <option selected>Standard Attack</option>
                 <option value="Combo Finisher">Combo Finisher</option>
@@ -100,7 +112,7 @@
     <!--PLAYER AND ENEMY ROW-->
     <div class="row">
         <!--PLAYER SECTION-->
-        <div class="col-7 section" style="height:fit-content">
+        <div class="col-7 section" style="height:20%; padding-bottom:15px;">
             <div class="totk-title" style="height:10px; position:relative;">
                 <h2>PLAYER</h2>
             </div>
@@ -160,15 +172,21 @@
         <div class="col-md-auto"></div>
 
         <!--ENEMY SECTION-->
-        <div class="col-4 section-enemy" style="height:fit-content; width:fit-content;">
+        <div class="col-4 section-enemy" style="height:20%; width:40%; padding-bottom:12px;">
             <div class="totk-title" style="height:10px; position:relative;">
                 <h2>ENEMY</h2>
             </div>
             
             <div class="row">
                 <!--ENEMY-->
-                <div class="col py-2">
-                    <h5>Enemy</h5>
+                <div class="col-md-auto">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0" style="margin:4px;">Enemy</h5>
+                        <!--ENEMY RANDOMIZE-->
+                        <button type="button" class="btn btn-primary" onclick="randomizeEnemy()">
+                            <img src="dice-shutterstock.webp" alt="Randomize" width="20" height="20" style="margin-left:5px;">
+                        </button>
+                    </div>
                     <!--ENEMY DROPDOWN-->
                     <select name="SelectedEnemyName" class="form-control select2 text-wrap" id="enemyDropdown" onchange="update('enemy');">
                         @if (Model.Enemies != null) {
@@ -180,12 +198,18 @@
                 </div>
 
                 <!--ENEMY CHECKBOXES-->
-                <div class="col py-2" style="margin-top:24px;">
+                <div class="col py-2" style="margin-top:20px;">
+                    <!--WEAKENED GIBDO CHECKBOX-->
+                    <label id="gibdoLabel" class="form-check-label d-block hidden" style="color:white;">
+                        <input asp-for="Input.WeakenedGibdo" id="checkboxGibdo" class="form-check-input" style="margin-right:6px; margin-bottom:5px;" type="checkbox" onchange="update()">Weakened
+                    </label>
+                    <!--HEADSHOT CHECKBOX-->
                     <div class="form-check">
                         <label class="form-check-label d-block" style="color:white;">
                             <input asp-for="Input.Headshot" id="checkboxHeadshot" class="form-check-input" type="checkbox" onchange="update()" disabled><span id="HeadshotText">Headshot</span>
                         </label>
                     </div>
+                    <!--FROZEN CHECKBOX-->
                     <div class="form-check">
                         <label class="form-check-label d-block" style="color:white;">
                             <input asp-for="Input.Frozen" id="checkboxFrozen" class="form-check-input" type="checkbox" onchange="update()" disabled>Frozen
@@ -197,7 +221,7 @@
     </div>
     
     <!--RESULT-->
-    <div class="section-result" style="margin-top:45px; margin-left:-10px; height:fit-content;">
+    <div class="section-result" style="margin-top:45px; margin-left:-10px; height:fit-content; width:101.5%;">
         <div class="totk-title" style="height:10px; position:relative;">
             <h2>RESULT</h2>
         </div>
@@ -251,7 +275,7 @@
 
         <button class="collapsible" onclick="toggleInfo()">Show More Info ▼</button>
         <div class="content" id="contentSection">
-            <p id="FormulaText">BaseAttack(30)</p>
+            <p id="FormulaText">Formula: BaseAttack(30)</p>
         </div>
     </div>
 </div>
@@ -405,6 +429,9 @@
                     $('#fuseImage').prop('src', "https://raw.githubusercontent.com/TOTKSheet/TOTKImages/main/Items/Obj_OneTouchBond.png");
                     selectedFuseObj = findObjByName(fuseData, "None");
                 }
+                else if (selectedWeaponObj.Type == previousWeaponType) {
+                    // Do nothing if type did not change
+                }
                 else if ((selectedWeaponObj.Type == 3 && previousWeaponType != 3) || selectedWeaponObj.Type == 5) {
                     var FusesArrow = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.FusesArrow));
 
@@ -417,7 +444,7 @@
                     $('#fuseImage').prop('src', "https://raw.githubusercontent.com/TOTKSheet/TOTKImages/main/Items/Obj_OneTouchBond.png");
                     selectedFuseObj = findObjByName(fuseData, "None");
                 }
-                else {
+                else if (selectedWeaponObj.Type != 3) {
                     var Fuses = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Fuses));
                     fuseDropdown.empty();
                     $.each(Fuses, function (index, fuse) {
@@ -559,6 +586,17 @@
                 multishotLabel.classList.add("hidden");
             }
 
+            // Show Weakened Gibdo checkbox if gibdo
+            var gibdoLabel = document.getElementById("gibdoLabel");
+            if (selectedEnemyObj.Name.includes("Gibdo")) {
+                gibdoLabel.classList.remove("hidden");
+                gibdoLabel.style.marginTop = "-22px";
+            }
+            else {
+                checkboxGibdo.checked = false;
+                gibdoLabel.classList.add("hidden");
+            }
+
             // Clamp numbers (0 if NaN)
             var AttackUpModClamped = 0;
             var PlayerHPClamped = 0;
@@ -581,6 +619,7 @@
                 Wet: $('#checkboxWet').is(':checked'),
                 Headshot: $('#checkboxHeadshot').is(':checked'),
                 Frozen: $('#checkboxFrozen').is(':checked'),
+                WeakenedGibdo: $('#checkboxGibdo').is(':checked'),
                 PlayerHP: PlayerHPClamped,
                 Buff1: $('#buffDropdown1').val(),
                 Buff2: $('#buffDropdown2').val(),
@@ -715,5 +754,26 @@
                 updateDropdowns();
             });
         });
+    </script>
+
+    <script>
+        function randomizeWeapon() {
+            var dropdown = $('#weaponDropdown');
+            var randomIndex = Math.floor(Math.random() * dropdown.children().length);
+            dropdown.val(dropdown.children()[randomIndex].value);
+            dropdown.trigger('change');
+        }
+        function randomizeFuse() {
+            var dropdown = $('#fuseDropdown');
+            var randomIndex = Math.floor(Math.random() * dropdown.children().length);
+            dropdown.val(dropdown.children()[randomIndex].value);
+            dropdown.trigger('change');
+        }
+        function randomizeEnemy() {
+            var dropdown = $('#enemyDropdown');
+            var randomIndex = Math.floor(Math.random() * dropdown.children().length);
+            dropdown.val(dropdown.children()[randomIndex].value);
+            dropdown.trigger('change');
+        }
     </script>
 }
