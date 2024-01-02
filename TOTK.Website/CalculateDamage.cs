@@ -8,6 +8,7 @@ namespace TOTK.Website
     {
         private readonly ILogger<CalculateDamage> _logger;
         public totk_calculatorModel Data;
+        private List<int> damageNumList { get; set; } = new List<int>();
 
         public float DamageOutput = 0;
         public string AttackType;
@@ -38,6 +39,13 @@ namespace TOTK.Website
         public float ContinuousFire;
         public float ComboFinisher;
         public float DemonDragon;
+        public bool UsingFire;
+        public bool UsingIce;
+        public bool UsingShock;
+        public bool UsingBomb;
+        public bool UsingWater;
+        public bool WindRazor;
+        public float DamageBeforeElement;
         public CalculateDamage(ILogger<CalculateDamage> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -110,8 +118,14 @@ namespace TOTK.Website
             Bone = GetBone();
             FlurryRush = GetFlurryRush();
             Shatter = GetShatter();
-            Throw = GetThrow(AttackUp);
+            Throw = GetThrow();
             Headshot = GetHeadshot();
+            UsingFire = GetUsingFire();
+            UsingIce = GetUsingIce();
+            UsingShock = GetUsingShock();
+            UsingBomb = GetUsingBomb();
+            UsingWater = GetUsingWater();
+            WindRazor = ScanProperties("Wind Razor");
             Frozen = GetFrozen();
             TreeCutter = GetTreeCutter();
             ArrowEnemyMult = GetArrowEnemyMult();
@@ -120,10 +134,10 @@ namespace TOTK.Website
             ContinuousFire = GetContinuousFire();
             ComboFinisher = GetComboFinisher();
             DemonDragon = GetDemonDragon();
-            bool WindRazor = ScanProperties("Wind Razor");
             bool IsBomb = ScanProperties("Bomb");
             bool IsChuchu = Data.SelectedEnemy.Name.IndexOf("Chuchu") != -1;
             bool IsPebblit = Data.SelectedEnemy.Name.IndexOf("Pebblit") != -1;
+            float ProjectileDamage;
 
             AttackPower = (BaseAttack + (FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
 
@@ -196,17 +210,21 @@ namespace TOTK.Website
                 return (float)(BaseAttack * AttackUp);
             }
 
+            // MAIN DAMAGE FORMULA
             DamageOutput = BaseAttack + FuseUIAdjust((FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
             DamageOutput *= LowHealth * WetPlayer * Sneakstrike * LowDurability * Bone * FlurryRush * Shatter;
             DamageOutput *= AttackUp * Headshot * Throw * OneDurability * Frozen * TreeCutter;
             DamageOutput *= ArrowEnemyMult * ComboFinisher * DemonDragon;
+            DamageBeforeElement = DamageOutput;
             if (ElementalMult != 0) {
                 DamageOutput += ElementalDamage;
                 DamageOutput *= ElementalMult;
             }
             DamageOutput += ContinuousFire;
+            DamageOutput = (float)Math.Min(2147483647, Math.Floor(DamageOutput));
 
-            return (float)Math.Min(2147483647, Math.Floor(DamageOutput));
+            ProjectileDamage = CreateDamageNumList((int)DamageOutput);
+            return DamageOutput + ProjectileDamage;
         }
         public float GetBaseAttack()
         {
@@ -415,7 +433,7 @@ namespace TOTK.Website
             }
             return 1;
         }
-        public float GetThrow(float AttackUp)
+        public float GetThrow()
         {
             bool ProjectileProperty = ScanProperties("Melee Projectile");
 
@@ -463,35 +481,52 @@ namespace TOTK.Website
             }
             return 1;
         }
+        public bool GetUsingFire()
+        {
+            if (Data.SelectedFuse.Name == "Time Bomb") {
+                return false;
+            }
+            return ScanProperties("Fire") || ScanProperties("Fire Burst") || GetHotWeatherAttack() || ScanProperties("Bomb") || Data.Input.AttackType == "Riju's Lightning";
+        }
+        public bool GetUsingIce()
+        {
+            return ScanProperties("Ice") || ScanProperties("Ice Burst") || GetColdWeatherAttack();
+        }
+        public bool GetUsingShock()
+        {
+            return ScanProperties("Shock") || ScanProperties("Shock Burst") || GetStormyWeatherAttack();
+        }
+        public bool GetUsingBomb()
+        {
+            return ScanProperties("Bomb") || Data.Input.AttackType == "Riju's Lightning";
+        }
+        public bool GetUsingWater()
+        {
+            return ScanProperties("Water");
+        }
         public float GetElementalDamage()
         {
-            bool FireProperty = ScanProperties("Fire") || ScanProperties("Fire Burst");
-            bool IceProperty = ScanProperties("Ice") || ScanProperties("Ice Burst");
-            bool ShockProperty = ScanProperties("Shock") || ScanProperties("Shock Burst");
-            bool WaterProperty = ScanProperties("Water");
-            bool BombProperty = ScanProperties("Bomb");
+            float ElementPower = 0;
             float FireDamage = (float)Data.SelectedEnemy.FireDamage;
             float IceDamage = (float)Data.SelectedEnemy.IceDamage;
             float ShockDamage = (float)Data.SelectedEnemy.ShockDamage;
-            bool HotWeatherAttack = GetHotWeatherAttack();
-            bool ColdWeatherAttack = GetColdWeatherAttack();
-            bool StormyWeatherAttack = GetStormyWeatherAttack();
             float HotWeatherPower = 0;
             float ColdWeatherPower = 0;
             float StormyWeatherPower = 0;
-            bool UsingFire = HotWeatherAttack || FireProperty || BombProperty;
-            bool UsingIce = ColdWeatherAttack || IceProperty;
-            bool UsingShock = StormyWeatherAttack || ShockProperty;
-            float ElementPower = 0;
-
-            if (HotWeatherAttack) { HotWeatherPower = 5; }
-            if (ColdWeatherAttack) { ColdWeatherPower = 5; }
-            if (StormyWeatherAttack) { StormyWeatherPower = 5; }
+            if (GetHotWeatherAttack()) { HotWeatherPower = 5; }
+            if (GetColdWeatherAttack()) { ColdWeatherPower = 5; }
+            if (GetStormyWeatherAttack()) { StormyWeatherPower = 5; }
 
             if (WeaponType == 3 || AttackType == "Throw") {
                 ElementPower = Data.SelectedFuse?.ElementPower ?? 0.0f;
             }
 
+            if (UsingBomb) {
+                if (WeaponType != 3 && Data.SelectedFuse.Name == "Cannon") {
+                    ElementPower = 12;
+                }
+                ElementPower *= (float)Data.SelectedEnemy.BombMultiplier;
+            }
             if (UsingIce) {
                 if (Data.Input.Frozen == true) {
                     return 0;
@@ -501,13 +536,10 @@ namespace TOTK.Website
             if (UsingFire) {
                 ElementPower += FireDamage + HotWeatherPower * AttackUp;
             }
-            if (BombProperty) {
-                ElementPower *= (float)Data.SelectedEnemy.BombMultiplier;
-            }
             if (UsingShock) {
                 ElementPower += ShockDamage + StormyWeatherPower * AttackUp;
             }
-            if (WaterProperty) {
+            if (UsingWater) {
                 ElementPower += (float)Data.SelectedEnemy.WaterDamage;
             }
             if (Data.SelectedFuse.Name == "Beam Emitter") {
@@ -535,37 +567,30 @@ namespace TOTK.Website
         }
         public float GetElementalMult()
         {
-            bool FireProperty = ScanProperties("Fire") || ScanProperties("Fire Burst") || ScanProperties("Bomb");
-            bool IceProperty = ScanProperties("Ice") || ScanProperties("Ice Burst");
-            bool ShockProperty = ScanProperties("Shock") || ScanProperties("Shock Burst");
-            bool WaterProperty = ScanProperties("Water");
-            bool HotWeatherAttack = GetHotWeatherAttack();
-            bool ColdWeatherAttack = GetColdWeatherAttack();
-            bool StormyWeatherAttack = GetStormyWeatherAttack();
             string EnemyElement = Data.SelectedEnemy.Element;
 
             switch (EnemyElement) {
                 case "Fire":
-                    if (IceProperty || ColdWeatherAttack) {
+                    if (UsingIce) {
                         return 2;
                     }
-                    if (WaterProperty) {
+                    if (UsingWater) {
                         return 1.5f;
                     }
-                    if (FireProperty || HotWeatherAttack) {
+                    if (UsingFire) {
                         return 0;
                     }
                     return 1;
                 case "Ice":
-                    if (FireProperty || HotWeatherAttack) {
+                    if (UsingFire) {
                         return 2;
                     }
-                    if (IceProperty || ColdWeatherAttack) {
+                    if (UsingIce) {
                         return 0;
                     }
                     return 1;
                 case "Shock":
-                    if (ShockProperty) {
+                    if (UsingShock) {
                         return 0;
                     }
                     return 1;
@@ -575,10 +600,7 @@ namespace TOTK.Website
         }
         public float GetContinuousFire()
         {
-            bool FireProperty = ScanProperties("Fire") || ScanProperties("Fire Burst");
-            bool HotWeatherAttack = GetHotWeatherAttack();
-
-            if ((FireProperty || HotWeatherAttack) && Data.SelectedEnemy.Element != "Fire" && Data.SelectedEnemy.Name == "Evermean") {
+            if ((UsingFire) && Data.SelectedEnemy.Element != "Fire" && Data.SelectedEnemy.Name == "Evermean") {
                 return (float)Data.SelectedEnemy.FireDamageContinuous;
             }
             return 0;
@@ -591,6 +613,81 @@ namespace TOTK.Website
                 return (float)Data.SelectedWeapon.BaseAttack * 5;
             }
             return 1;
+        }
+        public float CreateDamageNumList(int DamageOutput)
+        {
+            float WindRazorAttack = 10;
+            bool WindRazorElement = ScanProperties("Fire") || ScanProperties("Ice") || ScanProperties("Shock");
+            int MultishotCount = 0;
+            int ExtraProjectileCount = 0;
+            bool MeleeProjectile = ScanProperties("Melee Projectile");
+            float ProjectileAttack = 0;
+            float FirstProjectileAttack = 0;
+
+            // WIND RAZOR
+            if (WindRazor) {
+                damageNumList.Add((int)DamageOutput);
+
+                WindRazorAttack *= AttackUp;
+                if (ElementalMult != 0 && WindRazorElement) {
+                    WindRazorAttack += ElementalDamage;
+                    WindRazorAttack *= ElementalMult;
+                }
+                WindRazorAttack += ContinuousFire;
+                Data.damageNumList.Add((int)Math.Floor(WindRazorAttack));
+
+                Data.damageNumList = damageNumList;
+                return WindRazorAttack;
+            }
+
+            // MULTISHOT
+            if (Data.SelectedWeapon.Property == "Multishot x2") {
+                MultishotCount = 2;
+            }
+            else if (Data.SelectedWeapon.Property == "Multishot x3" || Data.SelectedWeapon.Property == "Multishot x3-5") {
+                MultishotCount = 3;
+            }
+            if (Data.Input.Multishot == true) {
+                MultishotCount = 5;
+            }
+            if (MultishotCount > 0) {
+                damageNumList.Add((int)DamageOutput);
+
+                for (int i=0;i < MultishotCount-1;i++) {
+                    damageNumList.Add((int)DamageBeforeElement);
+                }
+                Data.damageNumList = damageNumList;
+                return DamageBeforeElement * (MultishotCount-1);
+            }
+
+            // MELEE PROJECTILE
+            if (MeleeProjectile) {
+                ProjectileAttack = (float)Data.SelectedFuse.ProjectileAttack;
+                if (Data.SelectedWeapon.Property == "Rod") {
+                    ProjectileAttack *= 2;
+                    if (Data.SelectedFuse.Property1 != "Ice Burst") {
+                        ExtraProjectileCount = 2;
+                    }
+                }
+
+                damageNumList.Add((int)DamageOutput);
+
+                if (ElementalMult != 0) {
+                    FirstProjectileAttack = ProjectileAttack + ElementalDamage;
+                    FirstProjectileAttack *= ElementalMult;
+                }
+                FirstProjectileAttack += ContinuousFire;
+                FirstProjectileAttack = (float)Math.Floor(FirstProjectileAttack);
+                damageNumList.Add((int)FirstProjectileAttack);
+
+                for (int i=0;i<ExtraProjectileCount;i++) {
+                    damageNumList.Add((int)ProjectileAttack);
+                }
+
+                Data.damageNumList = damageNumList;
+                return FirstProjectileAttack + ProjectileAttack * ExtraProjectileCount;
+            }
+            return 0;
         }
     }
 }

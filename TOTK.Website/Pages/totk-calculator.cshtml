@@ -53,6 +53,10 @@
             <div class="form-outline" style="width: 10rem;">
                 <input asp-for="Input.AttackUpMod" class="form-control" id="numberAttackUpMod" type="number" value="0" min="0" max="0" onchange="update()" />
             </div>
+            <!--Multishot Checkbox-->
+            <label id="multishotLabel" class="form-check-label d-block hidden" style="color:white; font-size:11px;">
+                <input asp-for="Input.Multishot" id="checkboxMultishot" class="form-check-input" style="margin-right:3px" type="checkbox" onchange="update()">Multishot Mod
+            </label>
         </div>
 
         <!--FUSE-->
@@ -238,10 +242,11 @@
             </div>
 
             <!--DAMAGE OUTPUT SECTION-->
-            <div class="col-md-2">
-                <h5 style="margin-left:26px;">Damage</h5>
+            <div class="col-md-3" style="display:flex; flex-direction:column; align-items:center;">
+                <h5>Damage</h5>
                 <h1 class="icon" id="DamageOutputText" style="width:128px;height:128px;font-size:42px;background-color:rgba(40, 40, 40, 0.5);display:flex;align-items:center;justify-content:center;margin-top:5px;">30</h1>
-            </div>
+                <label id="FullDamageText"></label>
+			</div>
         </div>
 
         <button class="collapsible" onclick="toggleInfo()">Show More Info ▼</button>
@@ -253,6 +258,8 @@
 
 @section Scripts {
     <script>
+        var previousWeaponType = 0;
+
         $(document).ready(function () {
             $('#weaponDropdown').select2();
             $('#weaponDropdown').on('select2:open', function () {
@@ -398,8 +405,9 @@
                     $('#fuseImage').prop('src', "https://raw.githubusercontent.com/TOTKSheet/TOTKImages/main/Items/Obj_OneTouchBond.png");
                     selectedFuseObj = findObjByName(fuseData, "None");
                 }
-                else if (selectedWeaponObj.Type == 3 || selectedWeaponObj.Type == 5) {
+                else if ((selectedWeaponObj.Type == 3 && previousWeaponType != 3) || selectedWeaponObj.Type == 5) {
                     var FusesArrow = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.FusesArrow));
+
                     fuseDropdown.empty();
                     $.each(FusesArrow, function (index, fuse) {
                         fuseDropdown.append('<option value="' + fuse.Name + '">' + fuse.Name + '</option>');
@@ -418,6 +426,7 @@
 
                     fuseDropdown.val(selectedFuseName);
                 }
+                previousWeaponType = selectedWeaponObj.Type;
 
                 // UPDATE FUSE DROPDOWN TITLE TEXT TO "THROW" IF EARTHWAKE
                 if (selectedWeaponObj.Type == 5) {
@@ -540,6 +549,16 @@
                 }
             }
 
+            // Show Multishot checkbox if possible
+            var multishotLabel = document.getElementById("multishotLabel");
+            if (selectedWeaponObj.Property == "Multishot x3-5") {
+                multishotLabel.classList.remove("hidden");
+            }
+            else {
+                checkboxMultishot.checked = false;
+                multishotLabel.classList.add("hidden");
+            }
+
             // Clamp numbers (0 if NaN)
             var AttackUpModClamped = 0;
             var PlayerHPClamped = 0;
@@ -557,6 +576,7 @@
             var data = {
                 AttackUpMod: AttackUpModClamped,
                 AttackType: $('#attacktypeDropdown').val(),
+                Multishot: $('#checkboxMultishot').is(':checked'),
                 DurabilityInput: DurabilityClamped,
                 Wet: $('#checkboxWet').is(':checked'),
                 Headshot: $('#checkboxHeadshot').is(':checked'),
@@ -623,7 +643,7 @@
                 url: '@Url.Page("Index/totk-calculator")',
                 contentType: 'application/x-www-form-urlencoded',
                 data: data,
-                success: function (response) {
+                success: function (response) {                    
                     if (selectedFuseObj.Name == "None") {
                         if (selectedWeaponName == "Master Sword (Prologue)") {
                             $('#WeaponNameText').text("MsgNotFound");
@@ -646,6 +666,9 @@
                     $.each(response.properties, function (index, property) {
                         $('#PropertiesList').append('<li>' + property + '</li>');
                     });
+
+                    var fullDamageText = response.damageNumList.join(' + ');
+                    $('#FullDamageText').text(fullDamageText);
 
                     $('#FormulaText').text(response.formula);
 

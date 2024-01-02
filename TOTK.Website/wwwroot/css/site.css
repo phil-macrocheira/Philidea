@@ -173,7 +173,7 @@ ul.horizontal-list {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* FEEDBACK BUTTON */

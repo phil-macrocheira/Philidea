@@ -18,6 +18,7 @@ namespace TOTK.Website.Pages
         public int AttackPowerUI { get; set; } = 30;
         public string Formula { get; set; }
         public List<string> Properties { get; set; } = new List<string>();
+        public List<int> damageNumList { get; set; } = new List<int>();
         public IEnumerable<Weapon>? Weapons { get; private set; } = Enumerable.Empty<Weapon>();
         public IEnumerable<Fuse>? Fuses { get; private set; } = Enumerable.Empty<Fuse>();
         public IEnumerable<Fuse>? FusesArrow { get; private set; } = Enumerable.Empty<Fuse>();
@@ -49,6 +50,7 @@ namespace TOTK.Website.Pages
         {
             Input.AttackUpMod = Convert.ToInt32(Request.Form["AttackUpMod"]);
             Input.Durability = Convert.ToInt32(Request.Form["DurabilityInput"]);
+            Input.Multishot = Request.Form["Multishot"] == "true";
             Input.AttackType = Request.Form["AttackType"];
             Input.Wet = Request.Form["Wet"] == "true";
             Input.Headshot = Request.Form["Headshot"] == "true";
@@ -131,6 +133,7 @@ namespace TOTK.Website.Pages
                 Properties = Properties,
                 FusedName = FusedName,
                 Formula = Formula,
+                damageNumList = damageNumList,
             });
         }
         public void LoadData()

@@ -4,6 +4,7 @@
     {
         public int AttackUpMod { get; set; } = 0;
         public string? AttackType { get; set; } = "Standard Attack";
+        public bool Multishot { get; set; } = false;
         public int Durability { get; set; } = 40;
         public bool FreezeDurability { get; set; } = false;
         public bool Wet { get; set; } = false;
