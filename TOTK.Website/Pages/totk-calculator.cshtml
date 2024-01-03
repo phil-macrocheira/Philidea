@@ -506,6 +506,7 @@
                 var StandardAttack = NewOption("Standard Attack");
                 var Shoot = NewOption("Shoot Arrow");
                 var ShieldBash = NewOption("Shield Bash");
+                var PerfectParry = NewOption("Perfect Parry");
                 var Earthwake = NewOption("Earthwake Technique");
                 var ComboFinisher = NewOption("Combo Finisher");
                 var Throw = NewOption("Throw");
@@ -543,7 +544,7 @@
                     else if (dropdownvalue == "Throw" && selectedWeaponObj.FuseBaseName == "Master Sword") {
                         dropdown.value = "Standard Attack";
                     }
-                    else if (dropdownvalue == "Shoot Arrow" || dropdownvalue == "Riju's Lightning" || dropdownvalue == "Shield Bash" || dropdownvalue == "Earthwake Technique") {
+                    else if (dropdownvalue == "Shoot Arrow" || dropdownvalue == "Riju's Lightning" || dropdownvalue == "Shield Bash" || dropdownvalue == "Perfect Parry" || dropdownvalue == "Earthwake Technique") {
                         dropdown.value = "Standard Attack";
                     }
                     else {
@@ -562,7 +563,13 @@
                 }
                 else if (SelectedWeaponType == 4) {
                     dropdown.add(ShieldBash);
-                    dropdown.value = "Shield Bash";
+                    dropdown.add(PerfectParry);
+                    if (dropdownvalue != "Perfect Parry") {
+                        dropdown.value = "Shield Bash";
+                    }
+                    else {
+                        dropdown.value = dropdownvalue;
+                    }
                 }
                 else if (SelectedWeaponType == 5) {
                     dropdown.add(Earthwake);
@@ -584,6 +591,13 @@
             else {
                 checkboxMultishot.checked = false;
                 multishotLabel.classList.add("hidden");
+            }
+            if (checkboxMultishot.checked == true) {
+                numberAttackUpMod.disabled = true;
+                numberAttackUpMod.value = 0;
+            }
+            else {
+                numberAttackUpMod.disabled = false;
             }
 
             // Show Weakened Gibdo checkbox if gibdo

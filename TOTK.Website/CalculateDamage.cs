@@ -137,6 +137,7 @@ namespace TOTK.Website
             bool IsChuchu = Data.SelectedEnemy.Name.IndexOf("Chuchu") != -1;
             bool IsPebblit = Data.SelectedEnemy.Name.IndexOf("Pebblit") != -1;
             bool IsGibdo = Data.SelectedEnemy.Name.IndexOf("Gibdo") != -1;
+            bool IsKeese = Data.SelectedEnemy.Name.IndexOf("Keese") != -1;
             float ProjectileDamage;
 
             AttackPower = (BaseAttack + (FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
@@ -177,6 +178,11 @@ namespace TOTK.Website
                 if (ScanProperties("Water") || AttackType == "Sidon's Water") {
                     return (float)Data.SelectedEnemy.HP;
                 }
+            }
+
+            // Aerocuda/Keese Shield Bash Instalkill
+            if (AttackType == "Perfect Parry" && (Data.SelectedEnemy.Name == "Aerocuda" || IsKeese)) {
+                return (float)Data.SelectedEnemy.HP;
             }
 
             // MASTER SWORD BEAM
@@ -364,8 +370,8 @@ namespace TOTK.Website
         }
         public float GetOneDurability()
         {
-            if (Data.Input.Durability == 1 && Data.Input.Frozen == false && AttackType != "Combo Finisher") {
-                if ((AttackType != "Throw" || Data.SelectedWeapon.Property == "Boomerang") && AttackType != "Sneakstrike") {
+            if (WeaponType != 3 && WeaponType != 5 && Data.Input.Durability == 1 && Data.Input.Frozen == false && AttackType != "Combo Finisher") {
+                if (AttackType != "Throw" || Data.SelectedWeapon.Property == "Boomerang") {
                     return 2;
                 }
             }
@@ -393,24 +399,26 @@ namespace TOTK.Website
         {
             bool ShatterProperty = ScanProperties("Shatter Rock");
 
-            if (UsingBomb) {
-                return 1.5f;
-            }
+            if (Data.SelectedEnemy.IsRock == true) {
+                if (UsingBomb) {
+                    return 1.5f;
+                }
 
-            if (ShatterProperty == true && Data.SelectedEnemy.IsRock == true) {
-                switch (WeaponType) {
-                    case 0:
-                        return 1.25f; // 1H
-                    case 1:
-                        return 1.5f; // 2H
-                    case 2:
-                        return 1.25f; // Spears
-                    case 3:
-                        return 1.5f; // Bows
-                    case 4:
-                        return 1.5f; // Shields
-                    default:
-                        return 1;
+                if (ShatterProperty == true) {
+                    switch (WeaponType) {
+                        case 0:
+                            return 1.25f; // 1H
+                        case 1:
+                            return 1.5f; // 2H
+                        case 2:
+                            return 1.25f; // Spears
+                        case 3:
+                            return 1.5f; // Bows
+                        case 4:
+                            return 1.5f; // Shields
+                        default:
+                            return 1;
+                    }
                 }
             }
             return 1;
@@ -499,7 +507,7 @@ namespace TOTK.Website
             if (Data.SelectedFuse.Name == "Time Bomb") {
                 return false;
             }
-            return ScanProperties("Fire") || ScanProperties("Fire Burst") || GetHotWeatherAttack() || ScanProperties("Bomb") || Data.Input.AttackType == "Riju's Lightning";
+            return ScanProperties("Fire") || ScanProperties("Fire Burst") || GetHotWeatherAttack() || ScanProperties("Bomb");
         }
         public bool GetUsingIce()
         {
@@ -507,11 +515,11 @@ namespace TOTK.Website
         }
         public bool GetUsingShock()
         {
-            return ScanProperties("Shock") || ScanProperties("Shock Burst") || GetStormyWeatherAttack() || Data.Input.AttackType == "Riju's Lightning";
+            return ScanProperties("Shock") || ScanProperties("Shock Burst") || GetStormyWeatherAttack();
         }
         public bool GetUsingBomb()
         {
-            return ScanProperties("Bomb") || Data.Input.AttackType == "Riju's Lightning";
+            return ScanProperties("Bomb");
         }
         public bool GetUsingWater()
         {
@@ -569,19 +577,19 @@ namespace TOTK.Website
         {
             string Buff1 = Data.Input.Buff1;
             string Buff2 = Data.Input.Buff2;
-            return (Buff1 == "Hot Weather Attack" || Buff2 == "Hot Weather Attack");
+            return (AttackType == "Combo Finisher" && (Buff1 == "Hot Weather Attack" || Buff2 == "Hot Weather Attack"));
         }
         public bool GetColdWeatherAttack()
         {
             string Buff1 = Data.Input.Buff1;
             string Buff2 = Data.Input.Buff2;
-            return (Buff1 == "Cold Weather Attack" || Buff2 == "Cold Weather Attack");
+            return (AttackType == "Combo Finisher" && (Buff1 == "Cold Weather Attack" || Buff2 == "Cold Weather Attack"));
         }
         public bool GetStormyWeatherAttack()
         {
             string Buff1 = Data.Input.Buff1;
             string Buff2 = Data.Input.Buff2;
-            return (Buff1 == "Stormy Weather Attack" || Buff2 == "Stormy Weather Attack");
+            return (AttackType == "Combo Finisher" && (Buff1 == "Stormy Weather Attack" || Buff2 == "Stormy Weather Attack"));
         }
         public float GetElementalMult()
         {
@@ -619,6 +627,10 @@ namespace TOTK.Website
         }
         public float GetContinuousFire()
         {
+            if (UsingFire && Data.SelectedEnemy.Name == "Evermean") {
+                return (float)Data.SelectedEnemy.FireDamageContinuous;
+            }
+
             return 0; // SCRAP THIS FOR NOW
             if (UsingFire && Data.SelectedEnemy.Element != "Fire") {
                 return (float)Data.SelectedEnemy.FireDamageContinuous;
@@ -643,10 +655,13 @@ namespace TOTK.Website
             bool MeleeProjectile = ScanProperties("Melee Projectile");
             float ProjectileAttack = 0;
             float FirstProjectileAttack = 0;
-            int RijuDamage = (int)Data.SelectedEnemy.RijuDamage;
+            float RijuDamage = 10 + (int)Data.SelectedEnemy.RijuDamage;
             string EnemyElement = Data.SelectedEnemy.Element;
             float WaterMult = 1;
             float FireMult = 1;
+
+            RijuDamage += (float)Data.SelectedEnemy.FireDamage + (float)Data.SelectedEnemy.ShockDamage;
+            RijuDamage *= (float)Data.SelectedEnemy.BombMultiplier;
 
             if (EnemyElement == "Fire" && UsingWater) {
                 WaterMult = 1.5f;
@@ -702,6 +717,8 @@ namespace TOTK.Website
 
                 if (AttackType == "Riju's Lightning") {
                     damageNumList.Add((int)RijuDamage);
+                    Data.damageNumList = damageNumList;
+                    return (DamageOutput - ContinuousFire) * (MultishotCount - 1) + RijuDamage;
                 }
 
                 Data.damageNumList = damageNumList;
