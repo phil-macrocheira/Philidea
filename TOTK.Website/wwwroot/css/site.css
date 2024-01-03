@@ -240,10 +240,43 @@ ul.horizontal-list {
     overflow: hidden;
 }
 
-@media-phone (max-width: 768px) {
-    html {
-        font-size: 16px;
+@media only screen and (max-width: 768px) {
+    .container {
+        padding-top:0;
     }
-    .footer {
+    .col-md-auto {
+        width: 100%;
+        margin-top:0 !important;
+    }
+    .py-2 {
+        margin-top: 0px !important;
+    }
+    .col-md-3 {
+        margin-top:20px;
+        margin-left:-92px;
+    }
+    .form-select {
+        margin-top:0 !important;
+    }
+    .section {
+        width:106% !important;
+    }
+    .section-enemy {
+        width:100% !important;
+    }
+    .section-result {
+        width:106% !important;
+    }
+    .mobile-gibdo {
+        padding-top:25px;
+    }
+    .select2-container {
+        width:100% !important;
+    }
+    .horizontal-list {
+        font-size: 10.5px !important;
+    }
+    ul.horizontal-list li {
+        margin-right:20px !important;
     }
 }

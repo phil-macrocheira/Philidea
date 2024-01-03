@@ -124,6 +124,7 @@ namespace TOTK.Website
             Shatter = GetShatter();
             Throw = GetThrow();
             Headshot = GetHeadshot();
+            ComboFinisher = GetComboFinisher();
             WindRazor = ScanProperties("Wind Razor");
             Frozen = GetFrozen();
             TreeCutter = GetTreeCutter();
@@ -131,7 +132,6 @@ namespace TOTK.Website
             ElementalDamage = GetElementalDamage();
             ElementalMult = GetElementalMult();
             ContinuousFire = GetContinuousFire();
-            ComboFinisher = GetComboFinisher();
             DemonDragon = GetDemonDragon();
             bool IsBomb = ScanProperties("Bomb");
             bool IsChuchu = Data.SelectedEnemy.Name.IndexOf("Chuchu") != -1;
@@ -230,6 +230,9 @@ namespace TOTK.Website
             DamageOutput = (float)Math.Min(2147483647, Math.Floor(DamageOutput));
 
             ProjectileDamage = CreateDamageNumList((int)DamageOutput);
+            if (ScanProperties("Melee Projectile")) {
+                return DamageBeforeElement + ProjectileDamage;
+            }
             return DamageOutput + ProjectileDamage;
         }
         public float GetBaseAttack()
@@ -534,6 +537,7 @@ namespace TOTK.Website
             if (WeaponType == 3 || AttackType == "Throw") {
                 ElementPower = Data.SelectedFuse?.ElementPower ?? 0.0f;
             }
+            ElementPower *= AttackUp;
 
             if (UsingBomb) {
                 if (WeaponType != 3 && Data.SelectedFuse.Name == "Cannon") {
@@ -545,19 +549,19 @@ namespace TOTK.Website
                 if (Data.Input.Frozen == true) {
                     return 0;
                 }
-                return ElementPower + IceDamage + ColdWeatherPower * AttackUp;
+                return ElementPower + IceDamage + ColdWeatherPower;
             }
             if (UsingFire) {
-                ElementPower += FireDamage + HotWeatherPower * AttackUp;
+                ElementPower += FireDamage + HotWeatherPower;
             }
             if (UsingShock) {
-                ElementPower += ShockDamage + StormyWeatherPower * AttackUp;
+                ElementPower += ShockDamage + StormyWeatherPower;
             }
             if (UsingWater) {
                 ElementPower += (float)Data.SelectedEnemy.WaterDamage;
             }
             if (UsingBeam) {
-                ElementPower += (12 * (float)Data.SelectedEnemy.BeamMultiplier) * AttackUp;
+                ElementPower += 12 * (float)Data.SelectedEnemy.BeamMultiplier;
             }
             return ElementPower;
         }
@@ -581,6 +585,7 @@ namespace TOTK.Website
         }
         public float GetElementalMult()
         {
+            return 1; // This isn't a real thing??
             string EnemyElement = Data.SelectedEnemy.Element;
 
             switch (EnemyElement) {
@@ -614,6 +619,7 @@ namespace TOTK.Website
         }
         public float GetContinuousFire()
         {
+            return 0; // SCRAP THIS FOR NOW
             if (UsingFire && Data.SelectedEnemy.Element != "Fire") {
                 return (float)Data.SelectedEnemy.FireDamageContinuous;
             }
@@ -624,7 +630,7 @@ namespace TOTK.Website
             string FuseBaseName = Data.SelectedWeapon.FuseBaseName;
 
             if (Data.SelectedEnemy.Name == "Demon Dragon" && (FuseBaseName == "Master Sword" || FuseBaseName == "Decayed Master Sword")) {
-                return (float)Data.SelectedWeapon.BaseAttack * 5;
+                return 5;
             }
             return 1;
         }
@@ -638,25 +644,37 @@ namespace TOTK.Website
             float ProjectileAttack = 0;
             float FirstProjectileAttack = 0;
             int RijuDamage = (int)Data.SelectedEnemy.RijuDamage;
+            string EnemyElement = Data.SelectedEnemy.Element;
+            float WaterMult = 1;
+            float FireMult = 1;
+
+            if (EnemyElement == "Fire" && UsingWater) {
+                WaterMult = 1.5f;
+            }
+            if (EnemyElement == "Ice" && UsingFire) {
+                FireMult = 2;
+            }
 
             // WIND RAZOR
             if (WindRazor) {
                 damageNumList.Add((int)DamageOutput);
 
+                WindRazorAttack += FuseBaseAttack;
                 WindRazorAttack *= AttackUp;
                 if (ElementalMult != 0 && WindRazorElement) {
                     WindRazorAttack += ElementalDamage;
                     WindRazorAttack *= ElementalMult;
                 }
+                WindRazorAttack *= WaterMult * FireMult;
                 WindRazorAttack += ContinuousFire;
                 damageNumList.Add((int)Math.Floor(WindRazorAttack));
 
                 Data.damageNumList = damageNumList;
-                return WindRazorAttack;
+                return (float)Math.Floor(WindRazorAttack);
             }
 
             // IF USING ICE
-            if (UsingIce) {
+            if ((UsingIce && Data.SelectedEnemy.CanFreeze == true) || Data.Input.Frozen == true) {
                 return 0;
             }
 
@@ -674,7 +692,7 @@ namespace TOTK.Website
                 damageNumList.Add((int)DamageOutput);
 
                 for (int i=0;i < MultishotCount-1;i++) {
-                    if (UsingBomb || UsingWater || UsingBeam) {
+                    if (true || UsingBomb || UsingWater || UsingBeam) { // TEMPORARILY MAKE ALWAYS TRUE
                         damageNumList.Add((int)DamageOutput - (int)ContinuousFire);
                     }
                     else {
@@ -688,7 +706,7 @@ namespace TOTK.Website
 
                 Data.damageNumList = damageNumList;
 
-                if (UsingBomb || UsingWater || UsingBeam) {
+                if (true || UsingBomb || UsingWater || UsingBeam) { // TEMPORARILY MAKE ALWAYS TRUE
                     return (DamageOutput - ContinuousFire) * (MultishotCount-1);
                 }
 
@@ -704,8 +722,9 @@ namespace TOTK.Website
                         ExtraProjectileCount = 2;
                     }
                 }
+                ProjectileAttack *= WaterMult * FireMult;
 
-                damageNumList.Add((int)DamageOutput);
+                damageNumList.Add((int)DamageBeforeElement);
 
                 if (ElementalMult != 0) {
                     FirstProjectileAttack = ProjectileAttack + ElementalDamage;
