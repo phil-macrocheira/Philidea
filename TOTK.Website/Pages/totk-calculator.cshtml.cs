@@ -123,7 +123,7 @@ namespace TOTK.Website.Pages
             float TotalAttack = TotalBaseAttack + TotalFuseAttack;
 
             // FORMULA
-            Formula = $"Formula: (BaseAttack({_calculateDamage.BaseAttack})";
+            Formula = $"Formula: BaseAttack({_calculateDamage.BaseAttack})";
             if (SelectedFuse.Name != "None") {
                 Formula += $" + FuseUIAdjust((FuseBaseAttack({_calculateDamage.FuseBaseAttack})";
                 if (_calculateDamage.GerudoBonus > 1) { Formula += $" * GerudoBonus({_calculateDamage.GerudoBonus})"; }
@@ -151,7 +151,7 @@ namespace TOTK.Website.Pages
             if (_calculateDamage.DemonDragon > 1) { Formula += $" * DemonDragon({_calculateDamage.DemonDragon}))"; }
             if (_calculateDamage.ElementalDamage > 0) { Formula += $" + ElementalDamage({_calculateDamage.ElementalDamage}))"; }
             if (_calculateDamage.ElementalMult > 1) { Formula += $"; Multiply result by ElementalMult({_calculateDamage.ElementalMult}))"; }
-            if (_calculateDamage.ContinuousFire > 0) { Formula += $" + ContinuousFire({_calculateDamage.ContinuousFire}))"; }
+            if (_calculateDamage.ContinuousFire > 0) { Formula += $" + ContinuousFire({_calculateDamage.ContinuousFire})"; }
 
             //$"Base({TotalBaseAttack}) + Fuse({TotalFuseAttack}) = {TotalAttack}";
 

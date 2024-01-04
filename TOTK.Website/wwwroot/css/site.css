@@ -34,7 +34,6 @@
 .select2-container--default .select2-selection--single {
     border: 1px solid #ccc !important;
     border-radius: 5px !important;
-    -webkit-appearance: none !important;
 }
 
 /* SELECT2 DROPDOWN VERTICALLY ALIGN TEXT */
@@ -66,15 +65,6 @@
 
 /* Fix Dropdown Arrows Disappearing */
 .form-control {
-    -webkit-appearance: menulist !important;
-    -moz-appearance: menulist !important;
-    -ms-appearance: menulist !important;
-    -o-appearance: menulist !important;
-    appearance: menulist !important;
-}
-
-/* Fix Safari Stuff */
-.form-select {
     -webkit-appearance: menulist !important;
     -moz-appearance: menulist !important;
     -ms-appearance: menulist !important;
@@ -162,7 +152,6 @@ ul.horizontal-list {
     outline: none;
     bottom: 0;
     left: 0;
-    position: relative;
     background: none;
     color: white;
     font-size: 12px;
@@ -170,12 +159,9 @@ ul.horizontal-list {
 }
 
 .content {
-    display: none;
-    position: relative;
     padding-top: 8px;
     font-size: 12px;
-    top: 100%;
-    left: 0;
+    display:none;
 }
 
 .footer {
