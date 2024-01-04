@@ -29,7 +29,7 @@
 
 <div class="container" >
     <!--WEAPON ROW/SECTION-->
-    <div class="row section">
+    <div class="row section section-weapon">
         <div class="totk-title" style="height:10px; margin-left:-12px; position:relative;">
             <h2>WEAPON</h2>
         </div>
@@ -59,6 +59,10 @@
             <div class="form-outline" style="width: 10rem;">
                 <input asp-for="Input.AttackUpMod" class="form-control" id="numberAttackUpMod" type="number" value="0" min="0" max="0" onchange="update()" />
             </div>
+            <!--Critical Hit Checkbox-->
+            <label id="criticalLabel" class="form-check-label d-block hidden" style="color:white; font-size:11px;">
+                <input asp-for="Input.CriticalHitMod" id="checkboxCritical" class="form-check-input" style="margin-right:3px" type="checkbox" onchange="update()">Critical Hit Mod
+            </label>
             <!--Multishot Checkbox-->
             <label id="multishotLabel" class="form-check-label d-block hidden" style="color:white; font-size:11px;">
                 <input asp-for="Input.Multishot" id="checkboxMultishot" class="form-check-input" style="margin-right:3px" type="checkbox" onchange="update()">Multishot Mod
@@ -99,11 +103,11 @@
         <!--ATTACK TYPE-->
         <div class="col-md-auto py-2">
             <h5 style="margin-top:4px;">Attack Type</h5>
-            <select asp-for="Input.AttackType" class="form-select" id="attacktypeDropdown" style="width:15.5rem;" onchange="update()">
+            <select asp-for="Input.AttackType" class="form-control select2" id="attacktypeDropdown" style="width:15.5rem;" onchange="update()">
                 <option selected>Standard Attack</option>
-                <option value="Combo Finisher">Combo Finisher</option>
                 <option value="Master Sword Beam">Master Sword Beam</option>
                 <option value="Flurry Rush">Flurry Rush</option>
+                <option value="Combo Finisher">Combo Finisher</option>
                 <option value="Sidon's Water">Sidon's Water</option>
             </select>
         </div>
@@ -112,7 +116,7 @@
     <!--PLAYER AND ENEMY ROW-->
     <div class="row">
         <!--PLAYER SECTION-->
-        <div class="col-7 section" style="height:20%; padding-bottom:15px;">
+        <div class="col-7 section section-player" style="height:20%; padding-bottom:15px;">
             <div class="totk-title" style="height:10px; position:relative;">
                 <h2>PLAYER</h2>
             </div>
@@ -129,7 +133,7 @@
                 <!--ARMOR/FOOD BUFF 1-->
                 <div class="col-md-auto py-2">
                     <h5>Armor/Food Buffs</h5>
-                    <select asp-for="Input.Buff1" id="buffDropdown1" class="form-select" style="width:16.5rem;" onchange="update()">
+                    <select asp-for="Input.Buff1" id="buffDropdown1" class="form-control select2" style="width:16.5rem;" onchange="update()">
                         <option selected>None</option>
                         <option value="Attack Up (Lv1)">Attack Up (Lv1)</option>
                         <option value="Attack Up (Lv2)">Attack Up (Lv2)</option>
@@ -144,7 +148,7 @@
 
                 <!--ARMOR/FOOD BUFF 2-->
                 <div class="col-md-auto py-2">
-                    <select asp-for="Input.Buff2" id="buffDropdown2" class="form-select" style="width:16.5rem; margin-top:28px;" onchange="update()">
+                    <select asp-for="Input.Buff2" id="buffDropdown2" class="form-control select2" style="width:16.5rem; margin-top:28px;" onchange="update()">
                         <option selected>None</option>
                         <option value="Attack Up (Lv1)">Attack Up (Lv1)</option>
                         <option value="Attack Up (Lv2)">Attack Up (Lv2)</option>
@@ -179,7 +183,7 @@
             
             <div class="row">
                 <!--ENEMY-->
-                <div class="col-md-auto">
+                <div class="col-md-auto enemy-dropdown-col">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="mb-0" style="margin:4px;">Enemy</h5>
                         <!--ENEMY RANDOMIZE-->
@@ -233,9 +237,9 @@
                 <!--WEAPON AND FUSE ICON ROW-->
                 <div class="row">
                     <!--WEAPON ICON AND ATTACK POWER-->
-                    <div class="col-md-auto icon position-relative;" style="width:128px; height:128px; margin-top:6px; margin-left: 8px; position:relative; overflow: hidden;">
-                        <div class="position-absolute" style="bottom: 0; right:0; background-color: rgba(20,20,20,0.6); border-top-left-radius: 0.5rem; padding: 0.5rem;">
-                            <span id="AttackPowerText" class="text-white" style="font-size: 1rem;">30</span>
+                    <div class="col-md-auto icon position-relative;" style="width:128px; height:128px; margin-top:6px; margin-left:8px; position:relative; overflow:hidden;">
+                        <div class="position-absolute" style="bottom:0; right:0; background-color: rgba(20,20,20,0.6); border-top-left-radius:0.5rem; padding:0.5rem;">
+                            <span id="AttackPowerText" style="font-size:1rem;color:white;">30</span>
                         </div>
                         <img src="@Model.WeaponIconURL" id="weaponImage" class="rounded float-left" alt="Weapon Image" style="height:100%; width:100%; object-fit:contain;">
                     </div>
@@ -491,10 +495,13 @@
                 checkboxHeadshot.disabled = true;
             }
 
-            // Change 'Headshot' to 'Belly' if Molduga
+            // Change 'Headshot' to 'Weakpoint'
             if (dropdownEdited === 'enemy') {
                 if (selectedEnemyObj.Name === 'Molduga') {
-                    $('#HeadshotText').text('Belly');
+                    $('#HeadshotText').text('Weakpoint (Belly)');
+                }
+                else if (selectedEnemyObj.CanMeleeHeadshot == true) {
+                    $('#HeadshotText').text('Weakpoint (Head)');
                 }
                 else {
                     $('#HeadshotText').text('Headshot');
@@ -522,7 +529,6 @@
                 
                 if (SelectedWeaponType < 3) {
                     dropdown.add(StandardAttack);
-                    dropdown.add(ComboFinisher);
                     if (selectedWeaponObj.FuseBaseName == "Master Sword")
                     {
                         dropdown.add(MasterSwordBeam);
@@ -534,6 +540,7 @@
                         dropdown.add(Sneakstrike);
                     }
                     dropdown.add(FlurryRush);
+                    dropdown.add(ComboFinisher);
                     dropdown.add(Sidon);
                     if (dropdownvalue == "Sneakstrike" && selectedEnemyObj.CanSneakstrike == false) {
                         dropdown.value = "Standard Attack";
@@ -583,6 +590,16 @@
                 }
             }
 
+            // Show CriticalHitMod checkbox if possible
+            var criticalLabel = document.getElementById("criticalLabel");
+            if (SelectedWeaponType != 3 && selectedWeaponObj.CanHaveAttackUpMod == true) {
+                criticalLabel.classList.remove("hidden");
+            }
+            else {
+                checkboxCritical.checked = false;
+                criticalLabel.classList.add("hidden");
+            }
+
             // Show Multishot checkbox if possible
             var multishotLabel = document.getElementById("multishotLabel");
             if (selectedWeaponObj.Property == "Multishot x3-5") {
@@ -592,7 +609,9 @@
                 checkboxMultishot.checked = false;
                 multishotLabel.classList.add("hidden");
             }
-            if (checkboxMultishot.checked == true) {
+
+            // Disable Attack Up Mod if other mod selected
+            if (checkboxMultishot.checked == true || checkboxCritical.checked == true) {
                 numberAttackUpMod.disabled = true;
                 numberAttackUpMod.value = 0;
             }
@@ -628,6 +647,7 @@
             var data = {
                 AttackUpMod: AttackUpModClamped,
                 AttackType: $('#attacktypeDropdown').val(),
+                CriticalHitMod: $('#checkboxCritical').is(':checked'),
                 Multishot: $('#checkboxMultishot').is(':checked'),
                 DurabilityInput: DurabilityClamped,
                 Wet: $('#checkboxWet').is(':checked'),
@@ -714,6 +734,13 @@
 
                     $('#DamageOutputText').text(response.damageOutput);
                     $('#AttackPowerText').text(response.attackPowerUI);
+
+                    if (response.blueDamageNum == true) {
+                        $('#AttackPowerText').css('color', '#b3ffff');
+                    }
+                    else {
+                        $('#AttackPowerText').css('color', 'white');
+                    }
 
                     $('#PropertiesList').empty();
                     $.each(response.properties, function (index, property) {

@@ -34,6 +34,7 @@
 .select2-container--default .select2-selection--single {
     border: 1px solid #ccc !important;
     border-radius: 5px !important;
+    -webkit-appearance: none !important;
 }
 
 /* SELECT2 DROPDOWN VERTICALLY ALIGN TEXT */
@@ -64,12 +65,25 @@
 }
 
 /* Fix Dropdown Arrows Disappearing */
+.form-control {
+    -webkit-appearance: menulist !important;
+    -moz-appearance: menulist !important;
+    -ms-appearance: menulist !important;
+    -o-appearance: menulist !important;
+    appearance: menulist !important;
+}
+
+/* Fix Safari Stuff */
 .form-select {
     -webkit-appearance: menulist !important;
     -moz-appearance: menulist !important;
     -ms-appearance: menulist !important;
     -o-appearance: menulist !important;
     appearance: menulist !important;
+}
+
+.enemy-dropdown-col {
+    width:66%;
 }
 
 .icon {
@@ -238,6 +252,24 @@ ul.horizontal-list {
     justify-content: center;
     box-sizing: border-box;
     overflow: hidden;
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1400px) {
+    .section-player {
+        width:100%;
+    }
+    .section-enemy {
+        width:100% !important;
+    }
+    .section-result {
+        width:103% !important;
+    }
+    .enemy-dropdown-col {
+        width:auto;
+    }
+    .py-2 {
+        margin-top: 0px !important;
+    }
 }
 
 @media only screen and (max-width: 768px) {

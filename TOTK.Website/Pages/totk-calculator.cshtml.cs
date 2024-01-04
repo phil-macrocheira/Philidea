@@ -14,6 +14,7 @@ namespace TOTK.Website.Pages
         private readonly GetFusedName _getFusedName;
         public InputModel Input { get; set; } = new InputModel();
         public float DamageOutput { get; set; } = 30;
+        public bool BlueDamageNum { get; set; } = false;
         public string FusedName { get; set; } = "Master Sword";
         public int AttackPowerUI { get; set; } = 30;
         public string Formula { get; set; }
@@ -50,6 +51,7 @@ namespace TOTK.Website.Pages
         {
             Input.AttackUpMod = Convert.ToInt32(Request.Form["AttackUpMod"]);
             Input.Durability = Convert.ToInt32(Request.Form["DurabilityInput"]);
+            Input.CriticalHitMod = Request.Form["CriticalHitMod"] == "true";
             Input.Multishot = Request.Form["Multishot"] == "true";
             Input.AttackType = Request.Form["AttackType"];
             Input.Wet = Request.Form["Wet"] == "true";
@@ -113,6 +115,7 @@ namespace TOTK.Website.Pages
             FusedName = _getFusedName.GetName(this);
 
             AttackPowerUI = _calculateDamage.CalculateAttackPowerUI(this);
+            BlueDamageNum = (_calculateDamage.GerudoBonus > 1 || _calculateDamage.ZonaiBonus > 0 || _calculateDamage.LowHealth > 1 || _calculateDamage.LowDurability > 1 || _calculateDamage.WetPlayer > 1);
             DamageOutput = _calculateDamage.Calculate(this);
 
             float TotalBaseAttack = _calculateDamage.BaseAttack + _calculateDamage.AttackUpMod;
@@ -144,7 +147,7 @@ namespace TOTK.Website.Pages
             if (_calculateDamage.Frozen > 1) { Formula += $" * Frozen({_calculateDamage.Frozen}))"; }
             if (_calculateDamage.TreeCutter > 1) { Formula += $" * TreeCutter({_calculateDamage.TreeCutter}))"; }
             if (_calculateDamage.ArrowEnemyMult > 1) { Formula += $" * ArrowEnemyMult({_calculateDamage.ArrowEnemyMult}))"; }
-            if (_calculateDamage.ComboFinisher > 1) { Formula += $" * ComboFinisher({_calculateDamage.ComboFinisher}))"; }
+            if (_calculateDamage.CriticalHit > 1) { Formula += $" * CriticalHit({_calculateDamage.CriticalHit}))"; }
             if (_calculateDamage.DemonDragon > 1) { Formula += $" * DemonDragon({_calculateDamage.DemonDragon}))"; }
             if (_calculateDamage.ElementalDamage > 0) { Formula += $" + ElementalDamage({_calculateDamage.ElementalDamage}))"; }
             if (_calculateDamage.ElementalMult > 1) { Formula += $"; Multiply result by ElementalMult({_calculateDamage.ElementalMult}))"; }
@@ -161,6 +164,7 @@ namespace TOTK.Website.Pages
                 FusedName = FusedName,
                 Formula = Formula,
                 damageNumList = damageNumList,
+                blueDamageNum = BlueDamageNum,
             });
         }
         public void LoadData()

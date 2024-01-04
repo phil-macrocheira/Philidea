@@ -37,7 +37,7 @@ namespace TOTK.Website
         public float ElementalDamage;
         public float ElementalMult;
         public float ContinuousFire;
-        public float ComboFinisher;
+        public float CriticalHit;
         public float DemonDragon;
         public bool UsingFire;
         public bool UsingIce;
@@ -124,7 +124,7 @@ namespace TOTK.Website
             Shatter = GetShatter();
             Throw = GetThrow();
             Headshot = GetHeadshot();
-            ComboFinisher = GetComboFinisher();
+            CriticalHit = GetCriticalHit();
             WindRazor = ScanProperties("Wind Razor");
             Frozen = GetFrozen();
             TreeCutter = GetTreeCutter();
@@ -226,7 +226,7 @@ namespace TOTK.Website
             DamageOutput = BaseAttack + FuseUIAdjust((FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
             DamageOutput *= LowHealth * WetPlayer * Sneakstrike * LowDurability * Bone * FlurryRush * Shatter;
             DamageOutput *= AttackUp * Headshot * Throw * OneDurability * Frozen * TreeCutter;
-            DamageOutput *= ArrowEnemyMult * ComboFinisher * DemonDragon;
+            DamageOutput *= ArrowEnemyMult * CriticalHit * DemonDragon;
             DamageBeforeElement = DamageOutput;
             if (ElementalMult != 0) {
                 DamageOutput += ElementalDamage;
@@ -447,9 +447,9 @@ namespace TOTK.Website
             }
             return 1;
         }
-        public float GetComboFinisher()
+        public float GetCriticalHit()
         {
-            if (Data.Input.AttackType == "Combo Finisher") {
+            if (Data.Input.CriticalHitMod == true && Data.Input.AttackType == "Combo Finisher") {
                 return 2;
             }
             return 1;
