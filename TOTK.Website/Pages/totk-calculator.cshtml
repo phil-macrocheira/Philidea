@@ -501,7 +501,15 @@
                     $('#HeadshotText').text('Weakpoint (Belly)');
                 }
                 else if (selectedEnemyObj.CanMeleeHeadshot == true) {
-                    $('#HeadshotText').text('Weakpoint (Head)');
+                    if (selectedEnemyObj.Name === 'Stalnox' || selectedEnemyObj.Name.includes("Hinox")) {
+                        $('#HeadshotText').text('Weakpoint (Eye)');
+                    }
+                    else if (selectedEnemyObj.Name.includes("Gleeok")) {
+                        $('#HeadshotText').text('Weakpoint (Head)');
+                    }
+                    else if (selectedEnemyObj.Name.includes("Like")) {
+                        $('#HeadshotText').text('Weakpoint (Heart)');
+                    }
                 }
                 else {
                     $('#HeadshotText').text('Headshot');
