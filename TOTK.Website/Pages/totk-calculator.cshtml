@@ -53,6 +53,16 @@
                 }
             }
             </select>
+            <div>
+                <!--Zonaite Helm Checkbox-->
+                <label id="zonaiteLabel" class="form-check-label d-block hidden" style="color:white; font-size:11px;">
+                    <input asp-for="Input.Zonaite" id="checkboxZonaite" class="form-check-input" style="margin-right:3px" type="checkbox" onchange="update()">Zonaite Helm
+                </label>
+                <!--Sage Will Checkbox-->
+                <label id="sagewillLabel" class="form-check-label d-block hidden" style="color:white; font-size:11px;">
+                    <input asp-for="Input.SageWill" id="checkboxSagewill" class="form-check-input" style="margin-right:3px" type="checkbox" onchange="update()">Mineru Sage's Will
+                </label>
+            </div>
         </div>
 
         <!--ATTACK UP MOD-->
@@ -92,7 +102,7 @@
 
         <!--DURABILITY-->
         <div class="col-md-auto py-2" style="margin-right:3%">
-            <h5 style="margin-top:4px;">Durability</h5>
+            <h5 style="margin-top:4px;" id ="DurabilityTitleText">Durability</h5>
             <div class="form-outline" style="width: 5rem;">
                 <input asp-for="Input.Durability" class="form-control" id="numberDurability" type="number" value="40" min="1" max="40" onchange="update()" />
             </div>
@@ -208,6 +218,10 @@
                     <!--WEAKENED GIBDO CHECKBOX-->
                     <label id="gibdoLabel" class="form-check-label d-block hidden mobile-gibdo" style="color:white;">
                         <input asp-for="Input.WeakenedGibdo" id="checkboxGibdo" class="form-check-input" style="margin-right:6px; margin-bottom:5px;" type="checkbox" onchange="update()">Weakened
+                    </label>
+                    <!--FENCE CHECKBOX-->
+                    <label id="fenceLabel" class="form-check-label d-block hidden mobile-gibdo" style="color:white;">
+                        <input asp-for="Input.Fence" id="checkboxFence" class="form-check-input" style="margin-right:6px; margin-bottom:5px;" type="checkbox" onchange="update()">Fence Push
                     </label>
                     <!--HEADSHOT CHECKBOX-->
                     <div class="form-check">
@@ -402,7 +416,10 @@
                     DurabilityMod = 10;
                 }
 
-                if (FuseDurabilityWeapon > 0) {
+                if (selectedWeaponObj.Name == "Mineru's Construct") {
+                    FuseDurability = selectedFuseObj.MineruDurability;
+                }
+                else if (FuseDurabilityWeapon > 0) {
                     FuseDurability = Math.min(selectedWeaponObj.FuseExtraDurability, FuseDurabilityWeapon);
                 }
                 else if (selectedFuseObj.Name != "None") {
@@ -467,6 +484,14 @@
                 }
                 else {
                     $('#FuseDropdownTitleText').text('Fuse');
+                }
+
+                // UPDATE DURABILITY TITLE TEXT IF MINERU
+                if (selectedWeaponObj.Name == "Mineru's Construct") {
+                    $('#DurabilityTitleText').text('Fuse Durability');
+                }
+                else {
+                    $('#DurabilityTitleText').text('Durability');
                 }
             }
 
@@ -536,8 +561,12 @@
                 while (dropdown.options.length > 0) {
                     dropdown.remove(0);
                 }
-                
-                if (SelectedWeaponType < 3) {
+
+                if (selectedWeaponName == "Mineru's Construct") {
+                    dropdown.add(StandardAttack);
+                    dropdown.value = "Standard Attack";
+                }
+                else if (SelectedWeaponType < 3) {
                     dropdown.add(StandardAttack);
                     if (selectedWeaponObj.FuseBaseName == "Master Sword")
                     {
@@ -640,6 +669,31 @@
                 gibdoLabel.classList.add("hidden");
             }
 
+            // Show Fence checkbox
+            var fenceLabel = document.getElementById("fenceLabel");
+            if (selectedEnemyObj.Name.includes("Seized Construct") || selectedEnemyObj.Name == "Master Kohga's Ultimate Weapon") {
+                fenceLabel.classList.remove("hidden");
+                fenceLabel.style.marginTop = "-22px";
+            }
+            else {
+                checkboxFence.checked = false;
+                fenceLabel.classList.add("hidden");
+            }
+
+            // Show Mineru checkboxes if Mineru
+            var zonaiteLabel = document.getElementById("zonaiteLabel");
+            var sagewillLabel = document.getElementById("sagewillLabel");
+            if (selectedWeaponObj.Name == "Mineru's Construct") {
+                zonaiteLabel.classList.remove("hidden");
+                sagewillLabel.classList.remove("hidden");
+            }
+            else {
+                checkboxZonaite.checked = false;
+                checkboxSagewill.checked = false;
+                zonaiteLabel.classList.add("hidden");
+                sagewillLabel.classList.add("hidden");
+            }
+
             // Clamp numbers (0 if NaN)
             var AttackUpModClamped = 0;
             var PlayerHPClamped = 0;
@@ -659,11 +713,14 @@
                 AttackType: $('#attacktypeDropdown').val(),
                 CriticalHitMod: $('#checkboxCritical').is(':checked'),
                 Multishot: $('#checkboxMultishot').is(':checked'),
+                Zonaite: $('#checkboxZonaite').is(':checked'),
+                SageWill: $('#checkboxSagewill').is(':checked'),
                 DurabilityInput: DurabilityClamped,
                 Wet: $('#checkboxWet').is(':checked'),
                 Headshot: $('#checkboxHeadshot').is(':checked'),
                 Frozen: $('#checkboxFrozen').is(':checked'),
                 WeakenedGibdo: $('#checkboxGibdo').is(':checked'),
+                Fence: $('#checkboxFence').is(':checked'),
                 PlayerHP: PlayerHPClamped,
                 Buff1: $('#buffDropdown1').val(),
                 Buff2: $('#buffDropdown2').val(),
@@ -685,6 +742,7 @@
                 ProjectileAttackFuse: selectedFuseObj.ProjectileAttack,
                 ElementPower: selectedFuseObj.ElementPower,
                 WeaponDurability: selectedFuseObj.WeaponDurability,
+                MineruDurability: selectedFuseObj.MineruDurability,
                 CanFuseToArrow: selectedFuseObj.CanFuseToArrow,
                 ArrowMultiplierFuse: selectedFuseObj.ArrowMultiplier,
                 CanCutFuse: selectedFuseObj.CanCut,

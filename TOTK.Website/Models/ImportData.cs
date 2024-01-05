@@ -27,6 +27,7 @@ namespace TOTK.Website.Models
         public byte? ProjectileAttack { get; set; }
         public byte? ElementPower { get; set; }
         public short? WeaponDurability { get; set; }
+        public byte? MineruDurability { get; set; }
         public bool? CanFuseToArrow { get; set; }
         public byte? ArrowMultiplier { get; set; }
         public bool? CanCut { get; set; }
@@ -140,6 +141,7 @@ namespace TOTK.Website.Models
                                 ProjectileAttack = (byte?)reader["ProjectileAttack"],
                                 ElementPower = (byte?)reader["ElementPower"],
                                 WeaponDurability = (short?)reader["WeaponDurability"],
+                                MineruDurability = (byte?)reader["MineruDurability"],
                                 CanFuseToArrow = (bool?)reader["CanFuseToArrow"],
                                 ArrowMultiplier = (byte?)reader["ArrowMultiplier"],
                                 CanCut = (bool?)reader["CanCut"],
@@ -221,6 +223,7 @@ namespace TOTK.Website.Models
                                 ProjectileAttack = (byte?)reader["ProjectileAttack"],
                                 ElementPower = (byte?)reader["ElementPower"],
                                 WeaponDurability = (short?)reader["WeaponDurability"],
+                                MineruDurability = (byte?)reader["MineruDurability"],
                                 CanFuseToArrow = (bool?)reader["CanFuseToArrow"],
                                 ArrowMultiplier = (byte?)reader["ArrowMultiplier"],
                                 CanCut = (bool?)reader["CanCut"],

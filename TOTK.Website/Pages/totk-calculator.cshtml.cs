@@ -53,11 +53,14 @@ namespace TOTK.Website.Pages
             Input.Durability = Convert.ToInt32(Request.Form["DurabilityInput"]);
             Input.CriticalHitMod = Request.Form["CriticalHitMod"] == "true";
             Input.Multishot = Request.Form["Multishot"] == "true";
+            Input.Zonaite = Request.Form["Zonaite"] == "true";
+            Input.SageWill = Request.Form["SageWill"] == "true";
             Input.AttackType = Request.Form["AttackType"];
             Input.Wet = Request.Form["Wet"] == "true";
             Input.Headshot = Request.Form["Headshot"] == "true";
             Input.Frozen = Request.Form["Frozen"] == "true";
             Input.WeakenedGibdo = Request.Form["WeakenedGibdo"] == "true";
+            Input.Fence = Request.Form["Fence"] == "true";
             Input.HP = Convert.ToSingle(Request.Form["PlayerHP"]);
             Input.Buff1 = Request.Form["Buff1"];
             Input.Buff2 = Request.Form["Buff2"];
@@ -79,6 +82,7 @@ namespace TOTK.Website.Pages
             SelectedFuse.ProjectileAttack = Convert.ToByte(Request.Form["ProjectileAttackFuse"]);
             SelectedFuse.ElementPower = Convert.ToByte(Request.Form["ElementPower"]);
             SelectedFuse.WeaponDurability = Convert.ToInt16(Request.Form["WeaponDurability"]);
+            SelectedFuse.MineruDurability = Convert.ToByte(Request.Form["MineruDurability"]);
             if (bool.TryParse(Request.Form["CanFuseToArrow"], out bool CanFuseToArrowValue)) { SelectedFuse.CanFuseToArrow = CanFuseToArrowValue; }
             SelectedFuse.ArrowMultiplier = Convert.ToByte(Request.Form["ArrowMultiplierFuse"]);
             if (bool.TryParse(Request.Form["CanCutFuse"], out bool CanCutValueFuse)) { SelectedFuse.CanCut = CanCutValueFuse; }

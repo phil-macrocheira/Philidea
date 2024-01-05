@@ -47,6 +47,7 @@ namespace TOTK.Website
         public bool UsingBeam;
         public bool WindRazor;
         public float DamageBeforeElement;
+        public float MineruBonus;
         public CalculateDamage(ILogger<CalculateDamage> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -63,8 +64,9 @@ namespace TOTK.Website
             LowHealth = GetLowHealth();
             LowDurability = GetLowDurability();
             WetPlayer = GetWetPlayer();
+            MineruBonus = GetMineruBonus();
 
-            float BaseAttackUI = (WeaponUIAdjust(BaseAttack) + (FuseAttackUI * GerudoBonus) + AttackUpMod + ZonaiBonusUI) * LowHealth * LowDurability * WetPlayer;
+            float BaseAttackUI = (WeaponUIAdjust(BaseAttack) + MineruBonus + (FuseAttackUI * GerudoBonus) + AttackUpMod + ZonaiBonusUI) * LowHealth * LowDurability * WetPlayer;
 
             if (Data.SelectedWeapon.Type == 5) {
                 return (int)BaseAttack;
@@ -139,8 +141,9 @@ namespace TOTK.Website
             bool IsGibdo = Data.SelectedEnemy.Name.IndexOf("Gibdo") != -1;
             bool IsKeese = Data.SelectedEnemy.Name.IndexOf("Keese") != -1;
             float ProjectileDamage;
+            float FenceDamage = GetFenceDamage();
 
-            AttackPower = (BaseAttack + (FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
+            AttackPower = (BaseAttack + MineruBonus + (FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
 
             // Return enemy's HP if ancient blade or wind razor chuchu
             if ((Data.SelectedFuse.Name == "Ancient Blade" && Data.SelectedEnemy.AncientBladeDefeat == true) || (IsChuchu && WindRazor)) {
@@ -167,6 +170,7 @@ namespace TOTK.Website
                 return 0;
             }
 
+            // Gibdo unweakened
             if (IsGibdo) {
                 if (!UsingFire && !UsingIce && !UsingShock && !UsingWater && Data.SelectedFuse.Property1 != "Dazzle" && !Data.Input.WeakenedGibdo) {
                     return 1;
@@ -223,7 +227,7 @@ namespace TOTK.Website
             }
 
             // MAIN DAMAGE FORMULA
-            DamageOutput = BaseAttack + FuseUIAdjust((FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
+            DamageOutput = BaseAttack + MineruBonus + FuseUIAdjust((FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
             DamageOutput *= LowHealth * WetPlayer * Sneakstrike * LowDurability * Bone * FlurryRush * Shatter;
             DamageOutput *= AttackUp * Headshot * Throw * OneDurability * Frozen * TreeCutter;
             DamageOutput *= ArrowEnemyMult * CriticalHit * DemonDragon;
@@ -233,6 +237,7 @@ namespace TOTK.Website
                 DamageOutput *= ElementalMult;
             }
             DamageOutput += ContinuousFire;
+            DamageOutput += FenceDamage;
             DamageOutput = (float)Math.Min(2147483647, Math.Floor(DamageOutput));
 
             ProjectileDamage = CreateDamageNumList((int)DamageOutput);
@@ -370,7 +375,12 @@ namespace TOTK.Website
         }
         public float GetOneDurability()
         {
-            if (WeaponType != 3 && WeaponType != 5 && Data.Input.Durability == 1 && Data.Input.Frozen == false && AttackType != "Combo Finisher") {
+            if (Data.SelectedWeapon.Name == "Mineru's Construct") {
+                return 1;
+            }
+
+            if (WeaponType != 3 && WeaponType != 5 && Data.Input.Durability == 1 && Data.Input.Frozen == false 
+                && AttackType != "Combo Finisher" && AttackType != "Perfect Parry") {
                 if (AttackType != "Throw" || Data.SelectedWeapon.Property == "Boomerang") {
                     return 2;
                 }
@@ -380,6 +390,10 @@ namespace TOTK.Website
         public float GetBone()
         {
             bool BoneProperty = ScanProperties("Bone");
+
+            if (Data.SelectedWeapon.Name == "Mineru's Construct") {
+                return 1;
+            }
 
             if (BoneProperty == true && (Data.Input.Buff1 == "Bone Weap. Prof." || Data.Input.Buff2 == "Bone Weap. Prof.")) {
                 return 1.8f;
@@ -428,6 +442,10 @@ namespace TOTK.Website
             string Buff1 = Data.Input.Buff1;
             string Buff2 = Data.Input.Buff2;
 
+            if (Data.SelectedWeapon.Name == "Mineru's Construct") {
+                return 1;
+            }
+
             if (Buff1 == "Attack Up (Lv3)" || Buff2 == "Attack Up (Lv3)") {
                 return 1.5f;
             }
@@ -449,8 +467,10 @@ namespace TOTK.Website
         }
         public float GetCriticalHit()
         {
-            if (Data.Input.CriticalHitMod == true && Data.Input.AttackType == "Combo Finisher") {
-                return 2;
+            if (Data.Input.CriticalHitMod == true) {
+                if (AttackType == "Combo Finisher" || AttackType == "Flurry Rush") {
+                    return 2;
+                }
             }
             return 1;
         }
@@ -645,6 +665,25 @@ namespace TOTK.Website
                 return 5;
             }
             return 1;
+        }
+        public float GetFenceDamage()
+        {
+            if (Data.Input.Fence == true) {
+                return 2500;
+            }
+            return 0;
+        }
+        public float GetMineruBonus()
+        {
+            float MineruBonus = 0;
+
+            if (Data.Input.Zonaite == true) {
+                MineruBonus += 13;
+            }
+            if (Data.Input.SageWill == true) {
+                MineruBonus += 13;
+            }
+            return MineruBonus;
         }
         public float CreateDamageNumList(int DamageOutput)
         {
