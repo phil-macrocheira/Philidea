@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "TotK Damage Calculator";
     ViewData["HeaderTitle"] = "TEARS OF THE KINGDOM DAMAGE CALCULATOR";
-    ViewData["Version"] = "v1.1.0";
+    ViewData["Version"] = "v1.1.1";
 }
 @Html.AntiForgeryToken()
 
@@ -671,7 +671,7 @@
 
             // Show Fence checkbox
             var fenceLabel = document.getElementById("fenceLabel");
-            if (selectedEnemyObj.Name.includes("Seized Construct") || selectedEnemyObj.Name == "Master Kohga's Ultimate Weapon") {
+            if (selectedEnemyObj.Name.includes("Seized Construct")) {
                 fenceLabel.classList.remove("hidden");
                 fenceLabel.style.marginTop = "-22px";
             }
