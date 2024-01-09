@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "TotK Damage Calculator";
     ViewData["HeaderTitle"] = "TEARS OF THE KINGDOM DAMAGE CALCULATOR";
-    ViewData["Version"] = "v1.1.1";
+    ViewData["Version"] = "v1.1.2";
 }
 @Html.AntiForgeryToken()
 
@@ -41,7 +41,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <h5 class="mb-0">Weapon</h5>
                 <!--WEAPON RANDOMIZE-->
-                <button type="button" class="btn btn-primary" onclick="randomizeWeapon()">
+                <button type="button" class="btn btn-primary random" onclick="randomizeWeapon()">
                     <img src="dice-shutterstock.webp" alt="Randomize" width="20" height="20" style="margin-left:5px;">
                 </button>
             </div>
@@ -86,7 +86,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <h5 class="mb-0" id="FuseDropdownTitleText">Fuse</h5>
                 <!--FUSE RANDOMIZE-->
-                <button type="button" class="btn btn-primary" onclick="randomizeFuse()">
+                <button type="button" class="btn btn-primary random" onclick="randomizeFuse()">
                     <img src="dice-shutterstock.webp" alt="Randomize" width="20" height="20" style="margin-left:5px;">
                 </button>
             </div>
@@ -123,6 +123,9 @@
                 <option value="Sidon's Water">Sidon's Water</option>
             </select>
         </div>
+
+        <!--BACKSCRATCHER BUTTON-->
+        <button id="backscratcherButton" type="button" class="btn btn-primary backscratcher hidden" onclick="bestWeapon()">"Backscratcher"</button>
     </div>
 
     <!--PLAYER AND ENEMY ROW-->
@@ -199,7 +202,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="mb-0" style="margin:4px;">Enemy</h5>
                         <!--ENEMY RANDOMIZE-->
-                        <button type="button" class="btn btn-primary" onclick="randomizeEnemy()">
+                        <button type="button" class="btn btn-primary random" onclick="randomizeEnemy()">
                             <img src="dice-shutterstock.webp" alt="Randomize" width="20" height="20" style="margin-left:5px;">
                         </button>
                     </div>
@@ -216,8 +219,8 @@
                 <!--ENEMY CHECKBOXES-->
                 <div class="col py-2" style="margin-top:20px;">
                     <!--WEAKENED GIBDO CHECKBOX-->
-                    <label id="gibdoLabel" class="form-check-label d-block hidden mobile-gibdo" style="color:white;">
-                        <input asp-for="Input.WeakenedGibdo" id="checkboxGibdo" class="form-check-input" style="margin-right:6px; margin-bottom:5px;" type="checkbox" onchange="update()">Weakened
+                    <label id="weakenedLabel" class="form-check-label d-block hidden mobile-gibdo" style="color:white;">
+                        <input asp-for="Input.Weakened" id="checkboxWeakened" class="form-check-input" style="margin-right:6px; margin-bottom:5px;" type="checkbox" onchange="update()"><span id="WeakenedText">Weakened</span>
                     </label>
                     <!--FENCE CHECKBOX-->
                     <label id="fenceLabel" class="form-check-label d-block hidden mobile-gibdo" style="color:white;">
@@ -278,9 +281,15 @@
                 <h5 class="ml-3" id="EnemyNameText">Chuchu (Small)</h5>
                 <!--ENEMY ICON AND HP-->
                 <div class="icon position-relative;" style="width:128px; height:128px; margin-top:6px; position:relative; overflow: hidden;">
+                    <!--ENEMY DEFEATED TEXT-->
+                    <div class="position-absolute" style="left:50%; transform:translate(-50%); top:0; background-color: rgba(20,20,20,0.6); border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem;">
+                        <span id="DefeatedText" style="color:#FF602B; font-weight:bold;">DEFEATED</span>
+                    </div>
+                    <!--ENEMY HP-->
                     <div class="position-absolute" style="bottom: 0; right:0; background-color: rgba(20,20,20,0.6); border-top-left-radius: 0.5rem; padding: 0.5rem;">
                         <span id="HPText" class="text-white" style="font-size: 1rem;">10</span>
                     </div>
+                    <!--ENEMY ICON-->
                     <img src="@Model.EnemyIconURL" id="enemyImage" class="float-left matched-radius_inner" alt="Enemy Image" style="height:100%; width:100%; object-fit:contain; border-radius: 0.7rem;">
                 </div>
             </div>
@@ -303,6 +312,7 @@
 @section Scripts {
     <script>
         var previousWeaponType = 0;
+        let Properties = [];
 
         $(document).ready(function () {
             $('#weaponDropdown').select2();
@@ -336,6 +346,19 @@
             return objData.find(function (w) {
                 return w.Name === selectedName;
             });
+        }
+
+        function bestWeapon() {
+            $('#weaponDropdown').val("Royal Guard's Claymore✨");
+            $('#numberAttackUpMod').val(10);
+            $('#fuseDropdown').val("Molduga Jaw");
+            $('#numberDurability').val(1);
+            $('#checkboxFreezeDurability').prop('checked', true);
+            $('#buffDropdown1').val("Attack Up (Lv3)");
+            $('#buffDropdown2').val("Bone Weap. Prof.");
+            $('#weaponDropdown, #fuseDropdown, #buffDropdown1, #buffDropdown2').trigger('change');
+
+            update();
         }
 
         function update(dropdownEdited) {
@@ -493,6 +516,14 @@
                 else {
                     $('#DurabilityTitleText').text('Durability');
                 }
+
+                // Show Backscratcher Button
+                if (selectedWeaponObj.Name == "Royal Guard's Claymore✨") {
+                    backscratcherButton.classList.remove("hidden");
+                }
+                else {
+                    backscratcherButton.classList.add("hidden");
+                }
             }
 
             var checkboxHeadshot = document.getElementById('checkboxHeadshot');
@@ -543,92 +574,6 @@
                 }
             }
 
-            // UPDATE ATTACK TYPE DROPDOWN
-            if (dropdownEdited === 'weapon' || dropdownEdited === 'fuse' || dropdownEdited === 'enemy') {
-                var StandardAttack = NewOption("Standard Attack");
-                var Shoot = NewOption("Shoot Arrow");
-                var ShieldBash = NewOption("Shield Bash");
-                var PerfectParry = NewOption("Perfect Parry");
-                var Earthwake = NewOption("Earthwake Technique");
-                var ComboFinisher = NewOption("Combo Finisher");
-                var Throw = NewOption("Throw");
-                var Sneakstrike = NewOption("Sneakstrike");
-                var FlurryRush = NewOption("Flurry Rush");
-                var Sidon = NewOption("Sidon's Water");
-                var Riju = NewOption("Riju's Lightning");
-                var MasterSwordBeam = NewOption("Master Sword Beam");
-
-                while (dropdown.options.length > 0) {
-                    dropdown.remove(0);
-                }
-
-                if (selectedWeaponName == "Mineru's Construct") {
-                    dropdown.add(StandardAttack);
-                    dropdown.value = "Standard Attack";
-                }
-                else if (SelectedWeaponType < 3) {
-                    dropdown.add(StandardAttack);
-                    if (selectedWeaponObj.FuseBaseName == "Master Sword")
-                    {
-                        dropdown.add(MasterSwordBeam);
-                    }
-                    else {
-                        dropdown.add(Throw);
-                    }
-                    if (selectedEnemyObj.CanSneakstrike == true && checkboxFrozen.checked == false) {
-                        dropdown.add(Sneakstrike);
-                    }
-                    dropdown.add(FlurryRush);
-                    dropdown.add(ComboFinisher);
-                    dropdown.add(Sidon);
-                    if (dropdownvalue == "Sneakstrike" && selectedEnemyObj.CanSneakstrike == false) {
-                        dropdown.value = "Standard Attack";
-                    }
-                    else if (dropdownvalue == "Master Sword Beam" && selectedWeaponObj.FuseBaseName != "Master Sword") {
-                        dropdown.value = "Standard Attack";
-                    }
-                    else if (dropdownvalue == "Throw" && selectedWeaponObj.FuseBaseName == "Master Sword") {
-                        dropdown.value = "Standard Attack";
-                    }
-                    else if (dropdownvalue == "Shoot Arrow" || dropdownvalue == "Riju's Lightning" || dropdownvalue == "Shield Bash" || dropdownvalue == "Perfect Parry" || dropdownvalue == "Earthwake Technique") {
-                        dropdown.value = "Standard Attack";
-                    }
-                    else {
-                        dropdown.value = dropdownvalue;
-                    }
-                }
-                else if (SelectedWeaponType == 3) {
-                    dropdown.add(Shoot);
-                    dropdown.add(Riju);
-                    if (dropdownvalue != "Riju's Lightning") {
-                        dropdown.value = "Shoot Arrow";
-                    }
-                    else {
-                        dropdown.value = dropdownvalue;
-                    }
-                }
-                else if (SelectedWeaponType == 4) {
-                    dropdown.add(ShieldBash);
-                    dropdown.add(PerfectParry);
-                    if (dropdownvalue != "Perfect Parry") {
-                        dropdown.value = "Shield Bash";
-                    }
-                    else {
-                        dropdown.value = dropdownvalue;
-                    }
-                }
-                else if (SelectedWeaponType == 5) {
-                    dropdown.add(Earthwake);
-                    dropdown.add(Throw);
-                    if (dropdownvalue != "Throw") {
-                        dropdown.value = "Earthwake Technique";
-                    }
-                    else {
-                        dropdown.value = dropdownvalue;
-                    }
-                }
-            }
-
             // Show CriticalHitMod checkbox if possible
             var criticalLabel = document.getElementById("criticalLabel");
             if (SelectedWeaponType != 3 && selectedWeaponObj.CanHaveAttackUpMod == true) {
@@ -658,15 +603,23 @@
                 numberAttackUpMod.disabled = false;
             }
 
-            // Show Weakened Gibdo checkbox if gibdo
-            var gibdoLabel = document.getElementById("gibdoLabel");
-            if (selectedEnemyObj.Name.includes("Gibdo")) {
-                gibdoLabel.classList.remove("hidden");
-                gibdoLabel.style.marginTop = "-22px";
+            // Show Weakened checkbox if gibdo or armored
+            var weakenedLabel = document.getElementById("weakenedLabel");
+            var IsGibdo = selectedEnemyObj.Name.includes("Gibdo");
+            var IsArmored = selectedEnemyObj.Name.includes("(Armored)");
+            if (IsGibdo || IsArmored) {
+                if (IsArmored) {
+                    $('#WeakenedText').text('Unarmored');
+                }
+                else {
+                    $('#WeakenedText').text('Weakened');
+                }
+                weakenedLabel.classList.remove("hidden");
+                weakenedLabel.style.marginTop = "-22px";
             }
             else {
-                checkboxGibdo.checked = false;
-                gibdoLabel.classList.add("hidden");
+                checkboxWeakened.checked = false;
+                weakenedLabel.classList.add("hidden");
             }
 
             // Show Fence checkbox
@@ -719,7 +672,7 @@
                 Wet: $('#checkboxWet').is(':checked'),
                 Headshot: $('#checkboxHeadshot').is(':checked'),
                 Frozen: $('#checkboxFrozen').is(':checked'),
-                WeakenedGibdo: $('#checkboxGibdo').is(':checked'),
+                Weakened: $('#checkboxWeakened').is(':checked'),
                 Fence: $('#checkboxFence').is(':checked'),
                 PlayerHP: PlayerHPClamped,
                 Buff1: $('#buffDropdown1').val(),
@@ -784,7 +737,7 @@
                 url: '@Url.Page("Index/totk-calculator")',
                 contentType: 'application/x-www-form-urlencoded',
                 data: data,
-                success: function (response) {                    
+                success: function (response) {
                     if (selectedFuseObj.Name == "None") {
                         if (selectedWeaponName == "Master Sword (Prologue)") {
                             $('#WeaponNameText').text("MsgNotFound");
@@ -811,14 +764,113 @@
                     }
 
                     $('#PropertiesList').empty();
+                    Properties = [];
                     $.each(response.properties, function (index, property) {
                         $('#PropertiesList').append('<li>' + property + '</li>');
+                        Properties.push(property);
                     });
+
+                    if (response.defeated == true) {
+                        DefeatedText.classList.remove("hidden");
+                    }
+                    else {
+                        DefeatedText.classList.add("hidden");
+                    }
 
                     var fullDamageText = response.damageNumList.join(' + ');
                     $('#FullDamageText').text(fullDamageText);
 
                     $('#FormulaText').text(response.formula);
+
+                    // UPDATE ATTACK TYPE DROPDOWN
+                    if (dropdownEdited === 'weapon' || dropdownEdited === 'fuse' || dropdownEdited === 'enemy') {
+                        var StandardAttack = NewOption("Standard Attack");
+                        var Shoot = NewOption("Shoot Arrow");
+                        var ShieldBash = NewOption("Shield Bash");
+                        var PerfectParry = NewOption("Perfect Parry");
+                        var Earthwake = NewOption("Earthwake Technique");
+                        var ComboFinisher = NewOption("Combo Finisher");
+                        var Throw = NewOption("Throw");
+                        var Sneakstrike = NewOption("Sneakstrike");
+                        var FlurryRush = NewOption("Flurry Rush");
+                        var Sidon = NewOption("Sidon's Water");
+                        var Riju = NewOption("Riju's Lightning");
+                        var MasterSwordBeam = NewOption("Master Sword Beam");
+
+                        while (dropdown.options.length > 0) {
+                            dropdown.remove(0);
+                        }
+
+                        if (selectedWeaponName == "Mineru's Construct") {
+                            dropdown.add(StandardAttack);
+                            dropdown.value = "Standard Attack";
+                        }
+                        else if (SelectedWeaponType < 3) {
+                            var NotRod = !Properties.includes("Rod") && !Properties.includes("Melee Projectile");
+                            dropdown.add(StandardAttack);
+                            if (selectedWeaponObj.FuseBaseName == "Master Sword") {
+                                dropdown.add(MasterSwordBeam);
+                            }
+                            else if (NotRod) {
+                                dropdown.add(Throw);
+                            }
+                            console.log(Properties);
+                            if (selectedEnemyObj.CanSneakstrike == true && checkboxFrozen.checked == false) {
+                                dropdown.add(Sneakstrike);
+                            }
+                            dropdown.add(FlurryRush);
+                            dropdown.add(ComboFinisher);
+                            dropdown.add(Sidon);
+                            if (dropdownvalue == "Sneakstrike" && selectedEnemyObj.CanSneakstrike == false) {
+                                dropdown.value = "Standard Attack";
+                            }
+                            else if (dropdownvalue == "Master Sword Beam" && selectedWeaponObj.FuseBaseName != "Master Sword") {
+                                dropdown.value = "Standard Attack";
+                            }
+                            else if (dropdownvalue == "Throw" && selectedWeaponObj.FuseBaseName == "Master Sword") {
+                                dropdown.value = "Standard Attack";
+                            }
+                            else if (dropdownvalue == "Throw" && !NotRod) {
+                                dropdown.value = "Standard Attack";
+                            }
+                            else if (dropdownvalue == "Shoot Arrow" || dropdownvalue == "Riju's Lightning" || dropdownvalue == "Shield Bash" || dropdownvalue == "Perfect Parry" || dropdownvalue == "Earthwake Technique") {
+                                dropdown.value = "Standard Attack";
+                            }
+                            else {
+                                dropdown.value = dropdownvalue;
+                            }
+                        }
+                        else if (SelectedWeaponType == 3) {
+                            dropdown.add(Shoot);
+                            dropdown.add(Riju);
+                            if (dropdownvalue != "Riju's Lightning") {
+                                dropdown.value = "Shoot Arrow";
+                            }
+                            else {
+                                dropdown.value = dropdownvalue;
+                            }
+                        }
+                        else if (SelectedWeaponType == 4) {
+                            dropdown.add(ShieldBash);
+                            dropdown.add(PerfectParry);
+                            if (dropdownvalue != "Perfect Parry") {
+                                dropdown.value = "Shield Bash";
+                            }
+                            else {
+                                dropdown.value = dropdownvalue;
+                            }
+                        }
+                        else if (SelectedWeaponType == 5) {
+                            dropdown.add(Earthwake);
+                            dropdown.add(Throw);
+                            if (dropdownvalue != "Throw") {
+                                dropdown.value = "Earthwake Technique";
+                            }
+                            else {
+                                dropdown.value = dropdownvalue;
+                            }
+                        }
+                    }
 
                     console.log('UPDATE SUCCESS', response);
                 },

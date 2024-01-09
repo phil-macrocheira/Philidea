@@ -176,17 +176,33 @@ ul.horizontal-list {
     display: none !important;
 }
 
-.btn {
+.random {
     background: none;
     border: none;
     padding-right: 5px;
 }
-.btn:hover {
+.random.btn:hover {
     background:none !important;
 }
-.btn:focus {
+.random.btn:focus {
     background: none !important;
     box-shadow: none !important;
+}
+
+.backscratcher {
+    background-color: rgba(255, 20, 0, 0.4);
+    border: 1px solid white !important;
+    bottom: 0;
+    margin-left: 10px;
+    width: fit-content;
+}
+.backscratcher.btn:hover {
+    background-color: rgba(255, 20, 0, 0.6);
+    border: 1px solid white !important;
+}
+.backscratcher.btn:focus {
+    background-color: rgba(255, 20, 0, 0.4);
+    box-shadow: none;
 }
 
 /* FEEDBACK BUTTON */

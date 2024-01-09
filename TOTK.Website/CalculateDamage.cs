@@ -170,9 +170,14 @@ namespace TOTK.Website
                 return 0;
             }
 
+            // No damage if armored and no shatter
+            if (Data.SelectedEnemy.Name.IndexOf("(Armored)") != -1 && Shatter == 1 && !Data.Input.Weakened) {
+                return 0;
+            }
+
             // Gibdo unweakened
             if (IsGibdo) {
-                if (!UsingFire && !UsingIce && !UsingShock && !UsingWater && Data.SelectedFuse.Property1 != "Dazzle" && !Data.Input.WeakenedGibdo) {
+                if (!UsingFire && !UsingIce && !UsingShock && !UsingWater && Data.SelectedFuse.Property1 != "Dazzle" && !Data.Input.Weakened) {
                     return 1;
                 }
             }
@@ -412,6 +417,11 @@ namespace TOTK.Website
         public float GetShatter()
         {
             bool ShatterProperty = ScanProperties("Shatter Rock");
+
+            // If armored enemy is unarmored, no shatter
+            if (Data.Input.Weakened) {
+                return 1;
+            }
 
             if (Data.SelectedEnemy.IsRock == true) {
                 if (UsingBomb) {

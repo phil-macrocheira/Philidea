@@ -17,6 +17,7 @@ namespace TOTK.Website.Pages
         public bool BlueDamageNum { get; set; } = false;
         public string FusedName { get; set; } = "Master Sword";
         public int AttackPowerUI { get; set; } = 30;
+        public bool Defeated { get; set; } = true;
         public string Formula { get; set; }
         public List<string> Properties { get; set; } = new List<string>();
         public List<int> damageNumList { get; set; } = new List<int>();
@@ -59,7 +60,7 @@ namespace TOTK.Website.Pages
             Input.Wet = Request.Form["Wet"] == "true";
             Input.Headshot = Request.Form["Headshot"] == "true";
             Input.Frozen = Request.Form["Frozen"] == "true";
-            Input.WeakenedGibdo = Request.Form["WeakenedGibdo"] == "true";
+            Input.Weakened = Request.Form["Weakened"] == "true";
             Input.Fence = Request.Form["Fence"] == "true";
             Input.HP = Convert.ToSingle(Request.Form["PlayerHP"]);
             Input.Buff1 = Request.Form["Buff1"];
@@ -122,6 +123,11 @@ namespace TOTK.Website.Pages
             BlueDamageNum = (_calculateDamage.GerudoBonus > 1 || _calculateDamage.ZonaiBonus > 0 || _calculateDamage.LowHealth > 1 || _calculateDamage.LowDurability > 1 || _calculateDamage.WetPlayer > 1);
             DamageOutput = _calculateDamage.Calculate(this);
 
+            if (DamageOutput >= SelectedEnemy.HP)
+                Defeated = true;
+            else
+                Defeated = false;
+
             float TotalBaseAttack = _calculateDamage.BaseAttack + _calculateDamage.AttackUpMod;
             float TotalFuseAttack = _calculateDamage.FuseBaseAttack * _calculateDamage.GerudoBonus + _calculateDamage.ZonaiBonus;
             float TotalAttack = TotalBaseAttack + TotalFuseAttack;
@@ -129,32 +135,31 @@ namespace TOTK.Website.Pages
             // FORMULA
             Formula = $"Formula: BaseAttack({_calculateDamage.BaseAttack})";
             if (SelectedFuse.Name != "None") {
-                Formula += $" + FuseUIAdjust((FuseBaseAttack({_calculateDamage.FuseBaseAttack})";
+                Formula += $" + FuseUIAdjust(FuseBaseAttack({_calculateDamage.FuseBaseAttack})";
                 if (_calculateDamage.GerudoBonus > 1) { Formula += $" * GerudoBonus({_calculateDamage.GerudoBonus})"; }
-                Formula += ")";
-                if (_calculateDamage.AttackUpMod > 0) { Formula += $" + AttackUpMod({_calculateDamage.AttackUpMod}))"; }
-                if (_calculateDamage.ZonaiBonus > 0) { Formula += $" + ZonaiBonus({_calculateDamage.ZonaiBonus}))"; }
+                if (_calculateDamage.AttackUpMod > 0) { Formula += $" + AttackUpMod({_calculateDamage.AttackUpMod})"; }
+                if (_calculateDamage.ZonaiBonus > 0) { Formula += $" + ZonaiBonus({_calculateDamage.ZonaiBonus})"; }
                 Formula += ")";
             }
-            else if (_calculateDamage.AttackUpMod > 0) { Formula += $" + AttackUpMod({_calculateDamage.AttackUpMod}))"; }
-            if (_calculateDamage.LowHealth > 1) { Formula += $" * LowHealth({_calculateDamage.LowHealth}))"; }
-            if (_calculateDamage.WetPlayer > 1) { Formula += $" * WetPlayer({_calculateDamage.WetPlayer}))"; }
-            if (_calculateDamage.Sneakstrike > 1) { Formula += $" * Sneakstrike({_calculateDamage.Sneakstrike}))"; }
-            if (_calculateDamage.LowDurability > 1) { Formula += $" * LowDurability({_calculateDamage.LowDurability}))"; }
-            if (_calculateDamage.Bone > 1) { Formula += $" * Bone({_calculateDamage.Bone}))"; }
-            if (_calculateDamage.FlurryRush > 1) { Formula += $" * FlurryRush({_calculateDamage.FlurryRush}))"; }
-            if (_calculateDamage.Shatter > 1) { Formula += $" * Shatter({_calculateDamage.Shatter}))"; }
-            if (_calculateDamage.AttackUp > 1) { Formula += $" * AttackUp({_calculateDamage.AttackUp}))"; }
-            if (_calculateDamage.Headshot > 1) { Formula += $" * Headshot({_calculateDamage.Headshot}))"; }
-            if (_calculateDamage.Throw > 1) { Formula += $" * Throw({_calculateDamage.Throw}))"; }
-            if (_calculateDamage.OneDurability > 1) { Formula += $" * OneDurability({_calculateDamage.OneDurability}))"; }
-            if (_calculateDamage.Frozen > 1) { Formula += $" * Frozen({_calculateDamage.Frozen}))"; }
+            else if (_calculateDamage.AttackUpMod > 0) { Formula += $" + AttackUpMod({_calculateDamage.AttackUpMod})"; }
+            if (_calculateDamage.LowHealth > 1) { Formula += $" * LowHealth({_calculateDamage.LowHealth})"; }
+            if (_calculateDamage.WetPlayer > 1) { Formula += $" * WetPlayer({_calculateDamage.WetPlayer})"; }
+            if (_calculateDamage.Sneakstrike > 1) { Formula += $" * Sneakstrike({_calculateDamage.Sneakstrike})"; }
+            if (_calculateDamage.LowDurability > 1) { Formula += $" * LowDurability({_calculateDamage.LowDurability})"; }
+            if (_calculateDamage.Bone > 1) { Formula += $" * Bone({_calculateDamage.Bone})"; }
+            if (_calculateDamage.FlurryRush > 1) { Formula += $" * FlurryRush({_calculateDamage.FlurryRush})"; }
+            if (_calculateDamage.Shatter > 1) { Formula += $" * Shatter({_calculateDamage.Shatter})"; }
+            if (_calculateDamage.AttackUp > 1) { Formula += $" * AttackUp({_calculateDamage.AttackUp})"; }
+            if (_calculateDamage.Headshot > 1) { Formula += $" * Headshot({_calculateDamage.Headshot})"; }
+            if (_calculateDamage.Throw > 1) { Formula += $" * Throw({_calculateDamage.Throw})"; }
+            if (_calculateDamage.OneDurability > 1) { Formula += $" * OneDurability({_calculateDamage.OneDurability})"; }
+            if (_calculateDamage.Frozen > 1) { Formula += $" * Frozen({_calculateDamage.Frozen})"; }
             if (_calculateDamage.TreeCutter > 1) { Formula += $" * TreeCutter({_calculateDamage.TreeCutter}))"; }
-            if (_calculateDamage.ArrowEnemyMult > 1) { Formula += $" * ArrowEnemyMult({_calculateDamage.ArrowEnemyMult}))"; }
-            if (_calculateDamage.CriticalHit > 1) { Formula += $" * CriticalHit({_calculateDamage.CriticalHit}))"; }
-            if (_calculateDamage.DemonDragon > 1) { Formula += $" * DemonDragon({_calculateDamage.DemonDragon}))"; }
-            if (_calculateDamage.ElementalDamage > 0) { Formula += $" + ElementalDamage({_calculateDamage.ElementalDamage}))"; }
-            if (_calculateDamage.ElementalMult > 1) { Formula += $"; Multiply result by ElementalMult({_calculateDamage.ElementalMult}))"; }
+            if (_calculateDamage.ArrowEnemyMult > 1) { Formula += $" * ArrowEnemyMult({_calculateDamage.ArrowEnemyMult})"; }
+            if (_calculateDamage.CriticalHit > 1) { Formula += $" * CriticalHit({_calculateDamage.CriticalHit})"; }
+            if (_calculateDamage.DemonDragon > 1) { Formula += $" * DemonDragon({_calculateDamage.DemonDragon})"; }
+            if (_calculateDamage.ElementalDamage > 0) { Formula += $" + ElementalDamage({_calculateDamage.ElementalDamage})"; }
+            if (_calculateDamage.ElementalMult > 1) { Formula += $"; Multiply result by ElementalMult({_calculateDamage.ElementalMult})"; }
             if (_calculateDamage.ContinuousFire > 0) { Formula += $" + ContinuousFire({_calculateDamage.ContinuousFire})"; }
 
             //$"Base({TotalBaseAttack}) + Fuse({TotalFuseAttack}) = {TotalAttack}";
@@ -169,6 +174,7 @@ namespace TOTK.Website.Pages
                 Formula = Formula,
                 damageNumList = damageNumList,
                 blueDamageNum = BlueDamageNum,
+                defeated = Defeated,
             });
         }
         public void LoadData()
