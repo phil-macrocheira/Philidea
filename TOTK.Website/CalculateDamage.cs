@@ -579,18 +579,22 @@ namespace TOTK.Website
             if (GetHotWeatherAttack()) { HotWeatherPower = 5; }
             if (GetColdWeatherAttack()) { ColdWeatherPower = 5; }
             if (GetStormyWeatherAttack()) { StormyWeatherPower = 5; }
+            bool UsingJelly = Data.SelectedFuse.Name.IndexOf("Chuchu Jelly") != -1;
 
-            if (WeaponType == 3 || AttackType == "Throw") {
+            if (WeaponType == 3 || AttackType == "Throw" || UsingJelly) {
                 ElementPower = Data.SelectedFuse?.ElementPower ?? 0.0f;
             }
-            ElementPower *= AttackUp;
 
             if (UsingBomb) {
-                if (WeaponType != 3 && Data.SelectedFuse.Name == "Cannon") {
+                ElementPower = Data.SelectedFuse?.ElementPower ?? 0.0f;
+                if (Data.SelectedFuse.Name == "Cannon") {
                     ElementPower = 12;
                 }
                 ElementPower *= (float)Data.SelectedEnemy.BombMultiplier;
             }
+
+            ElementPower *= AttackUp;
+
             if (UsingIce) {
                 if (Data.Input.Frozen == true) {
                     return 0;

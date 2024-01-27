@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "TotK Damage Calculator";
     ViewData["HeaderTitle"] = "TEARS OF THE KINGDOM DAMAGE CALCULATOR";
-    ViewData["Version"] = "v1.1.3";
+    ViewData["Version"] = "v1.1.4";
 }
 @Html.AntiForgeryToken()
 
@@ -69,7 +69,7 @@
         <div class="col-md-auto py-2" style="margin-right:3%">
             <h5 style="margin-top:4px;">Attack Up Mod</h5>
             <div class="form-outline" style="width: 10rem;">
-                <input asp-for="Input.AttackUpMod" class="form-control" id="numberAttackUpMod" type="number" value="0" min="0" max="0" onchange="update()" oninput="restrictAttackUpMod()" />
+                <input asp-for="Input.AttackUpMod" class="form-control" id="numberAttackUpMod" type="number" value="0" min="0" max="0" step="3" onchange="update()" oninput="restrictAttackUpMod()"/>
             </div>
             <!--Critical Hit Checkbox-->
             <label id="criticalLabel" class="form-check-label d-block hidden" style="color:white; font-size:11px;">
@@ -896,13 +896,14 @@
             newOption.text = OptionName;
             return newOption;
         }
-        function restrictAttackUpMod() {
+        function restrictAttackUpMod(event) {
             var AttackUpMod = $('#numberAttackUpMod').val();
-            if (AttackUpMod == 1) {
-                $('#numberAttackUpMod').val(3);
-            }
-            else if (AttackUpMod == 2) {
+            if (AttackUpMod == 2) {
                 $('#numberAttackUpMod').val(0);
+                $('#numberAttackUpMod').prop('step', 3);
+            }
+            else {
+                $('#numberAttackUpMod').prop('step', 1);
             }
         }
     </script>
