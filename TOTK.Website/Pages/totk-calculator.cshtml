@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "TotK Damage Calculator";
     ViewData["HeaderTitle"] = "TEARS OF THE KINGDOM DAMAGE CALCULATOR";
-    ViewData["Version"] = "v1.1.2";
+    ViewData["Version"] = "v1.1.3";
 }
 @Html.AntiForgeryToken()
 
@@ -69,7 +69,7 @@
         <div class="col-md-auto py-2" style="margin-right:3%">
             <h5 style="margin-top:4px;">Attack Up Mod</h5>
             <div class="form-outline" style="width: 10rem;">
-                <input asp-for="Input.AttackUpMod" class="form-control" id="numberAttackUpMod" type="number" value="0" min="0" max="0" onchange="update()" />
+                <input asp-for="Input.AttackUpMod" class="form-control" id="numberAttackUpMod" type="number" value="0" min="0" max="0" onchange="update()" oninput="restrictAttackUpMod()" />
             </div>
             <!--Critical Hit Checkbox-->
             <label id="criticalLabel" class="form-check-label d-block hidden" style="color:white; font-size:11px;">
@@ -603,17 +603,17 @@
                 numberAttackUpMod.disabled = false;
             }
 
-            // Show Weakened checkbox if gibdo or armored
+            // Show Weakened checkbox if gibdo
             var weakenedLabel = document.getElementById("weakenedLabel");
             var IsGibdo = selectedEnemyObj.Name.includes("Gibdo");
-            var IsArmored = selectedEnemyObj.Name.includes("(Armored)");
-            if (IsGibdo || IsArmored) {
-                if (IsArmored) {
-                    $('#WeakenedText').text('Unarmored');
-                }
-                else {
-                    $('#WeakenedText').text('Weakened');
-                }
+            var IsCharged = selectedEnemyObj.Name.includes("Electric Chuchu");
+            if (IsGibdo) {
+                $('#WeakenedText').text('Weakened');
+            }
+            else if (IsCharged) {
+                $('#WeakenedText').text('Charged');
+            }
+            if (IsGibdo || IsCharged) {
                 weakenedLabel.classList.remove("hidden");
                 weakenedLabel.style.marginTop = "-22px";
             }
@@ -806,7 +806,7 @@
                             dropdown.value = "Standard Attack";
                         }
                         else if (SelectedWeaponType < 3) {
-                            var NotRod = !Properties.includes("Rod") && !Properties.includes("Melee Projectile");
+                            var NotRod = !Properties.includes("Melee Projectile");
                             dropdown.add(StandardAttack);
                             if (selectedWeaponObj.FuseBaseName == "Master Sword") {
                                 dropdown.add(MasterSwordBeam);
@@ -821,6 +821,14 @@
                             dropdown.add(FlurryRush);
                             dropdown.add(ComboFinisher);
                             dropdown.add(Sidon);
+
+                            // add weapon type to fuse data and replace this check
+                            var IsShieldFuse = selectedFuseObj.Name.includes("Shield") || selectedFuseObj.Name == "Pot Lid" || selectedFuseObj.Name == "Daybreaker";
+                            if (IsShieldFuse) {
+                                dropdown.add(ShieldBash);
+                                dropdown.add(PerfectParry);
+                            }
+
                             if (dropdownvalue == "Sneakstrike" && selectedEnemyObj.CanSneakstrike == false) {
                                 dropdown.value = "Standard Attack";
                             }
@@ -833,7 +841,10 @@
                             else if (dropdownvalue == "Throw" && !NotRod) {
                                 dropdown.value = "Standard Attack";
                             }
-                            else if (dropdownvalue == "Shoot Arrow" || dropdownvalue == "Riju's Lightning" || dropdownvalue == "Shield Bash" || dropdownvalue == "Perfect Parry" || dropdownvalue == "Earthwake Technique") {
+                            else if ((dropdownvalue == "Shield Bash" || dropdownvalue == "Perfect Parry") && !IsShieldFuse) {
+                                dropdown.value = "Standard Attack";
+                            }
+                            else if (dropdownvalue == "Shoot Arrow" || dropdownvalue == "Riju's Lightning" || dropdownvalue == "Earthwake Technique") {
                                 dropdown.value = "Standard Attack";
                             }
                             else {
@@ -884,6 +895,15 @@
             newOption.value = OptionName;
             newOption.text = OptionName;
             return newOption;
+        }
+        function restrictAttackUpMod() {
+            var AttackUpMod = $('#numberAttackUpMod').val();
+            if (AttackUpMod == 1) {
+                $('#numberAttackUpMod').val(3);
+            }
+            else if (AttackUpMod == 2) {
+                $('#numberAttackUpMod').val(0);
+            }
         }
     </script>
 

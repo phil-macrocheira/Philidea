@@ -123,6 +123,20 @@ namespace TOTK.Website.Pages
             BlueDamageNum = (_calculateDamage.GerudoBonus > 1 || _calculateDamage.ZonaiBonus > 0 || _calculateDamage.LowHealth > 1 || _calculateDamage.LowDurability > 1 || _calculateDamage.WetPlayer > 1);
             DamageOutput = _calculateDamage.Calculate(this);
 
+            // Clamp Frox HP
+            if (SelectedEnemy.Name == "Frox" && DamageOutput > 140)
+                DamageOutput = 140;
+            if (SelectedEnemy.Name == "Obsidian Frox" && DamageOutput > 270)
+                DamageOutput = 270;
+            if (SelectedEnemy.Name == "Blue-White Frox" && DamageOutput > 420)
+                DamageOutput = 420;
+
+            // Electric Chuchu Charged Instakill
+            if (SelectedEnemy.Name.IndexOf("Electric Chuchu") != -1 && Input.Weakened && DamageOutput >= 1) {
+                DamageOutput = (float)SelectedEnemy.HP;
+            }
+
+            // Defeated Check
             if (DamageOutput >= SelectedEnemy.HP)
                 Defeated = true;
             else
@@ -200,14 +214,16 @@ namespace TOTK.Website.Pages
         {
             Properties.Clear();
 
-            if (SelectedFuse?.ReplaceProperties.GetValueOrDefault() == true) {
-                if (SelectedFuse?.CanCut.GetValueOrDefault() == true) {
-                    Properties.Add("Cut");
+            if (SelectedWeapon?.Type != 2 && SelectedWeapon?.Type != 3) {
+                if (SelectedFuse?.ReplaceProperties.GetValueOrDefault() == true) {
+                    if (SelectedFuse?.CanCut.GetValueOrDefault() == true) {
+                        Properties.Add("Cut");
+                    }
                 }
-            }
-            else {
-                if (SelectedWeapon?.CanCut.GetValueOrDefault() == true) {
-                    Properties.Add("Cut");
+                else {
+                    if (SelectedWeapon?.CanCut.GetValueOrDefault() == true) {
+                        Properties.Add("Cut");
+                    }
                 }
             }
 

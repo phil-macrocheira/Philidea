@@ -145,6 +145,16 @@ namespace TOTK.Website
 
             AttackPower = (BaseAttack + MineruBonus + (FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
 
+            // Aerocuda/Keese Shield Bash Instalkill
+            if (AttackType == "Perfect Parry" && (Data.SelectedEnemy.Name == "Aerocuda" || IsKeese)) {
+                return (float)Data.SelectedEnemy.HP;
+            }
+
+            // No damage if shield bash from weapon with shield fuse
+            if (WeaponType < 3 && (AttackType == "Shield Bash" || AttackType == "Perfect Parry")) {
+                return 0;
+            }
+
             // Return enemy's HP if ancient blade or wind razor chuchu
             if ((Data.SelectedFuse.Name == "Ancient Blade" && Data.SelectedEnemy.AncientBladeDefeat == true) || (IsChuchu && WindRazor)) {
                 return (float)Data.SelectedEnemy.HP;
@@ -187,11 +197,6 @@ namespace TOTK.Website
                 if (ScanProperties("Water") || AttackType == "Sidon's Water") {
                     return (float)Data.SelectedEnemy.HP;
                 }
-            }
-
-            // Aerocuda/Keese Shield Bash Instalkill
-            if (AttackType == "Perfect Parry" && (Data.SelectedEnemy.Name == "Aerocuda" || IsKeese)) {
-                return (float)Data.SelectedEnemy.HP;
             }
 
             // MASTER SWORD BEAM
@@ -519,6 +524,9 @@ namespace TOTK.Website
                 if (!CutProperty && !TreeCutterProperty) {
                     return 0;
                 }
+                if (AttackType == "Sidon's Water") {
+                    return 0;
+                }
                 if (TreeCutterProperty) {
                     return 3;
                 }
@@ -710,7 +718,6 @@ namespace TOTK.Website
             float FireMult = 1;
 
             RijuDamage += (float)Data.SelectedEnemy.FireDamage + (float)Data.SelectedEnemy.ShockDamage;
-            RijuDamage *= (float)Data.SelectedEnemy.BombMultiplier;
 
             if (EnemyElement == "Fire" && UsingWater) {
                 WaterMult = 1.5f;
