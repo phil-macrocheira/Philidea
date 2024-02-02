@@ -370,7 +370,7 @@ namespace TOTK.Website
         }
         public float GetSneakstrike()
         {
-            if (AttackType == "Sneakstrike" && (Data.Input.Frozen == false || Data.Input.FreeMode)) {
+            if (AttackType == "Sneakstrike") {
                 bool SneakstrikeProperty = ScanProperties("Sneakstrike x2");
 
                 if (SneakstrikeProperty == true) {
