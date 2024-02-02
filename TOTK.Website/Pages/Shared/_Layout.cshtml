@@ -4,22 +4,47 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <meta name="description" content="A damage calculator for The Legend of Zelda: Tears of the Kingdom. Select your equipment and a target enemy to view the damage that would be dealt by the attack.">
+    <meta name="description" content="A collection of all of my projects.">
     <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/TOTK.Website.styles.css" asp-append-version="true" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 </head>
+
 <body>
     <!--HEADER-->
-    <header class="bg-black border-bottom box-shadow mb-3" >
-        <div class="container" style="display:flex; justify-content:space-between;">
-            <label class="totk-title" style="color:white; font-size: 28px; padding:10px;">@ViewData["HeaderTitle"]</label>
-            <label style="font-size:10px; margin-top:2px; margin-right:4px; text-align:right;">@ViewData["Version"]</label>
+    <header class="border-bottom box-shadow mb-3" style="background-color: #212121;">
+        <div class="row">
+            <div class="container col-auto" style="white-space:nowrap; margin-left:200px;">
+                <label style="color:white;font-size:28px;padding:10px;">@ViewData["HeaderTitle"]</label>
+            </div>
+
+            <div class="container col" style="display:flex;align-items:center;">
+                <style>
+                    ul.horizontal-list {
+                        list-style-type: none;
+                        padding: 0;
+                        margin: 0;
+                    }
+                    ul.horizontal-list li {
+                        display: inline-block;
+                        margin-right: 30px;
+                    }
+
+                    ul.horizontal-list a {
+                        color: #5be2d4;
+                        text-decoration: none;
+                    }
+                </style>
+
+                <ul class="horizontal-list">
+                    <li><a href="mailto:philip.underwood2@gmail.com">Contact</a></li>
+                    <li><a href="https://github.com/phil-macrocheira" target="_blank">Github</a></li>
+                </ul>
+            </div>
         </div>
     </header>
 
@@ -29,26 +54,5 @@
             @RenderBody()
         </main>
     </div>
-
-    <!--FOOTER-->
-    <footer class="bg-black border-top footer text-muted">
-        <div class="container">
-            <style>
-                ul.horizontal-list { list-style-type: none; padding: 0; margin: 0; }
-                ul.horizontal-list li { display: inline-block; margin-right: 30px; }
-                ul.horizontal-list a { color: #5be2d4; text-decoration: none; }
-            </style>
-
-            <ul class="horizontal-list">
-                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdWgQW8VGALbCsqE25iIV-nFlz37l-pYmLtYqz4dm_N9TTzAQ/viewform" target="_blank">Submit Feedback</a></li>
-                <li><a href="https://github.com/phil-macrocheira/TOTK-Damage-Calculator" target="_blank">Github</a></li>
-                <li><a href="https://docs.google.com/spreadsheets/d/1LGihwXFrp6FxqSsbrUVIHcw8Nis6Qr3nedVdVpWbpls" target="_blank">Data</a></li>
-                <li><a href="https://docs.google.com/document/d/1K5hLcxfnvSnY-nsIP-n8Ew7rm9EkqHtnn6iJqOnxlng" target="_blank">Damage Doc</a></li>
-                <li><a href="https://discord.gg/k4s5KY7ASj" target="_blank">Datamining Discord</a></li>
-            </ul>
-        </div>
-    </footer>
-
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

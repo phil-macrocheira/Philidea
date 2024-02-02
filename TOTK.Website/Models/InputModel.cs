@@ -18,5 +18,7 @@
         public float HP { get; set; } = 38;
         public string? Buff1 { get; set; } = "None";
         public string? Buff2 { get; set; } = "None";
+        public bool FreeMode { get; set; }
+        public bool TrueDamage { get; set; }
     }
 }

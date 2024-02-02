@@ -66,11 +66,17 @@ namespace TOTK.Website
             WetPlayer = GetWetPlayer();
             MineruBonus = GetMineruBonus();
 
-            float BaseAttackUI = (WeaponUIAdjust(BaseAttack) + MineruBonus + (FuseAttackUI * GerudoBonus) + AttackUpMod + ZonaiBonusUI) * LowHealth * LowDurability * WetPlayer;
-
             if (Data.SelectedWeapon.Type == 5) {
                 return (int)BaseAttack;
             }
+
+            if (Data.Input.TrueDamage) {
+                ZonaiBonus = GetZonaiBonus();
+                return (int)Math.Floor(BaseAttack + MineruBonus + FuseUIAdjust((FuseAttackUI * GerudoBonus) + AttackUpMod + ZonaiBonus) * LowHealth * LowDurability * WetPlayer);
+            }
+
+            float BaseAttackUI = (WeaponUIAdjust(BaseAttack) + MineruBonus + (FuseAttackUI * GerudoBonus) + AttackUpMod + ZonaiBonusUI) * LowHealth * LowDurability * WetPlayer;
+
             return (int)Math.Floor(BaseAttackUI);
         }
         public float WeaponUIAdjust(float input)
@@ -120,13 +126,13 @@ namespace TOTK.Website
             FuseBaseAttack = GetFuseBaseAttack();
             ZonaiBonus = GetZonaiBonus();
             Sneakstrike = GetSneakstrike();
+            CriticalHit = GetCriticalHit();
             OneDurability = GetOneDurability();
             Bone = GetBone();
             FlurryRush = GetFlurryRush();
             Shatter = GetShatter();
             Throw = GetThrow();
             Headshot = GetHeadshot();
-            CriticalHit = GetCriticalHit();
             WindRazor = ScanProperties("Wind Razor");
             Frozen = GetFrozen();
             TreeCutter = GetTreeCutter();
@@ -162,7 +168,7 @@ namespace TOTK.Website
 
             // Pebblit Damage
             if (IsPebblit) {
-                if (AttackType == "Master Sword Beam" || AttackType == "Sidon's Water") {
+                if (AttackType == "Master Sword Beam" || AttackType == "Sidon's Water Well") {
                     return 0;
                 }
                 if (Shatter > 1 && AttackType == "Throw") {
@@ -194,7 +200,7 @@ namespace TOTK.Website
 
             // Fire Chuchu Water Instakill
             if (Data.SelectedEnemy.Name.IndexOf("Fire Chuchu") != -1) {
-                if (ScanProperties("Water") || AttackType == "Sidon's Water") {
+                if (ScanProperties("Water") || AttackType == "Sidon's Water Well") {
                     return (float)Data.SelectedEnemy.HP;
                 }
             }
@@ -210,7 +216,7 @@ namespace TOTK.Website
             }
 
             // Sidon's Water
-            if (AttackType == "Sidon's Water") {
+            if (AttackType == "Sidon's Water Well") {
                 float WaterMult = 1;
                 if (Data.SelectedEnemy.Element == "Fire") {
                     WaterMult = 1.5f;
@@ -364,7 +370,7 @@ namespace TOTK.Website
         }
         public float GetSneakstrike()
         {
-            if (AttackType == "Sneakstrike" && Data.Input.Frozen == false) {
+            if (AttackType == "Sneakstrike" && (Data.Input.Frozen == false || Data.Input.FreeMode)) {
                 bool SneakstrikeProperty = ScanProperties("Sneakstrike x2");
 
                 if (SneakstrikeProperty == true) {
@@ -389,11 +395,8 @@ namespace TOTK.Website
                 return 1;
             }
 
-            if (WeaponType != 3 && WeaponType != 5 && Data.Input.Durability == 1 && Data.Input.Frozen == false 
-                && AttackType != "Combo Finisher" && AttackType != "Perfect Parry") {
-                if (AttackType != "Throw" || Data.SelectedWeapon.Property == "Boomerang") {
-                    return 2;
-                }
+            if (WeaponType != 3 && WeaponType != 5 && Data.Input.Durability == 1 && AttackType != "Perfect Parry" && CriticalHit == 1) {
+                return 2;
             }
             return 1;
         }
@@ -524,7 +527,7 @@ namespace TOTK.Website
                 if (!CutProperty && !TreeCutterProperty) {
                     return 0;
                 }
-                if (AttackType == "Sidon's Water") {
+                if (AttackType == "Sidon's Water Well") {
                     return 0;
                 }
                 if (TreeCutterProperty) {

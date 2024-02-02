@@ -65,6 +65,8 @@ namespace TOTK.Website.Pages
             Input.HP = Convert.ToSingle(Request.Form["PlayerHP"]);
             Input.Buff1 = Request.Form["Buff1"];
             Input.Buff2 = Request.Form["Buff2"];
+            Input.FreeMode = Request.Form["FreeMode"] == "true";
+            Input.TrueDamage = Request.Form["TrueDamage"] == "true";
 
             SelectedWeapon.Name = Request.Form["NameWeapon"];
             SelectedWeapon.Type = Convert.ToByte(Request.Form["Type"]);
