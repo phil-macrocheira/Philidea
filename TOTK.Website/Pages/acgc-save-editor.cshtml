@@ -90,7 +90,6 @@
             @for (int i = 0; i < 15; i++) {
                 <div class="inventory-slot" data-index="@i" title=""></div>
             }
-            <div class="bubble-tooltip"><img src="bubble/bubble.png"/><p></p></div>
         </div>
     </div>
 </div>
@@ -101,18 +100,47 @@
     <h5>Bulletin Board Post #2</h5><textarea class="form-control" id="bulletin_board_post_02"></textarea>
 </div>
 
+<div class="ac-bubble">
+	<div class="ac-bubble-tooltip">
+		<div class="ac-bubble-triangle">
+			<img src="bubble/bubbletriangle.png">
+		</div>
+		<div class="ac-bubble-container">
+			<div class="ac-bubble-tl">
+				<img src="bubble/bubble-corner.png">
+			</div>
+			<div class="ac-bubble-tr">
+				<img src="bubble/bubble-corner.png">
+			</div>
+			<div class="ac-bubble-mc">
+				<div class="ac-bubble-content">
+					<p>Present (Buried Pitfall (Bent & Angled Down-Left Slightly))</p>
+				</div>
+			</div>
+			<div class="ac-bubble-bl">
+				<img src="bubble/bubble-corner.png">
+			</div>
+			<div class="ac-bubble-br">
+				<img src="bubble/bubble-corner.png">
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <script>
     // TOOLTIP
-    document.querySelectorAll('.inventory-slot').forEach(function (slot) {
-        slot.addEventListener('mouseover', function (e) {
-            var title = slot.getAttribute('title');
-            if (title) {
-                var tooltipText = document.querySelector('.bubble-tooltip p');
+    function hookTooltipListeners() {
+        document.querySelectorAll('.inventory-slot').forEach(function (slot) {
+        slot.addEventListener('mousemove', function (e) {
+                var title = slot.getElementsByTagName('img')[0].getAttribute('bubbletext');
+            if (title !== null) {
+                    var tooltipText = document.querySelector('.ac-bubble-content p');
                 tooltipText.innerText = title;
-                var tooltip = document.querySelector('.bubble-tooltip');
+                    var tooltip = document.querySelector('.ac-bubble');
                 tooltip.style.display = 'block';
-                tooltip.style.top = (e.clientY + 10) + 'px';
-                tooltip.style.left = (e.clientX + 10) + 'px';
+                    tooltip.style.top = ((Math.round((e.clientY - 32) / 64) * 64) + 36) + 'px'; // if grid is moved, adjust e.clientY +- y
+                    tooltip.style.left = ((Math.round((e.clientX - 25 - 32) / 64) * 64) + 36) + 'px'; // if grid is moved, adjust e.clientX +- x
             }
         });
         slot.addEventListener('mouseout', function () {
@@ -120,6 +148,7 @@
             tooltip.style.display = 'none';
         });
     });
+    }
 </script>
 
 <script>
@@ -179,10 +208,10 @@
             
             if (document.getElementById("checkboxPresent").checked) {
                 inventoryItemConditions[inventorySlotIndex] = 1;
-                $this.html('<img src="' + PresentIconURL + '" title="' + 'Present (' + selectedItemObj.Name + ')' + '">');
+                $this.html('<img src="' + PresentIconURL + '" bubbletext="' + 'Present (' + selectedItemObj.Name + ')' + '">');
             }
             else {
-                $this.html('<img src="' + inventoryIconURL + '" title="' + selectedItemObj.Name + '">');
+                $this.html('<img src="' + inventoryIconURL + '" bubbletext="' + selectedItemObj.Name + '">');
             }
         });
     }
@@ -200,11 +229,11 @@
             if (obj && obj.IconURL) {
                 if (inventoryItemConditions[i] == 1) {
                     imgElement.attr('src', PresentIconURL);
-                    imgElement.attr('title', 'Present (' + obj.Name + ')');
+                    imgElement.attr('bubbletext', 'Present (' + obj.Name + ')');
                 }
                 else {
                     imgElement.attr('src', obj.IconURL);
-                    imgElement.attr('title', obj.Name);
+                    imgElement.attr('bubbletext', obj.Name);
                 }
             }
             else {
@@ -372,6 +401,7 @@
                 }
             });
         });
+        hookTooltipListeners();
     });
 </script>
 <script>
