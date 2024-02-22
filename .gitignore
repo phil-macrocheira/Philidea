@@ -364,20 +364,3 @@ FodyWeavers.xsd
 
 # AppSettings
 TOTK.Website/appsettings.json
-
-# Error Pages
-TOTK.Website/Pages/Error.cshtml
-TOTK.Website/Pages/Error.cshtml.cs
-
-# Homepage Files
-TOTK.Website/Pages/Index.cshtml
-TOTK.Website/Pages/Index.cshtml.cs
-TOTK.Website/Pages/Shared/_Layout.cshtml
-TOTK.Website/wwwroot/favicon.ico
-TOTK.Website/wwwroot/css/site.css
-TOTK.Website/wwwroot/js/site.js
-
-# Empty Folders
-TOTK.Website/wwwroot/js/
-TOTK.Website/Controllers/
-TOTK.Website/Services/
