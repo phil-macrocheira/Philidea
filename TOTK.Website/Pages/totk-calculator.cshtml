@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "TotK Damage Calculator";
     ViewData["HeaderTitle"] = "TEARS OF THE KINGDOM DAMAGE CALCULATOR";
-    ViewData["Version"] = "v1.2.0";
+    ViewData["Version"] = "v1.2.1";
     Layout = "totk-calculator_layout.cshtml";
 }
 @Html.AntiForgeryToken()
@@ -99,7 +99,7 @@
                 <option value="Master Sword Beam">Master Sword Beam</option>
                 <option value="Flurry Rush">Flurry Rush</option>
                 <option value="Combo Finisher">Combo Finisher</option>
-                <option value="Sidon's Water Well">Sidon's Water Well</option>
+                <option value="Sidon's Water">Sidon's Water</option>
             </select>
         </div>
 
@@ -774,7 +774,7 @@
                     $('#FormulaText').text(response.formula);
 
                     // UPDATE ATTACK TYPE DROPDOWN
-                    if (dropdownEdited === 'weapon' || dropdownEdited === 'fuse' || dropdownEdited === 'enemy' || dropdownEdited === 'frozen' || ('#checkboxFreeMode').is(':checked')) {
+                    if (dropdownEdited === 'weapon' || dropdownEdited === 'fuse' || dropdownEdited === 'enemy' || dropdownEdited === 'frozen' || checkboxFreeMode.checked) {
                         var StandardAttack = NewOption("Standard Attack");
                         var Shoot = NewOption("Shoot Arrow");
                         var ShieldBash = NewOption("Shield Bash");
@@ -784,7 +784,7 @@
                         var Throw = NewOption("Throw");
                         var Sneakstrike = NewOption("Sneakstrike");
                         var FlurryRush = NewOption("Flurry Rush");
-                        var Sidon = NewOption("Sidon's Water Well");
+                        var Sidon = NewOption("Sidon's Water");
                         var Riju = NewOption("Riju's Lightning");
                         var MasterSwordBeam = NewOption("Master Sword Beam");
 

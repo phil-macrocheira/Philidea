@@ -1,0 +1,5028 @@
+{
+  "gci_header": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00000",
+    "Byte Size": 64,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "game_id": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00000",
+    "Byte Size": 3,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "game_id_region_flag": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00003",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "game_id_company_id": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00004",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "graphics_format": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00007",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "file_id": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00008",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "date_modified": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00028",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "graphic_offset": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x0002C",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "blocks_used": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00038",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "game_info_offset": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x0003C",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "game_info": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00040",
+    "Byte Size": 64,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "game_name": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00040",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "file_info": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00060",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "banner": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00080",
+    "Byte Size": 3584,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "icon": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x00E80",
+    "Byte Size": 1536,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_storage": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x14A0",
+    "Byte Size": 47936,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "design_storage": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0xCFE0",
+    "Byte Size": 52256,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "diary_entries": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x19C00",
+    "Byte Size": 50240,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "save_data": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "0x26040",
+    "Byte Size": 155648,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "save_info": {
+    "Local Byte Offset": "0x00000",
+    "Global Byte Offset": "0x26040",
+    "Byte Size": 20,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "game_version": {
+    "Local Byte Offset": "0x00003",
+    "Global Byte Offset": "0x26043",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "save_game_id": {
+    "Local Byte Offset": "0x00004",
+    "Global Byte Offset": "0x26044",
+    "Byte Size": 3,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "save_game_id_region_flag": {
+    "Local Byte Offset": "0x00005",
+    "Global Byte Offset": "0x26045",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_count": {
+    "Local Byte Offset": "0x00018",
+    "Global Byte Offset": "0x26058",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_leaving": {
+    "Local Byte Offset": "0x00019",
+    "Global Byte Offset": "0x26059",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "copy_protect": {
+    "Local Byte Offset": "0x0001A",
+    "Global Byte Offset": "0x2605A",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_data": {
+    "Local Byte Offset": "0x00020",
+    "Global Byte Offset": "0x26060",
+    "Byte Size": 37128,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_data_1": {
+    "Local Byte Offset": "0x00020",
+    "Global Byte Offset": "0x26060",
+    "Byte Size": 9282,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_data_2": {
+    "Local Byte Offset": "0x02462",
+    "Global Byte Offset": "0x284A2",
+    "Byte Size": 9282,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_data_3": {
+    "Local Byte Offset": "0x048A4",
+    "Global Byte Offset": "0x2A8E4",
+    "Byte Size": 9282,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_data_4": {
+    "Local Byte Offset": "0x06CE6",
+    "Global Byte Offset": "0x2CD26",
+    "Byte Size": 9282,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "town_name": {
+    "Local Byte Offset": "0x09120",
+    "Global Byte Offset": "0x2F160",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "town_id": {
+    "Local Byte Offset": "0x09128",
+    "Global Byte Offset": "0x2F168",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_posts": {
+    "Local Byte Offset": "0x0912C",
+    "Global Byte Offset": "0x2F16C",
+    "Byte Size": 3000,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_01": {
+    "Local Byte Offset": "0x0912C",
+    "Global Byte Offset": "0x2F16C",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_01": {
+    "Local Byte Offset": "0x91EC",
+    "Global Byte Offset": "0x2F230",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_02": {
+    "Local Byte Offset": "0x091F4",
+    "Global Byte Offset": "0x2F234",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_02": {
+    "Local Byte Offset": "0x092B4",
+    "Global Byte Offset": "0x2F2F4",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_03": {
+    "Local Byte Offset": "0x092BC",
+    "Global Byte Offset": "0x2F2FC",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_03": {
+    "Local Byte Offset": "0x0937C",
+    "Global Byte Offset": "0x2F3BC",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_04": {
+    "Local Byte Offset": "0x09384",
+    "Global Byte Offset": "0x2F3C4",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_04": {
+    "Local Byte Offset": "0x09444",
+    "Global Byte Offset": "0x2F484",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_05": {
+    "Local Byte Offset": "0x0944C",
+    "Global Byte Offset": "0x2F48C",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_05": {
+    "Local Byte Offset": "0x0950C",
+    "Global Byte Offset": "0x2F54C",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_06": {
+    "Local Byte Offset": "0x09514",
+    "Global Byte Offset": "0x2F554",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_06": {
+    "Local Byte Offset": "0x095D4",
+    "Global Byte Offset": "0x2F614",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_07": {
+    "Local Byte Offset": "0x095DC",
+    "Global Byte Offset": "0x2F61C",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_07": {
+    "Local Byte Offset": "0x0969C",
+    "Global Byte Offset": "0x2F6DC",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_08": {
+    "Local Byte Offset": "0x096A4",
+    "Global Byte Offset": "0x2F6E4",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_08": {
+    "Local Byte Offset": "0x09764",
+    "Global Byte Offset": "0x2F7A4",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_09": {
+    "Local Byte Offset": "0x0976C",
+    "Global Byte Offset": "0x2F7AC",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_09": {
+    "Local Byte Offset": "0x0982C",
+    "Global Byte Offset": "0x2F86C",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_10": {
+    "Local Byte Offset": "0x09834",
+    "Global Byte Offset": "0x2F874",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_10": {
+    "Local Byte Offset": "0x098F4",
+    "Global Byte Offset": "0x2F934",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_11": {
+    "Local Byte Offset": "0x098FC",
+    "Global Byte Offset": "0x2F93C",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_11": {
+    "Local Byte Offset": "0x099BC",
+    "Global Byte Offset": "0x2F9FC",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_12": {
+    "Local Byte Offset": "0x099C4",
+    "Global Byte Offset": "0x2FA04",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_12": {
+    "Local Byte Offset": "0x09A84",
+    "Global Byte Offset": "0x2FAC4",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_13": {
+    "Local Byte Offset": "0x09A8C",
+    "Global Byte Offset": "0x2FACC",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_13": {
+    "Local Byte Offset": "0x09B4C",
+    "Global Byte Offset": "0x2FB8C",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_14": {
+    "Local Byte Offset": "0x09B54",
+    "Global Byte Offset": "0x2FB94",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_14": {
+    "Local Byte Offset": "0x09C14",
+    "Global Byte Offset": "0x2FC54",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_15": {
+    "Local Byte Offset": "0x09C1C",
+    "Global Byte Offset": "0x2FC5C",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bulletin_board_post_dmy_15": {
+    "Local Byte Offset": "0x09CDC",
+    "Global Byte Offset": "0x2FD1C",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_data": {
+    "Local Byte Offset": "0x09CE8",
+    "Global Byte Offset": "0x2FD28",
+    "Byte Size": 39616,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_data_1": {
+    "Local Byte Offset": "0x09CE8",
+    "Global Byte Offset": "0x2FD28",
+    "Byte Size": 9904,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_data_2": {
+    "Local Byte Offset": "0x0C398",
+    "Global Byte Offset": "0x323D8",
+    "Byte Size": 9904,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_data_3": {
+    "Local Byte Offset": "0x0EA48",
+    "Global Byte Offset": "0x34A88",
+    "Byte Size": 9904,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_data_4": {
+    "Local Byte Offset": "0x110F8",
+    "Global Byte Offset": "0x37138",
+    "Byte Size": 9904,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "acre_items": {
+    "Local Byte Offset": "0x137A8",
+    "Global Byte Offset": "0x397E8",
+    "Byte Size": 15360,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "acre_ids": {
+    "Local Byte Offset": "0x173A8",
+    "Global Byte Offset": "0x3D3E8",
+    "Byte Size": 60,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data": {
+    "Local Byte Offset": "0x17438",
+    "Global Byte Offset": "0x3D478",
+    "Byte Size": 36600,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_01": {
+    "Local Byte Offset": "0x17438",
+    "Global Byte Offset": "0x3D478",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_02": {
+    "Local Byte Offset": "0x17DC0",
+    "Global Byte Offset": "0x3DE00",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_03": {
+    "Local Byte Offset": "0x18748",
+    "Global Byte Offset": "0x3E788",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_04": {
+    "Local Byte Offset": "0x190D0",
+    "Global Byte Offset": "0x3F110",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_05": {
+    "Local Byte Offset": "0x19A58",
+    "Global Byte Offset": "0x3FA98",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_06": {
+    "Local Byte Offset": "0x1A3E0",
+    "Global Byte Offset": "0x40420",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_07": {
+    "Local Byte Offset": "0x1AD68",
+    "Global Byte Offset": "0x40DA8",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_08": {
+    "Local Byte Offset": "0x1B6F0",
+    "Global Byte Offset": "0x41730",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_09": {
+    "Local Byte Offset": "0x1C078",
+    "Global Byte Offset": "0x420B8",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_10": {
+    "Local Byte Offset": "0x1CA00",
+    "Global Byte Offset": "0x42A40",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_11": {
+    "Local Byte Offset": "0x1D388",
+    "Global Byte Offset": "0x433C8",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_12": {
+    "Local Byte Offset": "0x1DD10",
+    "Global Byte Offset": "0x43D50",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_13": {
+    "Local Byte Offset": "0x1E698",
+    "Global Byte Offset": "0x446D8",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_14": {
+    "Local Byte Offset": "0x1F020",
+    "Global Byte Offset": "0x45060",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_data_15": {
+    "Local Byte Offset": "0x1F9A8",
+    "Global Byte Offset": "0x459E8",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_moved_id": {
+    "Local Byte Offset": "0x20330",
+    "Global Byte Offset": "0x46370",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_moved_town_id": {
+    "Local Byte Offset": "0x20332",
+    "Global Byte Offset": "0x46372",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_moved_town_name": {
+    "Local Byte Offset": "0x20334",
+    "Global Byte Offset": "0x46374",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_moved_name_id": {
+    "Local Byte Offset": "0x2033C",
+    "Global Byte Offset": "0x4637C",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_moved_personality": {
+    "Local Byte Offset": "0x2033D",
+    "Global Byte Offset": "0x4637D",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "shop_data": {
+    "Local Byte Offset": "0x20340",
+    "Global Byte Offset": "0x46380",
+    "Byte Size": 320,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "turnip_price_sunday": {
+    "Local Byte Offset": "0x20480",
+    "Global Byte Offset": "0x464C0",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "turnip_price_monday": {
+    "Local Byte Offset": "0x20482",
+    "Global Byte Offset": "0x464C2",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "turnip_price_tuesday": {
+    "Local Byte Offset": "0x20484",
+    "Global Byte Offset": "0x464C4",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "turnip_price_wednesday": {
+    "Local Byte Offset": "0x20486",
+    "Global Byte Offset": "0x464C6",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "turnip_price_thursday": {
+    "Local Byte Offset": "0x20488",
+    "Global Byte Offset": "0x464C8",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "turnip_price_friday": {
+    "Local Byte Offset": "0x2048A",
+    "Global Byte Offset": "0x464CA",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "turnip_price_saturday": {
+    "Local Byte Offset": "0x2048C",
+    "Global Byte Offset": "0x464CC",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "turnip_price_trend": {
+    "Local Byte Offset": "0x2048E",
+    "Global Byte Offset": "0x464CE",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "turnip_next_update_time": {
+    "Local Byte Offset": "0x20490",
+    "Global Byte Offset": "0x464D0",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "weekly_event_time": {
+    "Local Byte Offset": "0x20498",
+    "Global Byte Offset": "0x464D8",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "weekly_event_type": {
+    "Local Byte Offset": "0x20556",
+    "Global Byte Offset": "0x46596",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "weekly_event_joan_data": {
+    "Local Byte Offset": "0x204A4",
+    "Global Byte Offset": "0x464E4",
+    "Byte Size": "",
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "weekly_event_gulliver_data": {
+    "Local Byte Offset": "",
+    "Global Byte Offset": "",
+    "Byte Size": "",
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "weekly_event_flags": {
+    "Local Byte Offset": "0x20557",
+    "Global Byte Offset": "0x46597",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "special_event_type": {
+    "Local Byte Offset": "0x20554",
+    "Global Byte Offset": "0x46594",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "special_event_flags": {
+    "Local Byte Offset": "0x20555",
+    "Global Byte Offset": "0x46595",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "today_date": {
+    "Local Byte Offset": "0x20558",
+    "Global Byte Offset": "0x46598",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "last_play_date": {
+    "Local Byte Offset": "0x2055A",
+    "Global Byte Offset": "0x4659A",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "birthday_date": {
+    "Local Byte Offset": "0x2055C",
+    "Global Byte Offset": "0x4659C",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "weekly_event_generated_date": {
+    "Local Byte Offset": "0x2055E",
+    "Global Byte Offset": "0x4659E",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "weekly_event_start_date": {
+    "Local Byte Offset": "0x20560",
+    "Global Byte Offset": "0x465A0",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "weekly_event_end_date": {
+    "Local Byte Offset": "0x20562",
+    "Global Byte Offset": "0x465A2",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "weekly_event_date": {
+    "Local Byte Offset": "0x20564",
+    "Global Byte Offset": "0x465A4",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "weekly_event_start_hour": {
+    "Local Byte Offset": "0x20567",
+    "Global Byte Offset": "0x465A7",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_use_bitfield": {
+    "Local Byte Offset": "0x20568",
+    "Global Byte Offset": "0x465A8",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_type_1": {
+    "Local Byte Offset": "0x2056C",
+    "Global Byte Offset": "0x465AC",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_id_1": {
+    "Local Byte Offset": "0x2056D",
+    "Global Byte Offset": "0x465AD",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_year_1": {
+    "Local Byte Offset": "0x2056E",
+    "Global Byte Offset": "0x465AE",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_start_date_1": {
+    "Local Byte Offset": "0x20570",
+    "Global Byte Offset": "0x465B0",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_end_date_1": {
+    "Local Byte Offset": "0x20572",
+    "Global Byte Offset": "0x465B2",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_data_1": {
+    "Local Byte Offset": "0x20574",
+    "Global Byte Offset": "0x465B4",
+    "Byte Size": 44,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_type_2": {
+    "Local Byte Offset": "0x205A0",
+    "Global Byte Offset": "0x465E0",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_id_2": {
+    "Local Byte Offset": "0x205A1",
+    "Global Byte Offset": "0x465E1",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_year_2": {
+    "Local Byte Offset": "0x205A2",
+    "Global Byte Offset": "0x465E2",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_start_date_2": {
+    "Local Byte Offset": "0x205A4",
+    "Global Byte Offset": "0x465E4",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_end_date_2": {
+    "Local Byte Offset": "0x205A6",
+    "Global Byte Offset": "0x465E6",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_data_2": {
+    "Local Byte Offset": "0x205A8",
+    "Global Byte Offset": "0x465E8",
+    "Byte Size": 44,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_type_3": {
+    "Local Byte Offset": "0x205D4",
+    "Global Byte Offset": "0x46614",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_id_3": {
+    "Local Byte Offset": "0x205D5",
+    "Global Byte Offset": "0x46615",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_year_3": {
+    "Local Byte Offset": "0x205D6",
+    "Global Byte Offset": "0x46616",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_start_date_3": {
+    "Local Byte Offset": "0x205D8",
+    "Global Byte Offset": "0x46618",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_end_date_3": {
+    "Local Byte Offset": "0x205DA",
+    "Global Byte Offset": "0x4661A",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_data_3": {
+    "Local Byte Offset": "0x205DC",
+    "Global Byte Offset": "0x4661C",
+    "Byte Size": 44,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_type_4": {
+    "Local Byte Offset": "0x20608",
+    "Global Byte Offset": "0x46648",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_id_4": {
+    "Local Byte Offset": "0x20609",
+    "Global Byte Offset": "0x46649",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_year_4": {
+    "Local Byte Offset": "0x2060A",
+    "Global Byte Offset": "0x4664A",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_start_date_4": {
+    "Local Byte Offset": "0x2060C",
+    "Global Byte Offset": "0x4664C",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_end_date_4": {
+    "Local Byte Offset": "0x2060E",
+    "Global Byte Offset": "0x4664E",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_data_4": {
+    "Local Byte Offset": "0x20610",
+    "Global Byte Offset": "0x46650",
+    "Byte Size": 44,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_type_5": {
+    "Local Byte Offset": "0x2063C",
+    "Global Byte Offset": "0x4667C",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_id_5": {
+    "Local Byte Offset": "0x2063D",
+    "Global Byte Offset": "0x4667D",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_year_5": {
+    "Local Byte Offset": "0x2063E",
+    "Global Byte Offset": "0x4667E",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_start_date_5": {
+    "Local Byte Offset": "0x20640",
+    "Global Byte Offset": "0x46680",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_end_date_5": {
+    "Local Byte Offset": "0x20642",
+    "Global Byte Offset": "0x46682",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "area_event_data_5": {
+    "Local Byte Offset": "0x20644",
+    "Global Byte Offset": "0x46684",
+    "Byte Size": 44,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "event_last_date": {
+    "Local Byte Offset": "0x20670",
+    "Global Byte Offset": "0x466B0",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "event_id_delete": {
+    "Local Byte Offset": "0x20674",
+    "Global Byte Offset": "0x466B4",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "valentines_day_date": {
+    "Local Byte Offset": "0x20678",
+    "Global Byte Offset": "0x466B8",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "wisp_date": {
+    "Local Byte Offset": "0x20680",
+    "Global Byte Offset": "0x466C0",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "tortimer_bridge_previous_date": {
+    "Local Byte Offset": "0x20682",
+    "Global Byte Offset": "0x466C2",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "tortimer_bridge_declined_all_flag": {
+    "Local Byte Offset": "0x20684",
+    "Global Byte Offset": "0x466C4",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "tortimer_bridge_current_acre": {
+    "Local Byte Offset": "0x20684",
+    "Global Byte Offset": "0x466C4",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 7
+  },
+  "wisp_spawn_flag": {
+    "Local Byte Offset": "0x20685",
+    "Global Byte Offset": "0x466C5",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_type": {
+    "Local Byte Offset": "0x20686",
+    "Global Byte Offset": "0x466C6",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "gulliver_completed_flag": {
+    "Local Byte Offset": "0x20687",
+    "Global Byte Offset": "0x466C7",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "town_fruit": {
+    "Local Byte Offset": "0x20688",
+    "Global Byte Offset": "0x466C8",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_house_location_1": {
+    "Local Byte Offset": "0x2068A",
+    "Global Byte Offset": "0x466CA",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 2
+  },
+  "player_house_location_2": {
+    "Local Byte Offset": "0x2068A",
+    "Global Byte Offset": "0x466CA",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 2
+  },
+  "player_house_location_3": {
+    "Local Byte Offset": "0x2068A",
+    "Global Byte Offset": "0x466CA",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 2
+  },
+  "player_house_location_4": {
+    "Local Byte Offset": "0x2068A",
+    "Global Byte Offset": "0x466CA",
+    "Byte Size": 1,
+    "Bit Offset": 6,
+    "Bit Size": 2
+  },
+  "statue_count": {
+    "Local Byte Offset": "0x2068B",
+    "Global Byte Offset": "0x466CB",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "acre_items_renewal_time": {
+    "Local Byte Offset": "0x2068C",
+    "Global Byte Offset": "0x466CC",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "post_office_data": {
+    "Local Byte Offset": "0x20694",
+    "Global Byte Offset": "0x466D4",
+    "Byte Size": 2108,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "police_station_data": {
+    "Local Byte Offset": "0x20ED0",
+    "Global Byte Offset": "0x46F10",
+    "Byte Size": 40,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "snowman_data": {
+    "Local Byte Offset": "0x20EF8",
+    "Global Byte Offset": "0x46F38",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "town_tune": {
+    "Local Byte Offset": "0x20F08",
+    "Global Byte Offset": "0x46F48",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "town_tune_note_01": {
+    "Local Byte Offset": "0x20F08",
+    "Global Byte Offset": "0x46F48",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 4
+  },
+  "town_tune_note_02": {
+    "Local Byte Offset": "0x20F08",
+    "Global Byte Offset": "0x46F48",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 4
+  },
+  "town_tune_note_03": {
+    "Local Byte Offset": "0x20F09",
+    "Global Byte Offset": "0x46F49",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 4
+  },
+  "town_tune_note_04": {
+    "Local Byte Offset": "0x20F09",
+    "Global Byte Offset": "0x46F49",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 4
+  },
+  "town_tune_note_05": {
+    "Local Byte Offset": "0x20F0A",
+    "Global Byte Offset": "0x46F4A",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 4
+  },
+  "town_tune_note_06": {
+    "Local Byte Offset": "0x20F0A",
+    "Global Byte Offset": "0x46F4A",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 4
+  },
+  "town_tune_note_07": {
+    "Local Byte Offset": "0x20F0B",
+    "Global Byte Offset": "0x46F4B",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 4
+  },
+  "town_tune_note_08": {
+    "Local Byte Offset": "0x20F0B",
+    "Global Byte Offset": "0x46F4B",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 4
+  },
+  "town_tune_note_09": {
+    "Local Byte Offset": "0x20F0C",
+    "Global Byte Offset": "0x46F4C",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 4
+  },
+  "town_tune_note_10": {
+    "Local Byte Offset": "0x20F0C",
+    "Global Byte Offset": "0x46F4C",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 4
+  },
+  "town_tune_note_11": {
+    "Local Byte Offset": "0x20F0D",
+    "Global Byte Offset": "0x46F4D",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 4
+  },
+  "town_tune_note_12": {
+    "Local Byte Offset": "0x20F0D",
+    "Global Byte Offset": "0x46F4D",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 4
+  },
+  "town_tune_note_13": {
+    "Local Byte Offset": "0x20F0E",
+    "Global Byte Offset": "0x46F4E",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 4
+  },
+  "town_tune_note_14": {
+    "Local Byte Offset": "0x20F0E",
+    "Global Byte Offset": "0x46F4E",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 4
+  },
+  "town_tune_note_15": {
+    "Local Byte Offset": "0x20F0F",
+    "Global Byte Offset": "0x46F4F",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 4
+  },
+  "town_tune_note_16": {
+    "Local Byte Offset": "0x20F0F",
+    "Global Byte Offset": "0x46F4F",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 4
+  },
+  "game_sound_setting": {
+    "Local Byte Offset": "0x20F10",
+    "Global Byte Offset": "0x46F50",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "game_villager_voice_setting": {
+    "Local Byte Offset": "0x20F11",
+    "Global Byte Offset": "0x46F51",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "game_vibration_setting": {
+    "Local Byte Offset": "0x20F12",
+    "Global Byte Offset": "0x46F52",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "last_loaded_ymd": {
+    "Local Byte Offset": "0x20F14",
+    "Global Byte Offset": "0x46F54",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "train_station_type": {
+    "Local Byte Offset": "0x20F18",
+    "Global Byte Offset": "0x46F58",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "weather_type": {
+    "Local Byte Offset": "0x20F19",
+    "Global Byte Offset": "0x46F59",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 4
+  },
+  "weather_intensity": {
+    "Local Byte Offset": "0x20F19",
+    "Global Byte Offset": "0x46F59",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 4
+  },
+  "save_exists_flag": {
+    "Local Byte Offset": "0x20F1A",
+    "Global Byte Offset": "0x46F5A",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "npc_force_go_home_flag": {
+    "Local Byte Offset": "0x20F1B",
+    "Global Byte Offset": "0x46F5B",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "acre_items_buried_flags": {
+    "Local Byte Offset": "0x20F1C",
+    "Global Byte Offset": "0x46F5C",
+    "Byte Size": 960,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_moved_in_time": {
+    "Local Byte Offset": "0x212DC",
+    "Global Byte Offset": "0x4731C",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_received_ymd_1": {
+    "Local Byte Offset": "0x212E4",
+    "Global Byte Offset": "0x47324",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_normal_1": {
+    "Local Byte Offset": "0x212E8",
+    "Global Byte Offset": "0x47328",
+    "Byte Size": 7,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_monthly_1": {
+    "Local Byte Offset": "0x212EF",
+    "Global Byte Offset": "0x4732F",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_august_1": {
+    "Local Byte Offset": "0x212F1",
+    "Global Byte Offset": "0x47331",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_received_ymd_2": {
+    "Local Byte Offset": "0x212F2",
+    "Global Byte Offset": "0x47332",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_normal_2": {
+    "Local Byte Offset": "0x212F6",
+    "Global Byte Offset": "0x47336",
+    "Byte Size": 7,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_monthly_2": {
+    "Local Byte Offset": "0x212FD",
+    "Global Byte Offset": "0x4733D",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_august_2": {
+    "Local Byte Offset": "0x212FF",
+    "Global Byte Offset": "0x4733F",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_received_ymd_3": {
+    "Local Byte Offset": "0x21300",
+    "Global Byte Offset": "0x47340",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_normal_3": {
+    "Local Byte Offset": "0x21304",
+    "Global Byte Offset": "0x47344",
+    "Byte Size": 7,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_monthly_3": {
+    "Local Byte Offset": "0x2130B",
+    "Global Byte Offset": "0x4734B",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_august_3": {
+    "Local Byte Offset": "0x2130D",
+    "Global Byte Offset": "0x4734D",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_received_ymd_4": {
+    "Local Byte Offset": "0x2130E",
+    "Global Byte Offset": "0x4734E",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_normal_4": {
+    "Local Byte Offset": "0x21312",
+    "Global Byte Offset": "0x47352",
+    "Byte Size": 7,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_monthly_4": {
+    "Local Byte Offset": "0x21319",
+    "Global Byte Offset": "0x47359",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_letter_august_4": {
+    "Local Byte Offset": "0x2131B",
+    "Global Byte Offset": "0x4735B",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "mushroom_updated_time": {
+    "Local Byte Offset": "0x2131C",
+    "Global Byte Offset": "0x4735C",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villagers_lived_in_town_bitfield": {
+    "Local Byte Offset": "0x2134E",
+    "Global Byte Offset": "0x4738E",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "changed_clock_flag": {
+    "Local Byte Offset": "0x21376",
+    "Global Byte Offset": "0x473B6",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "treasure_buried_time": {
+    "Local Byte Offset": "0x2137E",
+    "Global Byte Offset": "0x473BE",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "treasure_checked_time": {
+    "Local Byte Offset": "0x21386",
+    "Global Byte Offset": "0x473C6",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "debug_mode_flag": {
+    "Local Byte Offset": "0x2138E",
+    "Global Byte Offset": "0x473CE",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "snowman_year": {
+    "Local Byte Offset": "0x2138F",
+    "Global Byte Offset": "0x473CF",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "snowman_month": {
+    "Local Byte Offset": "0x21390",
+    "Global Byte Offset": "0x473D0",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "snowman_day": {
+    "Local Byte Offset": "0x21391",
+    "Global Byte Offset": "0x473D1",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "snowman_hour": {
+    "Local Byte Offset": "0x21392",
+    "Global Byte Offset": "0x473D2",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "gyroids_spawn_tomorrow_flag": {
+    "Local Byte Offset": "0x21393",
+    "Global Byte Offset": "0x473D3",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "town_trash_flag": {
+    "Local Byte Offset": "0x21394",
+    "Global Byte Offset": "0x473D4",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "wisp_clear_weeds_flag": {
+    "Local Byte Offset": "0x21395",
+    "Global Byte Offset": "0x473D5",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "event_year": {
+    "Local Byte Offset": "0x21398",
+    "Global Byte Offset": "0x473D8",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "house_size_change_pending_flag_1": {
+    "Local Byte Offset": "0x213A0",
+    "Global Byte Offset": "0x473E0",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "house_size_change_pending_flag_2": {
+    "Local Byte Offset": "0x213A1",
+    "Global Byte Offset": "0x473E1",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "house_size_change_pending_flag_3": {
+    "Local Byte Offset": "0x213A2",
+    "Global Byte Offset": "0x473E2",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "house_size_change_pending_flag_4": {
+    "Local Byte Offset": "0x213A3",
+    "Global Byte Offset": "0x473E3",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_move_out_checked_ymd": {
+    "Local Byte Offset": "0x213A4",
+    "Global Byte Offset": "0x473E4",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "museum_bitfield": {
+    "Local Byte Offset": "0x213A8",
+    "Global Byte Offset": "0x473E8",
+    "Byte Size": 63,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "bridge_data": {
+    "Local Byte Offset": "0x213F0",
+    "Global Byte Offset": "0x47430",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_designs": {
+    "Local Byte Offset": "0x21400",
+    "Global Byte Offset": "0x47440",
+    "Byte Size": 4352,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_name_1": {
+    "Local Byte Offset": "0x21400",
+    "Global Byte Offset": "0x47440",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_palette_1": {
+    "Local Byte Offset": "0x21410",
+    "Global Byte Offset": "0x47450",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_1": {
+    "Local Byte Offset": "0x21420",
+    "Global Byte Offset": "0x47460",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_name_2": {
+    "Local Byte Offset": "0x21620",
+    "Global Byte Offset": "0x47660",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_palette_2": {
+    "Local Byte Offset": "0x21630",
+    "Global Byte Offset": "0x47670",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_2": {
+    "Local Byte Offset": "0x21640",
+    "Global Byte Offset": "0x47680",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_name_3": {
+    "Local Byte Offset": "0x21840",
+    "Global Byte Offset": "0x47880",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_palette_3": {
+    "Local Byte Offset": "0x21850",
+    "Global Byte Offset": "0x47890",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_3": {
+    "Local Byte Offset": "0x21860",
+    "Global Byte Offset": "0x478A0",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_name_4": {
+    "Local Byte Offset": "0x21A60",
+    "Global Byte Offset": "0x47AA0",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_palette_4": {
+    "Local Byte Offset": "0x21A70",
+    "Global Byte Offset": "0x47AB0",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_4": {
+    "Local Byte Offset": "0x21A80",
+    "Global Byte Offset": "0x47AC0",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_name_5": {
+    "Local Byte Offset": "0x21C80",
+    "Global Byte Offset": "0x47CC0",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_palette_5": {
+    "Local Byte Offset": "0x21C90",
+    "Global Byte Offset": "0x47CD0",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_5": {
+    "Local Byte Offset": "0x21CA0",
+    "Global Byte Offset": "0x47CE0",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_name_6": {
+    "Local Byte Offset": "0x21EA0",
+    "Global Byte Offset": "0x47EE0",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_palette_6": {
+    "Local Byte Offset": "0x21EB0",
+    "Global Byte Offset": "0x47EF0",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_6": {
+    "Local Byte Offset": "0x21EC0",
+    "Global Byte Offset": "0x480F0",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_name_7": {
+    "Local Byte Offset": "0x220C0",
+    "Global Byte Offset": "0x48100",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_palette_7": {
+    "Local Byte Offset": "0x220D0",
+    "Global Byte Offset": "0x48110",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_7": {
+    "Local Byte Offset": "0x220E0",
+    "Global Byte Offset": "0x48120",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_name_8": {
+    "Local Byte Offset": "0x222E0",
+    "Global Byte Offset": "0x48320",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_palette_8": {
+    "Local Byte Offset": "0x222F0",
+    "Global Byte Offset": "0x48330",
+    "Byte Size": 16,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "able_design_8": {
+    "Local Byte Offset": "0x22300",
+    "Global Byte Offset": "0x48340",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "system_clock_difference": {
+    "Local Byte Offset": "0x22528",
+    "Global Byte Offset": "0x48568",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_data": {
+    "Local Byte Offset": "0x22540",
+    "Global Byte Offset": "0x48580",
+    "Byte Size": 6400,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_locations": {
+    "Local Byte Offset": "0x23E40",
+    "Global Byte Offset": "0x49E80",
+    "Byte Size": 20,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_col_1": {
+    "Local Byte Offset": "0x23E40",
+    "Global Byte Offset": "0x49E80",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_row_1": {
+    "Local Byte Offset": "0x23E41",
+    "Global Byte Offset": "0x49E81",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_tile_x_1": {
+    "Local Byte Offset": "0x23E42",
+    "Global Byte Offset": "0x49E82",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_tile_y_1": {
+    "Local Byte Offset": "0x23E43",
+    "Global Byte Offset": "0x49E83",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_col_2": {
+    "Local Byte Offset": "0x23E44",
+    "Global Byte Offset": "0x49E84",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_row_2": {
+    "Local Byte Offset": "0x23E45",
+    "Global Byte Offset": "0x49E85",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_tile_x_2": {
+    "Local Byte Offset": "0x23E46",
+    "Global Byte Offset": "0x49E86",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_tile_y_2": {
+    "Local Byte Offset": "0x23E47",
+    "Global Byte Offset": "0x49E87",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_col_3": {
+    "Local Byte Offset": "0x23E48",
+    "Global Byte Offset": "0x49E88",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_row_3": {
+    "Local Byte Offset": "0x23E49",
+    "Global Byte Offset": "0x49E89",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_tile_x_3": {
+    "Local Byte Offset": "0x23E4A",
+    "Global Byte Offset": "0x49E8A",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_tile_y_3": {
+    "Local Byte Offset": "0x23E4B",
+    "Global Byte Offset": "0x49E8B",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_col_4": {
+    "Local Byte Offset": "0x23E4C",
+    "Global Byte Offset": "0x49E8C",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_row_4": {
+    "Local Byte Offset": "0x23E4D",
+    "Global Byte Offset": "0x49E8D",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_tile_x_4": {
+    "Local Byte Offset": "0x23E4E",
+    "Global Byte Offset": "0x49E8E",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_tile_y_4": {
+    "Local Byte Offset": "0x23E4F",
+    "Global Byte Offset": "0x49E8F",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_col_visitor": {
+    "Local Byte Offset": "0x23E50",
+    "Global Byte Offset": "0x49E90",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_row_visitor": {
+    "Local Byte Offset": "0x23E51",
+    "Global Byte Offset": "0x49E91",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_tile_x_visitor": {
+    "Local Byte Offset": "0x23E52",
+    "Global Byte Offset": "0x49E92",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "glowing_spot_acre_tile_y_visitor": {
+    "Local Byte Offset": "0x23E53",
+    "Global Byte Offset": "0x49E93",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_locations": {
+    "Local Byte Offset": "0x23E54",
+    "Global Byte Offset": "0x49E94",
+    "Byte Size": 20,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_col_1": {
+    "Local Byte Offset": "0x23E54",
+    "Global Byte Offset": "0x49E94",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_row_1": {
+    "Local Byte Offset": "0x23E55",
+    "Global Byte Offset": "0x49E95",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_tile_x_1": {
+    "Local Byte Offset": "0x23E56",
+    "Global Byte Offset": "0x49E96",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_tile_y_1": {
+    "Local Byte Offset": "0x23E57",
+    "Global Byte Offset": "0x49E97",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_col_2": {
+    "Local Byte Offset": "0x23E58",
+    "Global Byte Offset": "0x49E98",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_row_2": {
+    "Local Byte Offset": "0x23E59",
+    "Global Byte Offset": "0x49E99",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_tile_x_2": {
+    "Local Byte Offset": "0x23E5A",
+    "Global Byte Offset": "0x49E9A",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_tile_y_2": {
+    "Local Byte Offset": "0x23E5B",
+    "Global Byte Offset": "0x49E9B",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_col_3": {
+    "Local Byte Offset": "0x23E5C",
+    "Global Byte Offset": "0x49E9C",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_row_3": {
+    "Local Byte Offset": "0x23E5D",
+    "Global Byte Offset": "0x49E9D",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_tile_x_3": {
+    "Local Byte Offset": "0x23E5E",
+    "Global Byte Offset": "0x49E9E",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_tile_y_3": {
+    "Local Byte Offset": "0x23E5F",
+    "Global Byte Offset": "0x49E9F",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_col_4": {
+    "Local Byte Offset": "0x23E60",
+    "Global Byte Offset": "0x49EA0",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_row_4": {
+    "Local Byte Offset": "0x23E61",
+    "Global Byte Offset": "0x49EA1",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_tile_x_4": {
+    "Local Byte Offset": "0x23E62",
+    "Global Byte Offset": "0x49EA2",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_tile_y_4": {
+    "Local Byte Offset": "0x23E63",
+    "Global Byte Offset": "0x49EA3",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_col_visitor": {
+    "Local Byte Offset": "0x23E64",
+    "Global Byte Offset": "0x49EA4",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_row_visitor": {
+    "Local Byte Offset": "0x23E65",
+    "Global Byte Offset": "0x49EA5",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_tile_x_visitor": {
+    "Local Byte Offset": "0x23E66",
+    "Global Byte Offset": "0x49EA6",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "money_rock_acre_tile_y_visitor": {
+    "Local Byte Offset": "0x23E67",
+    "Global Byte Offset": "0x49EA7",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_records": {
+    "Local Byte Offset": "0x23E68",
+    "Global Byte Offset": "0x49EA8",
+    "Byte Size": 156,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_name_1": {
+    "Local Byte Offset": "0x23E68",
+    "Global Byte Offset": "0x49EA8",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_town_name_1": {
+    "Local Byte Offset": "0x23E70",
+    "Global Byte Offset": "0x49EB0",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_id_1": {
+    "Local Byte Offset": "0x23E78",
+    "Global Byte Offset": "0x49EB8",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_town_id_1": {
+    "Local Byte Offset": "0x23E7A",
+    "Global Byte Offset": "0x49EBA",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_time_1": {
+    "Local Byte Offset": "0x23E7C",
+    "Global Byte Offset": "0x49EBC",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_fish_size_1": {
+    "Local Byte Offset": "0x23E84",
+    "Global Byte Offset": "0x49EC4",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_name_2": {
+    "Local Byte Offset": "0x23E88",
+    "Global Byte Offset": "0x49EC8",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_town_name_2": {
+    "Local Byte Offset": "0x23E90",
+    "Global Byte Offset": "0x49ED0",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_id_2": {
+    "Local Byte Offset": "0x23E98",
+    "Global Byte Offset": "0x49ED8",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_town_id_2": {
+    "Local Byte Offset": "0x23E9A",
+    "Global Byte Offset": "0x49EDA",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_time_2": {
+    "Local Byte Offset": "0x23E9C",
+    "Global Byte Offset": "0x49EDC",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_fish_size_2": {
+    "Local Byte Offset": "0x23EA4",
+    "Global Byte Offset": "0x49EE4",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_name_3": {
+    "Local Byte Offset": "0x23EA8",
+    "Global Byte Offset": "0x49EE8",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_town_name_3": {
+    "Local Byte Offset": "0x23EB0",
+    "Global Byte Offset": "0x49EF0",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_id_3": {
+    "Local Byte Offset": "0x23EB8",
+    "Global Byte Offset": "0x49EF8",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_town_id_3": {
+    "Local Byte Offset": "0x23EBA",
+    "Global Byte Offset": "0x49EFA",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_time_3": {
+    "Local Byte Offset": "0x23EBC",
+    "Global Byte Offset": "0x49EFC",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_fish_size_3": {
+    "Local Byte Offset": "0x23EC4",
+    "Global Byte Offset": "0x49F04",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_name_4": {
+    "Local Byte Offset": "0x23EC8",
+    "Global Byte Offset": "0x49F08",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_town_name_4": {
+    "Local Byte Offset": "0x23ED0",
+    "Global Byte Offset": "0x49F10",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_id_4": {
+    "Local Byte Offset": "0x23ED8",
+    "Global Byte Offset": "0x49F18",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_town_id_4": {
+    "Local Byte Offset": "0x23EDA",
+    "Global Byte Offset": "0x49F1A",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_time_4": {
+    "Local Byte Offset": "0x23EDC",
+    "Global Byte Offset": "0x49F1C",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_fish_size_4": {
+    "Local Byte Offset": "0x23EE4",
+    "Global Byte Offset": "0x49F24",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_name_5": {
+    "Local Byte Offset": "0x23EE8",
+    "Global Byte Offset": "0x49F28",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_town_name_5": {
+    "Local Byte Offset": "0x23EF0",
+    "Global Byte Offset": "0x49F30",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_player_id_5": {
+    "Local Byte Offset": "0x23EF8",
+    "Global Byte Offset": "0x49F38",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_town_id_5": {
+    "Local Byte Offset": "0x23EFA",
+    "Global Byte Offset": "0x49F3A",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_time_5": {
+    "Local Byte Offset": "0x23EFC",
+    "Global Byte Offset": "0x49F3C",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fishing_tourney_record_fish_size_5": {
+    "Local Byte Offset": "0x23F04",
+    "Global Byte Offset": "0x49F44",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "blanca_face_design_player_name": {
+    "Local Byte Offset": "0x23F20",
+    "Global Byte Offset": "0x49F60",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "blanca_face_design_player_town_name": {
+    "Local Byte Offset": "0x23F28",
+    "Global Byte Offset": "0x49F68",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "blanca_face_design_player_id": {
+    "Local Byte Offset": "0x23F30",
+    "Global Byte Offset": "0x49F70",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "blanca_face_design_town_id": {
+    "Local Byte Offset": "0x23F32",
+    "Global Byte Offset": "0x49F72",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "blanca_face_design": {
+    "Local Byte Offset": "0x23F40",
+    "Global Byte Offset": "0x49F80",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "blanca_face_palette": {
+    "Local Byte Offset": "0x24140",
+    "Global Byte Offset": "0x4A180",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "blanca_clothing": {
+    "Local Byte Offset": "0x24141",
+    "Global Byte Offset": "0x4A181",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "blanca_talk_counter": {
+    "Local Byte Offset": "0x24142",
+    "Global Byte Offset": "0x4A182",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "blanca_time": {
+    "Local Byte Offset": "0x24143",
+    "Global Byte Offset": "0x4A183",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_returned_id": {
+    "Local Byte Offset": "0x24160",
+    "Global Byte Offset": "0x4A1A0",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_returned_players_talked": {
+    "Local Byte Offset": "0x24162",
+    "Global Byte Offset": "0x4A1A2",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_returned_exists_flag": {
+    "Local Byte Offset": "0x24163",
+    "Global Byte Offset": "0x4A1A3",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_returned_renew_time": {
+    "Local Byte Offset": "0x24164",
+    "Global Byte Offset": "0x4A1A4",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "lighthouse_renew_ymd": {
+    "Local Byte Offset": "0x2416C",
+    "Global Byte Offset": "0x4A1AC",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "lighthouse_days_switched_on": {
+    "Local Byte Offset": "0x24170",
+    "Global Byte Offset": "0x4A1B0",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "lighthouse_players_started_quest": {
+    "Local Byte Offset": "0x24171",
+    "Global Byte Offset": "0x4A1B1",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "lighthouse_players_completed_quest": {
+    "Local Byte Offset": "0x24172",
+    "Global Byte Offset": "0x4A1B2",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "insect_season": {
+    "Local Byte Offset": "0x24174",
+    "Global Byte Offset": "0x4A1B4",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "insect_season_transition_days": {
+    "Local Byte Offset": "0x24175",
+    "Global Byte Offset": "0x4A1B5",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fish_season": {
+    "Local Byte Offset": "0x24176",
+    "Global Byte Offset": "0x4A1B6",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "fish_season_transition_days": {
+    "Local Byte Offset": "0x24177",
+    "Global Byte Offset": "0x4A1B7",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "town_rating_checked_time": {
+    "Local Byte Offset": "0x24178",
+    "Global Byte Offset": "0x4A1B8",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "town_rating_perfect_day_counter": {
+    "Local Byte Offset": "0x24180",
+    "Global Byte Offset": "0x4A1C0",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "town_grass_type": {
+    "Local Byte Offset": "0x24184",
+    "Global Byte Offset": "0x4A1C4",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "rainbow_month": {
+    "Local Byte Offset": "0x24185",
+    "Global Byte Offset": "0x4A1C5",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "rainbow_day": {
+    "Local Byte Offset": "0x24186",
+    "Global Byte Offset": "0x4A1C6",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "rainbow_set_flag": {
+    "Local Byte Offset": "0x24187",
+    "Global Byte Offset": "0x4A1C7",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "town_day_event_day": {
+    "Local Byte Offset": "0x2418A",
+    "Global Byte Offset": "0x4A1CA",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "last_saved_time": {
+    "Local Byte Offset": "0x241A0",
+    "Global Byte Offset": "0x4A1E0",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_name": {
+    "Local Byte Offset": "0x0000",
+    "Global Byte Offset": "0x26060",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_town_name": {
+    "Local Byte Offset": "0x0008",
+    "Global Byte Offset": "0x26068",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_gender": {
+    "Local Byte Offset": "0x0014",
+    "Global Byte Offset": "0x26074",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_face": {
+    "Local Byte Offset": "0x0015",
+    "Global Byte Offset": "0x26075",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_reset_count": {
+    "Local Byte Offset": "0x0016",
+    "Global Byte Offset": "0x26076",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_museum_info": {
+    "Local Byte Offset": "0x0017",
+    "Global Byte Offset": "0x26077",
+    "Byte Size": 81,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_items": {
+    "Local Byte Offset": "0x0068",
+    "Global Byte Offset": "0x260C8",
+    "Byte Size": 30,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_01": {
+    "Local Byte Offset": "0x0068",
+    "Global Byte Offset": "0x260C8",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_02": {
+    "Local Byte Offset": "0x006A",
+    "Global Byte Offset": "0x260CA",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_03": {
+    "Local Byte Offset": "0x006C",
+    "Global Byte Offset": "0x260CC",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_04": {
+    "Local Byte Offset": "0x006E",
+    "Global Byte Offset": "0x260CE",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_05": {
+    "Local Byte Offset": "0x0070",
+    "Global Byte Offset": "0x260D0",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_06": {
+    "Local Byte Offset": "0x0072",
+    "Global Byte Offset": "0x260D2",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_07": {
+    "Local Byte Offset": "0x0074",
+    "Global Byte Offset": "0x260D4",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_08": {
+    "Local Byte Offset": "0x0076",
+    "Global Byte Offset": "0x260D6",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_09": {
+    "Local Byte Offset": "0x0078",
+    "Global Byte Offset": "0x260D8",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_10": {
+    "Local Byte Offset": "0x007A",
+    "Global Byte Offset": "0x260DA",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_11": {
+    "Local Byte Offset": "0x007C",
+    "Global Byte Offset": "0x260DC",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_12": {
+    "Local Byte Offset": "0x007E",
+    "Global Byte Offset": "0x260DE",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_13": {
+    "Local Byte Offset": "0x0080",
+    "Global Byte Offset": "0x260E0",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_14": {
+    "Local Byte Offset": "0x0082",
+    "Global Byte Offset": "0x260E2",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_item_15": {
+    "Local Byte Offset": "0x0084",
+    "Global Byte Offset": "0x260E4",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_ticket_expiry_month": {
+    "Local Byte Offset": "0x0086",
+    "Global Byte Offset": "0x260E6",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_ticket_mail_storage": {
+    "Local Byte Offset": "0x0087",
+    "Global Byte Offset": "0x260E7",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_items_conditions": {
+    "Local Byte Offset": "0x0088",
+    "Global Byte Offset": "0x260E8",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_items_condition_01": {
+    "Local Byte Offset": "0x0088",
+    "Global Byte Offset": "0x260E8",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_02": {
+    "Local Byte Offset": "0x0088",
+    "Global Byte Offset": "0x260E8",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_03": {
+    "Local Byte Offset": "0x0088",
+    "Global Byte Offset": "0x260E8",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_04": {
+    "Local Byte Offset": "0x0088",
+    "Global Byte Offset": "0x260E8",
+    "Byte Size": 1,
+    "Bit Offset": 6,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_05": {
+    "Local Byte Offset": "0x0089",
+    "Global Byte Offset": "0x260E9",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_06": {
+    "Local Byte Offset": "0x0089",
+    "Global Byte Offset": "0x260E9",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_07": {
+    "Local Byte Offset": "0x0089",
+    "Global Byte Offset": "0x260E9",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_08": {
+    "Local Byte Offset": "0x0089",
+    "Global Byte Offset": "0x260E9",
+    "Byte Size": 1,
+    "Bit Offset": 6,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_09": {
+    "Local Byte Offset": "0x008A",
+    "Global Byte Offset": "0x260EA",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_10": {
+    "Local Byte Offset": "0x008A",
+    "Global Byte Offset": "0x260EA",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_11": {
+    "Local Byte Offset": "0x008A",
+    "Global Byte Offset": "0x260EA",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_12": {
+    "Local Byte Offset": "0x008A",
+    "Global Byte Offset": "0x260EA",
+    "Byte Size": 1,
+    "Bit Offset": 6,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_13": {
+    "Local Byte Offset": "0x008B",
+    "Global Byte Offset": "0x260EB",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_14": {
+    "Local Byte Offset": "0x008B",
+    "Global Byte Offset": "0x260EB",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 2
+  },
+  "player_inventory_items_condition_15": {
+    "Local Byte Offset": "0x008B",
+    "Global Byte Offset": "0x260EB",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 2
+  },
+  "player_wallet": {
+    "Local Byte Offset": "0x008C",
+    "Global Byte Offset": "0x260EC",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_debt": {
+    "Local Byte Offset": "0x0090",
+    "Global Byte Offset": "0x260F0",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_deliveries": {
+    "Local Byte Offset": "0x0094",
+    "Global Byte Offset": "0x260F4",
+    "Byte Size": 600,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_errands": {
+    "Local Byte Offset": "0x02EC",
+    "Global Byte Offset": "0x2634C",
+    "Byte Size": 440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_equipped_item": {
+    "Local Byte Offset": "0x04A4",
+    "Global Byte Offset": "0x26504",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_mail_header": {
+    "Local Byte Offset": "0x04A6",
+    "Global Byte Offset": "0x26506",
+    "Byte Size": 26,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_mail_footer": {
+    "Local Byte Offset": "0x04C0",
+    "Global Byte Offset": "0x26520",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_letters": {
+    "Local Byte Offset": "0x04E0",
+    "Global Byte Offset": "0x26540",
+    "Byte Size": 2980,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_inventory_background": {
+    "Local Byte Offset": "0x1084",
+    "Global Byte Offset": "0x270E4",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_exists": {
+    "Local Byte Offset": "0x1086",
+    "Global Byte Offset": "0x270E6",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_hint_count": {
+    "Local Byte Offset": "0x1087",
+    "Global Byte Offset": "0x270E7",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_clothing_texture_id": {
+    "Local Byte Offset": "0x1088",
+    "Global Byte Offset": "0x270E8",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_clothing": {
+    "Local Byte Offset": "0x108A",
+    "Global Byte Offset": "0x270EA",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_villager_letter": {
+    "Local Byte Offset": "0x108C",
+    "Global Byte Offset": "0x270EC",
+    "Byte Size": 14,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_fortune_time": {
+    "Local Byte Offset": "0x109A",
+    "Global Byte Offset": "0x270FA",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_fortune": {
+    "Local Byte Offset": "0x10A2",
+    "Global Byte Offset": "0x27102",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_birthday_ymd": {
+    "Local Byte Offset": "0x10A4",
+    "Global Byte Offset": "0x27104",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_orders": {
+    "Local Byte Offset": "0x10A8",
+    "Global Byte Offset": "0x27108",
+    "Byte Size": 15,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_order_item_01": {
+    "Local Byte Offset": "0x10A8",
+    "Global Byte Offset": "0x27108",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_order_shop_level_01": {
+    "Local Byte Offset": "0x10AA",
+    "Global Byte Offset": "0x2710A",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_order_item_02": {
+    "Local Byte Offset": "0x10AB",
+    "Global Byte Offset": "0x2710B",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_order_shop_level_02": {
+    "Local Byte Offset": "0x10AD",
+    "Global Byte Offset": "0x2710D",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_order_item_03": {
+    "Local Byte Offset": "0x10AE",
+    "Global Byte Offset": "0x2710E",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_order_shop_level_03": {
+    "Local Byte Offset": "0x10B0",
+    "Global Byte Offset": "0x27110",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_order_item_04": {
+    "Local Byte Offset": "0x10B1",
+    "Global Byte Offset": "0x27111",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_order_shop_level_04": {
+    "Local Byte Offset": "0x10B3",
+    "Global Byte Offset": "0x27113",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_order_item_05": {
+    "Local Byte Offset": "0x10B4",
+    "Global Byte Offset": "0x27114",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_order_shop_level_05": {
+    "Local Byte Offset": "0x10B6",
+    "Global Byte Offset": "0x27116",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_collected_songs": {
+    "Local Byte Offset": "0x10D4",
+    "Global Byte Offset": "0x27134",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_reset_code": {
+    "Local Byte Offset": "0x10F4",
+    "Global Byte Offset": "0x27154",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_villager_moved_id": {
+    "Local Byte Offset": "0x10F8",
+    "Global Byte Offset": "0x27158",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_villager_moved_town_name": {
+    "Local Byte Offset": "0x10FA",
+    "Global Byte Offset": "0x2715A",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_all_fish_flag": {
+    "Local Byte Offset": "0x1102",
+    "Global Byte Offset": "0x27162",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "player_all_fish_notified_flag": {
+    "Local Byte Offset": "0x1102",
+    "Global Byte Offset": "0x27162",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 1
+  },
+  "player_all_insect_flag": {
+    "Local Byte Offset": "0x1102",
+    "Global Byte Offset": "0x27162",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 1
+  },
+  "player_all_insect_notified_flag": {
+    "Local Byte Offset": "0x1102",
+    "Global Byte Offset": "0x27162",
+    "Byte Size": 1,
+    "Bit Offset": 3,
+    "Bit Size": 1
+  },
+  "player_celebrated_birthday_ymd": {
+    "Local Byte Offset": "0x1104",
+    "Global Byte Offset": "0x27164",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog": {
+    "Local Byte Offset": "0x1108",
+    "Global Byte Offset": "0x27168",
+    "Byte Size": 212,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_furniture": {
+    "Local Byte Offset": "0x1108",
+    "Global Byte Offset": "0x27168",
+    "Byte Size": 172,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_wallpaper": {
+    "Local Byte Offset": "0x11B4",
+    "Global Byte Offset": "0x27214",
+    "Byte Size": 12,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_carpet": {
+    "Local Byte Offset": "0x11C0",
+    "Global Byte Offset": "0x27220",
+    "Byte Size": 12,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_stationery": {
+    "Local Byte Offset": "0x11CC",
+    "Global Byte Offset": "0x2722C",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_catalog_music": {
+    "Local Byte Offset": "0x11D4",
+    "Global Byte Offset": "0x27234",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_towns": {
+    "Local Byte Offset": "0x11DC",
+    "Global Byte Offset": "0x2723C",
+    "Byte Size": 80,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_name_01": {
+    "Local Byte Offset": "0x11DC",
+    "Global Byte Offset": "0x2723C",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_id_01": {
+    "Local Byte Offset": "0x11E4",
+    "Global Byte Offset": "0x27244",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_name_02": {
+    "Local Byte Offset": "0x11E6",
+    "Global Byte Offset": "0x27246",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_id_02": {
+    "Local Byte Offset": "0x11EE",
+    "Global Byte Offset": "0x2724E",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_name_03": {
+    "Local Byte Offset": "0x11F0",
+    "Global Byte Offset": "0x27250",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_id_03": {
+    "Local Byte Offset": "0x11F8",
+    "Global Byte Offset": "0x27258",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_name_04": {
+    "Local Byte Offset": "0x11FA",
+    "Global Byte Offset": "0x2725A",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_id_04": {
+    "Local Byte Offset": "0x1202",
+    "Global Byte Offset": "0x27262",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_name_05": {
+    "Local Byte Offset": "0x1204",
+    "Global Byte Offset": "0x27264",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_id_05": {
+    "Local Byte Offset": "0x120C",
+    "Global Byte Offset": "0x2726C",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_name_06": {
+    "Local Byte Offset": "0x120E",
+    "Global Byte Offset": "0x2726E",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_id_06": {
+    "Local Byte Offset": "0x1216",
+    "Global Byte Offset": "0x27276",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_name_07": {
+    "Local Byte Offset": "0x1218",
+    "Global Byte Offset": "0x27278",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_id_07": {
+    "Local Byte Offset": "0x1220",
+    "Global Byte Offset": "0x27280",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_name_08": {
+    "Local Byte Offset": "0x1222",
+    "Global Byte Offset": "0x27282",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_foreign_town_id_08": {
+    "Local Byte Offset": "0x122A",
+    "Global Byte Offset": "0x2728A",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_bank": {
+    "Local Byte Offset": "0x122C",
+    "Global Byte Offset": "0x2728C",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_designs": {
+    "Local Byte Offset": "0x1240",
+    "Global Byte Offset": "0x272A0",
+    "Byte Size": 4352,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_name_1": {
+    "Local Byte Offset": "0x1240",
+    "Global Byte Offset": "0x272A0",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_1": {
+    "Local Byte Offset": "0x1260",
+    "Global Byte Offset": "0x272C0",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_name_2": {
+    "Local Byte Offset": "0x1480",
+    "Global Byte Offset": "0x274C0",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_2": {
+    "Local Byte Offset": "0x14A0",
+    "Global Byte Offset": "0x274E0",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_name_3": {
+    "Local Byte Offset": "0x16A0",
+    "Global Byte Offset": "0x276E0",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_3": {
+    "Local Byte Offset": "0x16C0",
+    "Global Byte Offset": "0x27700",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_name_4": {
+    "Local Byte Offset": "0x18C0",
+    "Global Byte Offset": "0x27900",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_4": {
+    "Local Byte Offset": "0x18E0",
+    "Global Byte Offset": "0x27920",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_name_5": {
+    "Local Byte Offset": "0x1AE0",
+    "Global Byte Offset": "0x27B20",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_5": {
+    "Local Byte Offset": "0x1B10",
+    "Global Byte Offset": "0x27B40",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_name_6": {
+    "Local Byte Offset": "0x1D00",
+    "Global Byte Offset": "0x27D40",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_6": {
+    "Local Byte Offset": "0x1D20",
+    "Global Byte Offset": "0x27D60",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_name_7": {
+    "Local Byte Offset": "0x1F20",
+    "Global Byte Offset": "0x27F60",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_7": {
+    "Local Byte Offset": "0x1F40",
+    "Global Byte Offset": "0x27F80",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_name_8": {
+    "Local Byte Offset": "0x2120",
+    "Global Byte Offset": "0x28180",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_8": {
+    "Local Byte Offset": "0x2140",
+    "Global Byte Offset": "0x281A0",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_design_order": {
+    "Local Byte Offset": "0x2340",
+    "Global Byte Offset": "0x283A0",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_state_flags": {
+    "Local Byte Offset": "0x234A",
+    "Global Byte Offset": "0x283AA",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_met_kk_slider_flag": {
+    "Local Byte Offset": "0x234A",
+    "Global Byte Offset": "0x283AA",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 1
+  },
+  "player_birthday_flag": {
+    "Local Byte Offset": "0x234A",
+    "Global Byte Offset": "0x283AA",
+    "Byte Size": 1,
+    "Bit Offset": 5,
+    "Bit Size": 1
+  },
+  "player_roof_repaint_pending_flag": {
+    "Local Byte Offset": "0x234A",
+    "Global Byte Offset": "0x283AA",
+    "Byte Size": 1,
+    "Bit Offset": 6,
+    "Bit Size": 1
+  },
+  "player_museum_completion_received_flag": {
+    "Local Byte Offset": "0x234B",
+    "Global Byte Offset": "0x283AB",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "player_museum_completion_pending_flag": {
+    "Local Byte Offset": "0x234B",
+    "Global Byte Offset": "0x283AB",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 1
+  },
+  "player_post_office_gift_flag_4": {
+    "Local Byte Offset": "0x234B",
+    "Global Byte Offset": "0x283AB",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 1
+  },
+  "player_post_office_gift_flag_3": {
+    "Local Byte Offset": "0x234B",
+    "Global Byte Offset": "0x283AB",
+    "Byte Size": 1,
+    "Bit Offset": 3,
+    "Bit Size": 1
+  },
+  "player_post_office_gift_flag_2": {
+    "Local Byte Offset": "0x234B",
+    "Global Byte Offset": "0x283AB",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 1
+  },
+  "player_post_office_gift_flag_1": {
+    "Local Byte Offset": "0x234B",
+    "Global Byte Offset": "0x283AB",
+    "Byte Size": 1,
+    "Bit Offset": 5,
+    "Bit Size": 1
+  },
+  "player_blanca_flag": {
+    "Local Byte Offset": "0x234B",
+    "Global Byte Offset": "0x283AB",
+    "Byte Size": 1,
+    "Bit Offset": 7,
+    "Bit Size": 1
+  },
+  "player_calendar": {
+    "Local Byte Offset": "0x234C",
+    "Global Byte Offset": "0x283AC",
+    "Byte Size": 104,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_tortimer_flags_1": {
+    "Local Byte Offset": "0x23B4",
+    "Global Byte Offset": "0x28414",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_tortimer_flag_birthday": {
+    "Local Byte Offset": "0x23B4",
+    "Global Byte Offset": "0x28414",
+    "Byte Size": 1,
+    "Bit Offset": 3,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_harvest_festival": {
+    "Local Byte Offset": "0x23B4",
+    "Global Byte Offset": "0x28414",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_new_years_countdown": {
+    "Local Byte Offset": "0x23B4",
+    "Global Byte Offset": "0x28414",
+    "Byte Size": 1,
+    "Bit Offset": 5,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_toy_day": {
+    "Local Byte Offset": "0x23B4",
+    "Global Byte Offset": "0x28414",
+    "Byte Size": 1,
+    "Bit Offset": 6,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_labor_day": {
+    "Local Byte Offset": "0x23B4",
+    "Global Byte Offset": "0x28414",
+    "Byte Size": 1,
+    "Bit Offset": 7,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_snow_day": {
+    "Local Byte Offset": "0x23B5",
+    "Global Byte Offset": "0x28415",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_fall_fishing_tourney": {
+    "Local Byte Offset": "0x23B5",
+    "Global Byte Offset": "0x28415",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_halloween": {
+    "Local Byte Offset": "0x23B5",
+    "Global Byte Offset": "0x28415",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_fall_sports_fair": {
+    "Local Byte Offset": "0x23B5",
+    "Global Byte Offset": "0x28415",
+    "Byte Size": 1,
+    "Bit Offset": 3,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_officers_day": {
+    "Local Byte Offset": "0x23B5",
+    "Global Byte Offset": "0x28415",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_mayors_day": {
+    "Local Byte Offset": "0x23B5",
+    "Global Byte Offset": "0x28415",
+    "Byte Size": 1,
+    "Bit Offset": 5,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_harvest_moon": {
+    "Local Byte Offset": "0x23B5",
+    "Global Byte Offset": "0x28415",
+    "Byte Size": 1,
+    "Bit Offset": 6,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_meteor_shower": {
+    "Local Byte Offset": "0x23B5",
+    "Global Byte Offset": "0x28415",
+    "Byte Size": 1,
+    "Bit Offset": 7,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_fireworks_show": {
+    "Local Byte Offset": "0x23B6",
+    "Global Byte Offset": "0x28416",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_explorers_day": {
+    "Local Byte Offset": "0x23B6",
+    "Global Byte Offset": "0x28416",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_groundhog_day": {
+    "Local Byte Offset": "0x23B6",
+    "Global Byte Offset": "0x28416",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_summer_fishing_tourney": {
+    "Local Byte Offset": "0x23B6",
+    "Global Byte Offset": "0x28416",
+    "Byte Size": 1,
+    "Bit Offset": 3,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_fathers_day": {
+    "Local Byte Offset": "0x23B6",
+    "Global Byte Offset": "0x28416",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_spring_cleaning": {
+    "Local Byte Offset": "0x23B6",
+    "Global Byte Offset": "0x28416",
+    "Byte Size": 1,
+    "Bit Offset": 5,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_nature_day": {
+    "Local Byte Offset": "0x23B6",
+    "Global Byte Offset": "0x28416",
+    "Byte Size": 1,
+    "Bit Offset": 6,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_spring_sports_fair": {
+    "Local Byte Offset": "0x23B6",
+    "Global Byte Offset": "0x28416",
+    "Byte Size": 1,
+    "Bit Offset": 7,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_cherry_blossom": {
+    "Local Byte Offset": "0x23B7",
+    "Global Byte Offset": "0x28417",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_sale_day": {
+    "Local Byte Offset": "0x23B7",
+    "Global Byte Offset": "0x28417",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_mothers_day": {
+    "Local Byte Offset": "0x23B7",
+    "Global Byte Offset": "0x28417",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_town_day": {
+    "Local Byte Offset": "0x23B7",
+    "Global Byte Offset": "0x28417",
+    "Byte Size": 1,
+    "Bit Offset": 3,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_april_fools": {
+    "Local Byte Offset": "0x23B7",
+    "Global Byte Offset": "0x28417",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_graduation_day": {
+    "Local Byte Offset": "0x23B7",
+    "Global Byte Offset": "0x28417",
+    "Byte Size": 1,
+    "Bit Offset": 5,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_founders_day": {
+    "Local Byte Offset": "0x23B7",
+    "Global Byte Offset": "0x28417",
+    "Byte Size": 1,
+    "Bit Offset": 6,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_new_years": {
+    "Local Byte Offset": "0x23B7",
+    "Global Byte Offset": "0x28417",
+    "Byte Size": 1,
+    "Bit Offset": 7,
+    "Bit Size": 1
+  },
+  "player_sable_ymd": {
+    "Local Byte Offset": "0x23B8",
+    "Global Byte Offset": "0x28418",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_sable_counter": {
+    "Local Byte Offset": "0x23BC",
+    "Global Byte Offset": "0x2841C",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_aerobics_ymd": {
+    "Local Byte Offset": "0x23BE",
+    "Global Byte Offset": "0x2841E",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_aerobics_counter": {
+    "Local Byte Offset": "0x23C2",
+    "Global Byte Offset": "0x28422",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_sunburn_updated_ymd": {
+    "Local Byte Offset": "0x23C4",
+    "Global Byte Offset": "0x28424",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_sunburn": {
+    "Local Byte Offset": "0x23C8",
+    "Global Byte Offset": "0x28428",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_sunburn_days_remaining": {
+    "Local Byte Offset": "0x23C9",
+    "Global Byte Offset": "0x28429",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_birthday_villager": {
+    "Local Byte Offset": "0x23D8",
+    "Global Byte Offset": "0x28438",
+    "Byte Size": 6,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_golden_shovel_flag": {
+    "Local Byte Offset": "0x23DA",
+    "Global Byte Offset": "0x2843A",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 1
+  },
+  "player_golden_rod_flag": {
+    "Local Byte Offset": "0x23DA",
+    "Global Byte Offset": "0x2843A",
+    "Byte Size": 1,
+    "Bit Offset": 5,
+    "Bit Size": 1
+  },
+  "player_golden_net_flag": {
+    "Local Byte Offset": "0x23DA",
+    "Global Byte Offset": "0x2843A",
+    "Byte Size": 1,
+    "Bit Offset": 6,
+    "Bit Size": 1
+  },
+  "player_golden_axe_flag": {
+    "Local Byte Offset": "0x23DA",
+    "Global Byte Offset": "0x2843A",
+    "Byte Size": 1,
+    "Bit Offset": 7,
+    "Bit Size": 1
+  },
+  "player_tortimer_flags_2": {
+    "Local Byte Offset": "0x23DC",
+    "Global Byte Offset": "0x2843C",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_met_tortimer_flag": {
+    "Local Byte Offset": "0x23DF",
+    "Global Byte Offset": "0x2843F",
+    "Byte Size": 1,
+    "Bit Offset": 3,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_golden_rod": {
+    "Local Byte Offset": "0x23DF",
+    "Global Byte Offset": "0x2843F",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 1
+  },
+  "player_farley_flag_golden_axe": {
+    "Local Byte Offset": "0x23DF",
+    "Global Byte Offset": "0x2843F",
+    "Byte Size": 1,
+    "Bit Offset": 6,
+    "Bit Size": 1
+  },
+  "player_tortimer_flag_golden_net": {
+    "Local Byte Offset": "0x23DF",
+    "Global Byte Offset": "0x2843F",
+    "Byte Size": 1,
+    "Bit Offset": 7,
+    "Bit Size": 1
+  },
+  "player_ecard_letter_received_ymd": {
+    "Local Byte Offset": "0x23E0",
+    "Global Byte Offset": "0x28440",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_ecard_letters_collected": {
+    "Local Byte Offset": "0x23E4",
+    "Global Byte Offset": "0x28444",
+    "Byte Size": 46,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_player_name": {
+    "Local Byte Offset": "0x0000",
+    "Global Byte Offset": "0x2FD28",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_town_name": {
+    "Local Byte Offset": "0x0008",
+    "Global Byte Offset": "0x2FD30",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "homa_hra_judged_ymd": {
+    "Local Byte Offset": "0x001C",
+    "Global Byte Offset": "0x2FD44",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_hra_data": {
+    "Local Byte Offset": "0x0020",
+    "Global Byte Offset": "0x2FD48",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_changed_flag": {
+    "Local Byte Offset": "0x0024",
+    "Global Byte Offset": "0x2FD4C",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "home_first_save_flag": {
+    "Local Byte Offset": "0x0024",
+    "Global Byte Offset": "0x2FD4C",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 1
+  },
+  "home_hra_unlocked_flag": {
+    "Local Byte Offset": "0x0024",
+    "Global Byte Offset": "0x2FD4C",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 1
+  },
+  "home_basement_unlocked_flag": {
+    "Local Byte Offset": "0x0024",
+    "Global Byte Offset": "0x2FD4C",
+    "Byte Size": 1,
+    "Bit Offset": 3,
+    "Bit Size": 1
+  },
+  "home_70k_hra_flag": {
+    "Local Byte Offset": "0x0024",
+    "Global Byte Offset": "0x2FD4C",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 1
+  },
+  "home_100k_hra_flag": {
+    "Local Byte Offset": "0x0024",
+    "Global Byte Offset": "0x2FD4C",
+    "Byte Size": 1,
+    "Bit Offset": 5,
+    "Bit Size": 1
+  },
+  "home_upgrade_pending_order_dmy": {
+    "Local Byte Offset": "0x0026",
+    "Global Byte Offset": "0x2FD4E",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_size": {
+    "Local Byte Offset": "0x002A",
+    "Global Byte Offset": "0x2FD52",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 3
+  },
+  "home_size_pending": {
+    "Local Byte Offset": "0x002A",
+    "Global Byte Offset": "0x2FD52",
+    "Byte Size": 1,
+    "Bit Offset": 3,
+    "Bit Size": 3
+  },
+  "home_statue": {
+    "Local Byte Offset": "0x002A",
+    "Global Byte Offset": "0x2FD52",
+    "Byte Size": 1,
+    "Bit Offset": 6,
+    "Bit Size": 2
+  },
+  "home_refresh_flag": {
+    "Local Byte Offset": "0x002B",
+    "Global Byte Offset": "0x2FD53",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "home_statue_pending_flag": {
+    "Local Byte Offset": "0x002B",
+    "Global Byte Offset": "0x2FD53",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 1
+  },
+  "home_basement_pending_flag": {
+    "Local Byte Offset": "0x002B",
+    "Global Byte Offset": "0x2FD53",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 1
+  },
+  "home_roof_color": {
+    "Local Byte Offset": "0x002C",
+    "Global Byte Offset": "0x2FD54",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_roof_color_upgrade_pending": {
+    "Local Byte Offset": "0x002D",
+    "Global Byte Offset": "0x2FD55",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_roof_color_pending": {
+    "Local Byte Offset": "0x002E",
+    "Global Byte Offset": "0x2FD56",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_door_design": {
+    "Local Byte Offset": "0x002F",
+    "Global Byte Offset": "0x2FD57",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items": {
+    "Local Byte Offset": "0x0038",
+    "Global Byte Offset": "0x2FD60",
+    "Byte Size": 2216,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_ground_floor": {
+    "Local Byte Offset": "0x0038",
+    "Global Byte Offset": "0x2FD60",
+    "Byte Size": 552,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_ground_floor_surface": {
+    "Local Byte Offset": "0x0260",
+    "Global Byte Offset": "0x2FF88",
+    "Byte Size": 552,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_ground_floor_storage_1": {
+    "Local Byte Offset": "0x0488",
+    "Global Byte Offset": "0x301B0",
+    "Byte Size": 552,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_ground_floor_storage_2": {
+    "Local Byte Offset": "0x06B0",
+    "Global Byte Offset": "0x303D8",
+    "Byte Size": 552,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_ground_floor_carpet": {
+    "Local Byte Offset": "0x08D8",
+    "Global Byte Offset": "0x30600",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_ground_floor_wallpaper": {
+    "Local Byte Offset": "0x08D9",
+    "Global Byte Offset": "0x30601",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_ground_floor_wallpaper_design_flag": {
+    "Local Byte Offset": "0x08DC",
+    "Global Byte Offset": "0x30604",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "home_items_ground_floor_carpet_design_flag": {
+    "Local Byte Offset": "0x08DC",
+    "Global Byte Offset": "0x30604",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 1
+  },
+  "home_items_upstairs": {
+    "Local Byte Offset": "0x08E0",
+    "Global Byte Offset": "0x30608",
+    "Byte Size": 552,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_upstairs_surface": {
+    "Local Byte Offset": "0x0B08",
+    "Global Byte Offset": "0x30830",
+    "Byte Size": 552,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_upstairs_storage_1": {
+    "Local Byte Offset": "0x0D30",
+    "Global Byte Offset": "0x30A58",
+    "Byte Size": 552,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_upstairs_storage_2": {
+    "Local Byte Offset": "0x0F58",
+    "Global Byte Offset": "0x30C80",
+    "Byte Size": 552,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_upstairs_carpet": {
+    "Local Byte Offset": "0x1180",
+    "Global Byte Offset": "0x30EA8",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_upstairs_wallpaper": {
+    "Local Byte Offset": "0x1181",
+    "Global Byte Offset": "0x30EA9",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_upstairs_wallpaper_design_flag": {
+    "Local Byte Offset": "0x1184",
+    "Global Byte Offset": "0x30EAC",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "home_items_upstairs_carpet_design_flag": {
+    "Local Byte Offset": "0x1184",
+    "Global Byte Offset": "0x30EAC",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 1
+  },
+  "home_items_basement": {
+    "Local Byte Offset": "0x1188",
+    "Global Byte Offset": "0x30EB0",
+    "Byte Size": 552,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_basement_surface": {
+    "Local Byte Offset": "0x13B0",
+    "Global Byte Offset": "0x310D8",
+    "Byte Size": 552,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_basement_storage_1": {
+    "Local Byte Offset": "0x15D8",
+    "Global Byte Offset": "0x31300",
+    "Byte Size": 552,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_basement_storage_2": {
+    "Local Byte Offset": "0x1800",
+    "Global Byte Offset": "0x31528",
+    "Byte Size": 552,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_basement_carpet": {
+    "Local Byte Offset": "0x1A28",
+    "Global Byte Offset": "0x31750",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_basement_wallpaper": {
+    "Local Byte Offset": "0x1A29",
+    "Global Byte Offset": "0x31751",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_items_basement_wallpaper_design_flag": {
+    "Local Byte Offset": "0x1A2C",
+    "Global Byte Offset": "0x31754",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "home_items_basement_carpet_design_flag": {
+    "Local Byte Offset": "0x1A2C",
+    "Global Byte Offset": "0x31754",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 1
+  },
+  "home_mailbox_letters": {
+    "Local Byte Offset": "0x1A30",
+    "Global Byte Offset": "0x31758",
+    "Byte Size": 2980,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_item_1": {
+    "Local Byte Offset": "0x25D4",
+    "Global Byte Offset": "0x322FC",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_item_setting_1": {
+    "Local Byte Offset": "0x25D6",
+    "Global Byte Offset": "0x322FE",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_item_trade_data_1": {
+    "Local Byte Offset": "0x25D8",
+    "Global Byte Offset": "0x32300",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_item_2": {
+    "Local Byte Offset": "0x25DC",
+    "Global Byte Offset": "0x32304",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_item_setting_2": {
+    "Local Byte Offset": "0x25DE",
+    "Global Byte Offset": "0x32306",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_item_trade_data_2": {
+    "Local Byte Offset": "0x25E0",
+    "Global Byte Offset": "0x32308",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_item_3": {
+    "Local Byte Offset": "0x25E4",
+    "Global Byte Offset": "0x3230C",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_item_setting_3": {
+    "Local Byte Offset": "0x25E6",
+    "Global Byte Offset": "0x3230E",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_item_trade_data_3": {
+    "Local Byte Offset": "0x25E8",
+    "Global Byte Offset": "0x32310",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_item_4": {
+    "Local Byte Offset": "0x25EC",
+    "Global Byte Offset": "0x32314",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_item_setting_4": {
+    "Local Byte Offset": "0x25EE",
+    "Global Byte Offset": "0x32316",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_item_trade_data_4": {
+    "Local Byte Offset": "0x25F0",
+    "Global Byte Offset": "0x32318",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_message": {
+    "Local Byte Offset": "0x25F4",
+    "Global Byte Offset": "0x3231C",
+    "Byte Size": 128,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_gyroid_bells": {
+    "Local Byte Offset": "0x2674",
+    "Global Byte Offset": "0x3239C",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_cockroach_updated_time": {
+    "Local Byte Offset": "0x2678",
+    "Global Byte Offset": "0x323A0",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_cockroach_count": {
+    "Local Byte Offset": "0x2680",
+    "Global Byte Offset": "0x323A8",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "home_music_storage": {
+    "Local Byte Offset": "0x2684",
+    "Global Byte Offset": "0x323AC",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_recipient": {
+    "Local Byte Offset": "0x000",
+    "Global Byte Offset": "",
+    "Byte Size": 22,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_sender": {
+    "Local Byte Offset": "0x016",
+    "Global Byte Offset": "",
+    "Byte Size": 22,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_present": {
+    "Local Byte Offset": "0x02C",
+    "Global Byte Offset": "",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_font": {
+    "Local Byte Offset": "0x02E",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_name_index": {
+    "Local Byte Offset": "0x02F",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_type": {
+    "Local Byte Offset": "0x030",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_stationery": {
+    "Local Byte Offset": "0x031",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_header": {
+    "Local Byte Offset": "0x032",
+    "Global Byte Offset": "",
+    "Byte Size": 24,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_body": {
+    "Local Byte Offset": "0x04A",
+    "Global Byte Offset": "",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_footer": {
+    "Local Byte Offset": "0x10A",
+    "Global Byte Offset": "",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_id": {
+    "Local Byte Offset": "0x000",
+    "Global Byte Offset": "",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_town_id": {
+    "Local Byte Offset": "0x002",
+    "Global Byte Offset": "",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_town_name": {
+    "Local Byte Offset": "0x004",
+    "Global Byte Offset": "",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_name_id": {
+    "Local Byte Offset": "0x00C",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_personality": {
+    "Local Byte Offset": "0x00D",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memories": {
+    "Local Byte Offset": "0x010",
+    "Global Byte Offset": "",
+    "Byte Size": 2184,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_1": {
+    "Local Byte Offset": "0x010",
+    "Global Byte Offset": "",
+    "Byte Size": 312,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_2": {
+    "Local Byte Offset": "0x148",
+    "Global Byte Offset": "",
+    "Byte Size": 312,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_3": {
+    "Local Byte Offset": "0x280",
+    "Global Byte Offset": "",
+    "Byte Size": 312,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_4": {
+    "Local Byte Offset": "0x3B8",
+    "Global Byte Offset": "",
+    "Byte Size": 312,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_5": {
+    "Local Byte Offset": "0x4F0",
+    "Global Byte Offset": "",
+    "Byte Size": 312,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_6": {
+    "Local Byte Offset": "0x628",
+    "Global Byte Offset": "",
+    "Byte Size": 312,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_7": {
+    "Local Byte Offset": "0x760",
+    "Global Byte Offset": "",
+    "Byte Size": 312,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_house_acre_col": {
+    "Local Byte Offset": "0x899",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_house_acre_row": {
+    "Local Byte Offset": "0x89A",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_house_acre_tile_x": {
+    "Local Byte Offset": "0x89B",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_house_acre_tile_y": {
+    "Local Byte Offset": "0x89C",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_catchphrase": {
+    "Local Byte Offset": "0x89D",
+    "Global Byte Offset": "",
+    "Byte Size": 10,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_quest": {
+    "Local Byte Offset": "0x8A8",
+    "Global Byte Offset": "",
+    "Byte Size": 40,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_player_name_spawned": {
+    "Local Byte Offset": "0x8D0",
+    "Global Byte Offset": "",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_previous_town_name_or_island_furniture": {
+    "Local Byte Offset": "0x8D8",
+    "Global Byte Offset": "",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_previous_town_id": {
+    "Local Byte Offset": "0x8E0",
+    "Global Byte Offset": "",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_mood": {
+    "Local Byte Offset": "0x8E2",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_mood_time": {
+    "Local Byte Offset": "0x8E3",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_clothing": {
+    "Local Byte Offset": "0x8E4",
+    "Global Byte Offset": "",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_move_info": {
+    "Local Byte Offset": "0x8E6",
+    "Global Byte Offset": "",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_is_home_flag": {
+    "Local Byte Offset": "0x8E8",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_not_starter_flag": {
+    "Local Byte Offset": "0x8E9",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_is_moving_out_flag": {
+    "Local Byte Offset": "0x8EA",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_design_equipped": {
+    "Local Byte Offset": "0x8EB",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_umbrella": {
+    "Local Byte Offset": "0x8EC",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_clothing_letter": {
+    "Local Byte Offset": "0x8EE",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_friendship_other_villagers": {
+    "Local Byte Offset": "0x8F0",
+    "Global Byte Offset": "",
+    "Byte Size": 15,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_password_letter_received_time": {
+    "Local Byte Offset": "0x900",
+    "Global Byte Offset": "",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_password_letter_code": {
+    "Local Byte Offset": "0x908",
+    "Global Byte Offset": "",
+    "Byte Size": 20,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_player_name": {
+    "Local Byte Offset": "0x000",
+    "Global Byte Offset": "",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_player_town_name": {
+    "Local Byte Offset": "0x008",
+    "Global Byte Offset": "",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_talked_time": {
+    "Local Byte Offset": "0x014",
+    "Global Byte Offset": "",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_town_name_or_islander_action": {
+    "Local Byte Offset": "0x01C",
+    "Global Byte Offset": "",
+    "Byte Size": 12,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_town_tune": {
+    "Local Byte Offset": "0x028",
+    "Global Byte Offset": "",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_friendship": {
+    "Local Byte Offset": "0x030",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_saved_letter_exists_flag": {
+    "Local Byte Offset": "0x031",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "villager_memory_saved_letter_good_flag": {
+    "Local Byte Offset": "0x031",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 1
+  },
+  "villager_memory_saved_letter_reply_flag": {
+    "Local Byte Offset": "0x031",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 1
+  },
+  "villager_memory_saved_letter_clothing_flag": {
+    "Local Byte Offset": "0x031",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": 3,
+    "Bit Size": 1
+  },
+  "villager_memory_saved_letter_clothing_equipped_flag": {
+    "Local Byte Offset": "0x031",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 1
+  },
+  "villager_memory_letter": {
+    "Local Byte Offset": "0x032",
+    "Global Byte Offset": "",
+    "Byte Size": 260,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_letter_font": {
+    "Local Byte Offset": "0x032",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_letter_stationery": {
+    "Local Byte Offset": "0x033",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_letter_present": {
+    "Local Byte Offset": "0x034",
+    "Global Byte Offset": "",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_letter_name_index": {
+    "Local Byte Offset": "0x036",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_letter_header": {
+    "Local Byte Offset": "0x037",
+    "Global Byte Offset": "",
+    "Byte Size": 24,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_letter_body": {
+    "Local Byte Offset": "0x04F",
+    "Global Byte Offset": "",
+    "Byte Size": 192,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_letter_footer": {
+    "Local Byte Offset": "0x10F",
+    "Global Byte Offset": "",
+    "Byte Size": 32,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "villager_memory_letter_received_ymd": {
+    "Local Byte Offset": "0x12F",
+    "Global Byte Offset": "",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "shop_furniture_group_A_rarity": {
+    "Local Byte Offset": "0x000",
+    "Global Byte Offset": "0x46380",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 2
+  },
+  "shop_furniture_group_B_rarity": {
+    "Local Byte Offset": "0x000",
+    "Global Byte Offset": "0x46380",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 2
+  },
+  "shop_furniture_group_C_rarity": {
+    "Local Byte Offset": "0x000",
+    "Global Byte Offset": "0x46380",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 2
+  },
+  "shop_stationery_group_A_rarity": {
+    "Local Byte Offset": "0x001",
+    "Global Byte Offset": "0x46381",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 2
+  },
+  "shop_stationery_group_B_rarity": {
+    "Local Byte Offset": "0x001",
+    "Global Byte Offset": "0x46381",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 2
+  },
+  "shop_stationery_group_C_rarity": {
+    "Local Byte Offset": "0x001",
+    "Global Byte Offset": "0x46381",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 2
+  },
+  "shop_clothing_group_A_rarity": {
+    "Local Byte Offset": "0x002",
+    "Global Byte Offset": "0x46382",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 2
+  },
+  "shop_clothing_group_B_rarity": {
+    "Local Byte Offset": "0x002",
+    "Global Byte Offset": "0x46382",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 2
+  },
+  "shop_clothing_group_C_rarity": {
+    "Local Byte Offset": "0x002",
+    "Global Byte Offset": "0x46382",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 2
+  },
+  "shop_carpet_group_A_rarity": {
+    "Local Byte Offset": "0x003",
+    "Global Byte Offset": "0x46383",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 2
+  },
+  "shop_carpet_group_B_rarity": {
+    "Local Byte Offset": "0x003",
+    "Global Byte Offset": "0x46383",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 2
+  },
+  "shop_carpet_group_C_rarity": {
+    "Local Byte Offset": "0x003",
+    "Global Byte Offset": "0x46383",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 2
+  },
+  "shop_wallpaper_group_A_rarity": {
+    "Local Byte Offset": "0x004",
+    "Global Byte Offset": "0x46384",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 2
+  },
+  "shop_wallpaper_group_B_rarity": {
+    "Local Byte Offset": "0x004",
+    "Global Byte Offset": "0x46384",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 2
+  },
+  "shop_wallpaper_group_C_rarity": {
+    "Local Byte Offset": "0x004",
+    "Global Byte Offset": "0x46384",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 2
+  },
+  "shop_diary_group_A_rarity": {
+    "Local Byte Offset": "0x005",
+    "Global Byte Offset": "0x46385",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 2
+  },
+  "shop_diary_group_B_rarity": {
+    "Local Byte Offset": "0x005",
+    "Global Byte Offset": "0x46385",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 2
+  },
+  "shop_diary_group_C_rarity": {
+    "Local Byte Offset": "0x005",
+    "Global Byte Offset": "0x46385",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 2
+  },
+  "shop_items": {
+    "Local Byte Offset": "0x0CE",
+    "Global Byte Offset": "0x4644E",
+    "Byte Size": 72,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "shop_rare_item": {
+    "Local Byte Offset": "0x11C",
+    "Global Byte Offset": "0x4649C",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "shop_raffle_items": {
+    "Local Byte Offset": "0x11E",
+    "Global Byte Offset": "0x4649E",
+    "Byte Size": 6,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "shop_other_item_count": {
+    "Local Byte Offset": "0x124",
+    "Global Byte Offset": "0x464A4",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "shop_upgrade_level": {
+    "Local Byte Offset": "0x126",
+    "Global Byte Offset": "0x464A6",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 2
+  },
+  "shop_upgrade_today_flag": {
+    "Local Byte Offset": "0x126",
+    "Global Byte Offset": "0x464A6",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 1
+  },
+  "shop_upgrade_unlocked_flag": {
+    "Local Byte Offset": "0x126",
+    "Global Byte Offset": "0x464A6",
+    "Byte Size": 1,
+    "Bit Offset": 3,
+    "Bit Size": 1
+  },
+  "shop_not_loaded_flag": {
+    "Local Byte Offset": "0x126",
+    "Global Byte Offset": "0x464A6",
+    "Byte Size": 1,
+    "Bit Offset": 4,
+    "Bit Size": 1
+  },
+  "shop_paint_item_color": {
+    "Local Byte Offset": "0x126",
+    "Global Byte Offset": "0x464A6",
+    "Byte Size": 2,
+    "Bit Offset": 5,
+    "Bit Size": 4
+  },
+  "shop_upgrade_bell_count": {
+    "Local Byte Offset": "0x128",
+    "Global Byte Offset": "0x464A8",
+    "Byte Size": 4,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "shop_updated_time": {
+    "Local Byte Offset": "0x12C",
+    "Global Byte Offset": "0x464AC",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "shop_upgraded_time": {
+    "Local Byte Offset": "0x134",
+    "Global Byte Offset": "0x464B4",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "shop_foriegn_player_visited_flag": {
+    "Local Byte Offset": "0x13F",
+    "Global Byte Offset": "0x464BF",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_name": {
+    "Local Byte Offset": "0x0000",
+    "Global Byte Offset": "0x48580",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_town_name": {
+    "Local Byte Offset": "0x0008",
+    "Global Byte Offset": "0x48588",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_exists": {
+    "Local Byte Offset": "0x0010",
+    "Global Byte Offset": "0x48590",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_id": {
+    "Local Byte Offset": "0x0012",
+    "Global Byte Offset": "0x48592",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_items": {
+    "Local Byte Offset": "0x0014",
+    "Global Byte Offset": "0x48594",
+    "Byte Size": 1024,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_home_data": {
+    "Local Byte Offset": "0x0418",
+    "Global Byte Offset": "0x48998",
+    "Byte Size": 2248,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_flag_design_name": {
+    "Local Byte Offset": "0x0CE0",
+    "Global Byte Offset": "0x49260",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_flag_design_palette": {
+    "Local Byte Offset": "0x0CE8",
+    "Global Byte Offset": "0x49268",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_flag_design": {
+    "Local Byte Offset": "0x0D00",
+    "Global Byte Offset": "0x49280",
+    "Byte Size": 512,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_villager_data": {
+    "Local Byte Offset": "0x0F00",
+    "Global Byte Offset": "0x49480",
+    "Byte Size": 2440,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_items_buried_flags": {
+    "Local Byte Offset": "0x1888",
+    "Global Byte Offset": "0x49E08",
+    "Byte Size": 64,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_acre_ids": {
+    "Local Byte Offset": "0x18C8",
+    "Global Byte Offset": "0x49E48",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_last_visited_time": {
+    "Local Byte Offset": "0x18CA",
+    "Global Byte Offset": "0x49E4A",
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_grass_type": {
+    "Local Byte Offset": "0x18E0",
+    "Global Byte Offset": "0x49E60",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_kappn_last_song_to_island": {
+    "Local Byte Offset": "0x18E1",
+    "Global Byte Offset": "0x49E61",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "island_kappn_last_song_from_island": {
+    "Local Byte Offset": "0x18E2",
+    "Global Byte Offset": "0x49E62",
+    "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  }
+}

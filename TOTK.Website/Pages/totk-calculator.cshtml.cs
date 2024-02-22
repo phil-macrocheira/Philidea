@@ -245,15 +245,28 @@ namespace TOTK.Website.Pages
                 }
             }
 
-            // Don't add Bone or Melee Projectile from fuse if weapon is bow
+            // Don't add Bone from fuse if weapon is bow
             if (SelectedWeapon.Type == 3) {
-                if (SelectedFuse.Property1 == "Bone" || SelectedFuse.Property1 == "Melee Projectile") {
+                if (SelectedFuse.Property1 == "Bone") {
                     SelectedFuse.Property1 = "-";
                 }
-                if (SelectedFuse.Property2 == "Bone" || SelectedFuse.Property2 == "Melee Projectile") {
+                if (SelectedFuse.Property2 == "Bone") {
                     SelectedFuse.Property2 = "-";
                 }
-                if (SelectedFuse.Property3 == "Bone" || SelectedFuse.Property3 == "Melee Projectile") {
+                if (SelectedFuse.Property3 == "Bone") {
+                    SelectedFuse.Property3 = "-";
+                }
+            }
+
+            // Don't add Melee Projectile from fuse is weapon is bow or shield
+            if (SelectedWeapon.Type >= 3) {
+                if (SelectedFuse.Property1 == "Melee Projectile") {
+                    SelectedFuse.Property1 = "-";
+                }
+                if (SelectedFuse.Property2 == "Melee Projectile") {
+                    SelectedFuse.Property2 = "-";
+                }
+                if (SelectedFuse.Property3 == "Melee Projectile") {
                     SelectedFuse.Property3 = "-";
                 }
             }

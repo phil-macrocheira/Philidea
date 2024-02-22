@@ -168,7 +168,7 @@ namespace TOTK.Website
 
             // Pebblit Damage
             if (IsPebblit) {
-                if (AttackType == "Master Sword Beam" || AttackType == "Sidon's Water Well") {
+                if (AttackType == "Master Sword Beam" || AttackType == "Sidon's Water") {
                     return 0;
                 }
                 if (Shatter > 1 && AttackType == "Throw") {
@@ -200,7 +200,7 @@ namespace TOTK.Website
 
             // Fire Chuchu Water Instakill
             if (Data.SelectedEnemy.Name.IndexOf("Fire Chuchu") != -1) {
-                if (ScanProperties("Water") || AttackType == "Sidon's Water Well") {
+                if (ScanProperties("Water") || AttackType == "Sidon's Water") {
                     return (float)Data.SelectedEnemy.HP;
                 }
             }
@@ -216,7 +216,7 @@ namespace TOTK.Website
             }
 
             // Sidon's Water
-            if (AttackType == "Sidon's Water Well") {
+            if (AttackType == "Sidon's Water") {
                 float WaterMult = 1;
                 if (Data.SelectedEnemy.Element == "Fire") {
                     WaterMult = 1.5f;
@@ -527,7 +527,7 @@ namespace TOTK.Website
                 if (!CutProperty && !TreeCutterProperty) {
                     return 0;
                 }
-                if (AttackType == "Sidon's Water Well") {
+                if (AttackType == "Sidon's Water") {
                     return 0;
                 }
                 if (TreeCutterProperty) {
