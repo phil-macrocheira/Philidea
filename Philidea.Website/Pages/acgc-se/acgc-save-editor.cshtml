@@ -1,0 +1,402 @@
+﻿@page
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model Philidea.Website.Pages.acgcModel
+@section Scripts {
+    <script src="acgc-se/js/char-map.js"></script>
+    <script src="acgc-se/js/toma-bubble.js"></script>
+}
+@{
+    ViewData["Title"] = "ACGC Save Editor";
+    ViewData["HeaderTitle"] = "Animal Crossing GameCube Save Editor";
+    ViewData["Version"] = "ALPHA v0.0.1";
+    Layout = "acgc-se_layout.cshtml";
+    bool debugMode = HttpContextAccessor.HttpContext.RequestServices.GetRequiredService<IWebHostEnvironment>().IsDevelopment();
+}
+@Html.AntiForgeryToken()
+
+<div class="tabs">
+    <button class="tab-button active" onclick="openTab(event,'tab_player')">Player</button>
+    <button class="tab-button" onclick="openTab(event,'tab_town')">Town</button>
+    <button class="tab-button" onclick="openTab(event,'tab_home')">Home</button>
+    <button class="tab-button" onclick="openTab(event,'tab_villagers')">Villagers</button>
+    <button class="tab-button" onclick="openTab(event,'tab_shop')">Shop</button>
+    <button class="tab-button" onclick="openTab(event,'tab_letters')">Letters</button>
+</div>
+
+<div id="tab_player" class="tabcontent show">
+    <div class="row section">
+        <div class="section-title">
+            <h4>Item</h4>
+        </div>
+
+        <div class="col-auto" style="margin-left:-45px;">
+            <h5>Item</h5>
+            <select class="form-control select2" id="itemDropdown" style="width:16em;" onchange="updateItem()">
+                <option value="">None</option>
+                @foreach (var item in Model.Items.Where(i=>i.Obtainable==1)) {<option value="@item.ID">@item.DropdownName</option>}
+            </select>
+        </div>
+
+        <label class="form-check-label d-block"><input type="checkbox" id="checkboxPresent" class="form-check-input">Present</label>
+
+        <div class="col-auto">
+            <h5>Rotation</h5>
+            <select class="form-control select2" id="rotationDropdown" style="width:fit-content;" onchange="updateItem()">
+                <option selected>Forward</option>
+                <option value=1>Right</option><option value=2>Left</option><option value=3>Back</option>
+            </select>
+        </div>
+
+        <div class="col-auto icon">
+            <img src="@Model.ItemIconURL" id="itemImage" class="rounded float-left" alt="Item Image" style="height:100%; width:100%; object-fit:contain;">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <div class="section-title">
+                <h4>Player Data</h4>
+            </div>
+            <div class="col-auto" style="margin-left:-100px;"><h5>Name</h5><input type="text" maxlength="8" class="form-control" id="player_name"></div>
+            <div class="col-auto"><h5>Gender</h5><select class="form-control select2" id="player_gender" style="width:fit-content">
+                <option value=0 selected>Boy</option>
+                <option value=1>Girl</option>
+            </select></div>
+            <div class="col-auto"><h5>Face</h5><select class="form-control select2" id="player_face" style="width:fit-content">
+                    <option value=0 selected>Boy Face #1</option><option value=1>Boy Face #2</option>
+                    <option value=2>Boy Face #3</option><option value=3>Boy Face #4</option>
+                    <option value=4>Boy Face #5</option><option value=5>Boy Face #6</option>
+                    <option value=6>Boy Face #7</option><option value=7>Boy Face #8</option>
+                    <option value=8>Girl Face #1</option><option value=9>Girl Face #2</option>
+                    <option value=10>Girl Face #3</option><option value=11>Girl Face #4</option>
+                    <option value=12>Girl Face #5</option><option value=13>Girl Face #6</option>
+                    <option value=14>Girl Face #7</option><option value=15>Girl Face #8</option>
+            </select></div>
+            <div class="col-auto" style="margin-top:10px;">
+                <label class="form-check-label d-block"><input type="checkbox" id="checkboxBeestung" class="form-check-input">Beestung</label>
+                <label class="form-check-label d-block"><input type="checkbox" id="checkboxGyroidFace" class="form-check-input">Gyroid Face</label>
+            </div>
+        </div>
+        <div class="row" style="margin-left:20px;">
+            <div class="col-auto"><h5>Wallet</h5><input type="number" min="0" max="99999" class="form-control" style="width:6em;" id="player_wallet"></div>
+            <div class="col-auto"><h5>Debt</h5><input type="number" max="4294967295" class="form-control" id="player_debt"></div>
+            <div class="col-auto"><h5>Debt</h5><input type="number" max="4294967295" class="form-control" id="player_debt"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <h4>Inventory</h4>
+        </div>
+    
+        <div class="inventory">
+            @for (int i = 0; i < 15; i++) {
+                <div class="inventory-slot" data-index="@i" bubbletext=""></div>
+            }
+        </div>
+    </div>
+</div>
+
+<div id="tab_town" class="tabcontent">
+    <h5>Town Name</h5><input type="text" maxlength="8" class="form-control" id="town_name"></input>
+    <h5>Bulletin Board Post #1</h5><textarea class="form-control" id="bulletin_board_post_01"></textarea>
+    <h5>Bulletin Board Post #2</h5><textarea class="form-control" id="bulletin_board_post_02"></textarea>
+</div>
+
+<div class="ac-bubble">
+	<div class="ac-bubble-tooltip">
+		<div class="ac-bubble-triangle">
+			<img src="acgc-se/ui-icons/bubble-triangle.png">
+		</div>
+		<div class="ac-bubble-container">
+			<div class="ac-bubble-tl">
+                <img src="acgc-se/ui-icons/bubble-corner.png">
+			</div>
+			<div class="ac-bubble-tr">
+                <img src="acgc-se/ui-icons/bubble-corner.png">
+			</div>
+			<div class="ac-bubble-mc">
+				<div class="ac-bubble-content">
+					<p>Present (Buried Pitfall (Bent & Angled Down-Left Slightly))</p>
+				</div>
+			</div>
+			<div class="ac-bubble-bl">
+                <img src="acgc-se/ui-icons/bubble-corner.png">
+			</div>
+			<div class="ac-bubble-br">
+                <img src="acgc-se/ui-icons/bubble-corner.png">
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+    var saveFile;
+    var json;
+    var size;
+    var gender;
+    var itemData;
+    var selectedItemID;
+    var selectedItemObj;
+    var inventoryItems = new Array(15).fill(0);
+    var inventoryItemConditions = new Array(15).fill(0);
+    var PresentIconURL = "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Icon/Present.png";
+
+    function findObjByID(ID) {
+        var IDStr = Dec2Hex(ID);
+        return itemData.find(function(item) {
+            return item.ID === IDStr;
+        });
+    }
+    function Hex2Dec(Hex) {
+        return parseInt(Hex, 16);
+    }
+    function Dec2Hex(Dec) {
+        return '0x' + Dec.toString(16).padStart(4, '0').toUpperCase();
+    }
+    function updateItem() {
+        selectedItemID = $('#itemDropdown').val();
+        selectedItemObj = findObjByID(Hex2Dec(selectedItemID));
+
+        $.ajax({
+            headers: {
+                RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+            },
+            type: 'POST',
+            url: '@Url.Page("Index/acgc-save-editor")',
+            contentType: 'application/x-www-form-urlencoded',
+            data: {
+                func: "updateItem",
+                selectedItemID: selectedItemID,
+            },
+            success: function (response) {
+                $('#itemImage').prop('src', response.itemIconURL);
+                updateInventoryIcon(response.inventoryIconURL);
+                console.log('UPDATEITEM SUCCESS', response);
+            },
+            error: function (error) {
+                console.error('UPDATEITEM ERROR', error);
+            }
+        });
+    }
+    function updateInventoryIcon(inventoryIconURL) {
+        $('.inventory-slot').click(function () {
+            var inventorySlotIndex = $(this).index();
+            inventoryItems[inventorySlotIndex] = Hex2Dec(selectedItemID);
+            var $this = $(this);
+            
+            if (document.getElementById("checkboxPresent").checked) {
+                inventoryItemConditions[inventorySlotIndex] = 1;
+                $this.html('<img src="' + PresentIconURL + '" bubbletext="' + 'Present (' + selectedItemObj.Name + ')' + '">');
+            }
+            else {
+                $this.html('<img src="' + inventoryIconURL + '" bubbletext="' + selectedItemObj.Name + '">');
+            }
+        });
+    }
+    function updateInventoryIcons() {
+        for (let i = 0; i < 15;i++) {
+            var obj = findObjByID(inventoryItems[i]);
+            let slot = $('.inventory .inventory-slot').eq(i);
+            let imgElement = slot.find('img');
+
+            if (imgElement.length === 0) {
+                let newimgElement = $('<img>');
+                slot.append(newimgElement);
+                imgElement = slot.find('img');
+            }
+            if (obj && obj.IconURL) {
+                if (inventoryItemConditions[i] == 1) {
+                    imgElement.attr('src', PresentIconURL);
+                    imgElement.attr('bubbletext', 'Present (' + obj.Name + ')');
+                }
+                else {
+                    imgElement.attr('src', obj.IconURL);
+                    imgElement.attr('bubbletext', obj.Name);
+                }
+            }
+            else {
+                imgElement.remove();
+            }
+        }
+    }
+    function uploadSave() {
+        itemData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Items));
+        selectedItemID = "0x0000";
+        selectedItemObj = findObjByID(0);
+
+        var formData = new FormData();
+        var file = document.getElementById("fileUpload").files[0];
+        formData.append('fileUpload', file);
+
+        $.ajax({
+            headers: {
+                RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+            },
+            type: 'POST',
+            url: '@Url.Page("Index/acgc-save-editor")',
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function (response) {
+                saveFile = Uint8Array.from(atob(response.save_file), c => c.charCodeAt(0));
+                json = response.json;
+
+                document.getElementById("bulletin_board_post_01").value = getString("bulletin_board_post_01");
+                document.getElementById("bulletin_board_post_02").value = getString("bulletin_board_post_02");
+
+                document.getElementById("town_name").value = getString("town_name");
+                document.getElementById("player_name").value = getString("player_name");
+                document.getElementById("player_gender").value = getGender("player_gender");
+                document.getElementById("player_face").value = getFace("player_face");
+                document.getElementById("player_wallet").value = getNumber("player_wallet");
+                document.getElementById("player_debt").value = getNumber("player_debt");
+
+                getInventoryConditions("player_inventory_items_conditions");
+                getInventory("player_inventory_items");
+
+                console.log('UPLOADSAVE SUCCESS', response);
+            },
+            error: function (error) {
+                console.error('UPLOADSAVE ERROR', error);
+            }
+        });
+    }
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tab-button");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.classList.add("active");
+    }
+    function getJsonData(name) {
+        let jsonDataObject = JSON.parse(json);
+        let saveInfoElement = jsonDataObject[name];
+        let offsetHex = saveInfoElement["Global Byte Offset"];
+        let offset = Hex2Dec(offsetHex);
+        let size = saveInfoElement["Byte Size"];
+        return { index: offset, size: size };
+    }
+    function getSaveData(variable) {
+        let jsonData = getJsonData(variable);
+        let index = jsonData.index;
+        size = jsonData.size;
+
+        let saveData = new Uint8Array(size);
+        for (let i = 0; i < size; i++) {
+            saveData[i] = saveFile[index + i];
+        }
+        return saveData;
+    }
+    function getString(variable) {
+        let saveData = getSaveData(variable);
+        let saveDataString = replaceChars(saveData);
+        return saveDataString;
+    }
+    function getNumber(variable) {
+        let saveData = getSaveData(variable);
+        let value = 0;
+        for (var i = 0; i < size; i++) {
+            value = (value << 8) + saveData[i];
+        }
+        return value;
+    }
+    function getInventoryConditions(variable) {
+        let saveData = getSaveData(variable);
+        for (var i = 0; i < 15; i++) {
+            let byte = 3 - Math.floor(i / 4);
+            let bitOffset = (i % 4) * 2;
+            let bits = (saveData[byte] >> bitOffset & 0b11); // 0 = None, 1 = Present, 2 = Quest
+            inventoryItemConditions[i] = bits;
+        }
+    }
+    function getInventory(variable) {
+        let saveData = getSaveData(variable);
+        var dataView = new DataView(saveData.buffer);
+        for (var i = 0; i < 30; i += 2) {
+            var item = dataView.getInt16(i, false); /* false for big endian */
+            inventoryItems[i/2] = item;
+        }
+        updateInventoryIcons();
+    }
+    function getGender(variable) {
+        gender = getNumber(variable);
+        return gender;
+    }
+    function getFace(variable) {
+        let face = getNumber(variable);
+        if (gender == 0) {
+            if (face >= 0x10 && face < 0x20) {
+                document.getElementById("checkboxBeestung").checked = true;
+            }
+            if (face >= 0x20 && face < 0x30) {
+                document.getElementById("checkboxGyroidFace").checked = true;
+            }
+            if (face >= 0x30) {
+                document.getElementById("checkboxBeestung").checked = true;
+                document.getElementById("checkboxGyroidFace").checked = true;
+            }
+            return face;
+        }
+        if (gender == 1) {
+            if (face >= 0x08 && face < 0x18) {
+                document.getElementById("checkboxBeestung").checked = true;
+            }
+            if (face >= 0x18 && face < 0x28) {
+                document.getElementById("checkboxGyroidFace").checked = true;
+            }
+            if (face >= 0x28 && face < 0xF8) {
+                document.getElementById("checkboxBeestung").checked = true;
+                document.getElementById("checkboxGyroidFace").checked = true;
+            }
+            if (face >= 0xF8) {
+                return face - 0xF8;
+            }
+            else {
+                return face + 8;
+            }
+        }
+    }
+</script>
+<script>
+    // STARTUP
+    var debugMode = @Html.Raw(Json.Serialize(debugMode));
+    if (debugMode) {
+        uploadSave();
+    }
+</script>
+<script>
+    // FORCE NUMBER INPUTS TO MIN/MAX
+    document.addEventListener("DOMContentLoaded", function () {
+        var numberInputs = document.querySelectorAll('input[type="number"]');
+        numberInputs.forEach(function (input) {
+            input.addEventListener("input", function () {
+                var max = parseInt(input.getAttribute("max"), 10);
+                var value = parseInt(input.value, 10);
+
+                if (value < 0) {
+                    input.value = 0;
+                } else if (value > max) {
+                    input.value = max;
+                }
+            });
+        });
+    });
+</script>
+<script>
+    // FOCUS SEARCH FIELD ON DROPDOWN MENUS
+    $(document).ready(function () {
+        $('#itemDropdown').select2();
+        $('#itemDropdown').on('select2:open', function () {
+            window.setTimeout(function () {
+                document.querySelector('.select2-search__field').focus();
+            }, 0);
+        });
+    });
+</script>

@@ -1,0 +1,120 @@
+﻿/* ac-bubble by @tomathepolliwog */
+.ac-bubble {
+    position: absolute;
+    display: none;
+}
+
+.ac-bubble-tooltip {
+    display: block;
+    position: relative;
+    filter: drop-shadow(6px 6px 0px rgba(0,0,0,0.5));
+    margin: 5px;
+}
+
+.ac-bubble-content {
+    color: #5a3c32;
+    font-size: 24px;
+    z-index: 901;
+}
+
+.ac-bubble-content p {
+    font-family: 'Avrile-Sans-Condensed-SemiBold' !important;
+    padding: 0;
+    position: relative;
+    z-index: 902;
+}
+
+.ac-bubble-container {
+    z-index: 900;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 12px 1fr 1fr 12px;
+    grid-template-rows: 24px 1fr 1fr 24px;
+    /* image-rendering: crisp-edges; */
+    image-rendering: optimizeSpeed;
+    image-rendering: auto;
+    width: max-content;
+    height: 56px;
+}
+
+.ac-bubble-tl img, .ac-bubble-tr img, .ac-bubble-bl img, .ac-bubble-br img {
+    display: block;
+    margin: 0;
+    padding: 0;
+    justify-items: stretch;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+}
+
+.ac-bubble-tl {
+    grid-row: 1 / 3;
+    grid-column: 1 / 3;
+    position: relative;
+    z-index: 899;
+}
+
+.ac-bubble-tr {
+    grid-row: 1 / 3;
+    grid-column: 3 / 5;
+    position: relative;
+    z-index: 899;
+}
+
+.ac-bubble-tr img {
+    transform: scaleX(-100%);
+}
+
+.ac-bubble-mc {
+    grid-row: 2 / 4;
+    grid-column: 2 / 4;
+    display: flex;
+    align-items: center;
+}
+
+.ac-bubble-content {
+    grid-row: 1 / 5;
+    grid-column: 1 / 5;
+    display: inline-block;
+    text-align: center;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-top: 18px;
+    margin-bottom: 2px;
+}
+
+.ac-bubble-bl {
+    grid-row: 3 / 5;
+    grid-column: 1 / 3;
+    position: relative;
+    z-index: 899;
+}
+
+.ac-bubble-bl img {
+    transform: scaleY(-100%);
+}
+
+.ac-bubble-br {
+    grid-row: 3 / 5;
+    grid-column: 3 / 5;
+    position: relative;
+    z-index: 899;
+}
+
+.ac-bubble-br img {
+    transform: scaleY(-100%) scaleX(-100%);
+}
+
+.ac-bubble-triangle {
+    display: block;
+    z-index: 898;
+    position: relative;
+    margin-bottom: -30px;
+    margin-left: 10px;
+}
+
+.ac-bubble-triangle img {
+    width: 30px;
+    height: 30px;
+}
