@@ -37,12 +37,13 @@
 <body>
     <!--HEADER-->
     <header class="header border-bottom box-shadow mb-3">
-        <div class="container" style="display:flex; justify-content:space-between;">
-            <label class="acgc-title" style="color:black; font-size: 28px; padding:10px;">@ViewData["HeaderTitle"]</label>
-            <div style="display:flex; flex-direction:column; align-items:flex-end;">
+        <div class="container header-container d-flex">
+            <label class="acgc-title">@ViewData["HeaderTitle"]</label>
+            <div class="header-right-side">
                 <label style="font-size:10px; margin-top:2px; margin-right:4px;">@ViewData["Version"]</label>
                 <form id="uploadForm" method="post" enctype="multipart/form-data">
                     <input type="file" id="fileUpload" name="fileUpload" accept=".gci" onchange="uploadSave()">
+                    <label for="fileUpload" id="fileUploadLabel">Upload Save</label>
                 </form>
             </div>
         </div>
