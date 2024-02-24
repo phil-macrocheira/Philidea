@@ -56,7 +56,6 @@
             <div class="row" style="margin-left:20px;">
                 <div class="col-auto"><h5>Wallet</h5><input type="number" min="0" max="99999" class="form-control" style="width:6em;" id="player_wallet"></div>
                 <div class="col-auto"><h5>Debt</h5><input type="number" max="4294967295" class="form-control" id="player_debt"></div>
-                <div class="col-auto"><h5>Debt</h5><input type="number" max="4294967295" class="form-control" id="player_debt"></div>
             </div>
         </div>
 
@@ -84,15 +83,21 @@
     </div>
 
     <!-- INVENTORY -->
-    <div class="section" style="margin-left:2px;">
-        <div class="section-title" style="margin-left:-7px;padding-left:10px;width:7.2em;">
-            <h4>Inventory</h4>
-        </div>
-    
+    <h4>Inventory</h4>
+    <div class="section section-inventory" style="margin-left:2px;">
         <div class="inventory">
             @for (int i = 0; i < 15; i++) {
                 <div class="inventory-slot" data-index="@i" bubbletext=""></div>
             }
+        </div>
+
+        <div style="margin-top:20px;">
+            <h5 class="text-over-background">Background</h5>
+            <select class="form-control select2" id="player_inventory_background" style="width:16em;" onchange="updateBackground()">
+                @foreach (var item in Model.Items.Where(i => i.Category == "Clothing" && i.Obtainable == 1)) {
+                    <option value="@item.ID">@item.DropdownName</option>
+                }
+            </select>
         </div>
     </div>
 </div>
@@ -142,7 +147,7 @@
     var selectedItemObj;
     var inventoryItems = new Array(15).fill(0);
     var inventoryItemConditions = new Array(15).fill(0);
-    var PresentIconURL = "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Icon/Present.png";
+    var PresentIconURL = "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Icon_Upscaled/Present.png";
 
     function findObjByID(ID) {
         var IDStr = Dec2Hex(ID);
@@ -207,13 +212,13 @@
                 slot.append(newimgElement);
                 imgElement = slot.find('img');
             }
-            if (obj && obj.IconURL) {
+            if (obj && obj.IconURLUpscaled) {
                 if (inventoryItemConditions[i] == 1) {
                     imgElement.attr('src', PresentIconURL);
                     imgElement.attr('bubbletext', 'Present (' + obj.Name + ')');
                 }
                 else {
-                    imgElement.attr('src', obj.IconURL);
+                    imgElement.attr('src', obj.IconURLUpscaled);
                     imgElement.attr('bubbletext', obj.Name);
                 }
             }
@@ -256,6 +261,7 @@
 
                 getInventoryConditions("player_inventory_items_conditions");
                 getInventory("player_inventory_items");
+                getInventoryBackground("player_inventory_background");
 
                 console.log('UPLOADSAVE SUCCESS', response);
             },
@@ -309,6 +315,20 @@
         }
         return value;
     }
+    function getID(variable) {
+        let saveData = getSaveData(variable);
+        var ID = (saveData[0] << 8) | saveData[1];
+        return Dec2Hex(ID);
+    }
+    function updateBackground() {
+        var clothing = document.getElementById("player_inventory_background").value;
+        var clothingObj = findObjByID(Hex2Dec(clothing));
+        var backgroundURL = clothingObj.TextureURLUpscaled;
+
+        var styleTag = document.createElement('style');
+        styleTag.innerHTML = '.section-inventory::after { background-image: url("' + backgroundURL + '") !important; }';
+        document.head.appendChild(styleTag);
+    }
     function getInventoryConditions(variable) {
         let saveData = getSaveData(variable);
         for (var i = 0; i < 15; i++) {
@@ -326,6 +346,10 @@
             inventoryItems[i/2] = item;
         }
         updateInventoryIcons();
+    }
+    function getInventoryBackground(variable) {
+        document.getElementById("player_inventory_background").value = getID(variable);
+        $('#player_inventory_background').trigger('change');
     }
     function getGender(variable) {
         gender = getNumber(variable);
@@ -396,6 +420,13 @@
     $(document).ready(function () {
         $('#itemDropdownPlayer').select2();
         $('#itemDropdownPlayer').on('select2:open', function () {
+            window.setTimeout(function () {
+                document.querySelector('.select2-search__field').focus();
+            }, 0);
+        });
+
+        $('#player_inventory_background').select2();
+        $('#player_inventory_background').on('select2:open', function () {
             window.setTimeout(function () {
                 document.querySelector('.select2-search__field').focus();
             }, 0);

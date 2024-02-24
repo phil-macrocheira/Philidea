@@ -12,6 +12,9 @@ namespace Philidea.Website.Pages
         public string DropdownName { get; set; }
         public string ImageURL { get; set; }
         public string IconURL { get; set; }
+        public string IconURLUpscaled { get; set; }
+        public string TextureURL { get; set; }
+        public string TextureURLUpscaled { get; set; }
         public string SourceGroup { get; set; }
         public byte Width { get; set; }
         public byte Height { get; set; }
@@ -100,7 +103,7 @@ namespace Philidea.Website.Pages
                 }
             }
             ItemIconURL = SelectedItem?.ImageURL ?? "";
-            InventoryIconURL = SelectedItem?.IconURL ?? "";
+            InventoryIconURL = SelectedItem?.IconURLUpscaled ?? "";
             return true;
         }
         public (int index,int size) GetIndex(string name)
