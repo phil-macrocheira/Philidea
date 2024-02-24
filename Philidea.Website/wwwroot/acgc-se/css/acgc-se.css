@@ -4,6 +4,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Avrile-Sans-Condensed';
+    src: url('../fonts/Avrile-Sans-Condensed.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html {
     font-size: 14px;
@@ -34,9 +40,9 @@ header {
 }
 
 body {
+    font-family: 'Avrile-Sans-Condensed';
     margin-bottom: 60px;
     overflow-x: hidden;
-    font-family: 'Avrile-Sans-Condensed-SemiBold';
     background-image: url("/acgc-se/backgrounds/summer.png");
 }
 
@@ -158,7 +164,7 @@ input[type="file"] {
     width: fit-content;
     padding: 20px;
     margin: 10px;
-    margin-bottom:0;
+    margin-bottom: 0;
     background: white;
 }
 .section-inventory {
@@ -267,6 +273,10 @@ input[type="file"] {
     border-radius: 5px !important;
 }
 
+select > * {
+    font-family: "Roboto", sans-serif;
+}
+
 /* SELECT2 DROPDOWN VERTICALLY ALIGN TEXT */
 #select2-itemDropdownPlayer-container {
     display: flex;
@@ -285,7 +295,7 @@ input[type="file"] {
     height: 32px;
 }
 .form-check-input {
-    margin-right:3px;
+    margin-right: 3px;
 }
 
 /* Fix Dropdown Arrows Disappearing */
