@@ -209,6 +209,7 @@ input[type="file"] {
     grid-template-rows: repeat(3, 56px);
     gap: 12px;
     width: auto;
+    margin-bottom: 15px;
 }
 .inventory-slot {
     background-color: #6363FF !important;
@@ -291,8 +292,11 @@ select > * {
 
 /* Forms */
 .form-control {
+    border: 1px solid black;
     width: 8.5em;
     height: 32px;
+    position:relative;
+    z-index:2;
 }
 .form-check-input {
     margin-right: 3px;

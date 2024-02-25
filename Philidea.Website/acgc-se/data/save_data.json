@@ -2568,10 +2568,52 @@
     "Bit Offset": "",
     "Bit Size": ""
   },
-  "player_museum_info": {
+  "player_museum_mail": {
     "Local Byte Offset": "0x0017",
     "Global Byte Offset": "0x26077",
     "Byte Size": 81,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_museum_mail_unlocked_flag": {
+    "Local Byte Offset": "0x0017",
+    "Global Byte Offset": "0x26077",
+    "Byte Size": 1,
+    "Bit Offset": 0,
+    "Bit Size": 1
+  },
+  "player_museum_mail_bad_pending_flag": {
+    "Local Byte Offset": "0x0017",
+    "Global Byte Offset": "0x26077",
+    "Byte Size": 1,
+    "Bit Offset": 1,
+    "Bit Size": 1
+  },
+  "player_museum_mail_first_pending_flag": {
+    "Local Byte Offset": "0x0017",
+    "Global Byte Offset": "0x26077",
+    "Byte Size": 1,
+    "Bit Offset": 2,
+    "Bit Size": 1
+  },
+  "player_museum_mail_fossil_count": {
+    "Local Byte Offset": "0x0017",
+    "Global Byte Offset": "0x26077",
+    "Byte Size": 1,
+    "Bit Offset": 3,
+    "Bit Size": 5
+  },
+  "player_museum_mail_item_display_types": {
+    "Local Byte Offset": "0x0018",
+    "Global Byte Offset": "0x26078",
+    "Byte Size": 15,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "player_museum_mail_items": {
+    "Local Byte Offset": "0x0028",
+    "Global Byte Offset": "0x26088",
+    "Byte Size": 60,
     "Bit Offset": "",
     "Bit Size": ""
   },
@@ -2925,10 +2967,10 @@
     "Bit Offset": "",
     "Bit Size": ""
   },
-  "player_birthday_ymd": {
-    "Local Byte Offset": "0x10A4",
-    "Global Byte Offset": "0x27104",
-    "Byte Size": 4,
+  "player_birthday": {
+    "Local Byte Offset": "0x10A6",
+    "Global Byte Offset": "0x27106",
+    "Byte Size": 2,
     "Bit Offset": "",
     "Bit Size": ""
   },
