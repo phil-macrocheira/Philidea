@@ -4,6 +4,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Avrile-Sans-Condensed';
+    src: url('../fonts/Avrile-Sans-Condensed.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html {
     font-size: 14px;
@@ -34,8 +40,9 @@ header {
 }
 
 body {
+    font-family: 'Avrile-Sans-Condensed';
     overflow-x: hidden;
-    font-family: 'Avrile-Sans-Condensed-SemiBold';
+    background-image: url("/acgc-se/backgrounds/summer.png");
 }
 
 .summer {
@@ -63,6 +70,7 @@ body {
     line-height: 60px;
     font-family: 'Nunito', sans-serif;
     transition: line-height 0.5s ease;
+    z-index:3;
 }
 
 ul {
@@ -103,6 +111,10 @@ input[type="file"] {
     overflow: hidden;
 }
 
+.row {
+    margin-bottom: 20px;
+}
+
 .tabs {
     overflow: hidden;
     margin-bottom: -5px;
@@ -129,42 +141,74 @@ input[type="file"] {
 .tabcontent {
     display: none;
     padding: 20px;
-    background: white;
     border: 2px solid gray;
     border-radius: 10px;
-    position:relative;
-    width:98%;
+    position: relative;
+    width: 98%;
+    background:white;
 }
 .tabcontent.show {
     display: block;
 }
 
-.row {
-    margin-bottom:20px;
+.section-title {
+    background: white;
+    width: fit-content;
+    height: 15px;
+    margin-top: -34px;
 }
-
 .section {
     border: 2px solid black;
     border-radius: 10px;
     width: fit-content;
     padding: 20px;
-    margin:10px;
-    margin-bottom:20px;
+    margin: 10px;
+    margin-bottom: 0;
+    background: white;
 }
-.section-title {
-    background:white;
-    width:fit-content;
-    height:15px;
-    margin-top:-34px;
+.section-inventory {
+    position: relative;
+    overflow: hidden;
+}
+.section-inventory::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    z-index: -1;
+}
+.section-inventory::after {
+    content: '';
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Textures_Upscaled/24E2_big_dot_shirt.png");
+    opacity: 0.25;
+    z-index: 0;
+    animation: animateBackground 75s linear infinite;
+}
+@keyframes animateBackground {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+    }
 }
 
 .inventory {
-    margin-top:25px;
     display: grid;
     grid-template-columns: repeat(5, 56px);
     grid-template-rows: repeat(3, 56px);
     gap: 12px;
     width: auto;
+    margin-bottom: 15px;
 }
 .inventory-slot {
     background-color: #6363FF !important;
@@ -175,9 +219,26 @@ input[type="file"] {
     display: flex;
     align-items: center;
     justify-content: center;
+    position:relative;
+    z-index:2;
 }
 .inventory-slot img {
     width: 100%;
+}
+
+.text-over-background {
+    position: relative;
+    z-index: 2;
+    background: white;
+    width: 100px;
+    height:35px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom:-10px;
+    margin-left: 5px;
+    text-align:center;
+    border: 1px solid black;
+    background-color: #EEEEEE;
 }
 
 .icon {
@@ -200,23 +261,44 @@ input[type="file"] {
 
 /* Select2 Dropdowns */
 .select2 {
-    height:30px;
+    height:32px;
+    position:relative;
+    z-index:2;
 }
 .select2-container .select2-selection--single {
-    height: 30px !important;
+    height: 32px !important;
 }
 .select2-container--default .select2-selection--single {
     border: 1px solid black !important;
     border-radius: 5px !important;
 }
 
+select > * {
+    font-family: "Roboto", sans-serif;
+}
+
+/* SELECT2 DROPDOWN VERTICALLY ALIGN TEXT */
+#select2-itemDropdownPlayer-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+#select2-player_inventory_background-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
 /* Forms */
 .form-control {
-    width:8.5em;
-    height:30px;
+    border: 1px solid black;
+    width: 8.5em;
+    height: 32px;
+    position:relative;
+    z-index:2;
 }
 .form-check-input {
-    margin-right:3px;
+    margin-right: 3px;
 }
 
 /* Fix Dropdown Arrows Disappearing */

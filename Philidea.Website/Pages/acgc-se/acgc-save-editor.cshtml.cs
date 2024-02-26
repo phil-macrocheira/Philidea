@@ -12,6 +12,9 @@ namespace Philidea.Website.Pages
         public string DropdownName { get; set; }
         public string ImageURL { get; set; }
         public string IconURL { get; set; }
+        public string IconURLUpscaled { get; set; }
+        public string TextureURL { get; set; }
+        public string TextureURLUpscaled { get; set; }
         public string SourceGroup { get; set; }
         public byte Width { get; set; }
         public byte Height { get; set; }
@@ -34,6 +37,13 @@ namespace Philidea.Website.Pages
         public string DropdownName { get; set; }
         public string ImageURL { get; set; }
     }
+    public class Villager
+    {
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public byte Type { get; set; }
+        public string ImageURL { get; set; }
+    }
     public class acgcModel : PageModel
     {
         private readonly ILogger<acgcModel> _logger;
@@ -43,8 +53,12 @@ namespace Philidea.Website.Pages
         public byte[] SaveFile { get; set; }
         public string SaveFileString { get; set; }
         public IEnumerable<Item> Items { get; private set; }
+        public IEnumerable<Object> Objects { get; private set; }
+        public IEnumerable<Villager> Villagers { get; private set; }
         public Item SelectedItem { get; set; }
-        public string ItemIconURL { get; set; } = "";
+        public List<Villager> SelectedVillagers { get; set; }
+        public string ItemIconURL { get; set; } = "acgc-se/ui-icons/None.png";
+        public string VillagerIconURL { get; set; }
         public string InventoryIconURL { get; set; } = "";
         public acgcModel(ILogger<acgcModel> logger)
         {
@@ -54,6 +68,12 @@ namespace Philidea.Website.Pages
 
             string ItemJsonText = System.IO.File.ReadAllText("acgc-se/data/item_data.json");
             Items = JsonSerializer.Deserialize<List<Item>>(ItemJsonText);
+
+            string ObjectJsonText = System.IO.File.ReadAllText("acgc-se/data/object_data.json");
+            Objects = JsonSerializer.Deserialize<List<Object>>(ObjectJsonText);
+
+            string VillagerJsonText = System.IO.File.ReadAllText("acgc-se/data/villager_data.json");
+            Villagers = JsonSerializer.Deserialize<List<Villager>>(VillagerJsonText);
         }
         public IActionResult OnGet()
         {
@@ -67,6 +87,13 @@ namespace Philidea.Website.Pages
                     success = success, message = "Success", 
                     itemIconURL = ItemIconURL,
                     inventoryIconURL = InventoryIconURL,
+                    villagerIconURL = VillagerIconURL,
+                });
+            }
+            else if (Request.Form["func"] == "updateVillagers") {
+                bool success = UpdateVillagers(Request.Form["selectedVillagerIDs"]);
+                return new JsonResult(new {
+                    success = success, message = "Success",
                 });
             }
             else {
@@ -99,8 +126,21 @@ namespace Philidea.Website.Pages
                     break;
                 }
             }
-            ItemIconURL = SelectedItem?.ImageURL ?? "";
-            InventoryIconURL = SelectedItem?.IconURL ?? "";
+            ItemIconURL = SelectedItem?.ImageURL ?? "acgc-se/ui-icons/None.png";
+            InventoryIconURL = SelectedItem?.IconURLUpscaled ?? "";
+            return true;
+        }
+        public bool UpdateVillagers(string selectedVillagerIDs)
+        {
+            string[] IDs = selectedVillagerIDs.Split(',');
+
+            foreach (var villagerID in IDs) {
+                foreach (var villager in Villagers) {
+                    if (villager.ID == villagerID) {
+                        SelectedVillagers.Add(villager);
+                    }
+                }
+            }
             return true;
         }
         public (int index,int size) GetIndex(string name)

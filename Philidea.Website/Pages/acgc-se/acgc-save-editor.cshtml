@@ -1,4 +1,4 @@
-﻿@page
+@page
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @model Philidea.Website.Pages.acgcModel
 @section Scripts {
@@ -52,10 +52,14 @@
                     <label class="form-check-label d-block"><input type="checkbox" id="checkboxBeestung" class="form-check-input">Beestung</label>
                     <label class="form-check-label d-block"><input type="checkbox" id="checkboxGyroidFace" class="form-check-input">Gyroid Face</label>
                 </div>
+                <div class="col-auto"><h5>Birthday</h5><input type="date" id="player_birthday"/></div>
+
+                <div class="col-auto">
+                    <label class="form-check-label d-block"><input type="checkbox" id="player_reset_code" class="form-check-input">Reset</label>
+                    <h6>Reset Cycle</h6><input type="number" max="7" class="form-control" style="width:4em;" id="player_reset_count" />
+                </div>
             </div>
             <div class="row" style="margin-left:20px;">
-                <div class="col-auto"><h5>Wallet</h5><input type="number" min="0" max="99999" class="form-control" style="width:6em;" id="player_wallet"></div>
-                <div class="col-auto"><h5>Debt</h5><input type="number" max="4294967295" class="form-control" id="player_debt"></div>
                 <div class="col-auto"><h5>Debt</h5><input type="number" max="4294967295" class="form-control" id="player_debt"></div>
             </div>
         </div>
@@ -88,11 +92,23 @@
         <div class="section-title" style="margin-left:-7px;padding-left:10px;width:7.2em;">
             <h4>Inventory</h4>
         </div>
-
         <div class="inventory">
             @for (int i = 0; i < 15; i++) {
                 <div class="inventory-slot" data-index="@i" bubbletext=""></div>
             }
+        </div>
+
+        <div class="row">
+            <div class="col-auto" style="margin-top:15px;"><h5 class="text-over-background" style="width:60px;">Wallet</h5><input type="number" min="0" max="99999" class="form-control" style="width:6em;" id="player_wallet"></div>
+
+            <div class="col-auto" style="margin-top:15px;">
+                <h5 class="text-over-background">Background</h5>
+                <select class="form-control select2" id="player_inventory_background" style="width:16em;" onchange="updateBackground()">
+                    @foreach (var item in Model.Items.Where(i => i.Category == "Clothing" && i.Obtainable == 1)) {
+                        <option value="@item.ID">@item.DropdownName</option>
+                    }
+                </select>
+            </div>
         </div>
     </div>
 </div>
@@ -102,6 +118,18 @@
     <h5>Town Name</h5><input type="text" maxlength="8" class="form-control" id="town_name"></input>
     <h5>Bulletin Board Post #1</h5><textarea class="form-control" id="bulletin_board_post_01"></textarea>
     <h5>Bulletin Board Post #2</h5><textarea class="form-control" id="bulletin_board_post_02"></textarea>
+</div>
+
+<!-- VILLAGER TAB -->
+<div id="tab_villagers" class="tabcontent">
+    <h4>Villager</h4>
+    <div class="row" style="margin-top:20px;">
+        <div class="col-auto"><select class="form-control select2" id="villagerDropdown" onchange="updateVillagers">
+                @foreach (var villager in Model.Villagers) {
+                    <option value="@villager.ID">@villager.Name</option>
+                }
+        </select></div>
+        <div class="col-auto"><div class="icon"><img src="@Model.SelectedVillagers?.FirstOrDefault()?.ImageURL" id="villagerImage" class="rounded float-left" alt="Villager Image"></div></div>
 </div>
 
 <!-- TOOLTIP BUBBLE FOR INVENTORY -->
@@ -142,10 +170,10 @@
     var selectedItemObj;
     var inventoryItems = new Array(15).fill(0);
     var inventoryItemConditions = new Array(15).fill(0);
-    var PresentIconURL = "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Icon/Present.png";
+    var PresentIconURL = "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Icon_Upscaled/Present.png";
 
     function findObjByID(ID) {
-        var IDStr = Dec2Hex(ID);
+        let IDStr = Dec2Hex(ID);
         return itemData.find(function(item) {
             return item.ID === IDStr;
         });
@@ -181,9 +209,31 @@
             }
         });
     }
+    function updateVillagers() {
+        var selectedVillagerIDs = $('#villagerDropdown').val() + "," + "0x4E";
+
+        $.ajax({
+            headers: {
+                RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+            },
+            url: '@Url.Page("Index/acgc-save-editor")',
+            contentType: 'application/x-www-form-urlencoded',
+            data: {
+                func: "updateVillagers",
+                selectedVillagerIDs: selectedVillagerIDs,
+            },
+            success: function (response) {
+                document.getElementById("villagerImage").src = document.getElementById("villagerImage").src;
+                console.log('UPDATEVILLAGERS SUCCESS', response);
+            },
+            error: function (error) {
+                console.error('UPDATEVILLAGERS ERROR', error);
+            }
+        });
+    }
     function updateInventoryIcon(inventoryIconURL) {
         $('.inventory-slot').click(function () {
-            var inventorySlotIndex = $(this).index();
+            let inventorySlotIndex = $(this).index();
             inventoryItems[inventorySlotIndex] = Hex2Dec(selectedItemID);
             var $this = $(this);
             
@@ -199,21 +249,21 @@
     function updateInventoryIcons() {
         for (let i = 0; i < 15;i++) {
             var obj = findObjByID(inventoryItems[i]);
-            let slot = $('.inventory .inventory-slot').eq(i);
-            let imgElement = slot.find('img');
+            var slot = $('.inventory .inventory-slot').eq(i);
+            var imgElement = slot.find('img');
 
             if (imgElement.length === 0) {
                 let newimgElement = $('<img>');
                 slot.append(newimgElement);
                 imgElement = slot.find('img');
             }
-            if (obj && obj.IconURL) {
+            if (obj && obj.IconURLUpscaled) {
                 if (inventoryItemConditions[i] == 1) {
                     imgElement.attr('src', PresentIconURL);
                     imgElement.attr('bubbletext', 'Present (' + obj.Name + ')');
                 }
                 else {
-                    imgElement.attr('src', obj.IconURL);
+                    imgElement.attr('src', obj.IconURLUpscaled);
                     imgElement.attr('bubbletext', obj.Name);
                 }
             }
@@ -251,11 +301,15 @@
                 document.getElementById("player_name").value = getString("player_name");
                 document.getElementById("player_gender").value = getGender("player_gender");
                 document.getElementById("player_face").value = getFace("player_face");
+                document.getElementById("player_birthday").value = getBirthday("player_birthday");
+                document.getElementById("player_reset_code").value = getReset("player_reset_code");
+                document.getElementById("player_reset_count").value = getNumber("player_reset_count");
                 document.getElementById("player_wallet").value = getNumber("player_wallet");
                 document.getElementById("player_debt").value = getNumber("player_debt");
 
                 getInventoryConditions("player_inventory_items_conditions");
                 getInventory("player_inventory_items");
+                getInventoryBackground("player_inventory_background");
 
                 console.log('UPLOADSAVE SUCCESS', response);
             },
@@ -290,7 +344,7 @@
         let index = jsonData.index;
         size = jsonData.size;
 
-        let saveData = new Uint8Array(size);
+        var saveData = new Uint8Array(size);
         for (let i = 0; i < size; i++) {
             saveData[i] = saveFile[index + i];
         }
@@ -303,11 +357,44 @@
     }
     function getNumber(variable) {
         let saveData = getSaveData(variable);
-        let value = 0;
+        var value = 0;
         for (var i = 0; i < size; i++) {
             value = (value << 8) + saveData[i];
         }
         return value;
+    }
+    function getID(variable) {
+        let saveData = getSaveData(variable);
+        let ID = (saveData[0] << 8) | saveData[1];
+        return Dec2Hex(ID);
+    }
+    function getYMD(variable) {
+        let saveData = getSaveData(variable);
+        let year = saveData[0] << 8 | saveData[1];
+        let month = saveData[2] - 1;
+        let day = saveData[3];
+        let date = new Date(year, month, day);
+        return date.toISOString().split('T')[0];
+    }
+    function getBirthday(variable) {
+        let saveData = getSaveData(variable);
+        let day = saveData[1];
+        if (saveData[0] == 0xFF && day == 0xFF) {
+            return null;
+        }
+        let month = saveData[0] - 1;
+        let year = new Date().getFullYear();
+        let date = new Date(year, month, day);
+        return date.toISOString().split('T')[0];
+    }
+    function updateBackground() {
+        let clothing = document.getElementById("player_inventory_background").value;
+        let clothingObj = findObjByID(Hex2Dec(clothing));
+        let backgroundURL = clothingObj.TextureURLUpscaled;
+
+        let styleTag = document.createElement('style');
+        styleTag.innerHTML = '.section-inventory::after { background-image: url("' + backgroundURL + '") !important; }';
+        document.head.appendChild(styleTag);
     }
     function getInventoryConditions(variable) {
         let saveData = getSaveData(variable);
@@ -320,19 +407,23 @@
     }
     function getInventory(variable) {
         let saveData = getSaveData(variable);
-        var dataView = new DataView(saveData.buffer);
+        let dataView = new DataView(saveData.buffer);
         for (var i = 0; i < 30; i += 2) {
-            var item = dataView.getInt16(i, false); /* false for big endian */
+            let item = dataView.getInt16(i, false); /* false for big endian */
             inventoryItems[i/2] = item;
         }
         updateInventoryIcons();
+    }
+    function getInventoryBackground(variable) {
+        document.getElementById("player_inventory_background").value = getID(variable);
+        $('#player_inventory_background').trigger('change');
     }
     function getGender(variable) {
         gender = getNumber(variable);
         return gender;
     }
     function getFace(variable) {
-        let face = getNumber(variable);
+        var face = getNumber(variable);
         if (gender == 0) {
             if (face >= 0x10 && face < 0x20) {
                 document.getElementById("checkboxBeestung").checked = true;
@@ -365,6 +456,12 @@
             }
         }
     }
+    function getReset(variable) {
+        let saveData = getSaveData(variable);
+        if (saveData[0] > 0) {
+            document.getElementById("checkboxReset").checked = true;
+        }
+    }
 </script>
 <script>
     // STARTUP
@@ -376,11 +473,11 @@
 <script>
     // FORCE NUMBER INPUTS TO MIN/MAX
     document.addEventListener("DOMContentLoaded", function () {
-        var numberInputs = document.querySelectorAll('input[type="number"]');
+        let numberInputs = document.querySelectorAll('input[type="number"]');
         numberInputs.forEach(function (input) {
             input.addEventListener("input", function () {
-                var max = parseInt(input.getAttribute("max"), 10);
-                var value = parseInt(input.value, 10);
+                let max = parseInt(input.getAttribute("max"), 10);
+                let value = parseInt(input.value, 10);
 
                 if (value < 0) {
                     input.value = 0;
@@ -396,6 +493,20 @@
     $(document).ready(function () {
         $('#itemDropdownPlayer').select2();
         $('#itemDropdownPlayer').on('select2:open', function () {
+            window.setTimeout(function () {
+                document.querySelector('.select2-search__field').focus();
+            }, 0);
+        });
+
+        $('#player_inventory_background').select2();
+        $('#player_inventory_background').on('select2:open', function () {
+            window.setTimeout(function () {
+                document.querySelector('.select2-search__field').focus();
+            }, 0);
+        });
+
+        $('#villagerDropdown').select2();
+        $('#villagerDropdown').on('select2:open', function () {
             window.setTimeout(function () {
                 document.querySelector('.select2-search__field').focus();
             }, 0);

@@ -1,0 +1,1418 @@
+[
+  {
+    "ID": "0x00",
+    "Name": "Bob",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/00_Bob.png"
+  },
+  {
+    "ID": "0x01",
+    "Name": "Olivia",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/01_Olivia.png"
+  },
+  {
+    "ID": "0x02",
+    "Name": "Mitzi",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/02_Mitzi.png"
+  },
+  {
+    "ID": "0x03",
+    "Name": "Kiki",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/03_Kiki.png"
+  },
+  {
+    "ID": "0x04",
+    "Name": "Tangy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/04_Tangy.png"
+  },
+  {
+    "ID": "0x05",
+    "Name": "Kabuki",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/05_Kabuki.png"
+  },
+  {
+    "ID": "0x06",
+    "Name": "Tabby",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/06_Tabby.png"
+  },
+  {
+    "ID": "0x07",
+    "Name": "Monique",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/07_Monique.png"
+  },
+  {
+    "ID": "0x08",
+    "Name": "Stinky",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/08_Stinky.png"
+  },
+  {
+    "ID": "0x09",
+    "Name": "Purrl",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/09_Purrl.png"
+  },
+  {
+    "ID": "0x0A",
+    "Name": "Kitty",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/0A_Kitty.png"
+  },
+  {
+    "ID": "0x0B",
+    "Name": "Tom",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/0B_Tom.png"
+  },
+  {
+    "ID": "0x0C",
+    "Name": "Rosie",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/0C_Rosie.png"
+  },
+  {
+    "ID": "0x0D",
+    "Name": "Nosegay",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/0D_Nosegay.png"
+  },
+  {
+    "ID": "0x0E",
+    "Name": "Zoe",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/0E_Zoe.png"
+  },
+  {
+    "ID": "0x0F",
+    "Name": "Pango",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/0F_Pango.png"
+  },
+  {
+    "ID": "0x10",
+    "Name": "Cyrano",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/10_Cyrano.png"
+  },
+  {
+    "ID": "0x11",
+    "Name": "Snooty",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/11_Snooty.png"
+  },
+  {
+    "ID": "0x12",
+    "Name": "Teddy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/12_Teddy.png"
+  },
+  {
+    "ID": "0x13",
+    "Name": "Chow",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/13_Chow.png"
+  },
+  {
+    "ID": "0x14",
+    "Name": "Dozer",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/14_Dozer.png"
+  },
+  {
+    "ID": "0x15",
+    "Name": "Nate",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/15_Nate.png"
+  },
+  {
+    "ID": "0x16",
+    "Name": "Groucho",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/16_Groucho.png"
+  },
+  {
+    "ID": "0x17",
+    "Name": "Tutu",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/17_Tutu.png"
+  },
+  {
+    "ID": "0x18",
+    "Name": "Ursala",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/18_Ursala.png"
+  },
+  {
+    "ID": "0x19",
+    "Name": "Grizzly",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/19_Grizzly.png"
+  },
+  {
+    "ID": "0x1A",
+    "Name": "Pinky",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/1A_Pinky.png"
+  },
+  {
+    "ID": "0x1B",
+    "Name": "Jay",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/1B_Jay.png"
+  },
+  {
+    "ID": "0x1C",
+    "Name": "Twiggy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/1C_Twiggy.png"
+  },
+  {
+    "ID": "0x1D",
+    "Name": "Anchovy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/1D_Anchovy.png"
+  },
+  {
+    "ID": "0x1E",
+    "Name": "Piper",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/1E_Piper.png"
+  },
+  {
+    "ID": "0x1F",
+    "Name": "Admiral",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/1F_Admiral.png"
+  },
+  {
+    "ID": "0x20",
+    "Name": "Otis",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/20_Otis.png"
+  },
+  {
+    "ID": "0x21",
+    "Name": "Robin",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/21_Robin.png"
+  },
+  {
+    "ID": "0x22",
+    "Name": "Midge",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/22_Midge.png"
+  },
+  {
+    "ID": "0x23",
+    "Name": "Ace",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/23_Ace.png"
+  },
+  {
+    "ID": "0x24",
+    "Name": "Twirp",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/24_Twirp.png"
+  },
+  {
+    "ID": "0x25",
+    "Name": "Chuck",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/25_Chuck.png"
+  },
+  {
+    "ID": "0x26",
+    "Name": "Stu",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/26_Stu.png"
+  },
+  {
+    "ID": "0x27",
+    "Name": "Goose",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/27_Goose.png"
+  },
+  {
+    "ID": "0x28",
+    "Name": "Betty",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/28_Betty.png"
+  },
+  {
+    "ID": "0x29",
+    "Name": "Hector",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/29_Hector.png"
+  },
+  {
+    "ID": "0x2A",
+    "Name": "Egbert",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/2A_Egbert.png"
+  },
+  {
+    "ID": "0x2B",
+    "Name": "Ava",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/2B_Ava.png"
+  },
+  {
+    "ID": "0x2C",
+    "Name": "Hank",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/2C_Hank.png"
+  },
+  {
+    "ID": "0x2D",
+    "Name": "Leigh",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/2D_Leigh.png"
+  },
+  {
+    "ID": "0x2E",
+    "Name": "Rhoda",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/2E_Rhoda.png"
+  },
+  {
+    "ID": "0x2F",
+    "Name": "Vladimir",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/2F_Vladimir.png"
+  },
+  {
+    "ID": "0x30",
+    "Name": "Murphy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/30_Murphy.png"
+  },
+  {
+    "ID": "0x31",
+    "Name": "Cupcake",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/31_Cupcake.png"
+  },
+  {
+    "ID": "0x32",
+    "Name": "Kody",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/32_Kody.png"
+  },
+  {
+    "ID": "0x33",
+    "Name": "Maple",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/33_Maple.png"
+  },
+  {
+    "ID": "0x34",
+    "Name": "Pudge",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/34_Pudge.png"
+  },
+  {
+    "ID": "0x35",
+    "Name": "Olive",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/35_Olive.png"
+  },
+  {
+    "ID": "0x36",
+    "Name": "Poncho",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/36_Poncho.png"
+  },
+  {
+    "ID": "0x37",
+    "Name": "Bluebear",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/37_Bluebear.png"
+  },
+  {
+    "ID": "0x38",
+    "Name": "Patty",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/38_Patty.png"
+  },
+  {
+    "ID": "0x39",
+    "Name": "Petunia",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/39_Petunia.png"
+  },
+  {
+    "ID": "0x3A",
+    "Name": "Bessie",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/3A_Bessie.png"
+  },
+  {
+    "ID": "0x3B",
+    "Name": "Belle",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/3B_Belle.png"
+  },
+  {
+    "ID": "0x3C",
+    "Name": "Alfonso",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/3C_Alfonso.png"
+  },
+  {
+    "ID": "0x3D",
+    "Name": "Boots",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/3D_Boots.png"
+  },
+  {
+    "ID": "0x3E",
+    "Name": "Liz",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/3E_Liz.png"
+  },
+  {
+    "ID": "0x3F",
+    "Name": "Biskit",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/3F_Biskit.png"
+  },
+  {
+    "ID": "0x40",
+    "Name": "Goldie",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/40_Goldie.png"
+  },
+  {
+    "ID": "0x41",
+    "Name": "Daisy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/41_Daisy.png"
+  },
+  {
+    "ID": "0x42",
+    "Name": "Lucky",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/42_Lucky.png"
+  },
+  {
+    "ID": "0x43",
+    "Name": "Portia",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/43_Portia.png"
+  },
+  {
+    "ID": "0x44",
+    "Name": "Maddie",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/44_Maddie.png"
+  },
+  {
+    "ID": "0x45",
+    "Name": "Butch",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/45_Butch.png"
+  },
+  {
+    "ID": "0x46",
+    "Name": "Bill",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/46_Bill.png"
+  },
+  {
+    "ID": "0x47",
+    "Name": "Pompom",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/47_Pompom.png"
+  },
+  {
+    "ID": "0x48",
+    "Name": "Joey",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/48_Joey.png"
+  },
+  {
+    "ID": "0x49",
+    "Name": "Scoot",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/49_Scoot.png"
+  },
+  {
+    "ID": "0x4A",
+    "Name": "Derwin",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/4A_Derwin.png"
+  },
+  {
+    "ID": "0x4B",
+    "Name": "Freckles",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/4B_Freckles.png"
+  },
+  {
+    "ID": "0x4C",
+    "Name": "Paolo",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/4C_Paolo.png"
+  },
+  {
+    "ID": "0x4D",
+    "Name": "Dizzy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/4D_Dizzy.png"
+  },
+  {
+    "ID": "0x4E",
+    "Name": "Axel",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/4E_Axel.png"
+  },
+  {
+    "ID": "0x4F",
+    "Name": "Emerald",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/4F_Emerald.png"
+  },
+  {
+    "ID": "0x50",
+    "Name": "Tad",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/50_Tad.png"
+  },
+  {
+    "ID": "0x51",
+    "Name": "Wart Jr",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/51_Wart Jr.png"
+  },
+  {
+    "ID": "0x52",
+    "Name": "Cousteau",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/52_Cousteau.png"
+  },
+  {
+    "ID": "0x53",
+    "Name": "Puddles",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/53_Puddles.png"
+  },
+  {
+    "ID": "0x54",
+    "Name": "Lily",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/54_Lily.png"
+  },
+  {
+    "ID": "0x55",
+    "Name": "Jeremiah",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/55_Jeremiah.png"
+  },
+  {
+    "ID": "0x56",
+    "Name": "Huck",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/56_Huck.png"
+  },
+  {
+    "ID": "0x57",
+    "Name": "Camofrog",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/57_Camofrog.png"
+  },
+  {
+    "ID": "0x58",
+    "Name": "Ribbot",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/58_Ribbot.png"
+  },
+  {
+    "ID": "0x59",
+    "Name": "Prince",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/59_Prince.png"
+  },
+  {
+    "ID": "0x5A",
+    "Name": "Jambette",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/5A_Jambette.png"
+  },
+  {
+    "ID": "0x5B",
+    "Name": "Billy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/5B_Billy.png"
+  },
+  {
+    "ID": "0x5C",
+    "Name": "Chevre",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/5C_Chevre.png"
+  },
+  {
+    "ID": "0x5D",
+    "Name": "Iggy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/5D_Iggy.png"
+  },
+  {
+    "ID": "0x5E",
+    "Name": "Gruff",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/5E_Gruff.png"
+  },
+  {
+    "ID": "0x5F",
+    "Name": "Sven",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/5F_Sven.png"
+  },
+  {
+    "ID": "0x60",
+    "Name": "Velma",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/60_Velma.png"
+  },
+  {
+    "ID": "0x61",
+    "Name": "Jane",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/61_Jane.png"
+  },
+  {
+    "ID": "0x62",
+    "Name": "Cesar",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/62_Cesar.png"
+  },
+  {
+    "ID": "0x63",
+    "Name": "Louie",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/63_Louie.png"
+  },
+  {
+    "ID": "0x64",
+    "Name": "Peewee",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/64_Peewee.png"
+  },
+  {
+    "ID": "0x65",
+    "Name": "Rollo",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/65_Rollo.png"
+  },
+  {
+    "ID": "0x66",
+    "Name": "Bubbles",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/66_Bubbles.png"
+  },
+  {
+    "ID": "0x67",
+    "Name": "Bertha",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/67_Bertha.png"
+  },
+  {
+    "ID": "0x68",
+    "Name": "Elmer",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/68_Elmer.png"
+  },
+  {
+    "ID": "0x69",
+    "Name": "Winnie",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/69_Winnie.png"
+  },
+  {
+    "ID": "0x6A",
+    "Name": "Savannah",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/6A_Savannah.png"
+  },
+  {
+    "ID": "0x6B",
+    "Name": "Ed",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/6B_Ed.png"
+  },
+  {
+    "ID": "0x6C",
+    "Name": "Cleo",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/6C_Cleo.png"
+  },
+  {
+    "ID": "0x6D",
+    "Name": "Peaches",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/6D_Peaches.png"
+  },
+  {
+    "ID": "0x6E",
+    "Name": "Buck",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/6E_Buck.png"
+  },
+  {
+    "ID": "0x6F",
+    "Name": "Carrie",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/6F_Carrie.png"
+  },
+  {
+    "ID": "0x70",
+    "Name": "Mathilda",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/70_Mathilda.png"
+  },
+  {
+    "ID": "0x71",
+    "Name": "Marcy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/71_Marcy.png"
+  },
+  {
+    "ID": "0x72",
+    "Name": "Kitt",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/72_Kitt.png"
+  },
+  {
+    "ID": "0x73",
+    "Name": "Valise",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/73_Valise.png"
+  },
+  {
+    "ID": "0x74",
+    "Name": "Astrid",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/74_Astrid.png"
+  },
+  {
+    "ID": "0x75",
+    "Name": "Sydney",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/75_Sydney.png"
+  },
+  {
+    "ID": "0x76",
+    "Name": "Gonzo",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/76_Gonzo.png"
+  },
+  {
+    "ID": "0x77",
+    "Name": "Ozzie",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/77_Ozzie.png"
+  },
+  {
+    "ID": "0x78",
+    "Name": "Yuka",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/78_Yuka.png"
+  },
+  {
+    "ID": "0x79",
+    "Name": "Huggy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/79_Huggy.png"
+  },
+  {
+    "ID": "0x7A",
+    "Name": "Rex",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/7A_Rex.png"
+  },
+  {
+    "ID": "0x7B",
+    "Name": "Aziz",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/7B_Aziz.png"
+  },
+  {
+    "ID": "0x7C",
+    "Name": "Leopold",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/7C_Leopold.png"
+  },
+  {
+    "ID": "0x7D",
+    "Name": "Samson",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/7D_Samson.png"
+  },
+  {
+    "ID": "0x7E",
+    "Name": "Penny",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/7E_Penny.png"
+  },
+  {
+    "ID": "0x7F",
+    "Name": "Dora",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/7F_Dora.png"
+  },
+  {
+    "ID": "0x80",
+    "Name": "Chico",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/80_Chico.png"
+  },
+  {
+    "ID": "0x81",
+    "Name": "Candi",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/81_Candi.png"
+  },
+  {
+    "ID": "0x82",
+    "Name": "Rizzo",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/82_Rizzo.png"
+  },
+  {
+    "ID": "0x83",
+    "Name": "Anicotti",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/83_Anicotti.png"
+  },
+  {
+    "ID": "0x84",
+    "Name": "Limberg",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/84_Limberg.png"
+  },
+  {
+    "ID": "0x85",
+    "Name": "Carmen",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/85_Carmen.png"
+  },
+  {
+    "ID": "0x86",
+    "Name": "Octavian",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/86_Octavian.png"
+  },
+  {
+    "ID": "0x87",
+    "Name": "Sandy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/87_Sandy.png"
+  },
+  {
+    "ID": "0x88",
+    "Name": "Sprocket",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/88_Sprocket.png"
+  },
+  {
+    "ID": "0x89",
+    "Name": "Rio",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/89_Rio.png"
+  },
+  {
+    "ID": "0x8A",
+    "Name": "Queenie",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/8A_Queenie.png"
+  },
+  {
+    "ID": "0x8B",
+    "Name": "Apollo",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/8B_Apollo.png"
+  },
+  {
+    "ID": "0x8C",
+    "Name": "Buzz",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/8C_Buzz.png"
+  },
+  {
+    "ID": "0x8D",
+    "Name": "Quetzal",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/8D_Quetzal.png"
+  },
+  {
+    "ID": "0x8E",
+    "Name": "Amelia",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/8E_Amelia.png"
+  },
+  {
+    "ID": "0x8F",
+    "Name": "Pierce",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/8F_Pierce.png"
+  },
+  {
+    "ID": "0x90",
+    "Name": "Roald",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/90_Roald.png"
+  },
+  {
+    "ID": "0x91",
+    "Name": "Aurora",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/91_Aurora.png"
+  },
+  {
+    "ID": "0x92",
+    "Name": "Hopper",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/92_Hopper.png"
+  },
+  {
+    "ID": "0x93",
+    "Name": "Cube",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/93_Cube.png"
+  },
+  {
+    "ID": "0x94",
+    "Name": "Puck",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/94_Puck.png"
+  },
+  {
+    "ID": "0x95",
+    "Name": "Gwen",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/95_Gwen.png"
+  },
+  {
+    "ID": "0x96",
+    "Name": "Friga",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/96_Friga.png"
+  },
+  {
+    "ID": "0x97",
+    "Name": "Curly",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/97_Curly.png"
+  },
+  {
+    "ID": "0x98",
+    "Name": "Truffles",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/98_Truffles.png"
+  },
+  {
+    "ID": "0x99",
+    "Name": "Spork",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/99_Spork.png"
+  },
+  {
+    "ID": "0x9A",
+    "Name": "Hugh",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/9A_Hugh.png"
+  },
+  {
+    "ID": "0x9B",
+    "Name": "Rasher",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/9B_Rasher.png"
+  },
+  {
+    "ID": "0x9C",
+    "Name": "Sue E",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/9C_Sue E.png"
+  },
+  {
+    "ID": "0x9D",
+    "Name": "Hambo",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/9D_Hambo.png"
+  },
+  {
+    "ID": "0x9E",
+    "Name": "Lucy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/9E_Lucy.png"
+  },
+  {
+    "ID": "0x9F",
+    "Name": "Cobb",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/9F_Cobb.png"
+  },
+  {
+    "ID": "0xA0",
+    "Name": "Boris",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/A0_Boris.png"
+  },
+  {
+    "ID": "0xA1",
+    "Name": "Bunnie",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/A1_Bunnie.png"
+  },
+  {
+    "ID": "0xA2",
+    "Name": "Doc",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/A2_Doc.png"
+  },
+  {
+    "ID": "0xA3",
+    "Name": "Gaston",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/A3_Gaston.png"
+  },
+  {
+    "ID": "0xA4",
+    "Name": "Coco",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/A4_Coco.png"
+  },
+  {
+    "ID": "0xA5",
+    "Name": "Gabi",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/A5_Gabi.png"
+  },
+  {
+    "ID": "0xA6",
+    "Name": "Dotty",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/A6_Dotty.png"
+  },
+  {
+    "ID": "0xA7",
+    "Name": "Genji",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/A7_Genji.png"
+  },
+  {
+    "ID": "0xA8",
+    "Name": "Snake",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/A8_Snake.png"
+  },
+  {
+    "ID": "0xA9",
+    "Name": "Claude",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/A9_Claude.png"
+  },
+  {
+    "ID": "0xAA",
+    "Name": "Tank",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/AA_Tank.png"
+  },
+  {
+    "ID": "0xAB",
+    "Name": "Spike",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/AB_Spike.png"
+  },
+  {
+    "ID": "0xAC",
+    "Name": "Tiara",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/AC_Tiara.png"
+  },
+  {
+    "ID": "0xAD",
+    "Name": "Vesta",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/AD_Vesta.png"
+  },
+  {
+    "ID": "0xAE",
+    "Name": "Filbert",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/AE_Filbert.png"
+  },
+  {
+    "ID": "0xAF",
+    "Name": "Hazel",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/AF_Hazel.png"
+  },
+  {
+    "ID": "0xB0",
+    "Name": "Peanut",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/B0_Peanut.png"
+  },
+  {
+    "ID": "0xB1",
+    "Name": "Pecan",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/B1_Pecan.png"
+  },
+  {
+    "ID": "0xB2",
+    "Name": "Ricky",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/B2_Ricky.png"
+  },
+  {
+    "ID": "0xB3",
+    "Name": "Static",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/B3_Static.png"
+  },
+  {
+    "ID": "0xB4",
+    "Name": "Mint",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/B4_Mint.png"
+  },
+  {
+    "ID": "0xB5",
+    "Name": "Nibbles",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/B5_Nibbles.png"
+  },
+  {
+    "ID": "0xB6",
+    "Name": "Tybalt",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/B6_Tybalt.png"
+  },
+  {
+    "ID": "0xB7",
+    "Name": "Rolf",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/B7_Rolf.png"
+  },
+  {
+    "ID": "0xB8",
+    "Name": "Bangle",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/B8_Bangle.png"
+  },
+  {
+    "ID": "0xB9",
+    "Name": "Lobo",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/B9_Lobo.png"
+  },
+  {
+    "ID": "0xBA",
+    "Name": "Freya",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/BA_Freya.png"
+  },
+  {
+    "ID": "0xBB",
+    "Name": "Chief",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/BB_Chief.png"
+  },
+  {
+    "ID": "0xBC",
+    "Name": "Weber",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/BC_Weber.png"
+  },
+  {
+    "ID": "0xBD",
+    "Name": "Mallary",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/BD_Mallary.png"
+  },
+  {
+    "ID": "0xBE",
+    "Name": "Wolfgang",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/BE_Wolfgang.png"
+  },
+  {
+    "ID": "0xBF",
+    "Name": "Hornsby",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/BF_Hornsby.png"
+  },
+  {
+    "ID": "0xC0",
+    "Name": "Oxford",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/C0_Oxford.png"
+  },
+  {
+    "ID": "0xC1",
+    "Name": "T-Bone",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/C1_T-Bone.png"
+  },
+  {
+    "ID": "0xC2",
+    "Name": "Biff",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/C2_Biff.png"
+  },
+  {
+    "ID": "0xC3",
+    "Name": "Opal",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/C3_Opal.png"
+  },
+  {
+    "ID": "0xC4",
+    "Name": "Bones",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/C4_Bones.png"
+  },
+  {
+    "ID": "0xC5",
+    "Name": "Bea",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/C5_Bea.png"
+  },
+  {
+    "ID": "0xC6",
+    "Name": "Bitty",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/C6_Bitty.png"
+  },
+  {
+    "ID": "0xC7",
+    "Name": "Rocco",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/C7_Rocco.png"
+  },
+  {
+    "ID": "0xC8",
+    "Name": "Lulu",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/C8_Lulu.png"
+  },
+  {
+    "ID": "0xC9",
+    "Name": "Blaire",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/C9_Blaire.png"
+  },
+  {
+    "ID": "0xCA",
+    "Name": "Sally",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/CA_Sally.png"
+  },
+  {
+    "ID": "0xCB",
+    "Name": "Ellie",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/CB_Ellie.png"
+  },
+  {
+    "ID": "0xCC",
+    "Name": "Eloise",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/CC_Eloise.png"
+  },
+  {
+    "ID": "0xCD",
+    "Name": "Alli",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/CD_Alli.png"
+  },
+  {
+    "ID": "0xCE",
+    "Name": "Pippy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/CE_Pippy.png"
+  },
+  {
+    "ID": "0xCF",
+    "Name": "Eunice",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/CF_Eunice.png"
+  },
+  {
+    "ID": "0xD0",
+    "Name": "Baabara",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/D0_Baabara.png"
+  },
+  {
+    "ID": "0xD1",
+    "Name": "Fang",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/D1_Fang.png"
+  },
+  {
+    "ID": "0xD2",
+    "Name": "Deena",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/D2_Deena.png"
+  },
+  {
+    "ID": "0xD3",
+    "Name": "Pate",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/D3_Pate.png"
+  },
+  {
+    "ID": "0xD4",
+    "Name": "Stella",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/D4_Stella.png"
+  },
+  {
+    "ID": "0xD5",
+    "Name": "Cashmere",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/D5_Cashmere.png"
+  },
+  {
+    "ID": "0xD6",
+    "Name": "Woolio",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/D6_Woolio.png"
+  },
+  {
+    "ID": "0xD7",
+    "Name": "Cookie",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/D7_Cookie.png"
+  },
+  {
+    "ID": "0xE8",
+    "Name": "Cheri",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/E8_Cheri.png"
+  },
+  {
+    "ID": "0xEB",
+    "Name": "Punchy",
+    "Type": 1,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/EB_Punchy.png"
+  },
+  {
+    "ID": "0xD8",
+    "Name": "Maelle",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/D8_Maelle.png"
+  },
+  {
+    "ID": "0xD9",
+    "Name": "O'Hare",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/D9_O'Hare.png"
+  },
+  {
+    "ID": "0xDA",
+    "Name": "Bliss",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/DA_Bliss.png"
+  },
+  {
+    "ID": "0xDB",
+    "Name": "Drift",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/DB_Drift.png"
+  },
+  {
+    "ID": "0xDC",
+    "Name": "Bud",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/DC_Bud.png"
+  },
+  {
+    "ID": "0xDD",
+    "Name": "Boomer",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/DD_Boomer.png"
+  },
+  {
+    "ID": "0xDE",
+    "Name": "Elina",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/DE_Elina.png"
+  },
+  {
+    "ID": "0xDF",
+    "Name": "Flash",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/DF_Flash.png"
+  },
+  {
+    "ID": "0xE0",
+    "Name": "Dobie",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/E0_Dobie.png"
+  },
+  {
+    "ID": "0xE1",
+    "Name": "Flossie",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/E1_Flossie.png"
+  },
+  {
+    "ID": "0xE2",
+    "Name": "Annalise",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/E2_Annalise.png"
+  },
+  {
+    "ID": "0xE3",
+    "Name": "Plucky",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/E3_Plucky.png"
+  },
+  {
+    "ID": "0xE4",
+    "Name": "Faith",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/E4_Faith.png"
+  },
+  {
+    "ID": "0xE5",
+    "Name": "Yodel",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/E5_Yodel.png"
+  },
+  {
+    "ID": "0xE6",
+    "Name": "Rowan",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/E6_Rowan.png"
+  },
+  {
+    "ID": "0xE7",
+    "Name": "June",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/E7_June.png"
+  },
+  {
+    "ID": "0xE9",
+    "Name": "Pigleg",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/E9_Pigleg.png"
+  },
+  {
+    "ID": "0xEA",
+    "Name": "Ankha",
+    "Type": 2,
+    "ImageURL": "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/NPC/EA_Ankha.png"
+  }
+]

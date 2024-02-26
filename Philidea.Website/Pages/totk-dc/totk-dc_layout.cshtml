@@ -1,8 +1,7 @@
-﻿@model Philidea.Website.Pages.totk_calculatorModel
-@Html.AntiForgeryToken()
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
+@model Philidea.Website.Pages.totk_calculatorModel
+@Html.AntiForgeryToken()
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,7 +23,7 @@
             <label class="totk-title" style="color:white; font-size: 28px; padding:10px;">@ViewData["HeaderTitle"]</label>
             <div style="display:flex; flex-direction:column; align-items:flex-end;">
                 <label style="font-size:10px; margin-top:2px; margin-right:4px;">@ViewData["Version"]</label>
-                <img src="settings_icon.svg" class="settings-icon" onclick="openSettings()" alt="Settings Icon" />
+                <img src="/totk-dc/ui-icons/settings_icon.svg" class="settings-icon" onclick="openSettings()" alt="Settings Icon" />
             </div>
         </div>
     </header>
