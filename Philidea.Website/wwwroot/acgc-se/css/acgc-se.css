@@ -34,7 +34,6 @@ header {
 }
 
 body {
-    margin-bottom: 60px;
     overflow-x: hidden;
     font-family: 'Avrile-Sans-Condensed-SemiBold';
 }
@@ -57,7 +56,7 @@ body {
 
 .footer {
     background-color: #BFFFC2;
-    position: absolute;
+    position: relative;
     bottom: 0;
     white-space: nowrap;
     width: 100%;
