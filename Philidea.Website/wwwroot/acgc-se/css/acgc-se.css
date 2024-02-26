@@ -21,6 +21,14 @@ html {
     max-width: none;
 }
 
+.spacer {
+    margin-top:34px;
+}
+
+main {
+    min-height: calc(100vh - 164px);
+}
+
 header {
     background-color: #BFFFC2;
 }
@@ -41,7 +49,6 @@ header {
 
 body {
     font-family: 'Avrile-Sans-Condensed';
-    margin-bottom: 60px;
     overflow-x: hidden;
     background-image: url("/acgc-se/backgrounds/summer.png");
 }
@@ -64,7 +71,7 @@ body {
 
 .footer {
     background-color: #BFFFC2;
-    position: fixed;
+    position: relative;
     bottom: 0;
     white-space: nowrap;
     width: 100%;

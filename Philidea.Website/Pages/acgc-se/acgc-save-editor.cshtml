@@ -1,4 +1,4 @@
-﻿@page
+@page
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @model Philidea.Website.Pages.acgcModel
 @section Scripts {
@@ -69,7 +69,8 @@
             <div class="section-title">
                 <h4>Item</h4>
             </div>
-            <div class="row" style="margin-top:20px;">
+            <div class="spacer"></div>
+            <div class="row">
                 <div class="col-auto" style="margin-top:22px;">
                     <select class="form-control select2" id="itemDropdownPlayer" style="width:16em;" onchange="updateItem()">
                         <option value="">None</option>
@@ -88,8 +89,11 @@
     </div>
 
     <!-- INVENTORY -->
-    <h4>Inventory</h4>
-    <div class="section section-inventory" style="margin-left:2px;">
+    <div class="section" style="margin-left:2px;">
+        <div class="section-title" style="margin-left:-7px;padding-left:10px;width:7.2em;">
+            <h4>Inventory</h4>
+        </div>
+        <div class="spacer"></div>
         <div class="inventory">
             @for (int i = 0; i < 15; i++) {
                 <div class="inventory-slot" data-index="@i" bubbletext=""></div>
@@ -128,34 +132,35 @@
                 }
         </select></div>
         <div class="col-auto"><div class="icon"><img src="@Model.SelectedVillagers?.FirstOrDefault()?.ImageURL" id="villagerImage" class="rounded float-left" alt="Villager Image"></div></div>
+    </div>
 </div>
 
 <!-- TOOLTIP BUBBLE FOR INVENTORY -->
 <div class="ac-bubble">
-	<div class="ac-bubble-tooltip">
-		<div class="ac-bubble-triangle">
-			<img src="acgc-se/ui-icons/bubble-triangle.png">
-		</div>
-		<div class="ac-bubble-container">
-			<div class="ac-bubble-tl">
+    <div class="ac-bubble-tooltip">
+        <div class="ac-bubble-triangle">
+            <img src="acgc-se/ui-icons/bubble-triangle.png">
+        </div>
+        <div class="ac-bubble-container">
+            <div class="ac-bubble-tl">
                 <img src="acgc-se/ui-icons/bubble-corner.png">
-			</div>
-			<div class="ac-bubble-tr">
+            </div>
+            <div class="ac-bubble-tr">
                 <img src="acgc-se/ui-icons/bubble-corner.png">
-			</div>
-			<div class="ac-bubble-mc">
-				<div class="ac-bubble-content">
-					<p>Present (Buried Pitfall (Bent & Angled Down-Left Slightly))</p>
-				</div>
-			</div>
-			<div class="ac-bubble-bl">
+            </div>
+            <div class="ac-bubble-mc">
+                <div class="ac-bubble-content">
+                    <p>Present (Buried Pitfall (Bent & Angled Down-Left Slightly))</p>
+                </div>
+            </div>
+            <div class="ac-bubble-bl">
                 <img src="acgc-se/ui-icons/bubble-corner.png">
-			</div>
-			<div class="ac-bubble-br">
+            </div>
+            <div class="ac-bubble-br">
                 <img src="acgc-se/ui-icons/bubble-corner.png">
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -326,7 +331,9 @@
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].classList.remove("active");
         }
-        document.getElementById(tabName).style.display = "block";
+        if (document.getElementById(tabName) !== null) {
+            document.getElementById(tabName).style.display = "block";
+        }
         evt.currentTarget.classList.add("active");
     }
     function getJsonData(name) {

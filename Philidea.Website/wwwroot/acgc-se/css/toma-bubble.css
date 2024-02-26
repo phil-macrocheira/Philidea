@@ -2,6 +2,7 @@
 .ac-bubble {
     position: absolute;
     display: none;
+    z-index: 900;
 }
 
 .ac-bubble-tooltip {
@@ -60,6 +61,7 @@
     grid-column: 3 / 5;
     position: relative;
     z-index: 899;
+    margin-left:-1px;
 }
 
 .ac-bubble-tr img {
@@ -89,6 +91,7 @@
     grid-column: 1 / 3;
     position: relative;
     z-index: 899;
+    margin-top: -1px;
 }
 
 .ac-bubble-bl img {
@@ -100,6 +103,8 @@
     grid-column: 3 / 5;
     position: relative;
     z-index: 899;
+    margin-left: -1px;
+    margin-top:-1px;
 }
 
 .ac-bubble-br img {
@@ -111,7 +116,7 @@
     z-index: 898;
     position: relative;
     margin-bottom: -30px;
-    margin-left: 10px;
+    margin-left: 6px;
 }
 
 .ac-bubble-triangle img {
