@@ -318,6 +318,16 @@ select > * {
     appearance: menulist !important;
 }
 
+.slider {
+    width:10em;
+}
+.color-box {
+    width: 14px;
+    height: 14px;
+    margin-left: 5px;
+
+}
+
 .collapsible {
     cursor: pointer;
     padding: 4px;

@@ -191,28 +191,28 @@
   "player_data_1": {
     "Local Byte Offset": "0x00020",
     "Global Byte Offset": "0x26060",
-    "Byte Size": 9282,
+    "Byte Size": 9280,
     "Bit Offset": "",
     "Bit Size": ""
   },
   "player_data_2": {
-    "Local Byte Offset": "0x02462",
-    "Global Byte Offset": "0x284A2",
-    "Byte Size": 9282,
+    "Local Byte Offset": "0x02460",
+    "Global Byte Offset": "0x284A0",
+    "Byte Size": 9280,
     "Bit Offset": "",
     "Bit Size": ""
   },
   "player_data_3": {
-    "Local Byte Offset": "0x048A4",
-    "Global Byte Offset": "0x2A8E4",
-    "Byte Size": 9282,
+    "Local Byte Offset": "0x048A0",
+    "Global Byte Offset": "0x2A8E0",
+    "Byte Size": 9280,
     "Bit Offset": "",
     "Bit Size": ""
   },
   "player_data_4": {
-    "Local Byte Offset": "0x06CE6",
-    "Global Byte Offset": "0x2CD26",
-    "Byte Size": 9282,
+    "Local Byte Offset": "0x06CE0",
+    "Global Byte Offset": "0x2CD20",
+    "Byte Size": 9280,
     "Bit Offset": "",
     "Bit Size": ""
   },
@@ -3730,21 +3730,21 @@
     "Bit Offset": "",
     "Bit Size": ""
   },
-  "player_sunburn_updated_ymd": {
+  "player_suntan_updated_ymd": {
     "Local Byte Offset": "0x23C4",
     "Global Byte Offset": "0x28424",
     "Byte Size": 4,
     "Bit Offset": "",
     "Bit Size": ""
   },
-  "player_sunburn": {
+  "player_suntan": {
     "Local Byte Offset": "0x23C8",
     "Global Byte Offset": "0x28428",
     "Byte Size": 1,
     "Bit Offset": "",
     "Bit Size": ""
   },
-  "player_sunburn_days_remaining": {
+  "player_suntan_days_remaining": {
     "Local Byte Offset": "0x23C9",
     "Global Byte Offset": "0x28429",
     "Byte Size": 1,

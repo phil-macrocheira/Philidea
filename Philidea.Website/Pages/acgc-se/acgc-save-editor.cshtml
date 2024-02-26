@@ -33,11 +33,17 @@
                 <div class="section-title">
                     <h4>Player Data</h4>
                 </div>
+
+                <!-- NAME -->
                 <div class="col-auto" style="margin-left:-100px;"><h5>Name</h5><input type="text" maxlength="8" class="form-control" id="player_name"></div>
+                
+                <!-- GENDER -->
                 <div class="col-auto"><h5>Gender</h5><select class="form-control select2" id="player_gender" style="width:fit-content">
                     <option value=0 selected>Boy</option>
                     <option value=1>Girl</option>
                 </select></div>
+
+                <!-- FACE -->
                 <div class="col-auto"><h5>Face</h5><select class="form-control select2" id="player_face" style="width:fit-content">
                         <option value=0 selected>Boy Face #1</option><option value=1>Boy Face #2</option>
                         <option value=2>Boy Face #3</option><option value=3>Boy Face #4</option>
@@ -52,13 +58,36 @@
                     <label class="form-check-label d-block"><input type="checkbox" id="checkboxBeestung" class="form-check-input">Beestung</label>
                     <label class="form-check-label d-block"><input type="checkbox" id="checkboxGyroidFace" class="form-check-input">Gyroid Face</label>
                 </div>
+
+                <!-- SUN TAN-->
+                <div class="slider">
+                    <label for="player_suntan" style="display:flex; align-items:center;">
+                        Sun Tan<div id="tan-color" class="color-box"></div>
+                    </label>
+                    <input type="range" class="form-range" id="player_suntan" min="0" max="8" step="1" onchange="updateTan()">
+                    <div class="d-flex justify-content-between" style="padding-left:4px;padding-right:4px;margin-top:-8px;">
+                        <span>0</span>
+                        <span>2</span>
+                        <span>4</span>
+                        <span>6</span>
+                        <span>8</span>
+                    </div>
+                </div>
+                <div>
+                    <h6>Sun Tan Days Remaining</h6><input type="number" max="2" class="form-control" style="width:4em;" id="player_suntan_days_remaining" />
+                </div>
+
+                <!-- BIRTHDAY -->
                 <div class="col-auto"><h5>Birthday</h5><input type="date" id="player_birthday"/></div>
 
+                <!-- RESET -->
                 <div class="col-auto">
                     <label class="form-check-label d-block"><input type="checkbox" id="player_reset_code" class="form-check-input">Reset</label>
                     <h6>Reset Cycle</h6><input type="number" max="7" class="form-control" style="width:4em;" id="player_reset_count" />
                 </div>
             </div>
+
+            <!-- DEBT -->
             <div class="row" style="margin-left:20px;">
                 <div class="col-auto"><h5>Debt</h5><input type="number" max="4294967295" class="form-control" id="player_debt"></div>
             </div>
@@ -89,11 +118,8 @@
     </div>
 
     <!-- INVENTORY -->
-    <div class="section" style="margin-left:2px;">
-        <div class="section-title" style="margin-left:-7px;padding-left:10px;width:7.2em;">
-            <h4>Inventory</h4>
-        </div>
-        <div class="spacer"></div>
+    <h4>Inventory</h4>
+    <div class="section section-inventory" style="margin-left:2px;">
         <div class="inventory">
             @for (int i = 0; i < 15; i++) {
                 <div class="inventory-slot" data-index="@i" bubbletext=""></div>
@@ -136,6 +162,7 @@
 </div>
 
 <!-- TOOLTIP BUBBLE FOR INVENTORY -->
+<!-- TEMPORARILY DISABLE BUBBLE
 <div class="ac-bubble">
     <div class="ac-bubble-tooltip">
         <div class="ac-bubble-triangle">
@@ -162,6 +189,7 @@
         </div>
     </div>
 </div>
+-->
 
 <script>
     var saveFile;
@@ -304,6 +332,9 @@
                 document.getElementById("player_name").value = getString("player_name");
                 document.getElementById("player_gender").value = getGender("player_gender");
                 document.getElementById("player_face").value = getFace("player_face");
+                document.getElementById("player_suntan").value = getNumber("player_suntan");
+                document.getElementById("player_suntan_days_remaining").value = getNumber("player_suntan_days_remaining");
+                updateTan();
                 document.getElementById("player_birthday").value = getBirthday("player_birthday");
                 document.getElementById("player_reset_code").value = getReset("player_reset_code");
                 document.getElementById("player_reset_count").value = getNumber("player_reset_count");
@@ -429,6 +460,7 @@
     }
     function getFace(variable) {
         var face = getNumber(variable);
+        console.log(face);
         if (gender == 0) {
             if (face >= 0x10 && face < 0x20) {
                 document.getElementById("checkboxBeestung").checked = true;
@@ -459,6 +491,41 @@
             else {
                 return face + 8;
             }
+        }
+    }
+    function updateTan() {
+        let tan = document.getElementById("player_suntan").value;
+        let tanColor = document.getElementById("tan-color");
+
+        if (tan == 0) {
+            tanColor.style.backgroundColor = "#FFBD94";
+        }
+        else if (tan == 1) {
+            tanColor.style.backgroundColor = "#EFAD84";
+        }
+        else if (tan == 2) {
+            tanColor.style.backgroundColor = "#E7A57B";
+        }
+        else if (tan == 3) {
+            tanColor.style.backgroundColor = "#D6946B";
+        }
+        else if (tan == 4) {
+            tanColor.style.backgroundColor = "#CE8C63";
+        }
+        else if (tan == 5) {
+            tanColor.style.backgroundColor = "#C6845A";
+        }
+        else if (tan == 6) {
+            tanColor.style.backgroundColor = "#BD7B52";
+        }
+        else if (tan == 7) {
+            tanColor.style.backgroundColor = "#B5734A";
+        }
+        else if (tan == 8) {
+            tanColor.style.backgroundColor = "#A56339";
+        }
+        else {
+            tanColor.style.backgroundColor = "#FFBD94";
         }
     }
     function getReset(variable) {
