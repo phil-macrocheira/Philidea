@@ -21,6 +21,10 @@ html {
     max-width: none;
 }
 
+.spacer {
+    margin-top:34px;
+}
+
 main {
     min-height: calc(100vh - 164px);
 }

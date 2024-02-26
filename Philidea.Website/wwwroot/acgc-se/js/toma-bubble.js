@@ -18,8 +18,8 @@
                 var magicXnumber = document.body.getElementsByClassName("inventory")[0].getBoundingClientRect().left;
                 var cellXSize = document.body.getElementsByClassName("inventory")[0].getBoundingClientRect().right - document.body.getElementsByClassName("inventory")[0].getBoundingClientRect().left;
                 cellXSize = cellXSize / 5;
-                tooltip.style.top = magicYnumber - (cellXSize / 2)  + ((Math.round((e.clientY - magicYnumber + (cellXSize / 2)) / cellXSize) * cellXSize )) + 'px'; // if grid is moved, adjust e.clientY +- y
-                tooltip.style.left = magicXnumber + ((Math.round((e.clientX - magicXnumber - (cellXSize / 2)) / cellXSize) * cellXSize) + (cellXSize / 2)) + 'px'; // if grid is moved, adjust e.clientX +- x
+                tooltip.style.top = magicYnumber - (cellXSize / 2)  + ((Math.round((e.pageY - magicYnumber + (cellXSize / 2)) / cellXSize) * cellXSize )) + 'px'; // if grid is moved, adjust e.clientY +- y
+                tooltip.style.left = magicXnumber + ((Math.round((e.pageX - magicXnumber - (cellXSize / 2)) / cellXSize) * cellXSize) + (cellXSize / 2)) + 'px'; // if grid is moved, adjust e.clientX +- x
             }
         });
         slot.addEventListener('mouseout', function () {

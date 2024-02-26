@@ -69,7 +69,8 @@
             <div class="section-title">
                 <h4>Item</h4>
             </div>
-            <div class="row" style="margin-top:20px;">
+            <div class="spacer"></div>
+            <div class="row">
                 <div class="col-auto" style="margin-top:22px;">
                     <select class="form-control select2" id="itemDropdownPlayer" style="width:16em;" onchange="updateItem()">
                         <option value="">None</option>
@@ -92,6 +93,7 @@
         <div class="section-title" style="margin-left:-7px;padding-left:10px;width:7.2em;">
             <h4>Inventory</h4>
         </div>
+        <div class="spacer"></div>
         <div class="inventory">
             @for (int i = 0; i < 15; i++) {
                 <div class="inventory-slot" data-index="@i" bubbletext=""></div>
@@ -130,6 +132,7 @@
                 }
         </select></div>
         <div class="col-auto"><div class="icon"><img src="@Model.SelectedVillagers?.FirstOrDefault()?.ImageURL" id="villagerImage" class="rounded float-left" alt="Villager Image"></div></div>
+    </div>
 </div>
 
 <!-- TOOLTIP BUBBLE FOR INVENTORY -->
@@ -328,7 +331,9 @@
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].classList.remove("active");
         }
-        document.getElementById(tabName).style.display = "block";
+        if (document.getElementById(tabName) !== null) {
+            document.getElementById(tabName).style.display = "block";
+        }
         evt.currentTarget.classList.add("active");
     }
     function getJsonData(name) {
