@@ -21,6 +21,10 @@ html {
     max-width: none;
 }
 
+main {
+    min-height: calc(100vh - 164px);
+}
+
 header {
     background-color: #BFFFC2;
 }
