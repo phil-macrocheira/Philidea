@@ -3275,7 +3275,7 @@
     "Bit Offset": "",
     "Bit Size": ""
   },
-  "player_bank": {
+  "player_savings": {
     "Local Byte Offset": "0x122C",
     "Global Byte Offset": "0x2728C",
     "Byte Size": 4,

@@ -56,8 +56,12 @@ namespace Philidea.Website.Pages
         public IEnumerable<Object> Objects { get; private set; }
         public IEnumerable<Villager> Villagers { get; private set; }
         public Item SelectedItem { get; set; }
+        public Item SelectedHandheld { get; set; }
+        public Item SelectedClothing { get; set; }
         public List<Villager> SelectedVillagers { get; set; }
         public string ItemIconURL { get; set; } = "acgc-se/ui-icons/None.png";
+        public string HandheldIconURL { get; set; } = "acgc-se/ui-icons/None.png";
+        public string ClothingIconURL { get; set; } = "acgc-se/ui-icons/None.png";
         public string VillagerIconURL { get; set; }
         public string InventoryIconURL { get; set; } = "";
         public acgcModel(ILogger<acgcModel> logger)
@@ -87,13 +91,27 @@ namespace Philidea.Website.Pages
                     success = success, message = "Success", 
                     itemIconURL = ItemIconURL,
                     inventoryIconURL = InventoryIconURL,
-                    villagerIconURL = VillagerIconURL,
+                });
+            }
+            else if (Request.Form["func"] == "updateHandheld") {
+                bool success = UpdateHandheld(Request.Form["selectedItemID"]);
+                return new JsonResult(new {
+                    success = success, message = "Success",
+                    handheldIconURL = HandheldIconURL,
+                });
+            }
+            else if (Request.Form["func"] == "updateClothing") {
+                bool success = UpdateClothing(Request.Form["selectedItemID"]);
+                return new JsonResult(new {
+                    success = success, message = "Success",
+                    clothingIconURL = ClothingIconURL,
                 });
             }
             else if (Request.Form["func"] == "updateVillagers") {
                 bool success = UpdateVillagers(Request.Form["selectedVillagerIDs"]);
                 return new JsonResult(new {
                     success = success, message = "Success",
+                    villagerIconURL = VillagerIconURL,
                 });
             }
             else {
@@ -128,6 +146,28 @@ namespace Philidea.Website.Pages
             }
             ItemIconURL = SelectedItem?.ImageURL ?? "acgc-se/ui-icons/None.png";
             InventoryIconURL = SelectedItem?.IconURLUpscaled ?? "";
+            return true;
+        }
+        public bool UpdateHandheld(string selectedItemID)
+        {
+            foreach (var item in Items) {
+                if (item.ID == selectedItemID) {
+                    SelectedHandheld = item;
+                    break;
+                }
+            }
+            HandheldIconURL = SelectedHandheld?.ImageURL ?? "acgc-se/ui-icons/None.png";
+            return true;
+        }
+        public bool UpdateClothing(string selectedItemID)
+        {
+            foreach (var item in Items) {
+                if (item.ID == selectedItemID) {
+                    SelectedClothing = item;
+                    break;
+                }
+            }
+            ClothingIconURL = SelectedClothing?.ImageURL ?? "acgc-se/ui-icons/None.png";
             return true;
         }
         public bool UpdateVillagers(string selectedVillagerIDs)

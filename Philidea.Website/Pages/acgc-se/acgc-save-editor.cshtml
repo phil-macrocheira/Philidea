@@ -26,92 +26,110 @@
 <!-- PLAYER TAB -->
 <div id="tab_player" class="tabcontent show">
     <!-- ROW 1 -->
-    <div class="row justify-content-between">
+    <div class="row">
         <!-- PLAYER DATA -->
-        <div class="section">
-            <div class="row">
-                <div class="section-title">
-                    <h4>Player Data</h4>
-                </div>
-
-                <!-- NAME -->
-                <div class="col-auto" style="margin-left:-100px;"><h5>Name</h5><input type="text" maxlength="8" class="form-control" id="player_name"></div>
-                
-                <!-- GENDER -->
-                <div class="col-auto"><h5>Gender</h5><select class="form-control select2" id="player_gender" style="width:fit-content">
-                    <option value=0 selected>Boy</option>
-                    <option value=1>Girl</option>
-                </select></div>
-
-                <!-- FACE -->
-                <div class="col-auto"><h5>Face</h5><select class="form-control select2" id="player_face" style="width:fit-content">
-                        <option value=0 selected>Boy Face #1</option><option value=1>Boy Face #2</option>
-                        <option value=2>Boy Face #3</option><option value=3>Boy Face #4</option>
-                        <option value=4>Boy Face #5</option><option value=5>Boy Face #6</option>
-                        <option value=6>Boy Face #7</option><option value=7>Boy Face #8</option>
-                        <option value=8>Girl Face #1</option><option value=9>Girl Face #2</option>
-                        <option value=10>Girl Face #3</option><option value=11>Girl Face #4</option>
-                        <option value=12>Girl Face #5</option><option value=13>Girl Face #6</option>
-                        <option value=14>Girl Face #7</option><option value=15>Girl Face #8</option>
-                </select></div>
-                <div class="col-auto" style="margin-top:10px;">
-                    <label class="form-check-label d-block"><input type="checkbox" id="checkboxBeestung" class="form-check-input">Beestung</label>
-                    <label class="form-check-label d-block"><input type="checkbox" id="checkboxGyroidFace" class="form-check-input">Gyroid Face</label>
-                </div>
-
-                <!-- SUN TAN-->
-                <div class="slider">
-                    <label for="player_suntan" style="display:flex; align-items:center;">
-                        Sun Tan<div id="tan-color" class="color-box"></div>
-                    </label>
-                    <input type="range" class="form-range" id="player_suntan" min="0" max="8" step="1" onchange="updateTan()">
-                    <div class="d-flex justify-content-between" style="padding-left:4px;padding-right:4px;margin-top:-8px;">
-                        <span>0</span>
-                        <span>2</span>
-                        <span>4</span>
-                        <span>6</span>
-                        <span>8</span>
+        <div class="col-auto">
+            <div class="section">
+                <div class="row">
+                    <div class="section-title">
+                        <h4>Player Data</h4>
                     </div>
-                </div>
-                <div>
-                    <h6>Sun Tan Days Remaining</h6><input type="number" max="2" class="form-control" style="width:4em;" id="player_suntan_days_remaining" />
+
+                    <!-- NAME -->
+                    <div class="col-auto" style="margin-left:-100px;"><h5>Name</h5><input type="text" maxlength="8" class="form-control" id="player_name"></div>
+                
+                    <!-- GENDER -->
+                    <div class="col-auto"><h5>Gender</h5><select class="form-control select2" id="player_gender" style="width:fit-content">
+                        <option value=0 selected>Boy</option>
+                        <option value=1>Girl</option>
+                    </select></div>
+
+                    <!-- FACE -->
+                    <div class="col-auto"><h5>Face</h5><select class="form-control select2" id="player_face" style="width:fit-content">
+                            <option value=0 selected>Boy Face #1</option><option value=1>Boy Face #2</option>
+                            <option value=2>Boy Face #3</option><option value=3>Boy Face #4</option>
+                            <option value=4>Boy Face #5</option><option value=5>Boy Face #6</option>
+                            <option value=6>Boy Face #7</option><option value=7>Boy Face #8</option>
+                            <option value=8>Girl Face #1</option><option value=9>Girl Face #2</option>
+                            <option value=10>Girl Face #3</option><option value=11>Girl Face #4</option>
+                            <option value=12>Girl Face #5</option><option value=13>Girl Face #6</option>
+                            <option value=14>Girl Face #7</option><option value=15>Girl Face #8</option>
+                    </select></div>
+                    <div class="col-auto" style="margin-top:10px;">
+                        <label class="form-check-label d-block"><input type="checkbox" id="checkboxBeestung" class="form-check-input">Beestung</label>
+                        <label class="form-check-label d-block"><input type="checkbox" id="checkboxGyroidFace" class="form-check-input">Gyroid Face</label>
+                    </div>
+
+                    <!-- SUN TAN-->
+                    <div class="slider">
+                        <label for="player_suntan" style="display:flex; align-items:center;">
+                            Sun Tan<div id="tan-color" class="color-box"></div>
+                        </label>
+                        <input type="range" class="form-range" id="player_suntan" min="0" max="8" step="1" onchange="updateTan()">
+                        <div class="d-flex justify-content-between" style="padding-left:4px;padding-right:4px;margin-top:-8px;">
+                            <span>0</span>
+                            <span>2</span>
+                            <span>4</span>
+                            <span>6</span>
+                            <span>8</span>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <h6>Sun Tan Days Remaining</h6><input type="number" max="2" class="form-control" style="width:4em;" id="player_suntan_days_remaining" />
+                    </div>
+
+                    <!-- BIRTHDAY -->
+                    <div class="col-auto"><h5>Birthday</h5><input type="date" id="player_birthday"/></div>
+
+                    <!-- RESET -->
+                    <div class="col-auto"><label class="form-check-label d-block"><input type="checkbox" id="player_reset_code" class="form-check-input">Reset</label></div>
+                    <div class="col-auto"><h6>Reset Count</h6><input type="number" max="255" class="form-control" style="width:5em;" id="player_reset_count" /></div>
                 </div>
 
-                <!-- BIRTHDAY -->
-                <div class="col-auto"><h5>Birthday</h5><input type="date" id="player_birthday"/></div>
-
-                <!-- RESET -->
-                <div class="col-auto">
-                    <label class="form-check-label d-block"><input type="checkbox" id="player_reset_code" class="form-check-input">Reset</label>
-                    <h6>Reset Cycle</h6><input type="number" max="7" class="form-control" style="width:4em;" id="player_reset_count" />
+                <div class="row" style="margin-left:0;">
+                    <!-- SAVINGS -->
+                    <div class="col-auto"><h5>Savings</h5><input type="number" max="999999999" class="form-control" id="player_savings"></div>
+                    <!-- DEBT -->
+                    <div class="col-auto"><h5>Debt</h5><input type="number" max="999999999" class="form-control" id="player_debt"></div>
                 </div>
-            </div>
-
-            <!-- DEBT -->
-            <div class="row" style="margin-left:20px;">
-                <div class="col-auto"><h5>Debt</h5><input type="number" max="4294967295" class="form-control" id="player_debt"></div>
             </div>
         </div>
 
-        <!-- SELECT ITEM -->
-        <div class="section" style="height:fit-content;">
-            <div class="section-title">
-                <h4>Item</h4>
-            </div>
-            <div class="spacer"></div>
-            <div class="row">
-                <div class="col-auto" style="margin-top:22px;">
-                    <select class="form-control select2" id="itemDropdownPlayer" style="width:16em;" onchange="updateItem()">
-                        <option value="">None</option>
-                        @foreach (var item in Model.Items.Where(i => i.Obtainable == 1)) {
-                            <option value="@item.ID">@item.DropdownName</option>
-                        }
-                    </select>
-                    <label class="form-check-label d-block"><input type="checkbox" id="checkboxPresent" class="form-check-input">Present</label>
+        <!-- EQUIPMENT -->
+        <div class="col-auto">
+            <div class="section">
+                <div class="section-title">
+                    <h4>Equipment</h4>
                 </div>
-
-                <div class="col-auto">
-                    <div class="icon"><img src="@Model.ItemIconURL" id="itemImage" class="rounded float-left" alt="Item Image"></div>
+                <div class="row">
+                    <!-- HANDHELD ITEM -->
+                    <div class="col-auto">
+                        <h5 style="margin-top:20px;">Handheld Item</h5>
+                        <select class="form-control select2" id="player_equipped_item" style="width:11em;" onchange="updateHandheld()">
+                            @foreach (var item in Model.Items.Where(i => i.Category == "Handheld" && i.Obtainable == 1 || i.Name == "None")) {
+                                <option value="@item.ID">@item.DropdownName</option>
+                            }
+                        </select>
+                    </div>
+                    <!-- HANDHELD IMAGE -->
+                    <div class="col-auto" style="margin-top:20px;">
+                        <div class="icon" style="width:60px;height:60px;"><img src="@Model.HandheldIconURL" id="handheldImage" class="rounded float-left" alt="Handheld Image"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- CLOTHING -->
+                    <div class="col-auto">
+                        <h5>Clothing</h5>
+                        <select class="form-control select2" id="player_clothing" style="width:11em;" onchange="updateClothing()">
+                            @foreach (var item in Model.Items.Where(i => i.Category == "Clothing" && i.Obtainable == 1)) {
+                                <option value="@item.ID">@item.DropdownName</option>
+                            }
+                        </select>
+                    </div>
+                    <!-- CLOTHING IMAGE -->
+                    <div class="col-auto" style="margin-top:5px;">
+                        <div class="icon" style="width:60px;height:60px;"><img src="@Model.ClothingIconURL" id="clothingImage" class="rounded float-left" alt="Clothing Image"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -120,6 +138,26 @@
     <!-- INVENTORY -->
     <h4>Inventory</h4>
     <div class="section section-inventory" style="margin-left:2px;">
+        <!-- ITEM -->
+        <h5 class="text-over-background" style="width:60px;">Item</h5>
+        <div class="row">
+            <div class="col-auto">
+                <select class="form-control select2" id="itemDropdownInventory" style="width:16em;" onchange="updateItem()">
+                    <option value="">None</option>
+                    @foreach (var item in Model.Items.Where(i => i.Obtainable == 1)) {
+                        <option value="@item.ID">@item.DropdownName</option>
+                    }
+                </select>
+                <!-- PRESENT CHECKBOX -->
+                <label class="form-check-label d-block"><input type="checkbox" id="checkboxPresent" class="form-check-input">Present</label>
+            </div>
+            <!-- ITEM IMAGE -->
+            <div class="col-auto" style="margin-top:-30px;">
+                <div class="icon" style="width:80px;height:80px;"><img src="@Model.ItemIconURL" id="itemImage" class="rounded float-left" alt="Item Image"></div>
+            </div>
+        </div>
+
+        <!-- INVENTORY UI -->
         <div class="inventory">
             @for (int i = 0; i < 15; i++) {
                 <div class="inventory-slot" data-index="@i" bubbletext=""></div>
@@ -127,11 +165,12 @@
         </div>
 
         <div class="row">
+            <!-- WALLET -->
             <div class="col-auto" style="margin-top:15px;"><h5 class="text-over-background" style="width:60px;">Wallet</h5><input type="number" min="0" max="99999" class="form-control" style="width:6em;" id="player_wallet"></div>
-
+            <!-- BACKGROUND -->
             <div class="col-auto" style="margin-top:15px;">
                 <h5 class="text-over-background">Background</h5>
-                <select class="form-control select2" id="player_inventory_background" style="width:16em;" onchange="updateBackground()">
+                <select class="form-control select2" id="player_inventory_background" style="width:11em;" onchange="updateBackground()">
                     @foreach (var item in Model.Items.Where(i => i.Category == "Clothing" && i.Obtainable == 1)) {
                         <option value="@item.ID">@item.DropdownName</option>
                     }
@@ -162,7 +201,6 @@
 </div>
 
 <!-- TOOLTIP BUBBLE FOR INVENTORY -->
-<!-- TEMPORARILY DISABLE BUBBLE
 <div class="ac-bubble">
     <div class="ac-bubble-tooltip">
         <div class="ac-bubble-triangle">
@@ -189,9 +227,9 @@
         </div>
     </div>
 </div>
--->
 
 <script>
+    var Player = 2; // CHANGE THIS DEPENDING ON THE TAB, 0 is PLAYER 1
     var saveFile;
     var json;
     var size;
@@ -216,7 +254,42 @@
         return '0x' + Dec.toString(16).padStart(4, '0').toUpperCase();
     }
     function updateItem() {
-        selectedItemID = $('#itemDropdownPlayer').val();
+        selectedItemID = $('#itemDropdownInventory').val();
+
+        console.log(selectedItemID);
+        
+        if (selectedItemID == "") {
+            selectedItemObj = findObjByID(0);
+            $('#itemImage').prop('src', 'acgc-se/ui-icons/None.png');
+            updateInventoryIcon("");
+        }
+        else {
+            selectedItemObj = findObjByID(Hex2Dec(selectedItemID));
+
+            $.ajax({
+                headers: {
+                    RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                },
+                type: 'POST',
+                url: '@Url.Page("Index/acgc-save-editor")',
+                contentType: 'application/x-www-form-urlencoded',
+                data: {
+                    func: "updateItem",
+                    selectedItemID: selectedItemID,
+                },
+                success: function (response) {
+                    $('#itemImage').prop('src', response.itemIconURL);
+                    updateInventoryIcon(response.inventoryIconURL);
+                    console.log('UPDATEITEM SUCCESS', response);
+                },
+                error: function (error) {
+                    console.error('UPDATEITEM ERROR', error);
+                }
+            });
+        }
+    }
+    function updateHandheld() {
+        selectedItemID = $('#player_equipped_item').val();
         selectedItemObj = findObjByID(Hex2Dec(selectedItemID));
 
         $.ajax({
@@ -227,16 +300,39 @@
             url: '@Url.Page("Index/acgc-save-editor")',
             contentType: 'application/x-www-form-urlencoded',
             data: {
-                func: "updateItem",
+                func: "updateHandheld",
                 selectedItemID: selectedItemID,
             },
             success: function (response) {
-                $('#itemImage').prop('src', response.itemIconURL);
-                updateInventoryIcon(response.inventoryIconURL);
-                console.log('UPDATEITEM SUCCESS', response);
+                $('#handheldImage').prop('src', response.handheldIconURL);
+                console.log('UPDATEHANDHELD SUCCESS', response);
             },
             error: function (error) {
-                console.error('UPDATEITEM ERROR', error);
+                console.error('UPDATEHANDHELD ERROR', error);
+            }
+        });
+    }
+    function updateClothing() {
+        selectedItemID = $('#player_clothing').val();
+        selectedItemObj = findObjByID(Hex2Dec(selectedItemID));
+
+        $.ajax({
+            headers: {
+                RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+            },
+            type: 'POST',
+            url: '@Url.Page("Index/acgc-save-editor")',
+            contentType: 'application/x-www-form-urlencoded',
+            data: {
+                func: "updateClothing",
+                selectedItemID: selectedItemID,
+            },
+            success: function (response) {
+                $('#clothingImage').prop('src', response.clothingIconURL);
+                console.log('UPDATECLOTHING SUCCESS', response);
+            },
+            error: function (error) {
+                console.error('UPDATECLOTHING ERROR', error);
             }
         });
     }
@@ -339,7 +435,13 @@
                 document.getElementById("player_reset_code").value = getReset("player_reset_code");
                 document.getElementById("player_reset_count").value = getNumber("player_reset_count");
                 document.getElementById("player_wallet").value = getNumber("player_wallet");
+                document.getElementById("player_savings").value = getNumber("player_savings");
                 document.getElementById("player_debt").value = getNumber("player_debt");
+
+                document.getElementById("player_equipped_item").value = getID("player_equipped_item");
+                $('#player_equipped_item').trigger('change');
+                document.getElementById("player_clothing").value = getID("player_clothing");
+                $('#player_clothing').trigger('change');
 
                 getInventoryConditions("player_inventory_items_conditions");
                 getInventory("player_inventory_items");
@@ -377,7 +479,7 @@
     }
     function getSaveData(variable) {
         let jsonData = getJsonData(variable);
-        let index = jsonData.index;
+        let index = jsonData.index + (Player * 9280);
         size = jsonData.size;
 
         var saveData = new Uint8Array(size);
@@ -460,7 +562,6 @@
     }
     function getFace(variable) {
         var face = getNumber(variable);
-        console.log(face);
         if (gender == 0) {
             if (face >= 0x10 && face < 0x20) {
                 document.getElementById("checkboxBeestung").checked = true;
@@ -563,8 +664,8 @@
 <script>
     // FOCUS SEARCH FIELD ON DROPDOWN MENUS
     $(document).ready(function () {
-        $('#itemDropdownPlayer').select2();
-        $('#itemDropdownPlayer').on('select2:open', function () {
+        $('#itemDropdownInventory').select2();
+        $('#itemDropdownInventory').on('select2:open', function () {
             window.setTimeout(function () {
                 document.querySelector('.select2-search__field').focus();
             }, 0);
@@ -572,6 +673,20 @@
 
         $('#player_inventory_background').select2();
         $('#player_inventory_background').on('select2:open', function () {
+            window.setTimeout(function () {
+                document.querySelector('.select2-search__field').focus();
+            }, 0);
+        });
+
+        $('#player_equipped_item').select2();
+        $('#player_equipped_item').on('select2:open', function () {
+            window.setTimeout(function () {
+                document.querySelector('.select2-search__field').focus();
+            }, 0);
+        });
+
+        $('#player_clothing').select2();
+        $('#player_clothing').on('select2:open', function () {
             window.setTimeout(function () {
                 document.querySelector('.select2-search__field').focus();
             }, 0);

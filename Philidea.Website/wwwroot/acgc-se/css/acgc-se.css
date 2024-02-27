@@ -171,7 +171,7 @@ input[type="file"] {
     width: fit-content;
     padding: 20px;
     margin: 10px;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     background: white;
 }
 .section-inventory {
@@ -257,9 +257,9 @@ input[type="file"] {
     --matched-radius-padding: 4px;
     --matched-radius-inner-size: 10px;
     border-radius: calc(var(--matched-radius-inner-size) + var(--matched-radius-padding));
-    width: 80px;
-    height: 80px;
     overflow: hidden;
+    position: relative;
+    z-index: 2;
 }
 .icon img {
     width:100%;
@@ -307,6 +307,8 @@ select > * {
 }
 .form-check-input {
     margin-right: 3px;
+    position: relative;
+    z-index: 2;
 }
 
 /* Fix Dropdown Arrows Disappearing */
