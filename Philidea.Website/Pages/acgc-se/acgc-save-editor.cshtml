@@ -25,86 +25,7 @@
 
 <!-- PLAYER TAB -->
 <div id="tab_player" class="tabcontent show">
-    <div class="row">
-        <!-- PLAYER DATA -->
-        <div class="col-auto">
-            <div class="section">
-                <div class="row">
-                    <div class="section-title">
-                        <h4>Player Data</h4>
-                    </div>
-
-                    @Html.Partial("acgc-se/player")
-
-                    <!-- GENDER -->
-                    <div class="col-auto">
-                        <h5>Gender</h5><select class="form-control select2" id="player_gender" style="width:fit-content">
-                            <option value=0 selected>Boy</option>
-                            <option value=1>Girl</option>
-                        </select>
-                    </div>
-
-                    <!-- FACE -->
-                    <div class="col-auto">
-                        <h5>Face</h5><select class="form-control select2" id="player_face" style="width:fit-content">
-                            <option value=0 selected>Boy Face #1</option>
-                            <option value=1>Boy Face #2</option>
-                            <option value=2>Boy Face #3</option>
-                            <option value=3>Boy Face #4</option>
-                            <option value=4>Boy Face #5</option>
-                            <option value=5>Boy Face #6</option>
-                            <option value=6>Boy Face #7</option>
-                            <option value=7>Boy Face #8</option>
-                            <option value=8>Girl Face #1</option>
-                            <option value=9>Girl Face #2</option>
-                            <option value=10>Girl Face #3</option>
-                            <option value=11>Girl Face #4</option>
-                            <option value=12>Girl Face #5</option>
-                            <option value=13>Girl Face #6</option>
-                            <option value=14>Girl Face #7</option>
-                            <option value=15>Girl Face #8</option>
-                        </select>
-                    </div>
-                    <div class="col-auto" style="margin-top:10px;">
-                        <label class="form-check-label d-block"><input type="checkbox" id="checkboxBeestung" class="form-check-input">Beestung</label>
-                        <label class="form-check-label d-block"><input type="checkbox" id="checkboxGyroidFace" class="form-check-input">Gyroid Face</label>
-                    </div>
-
-                    <!-- SUN TAN-->
-                    <div class="slider">
-                        <label for="player_suntan" style="display:flex; align-items:center;">
-                            Sun Tan<div id="tan-color" class="color-box"></div>
-                        </label>
-                        <input type="range" class="form-range" id="player_suntan" min="0" max="8" step="1" onchange="updateTan()">
-                        <div class="d-flex justify-content-between" style="padding-left:4px;padding-right:4px;margin-top:-8px;">
-                            <span>0</span>
-                            <span>2</span>
-                            <span>4</span>
-                            <span>6</span>
-                            <span>8</span>
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <h6>Sun Tan Days Remaining</h6><input type="number" max="2" class="form-control" style="width:4em;" id="player_suntan_days_remaining" />
-                    </div>
-
-                    <!-- BIRTHDAY -->
-                    <div class="col-auto"><h5>Birthday</h5><input type="date" id="player_birthday" /></div>
-
-                    <!-- RESET -->
-                    <div class="col-auto"><label class="form-check-label d-block"><input type="checkbox" id="player_reset_code" class="form-check-input">Reset</label></div>
-                    <div class="col-auto"><h6>Reset Count</h6><input type="number" max="255" class="form-control" style="width:5em;" id="player_reset_count" /></div>
-                </div>
-
-                <div class="row" style="margin-left:0;">
-                    <!-- SAVINGS -->
-                    <div class="col-auto"><h5>Savings</h5><input type="number" max="999999999" class="form-control" id="player_savings"></div>
-                    <!-- DEBT -->
-                    <div class="col-auto"><h5>Debt</h5><input type="number" max="999999999" class="form-control" id="player_debt"></div>
-                </div>
-            </div>
-        </div>
-
+    @Html.Partial("acgc-se/player")
         <!-- EQUIPMENT -->
         <div class="col-auto">
             <div class="section">
@@ -153,7 +74,6 @@
         <div class="row">
             <div class="col-auto">
                 <select class="form-control select2" id="itemDropdownInventory" style="width:16em;" onchange="updateItem()">
-                    <option value="">None</option>
                     @foreach (var item in Model.Items.Where(i => i.Obtainable == 1)) {
                         <option value="@item.ID">@item.DropdownName</option>
                     }
@@ -251,6 +171,7 @@
     var selectedItemObj;
     var inventoryItems = new Array(15).fill(0);
     var inventoryItemConditions = new Array(15).fill(0);
+    var inventoryIconURL;
     var PresentIconURL = "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Icon_Upscaled/Present.png";
 
     function findObjByID(ID) {
@@ -267,38 +188,28 @@
     }
     function updateItem() {
         selectedItemID = $('#itemDropdownInventory').val();
+        selectedItemObj = findObjByID(Hex2Dec(selectedItemID));
 
-        console.log(selectedItemID);
-
-        if (selectedItemID == "") {
-            selectedItemObj = findObjByID(0);
-            $('#itemImage').prop('src', 'acgc-se/ui-icons/None.png');
-            updateInventoryIcon("");
-        }
-        else {
-            selectedItemObj = findObjByID(Hex2Dec(selectedItemID));
-
-            $.ajax({
-                headers: {
-                    RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
-                },
-                type: 'POST',
-                url: '@Url.Page("Index/acgc-save-editor")',
-                contentType: 'application/x-www-form-urlencoded',
-                data: {
-                    func: "updateItem",
-                    selectedItemID: selectedItemID,
-                },
-                success: function (response) {
-                    $('#itemImage').prop('src', response.itemIconURL);
-                    updateInventoryIcon(response.inventoryIconURL);
-                    console.log('UPDATEITEM SUCCESS', response);
-                },
-                error: function (error) {
-                    console.error('UPDATEITEM ERROR', error);
-                }
-            });
-        }
+        $.ajax({
+            headers: {
+                RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+            },
+            type: 'POST',
+            url: '@Url.Page("Index/acgc-save-editor")',
+            contentType: 'application/x-www-form-urlencoded',
+            data: {
+                func: "updateItem",
+                selectedItemID: selectedItemID,
+            },
+            success: function (response) {
+                $('#itemImage').prop('src', response.itemIconURL);
+                inventoryIconURL = response.inventoryIconURL;
+                console.log('UPDATEITEM SUCCESS', response);
+            },
+            error: function (error) {
+                console.error('UPDATEITEM ERROR', error);
+            }
+        });
     }
     function updateHandheld() {
         selectedItemID = $('#player_equipped_item').val();
@@ -370,21 +281,25 @@
             }
         });
     }
-    function updateInventoryIcon(inventoryIconURL) {
-        $('.inventory-slot').click(function () {
-            let inventorySlotIndex = $(this).index();
-            inventoryItems[inventorySlotIndex] = Hex2Dec(selectedItemID);
-            var $this = $(this);
 
-            if (document.getElementById("checkboxPresent").checked) {
-                inventoryItemConditions[inventorySlotIndex] = 1;
-                $this.html('<img src="' + PresentIconURL + '" bubbletext="' + 'Present (' + selectedItemObj.Name + ')' + '">');
-            }
-            else {
-                $this.html('<img src="' + inventoryIconURL + '" bubbletext="' + selectedItemObj.Name + '">');
-            }
-        });
-    }
+    $('.inventory-slot').click(function () {
+        let inventorySlotIndex = $(this).index();
+        inventoryItems[inventorySlotIndex] = Hex2Dec(selectedItemID);
+        var $this = $(this);
+
+        if (inventoryIconURL == "") {
+            inventoryItems[inventorySlotIndex] = 0;
+            $this.html('<img src="">');
+        }
+        else if (document.getElementById("checkboxPresent").checked) {
+            inventoryItemConditions[inventorySlotIndex] = 1;
+            $this.html('<img src="' + PresentIconURL + '" bubbletext="' + 'Present (' + selectedItemObj.Name + ')' + '">');
+        }
+        else {
+            $this.html('<img src="' + inventoryIconURL + '" bubbletext="' + selectedItemObj.Name + '">');
+        }
+    });
+
     function updateInventoryIcons() {
         for (let i = 0; i < 15; i++) {
             var obj = findObjByID(inventoryItems[i]);
@@ -415,6 +330,7 @@
         itemData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Items));
         selectedItemID = "0x0000";
         selectedItemObj = findObjByID(0);
+        inventoryIconURL = "";
 
         var formData = new FormData();
         var file = document.getElementById("fileUpload").files[0];

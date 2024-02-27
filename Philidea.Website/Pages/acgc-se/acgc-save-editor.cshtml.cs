@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Philidea.Website.Models;
 using System.Text.Json;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Philidea.Website.Pages
 {
@@ -81,6 +82,7 @@ namespace Philidea.Website.Pages
         }
         public IActionResult OnGet()
         {
+            HttpContext.Session.Clear();
             return Page();
         }
         public async Task<IActionResult> OnPostAsync()
