@@ -31,6 +31,7 @@ namespace Philidea.Website.Pages
         public string Category { get; set; }
         public string TextColor { get; set; }
         public byte CanRotate { get; set; }
+        public short Order { get; set; }
     }
     public class Object
     {

@@ -37,7 +37,7 @@
                     <div class="col-auto">
                         <h5 style="margin-top:20px;">Handheld Item</h5>
                         <select class="form-control select2" id="player_equipped_item" style="width:11em;" onchange="updateHandheld()">
-                            @foreach (var item in Model.Items.Where(i => i.Category == "Handheld" && i.Obtainable == 1 || i.Name == "None")) {
+                            @foreach (var item in Model.Items.Where(i => i.Category == "Handheld" && i.Obtainable == 1 || i.Name == "None").OrderBy(i=>i.Order)) {
                                 <option value="@item.ID">@item.DropdownName</option>
                             }
                         </select>
@@ -74,7 +74,7 @@
         <div class="row">
             <div class="col-auto">
                 <select class="form-control select2" id="itemDropdownInventory" style="width:16em;" onchange="updateItem()">
-                    @foreach (var item in Model.Items.Where(i => i.Obtainable == 1)) {
+                    @foreach (var item in Model.Items.Where(i => i.Obtainable == 1 && i.Order <= 1785).OrderBy(i=>i.Order)) {
                         <option value="@item.ID">@item.DropdownName</option>
                     }
                 </select>
@@ -101,7 +101,7 @@
             <div class="col-auto" style="margin-top:15px;">
                 <h5 class="text-over-background">Background</h5>
                 <select class="form-control select2" id="player_inventory_background" style="width:11em;" onchange="updateBackground()">
-                    @foreach (var item in Model.Items.Where(i => i.Category == "Clothing" && i.Obtainable == 1)) {
+                    @foreach (var item in Model.Items.Where(i => i.Category == "Clothing" && i.Obtainable == 1).OrderBy(i=>i.Order)) {
                         <option value="@item.ID">@item.DropdownName</option>
                     }
                 </select>
