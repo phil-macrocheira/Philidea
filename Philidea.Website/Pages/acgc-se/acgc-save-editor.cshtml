@@ -3,6 +3,7 @@
 @model Philidea.Website.Pages.acgcModel
 @section Scripts {
     <script src="acgc-se/js/char-map.js"></script>
+    <script src="acgc-se/js/player.js"></script>
     <script src="acgc-se/js/toma-bubble.js"></script>
 }
 @{
@@ -25,89 +26,7 @@
 
 <!-- PLAYER TAB -->
 <div id="tab_player" class="tabcontent show">
-    @Html.Partial("acgc-se/player")
-        <!-- EQUIPMENT -->
-        <div class="col-auto">
-            <div class="section">
-                <div class="section-title">
-                    <h4>Equipment</h4>
-                </div>
-                <div class="row">
-                    <!-- HANDHELD ITEM -->
-                    <div class="col-auto">
-                        <h5 style="margin-top:20px;">Handheld Item</h5>
-                        <select class="form-control select2" id="player_equipped_item" style="width:11em;" onchange="updateHandheld()">
-                            @foreach (var item in Model.Items.Where(i => i.Category == "Handheld" && i.Obtainable == 1 || i.Name == "None").OrderBy(i=>i.Order)) {
-                                <option value="@item.ID">@item.DropdownName</option>
-                            }
-                        </select>
-                    </div>
-                    <!-- HANDHELD IMAGE -->
-                    <div class="col-auto" style="margin-top:20px;">
-                        <div class="icon" style="width:60px;height:60px;"><img src="@Model.HandheldIconURL" id="handheldImage" class="rounded float-left" alt="Handheld Image"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- CLOTHING -->
-                    <div class="col-auto">
-                        <h5>Clothing</h5>
-                        <select class="form-control select2" id="player_clothing" style="width:11em;" onchange="updateClothing()">
-                            @foreach (var item in Model.Items.Where(i => i.Category == "Clothing" && i.Obtainable == 1)) {
-                                <option value="@item.ID">@item.DropdownName</option>
-                            }
-                        </select>
-                    </div>
-                    <!-- CLOTHING IMAGE -->
-                    <div class="col-auto" style="margin-top:5px;">
-                        <div class="icon" style="width:60px;height:60px;"><img src="@Model.ClothingIconURL" id="clothingImage" class="rounded float-left" alt="Clothing Image"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- INVENTORY -->
-    <h4>Inventory</h4>
-    <div class="section section-inventory" style="margin-left:2px;">
-        <!-- ITEM -->
-        <h5 class="text-over-background" style="width:60px;">Item</h5>
-        <div class="row">
-            <div class="col-auto">
-                <select class="form-control select2" id="itemDropdownInventory" style="width:16em;" onchange="updateItem()">
-                    @foreach (var item in Model.Items.Where(i => i.Obtainable == 1 && i.Order <= 1785).OrderBy(i=>i.Order)) {
-                        <option value="@item.ID">@item.DropdownName</option>
-                    }
-                </select>
-                <!-- PRESENT CHECKBOX -->
-                <label class="form-check-label d-block"><input type="checkbox" id="checkboxPresent" class="form-check-input">Present</label>
-            </div>
-            <!-- ITEM IMAGE -->
-            <div class="col-auto" style="margin-top:-30px;">
-                <div class="icon" style="width:80px;height:80px;"><img src="@Model.ItemIconURL" id="itemImage" class="rounded float-left" alt="Item Image"></div>
-            </div>
-        </div>
-
-        <!-- INVENTORY UI -->
-        <div class="inventory">
-            @for (int i = 0; i < 15; i++) {
-                <div class="inventory-slot" data-index="@i" bubbletext=""></div>
-            }
-        </div>
-
-        <div class="row">
-            <!-- WALLET -->
-            <div class="col-auto" style="margin-top:15px;"><h5 class="text-over-background" style="width:60px;">Wallet</h5><input type="number" min="0" max="99999" class="form-control" style="width:6em;" id="player_wallet"></div>
-            <!-- BACKGROUND -->
-            <div class="col-auto" style="margin-top:15px;">
-                <h5 class="text-over-background">Background</h5>
-                <select class="form-control select2" id="player_inventory_background" style="width:11em;" onchange="updateBackground()">
-                    @foreach (var item in Model.Items.Where(i => i.Category == "Clothing" && i.Obtainable == 1).OrderBy(i=>i.Order)) {
-                        <option value="@item.ID">@item.DropdownName</option>
-                    }
-                </select>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("acgc-se/player", Model)
 </div>
 
 <!-- TOWN TAB -->
@@ -129,34 +48,6 @@
             </select>
         </div>
         <div class="col-auto"><div class="icon"><img src="@Model.SelectedVillagers?.FirstOrDefault()?.ImageURL" id="villagerImage" class="rounded float-left" alt="Villager Image"></div></div>
-    </div>
-</div>
-
-<!-- TOOLTIP BUBBLE FOR INVENTORY -->
-<div class="ac-bubble">
-    <div class="ac-bubble-tooltip">
-        <div class="ac-bubble-triangle">
-            <img src="acgc-se/ui-icons/bubble-triangle.png">
-        </div>
-        <div class="ac-bubble-container">
-            <div class="ac-bubble-tl">
-                <img src="acgc-se/ui-icons/bubble-corner.png">
-            </div>
-            <div class="ac-bubble-tr">
-                <img src="acgc-se/ui-icons/bubble-corner.png">
-            </div>
-            <div class="ac-bubble-mc">
-                <div class="ac-bubble-content">
-                    <p>Present (Buried Pitfall (Bent & Angled Down-Left Slightly))</p>
-                </div>
-            </div>
-            <div class="ac-bubble-bl">
-                <img src="acgc-se/ui-icons/bubble-corner.png">
-            </div>
-            <div class="ac-bubble-br">
-                <img src="acgc-se/ui-icons/bubble-corner.png">
-            </div>
-        </div>
     </div>
 </div>
 
