@@ -310,6 +310,10 @@ select > * {
     position: relative;
     z-index: 2;
 }
+.d-block {
+    position: relative;
+    z-index: 2;
+}
 
 /* Fix Dropdown Arrows Disappearing */
 .form-control {
