@@ -1,17 +1,15 @@
 @page
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @model Philidea.Website.Pages.acgcModel
-@section Scripts {
-    <script src="acgc-se/js/char-map.js"></script>
-    <script src="acgc-se/js/player.js"></script>
-    <script src="acgc-se/js/toma-bubble.js"></script>
-}
 @{
     ViewData["Title"] = "ACGC Save Editor";
     ViewData["HeaderTitle"] = "Animal Crossing GameCube Save Editor";
     ViewData["Version"] = "ALPHA v0.0.1";
     Layout = "acgc-se_layout.cshtml";
     bool debugMode = HttpContextAccessor.HttpContext.RequestServices.GetRequiredService<IWebHostEnvironment>().IsDevelopment();
+}
+@section Scripts {
+    <script asp-src-include="acgc-se/js/*.js"></script>
 }
 @Html.AntiForgeryToken()
 
@@ -26,253 +24,45 @@
 
 <!-- PLAYER TAB -->
 <div id="tab_player" class="tabcontent show">
-    @Html.Partial("acgc-se/player", Model)
+    <div class="tabs" style="padding:0;">
+        <button id="tab_player_btn_1" class="tab-button-inner hidden" onclick="openInnerTab(event,'tab_player_1')">Player 1</button>
+        <button id="tab_player_btn_2" class="tab-button-inner hidden" onclick="openInnerTab(event,'tab_player_2')">Player 2</button>
+        <button id="tab_player_btn_3" class="tab-button-inner hidden" onclick="openInnerTab(event,'tab_player_3')">Player 3</button>
+        <button id="tab_player_btn_4" class="tab-button-inner hidden" onclick="openInnerTab(event,'tab_player_4')">Player 4</button>
+    </div>
+
+    <div id="tab_player_1" class="inner-tabcontent show">
+        @Html.Partial("acgc-se/player1", Model)
+    </div>
+
+    <div id="tab_player_2" class="inner-tabcontent">
+        @Html.Partial("acgc-se/player2", Model)
+    </div>
+
+    <div id="tab_player_3" class="inner-tabcontent">
+        @Html.Partial("acgc-se/player3", Model)
+    </div>
+
+    <div id="tab_player_4" class="inner-tabcontent">
+        @Html.Partial("acgc-se/player4", Model)
+    </div>
 </div>
 
 <!-- TOWN TAB -->
 <div id="tab_town" class="tabcontent">
-    <h5>Town Name</h5><input type="text" maxlength="8" class="form-control" id="town_name"></input>
-    <h5>Bulletin Board Post #1</h5><textarea class="form-control" id="bulletin_board_post_01"></textarea>
-    <h5>Bulletin Board Post #2</h5><textarea class="form-control" id="bulletin_board_post_02"></textarea>
+    @Html.Partial("acgc-se/town", Model)
 </div>
 
-<!-- VILLAGER TAB -->
+<!-- VILLAGERS TAB -->
 <div id="tab_villagers" class="tabcontent">
-    <h4>Villager</h4>
-    <div class="row" style="margin-top:20px;">
-        <div class="col-auto">
-            <select class="form-control select2" id="villagerDropdown" onchange="updateVillagers">
-                @foreach (var villager in Model.Villagers) {
-                    <option value="@villager.ID">@villager.Name</option>
-                }
-            </select>
-        </div>
-        <div class="col-auto"><div class="icon"><img src="@Model.SelectedVillagers?.FirstOrDefault()?.ImageURL" id="villagerImage" class="rounded float-left" alt="Villager Image"></div></div>
-    </div>
+    @Html.Partial("acgc-se/villagers", Model)
 </div>
 
 <script>
-    var Player = 0; // CHANGE THIS DEPENDING ON THE TAB, 0 is PLAYER 1
-    var saveFile;
-    var json;
-    var size;
-    var gender;
-    var itemData;
-    var selectedItemID;
-    var selectedItemObj;
-    var inventoryItems = new Array(15).fill(0);
-    var inventoryItemConditions = new Array(15).fill(0);
-    var inventoryIconURL;
-    var PresentIconURL = "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Icon_Upscaled/Present.png";
+    var debugMode = @Html.Raw(Json.Serialize(debugMode));
+    var itemData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Items));
+    var uploadURL = '@Url.Page("Index/acgc-save-editor")';
 
-    function findObjByID(ID) {
-        let IDStr = Dec2Hex(ID);
-        return itemData.find(function (item) {
-            return item.ID === IDStr;
-        });
-    }
-    function Hex2Dec(Hex) {
-        return parseInt(Hex, 16);
-    }
-    function Dec2Hex(Dec) {
-        return '0x' + Dec.toString(16).padStart(4, '0').toUpperCase();
-    }
-    function updateItem() {
-        selectedItemID = $('#itemDropdownInventory').val();
-        selectedItemObj = findObjByID(Hex2Dec(selectedItemID));
-
-        $.ajax({
-            headers: {
-                RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
-            },
-            type: 'POST',
-            url: '@Url.Page("Index/acgc-save-editor")',
-            contentType: 'application/x-www-form-urlencoded',
-            data: {
-                func: "updateItem",
-                selectedItemID: selectedItemID,
-            },
-            success: function (response) {
-                $('#itemImage').prop('src', response.itemIconURL);
-                inventoryIconURL = response.inventoryIconURL;
-                console.log('UPDATEITEM SUCCESS', response);
-            },
-            error: function (error) {
-                console.error('UPDATEITEM ERROR', error);
-            }
-        });
-    }
-    function updateHandheld() {
-        selectedItemID = $('#player_equipped_item').val();
-        selectedItemObj = findObjByID(Hex2Dec(selectedItemID));
-
-        $.ajax({
-            headers: {
-                RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
-            },
-            type: 'POST',
-            url: '@Url.Page("Index/acgc-save-editor")',
-            contentType: 'application/x-www-form-urlencoded',
-            data: {
-                func: "updateHandheld",
-                selectedItemID: selectedItemID,
-            },
-            success: function (response) {
-                $('#handheldImage').prop('src', response.handheldIconURL);
-                console.log('UPDATEHANDHELD SUCCESS', response);
-            },
-            error: function (error) {
-                console.error('UPDATEHANDHELD ERROR', error);
-            }
-        });
-    }
-    function updateClothing() {
-        selectedItemID = $('#player_clothing').val();
-        selectedItemObj = findObjByID(Hex2Dec(selectedItemID));
-
-        $.ajax({
-            headers: {
-                RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
-            },
-            type: 'POST',
-            url: '@Url.Page("Index/acgc-save-editor")',
-            contentType: 'application/x-www-form-urlencoded',
-            data: {
-                func: "updateClothing",
-                selectedItemID: selectedItemID,
-            },
-            success: function (response) {
-                $('#clothingImage').prop('src', response.clothingIconURL);
-                console.log('UPDATECLOTHING SUCCESS', response);
-            },
-            error: function (error) {
-                console.error('UPDATECLOTHING ERROR', error);
-            }
-        });
-    }
-    function updateVillagers() {
-        var selectedVillagerIDs = $('#villagerDropdown').val() + "," + "0x4E";
-
-        $.ajax({
-            headers: {
-                RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
-            },
-            url: '@Url.Page("Index/acgc-save-editor")',
-            contentType: 'application/x-www-form-urlencoded',
-            data: {
-                func: "updateVillagers",
-                selectedVillagerIDs: selectedVillagerIDs,
-            },
-            success: function (response) {
-                document.getElementById("villagerImage").src = document.getElementById("villagerImage").src;
-                console.log('UPDATEVILLAGERS SUCCESS', response);
-            },
-            error: function (error) {
-                console.error('UPDATEVILLAGERS ERROR', error);
-            }
-        });
-    }
-
-    $('.inventory-slot').click(function () {
-        let inventorySlotIndex = $(this).index();
-        inventoryItems[inventorySlotIndex] = Hex2Dec(selectedItemID);
-        var $this = $(this);
-
-        if (inventoryIconURL == "") {
-            inventoryItems[inventorySlotIndex] = 0;
-            $this.html('<img src="">');
-        }
-        else if (document.getElementById("checkboxPresent").checked) {
-            inventoryItemConditions[inventorySlotIndex] = 1;
-            $this.html('<img src="' + PresentIconURL + '" bubbletext="' + 'Present (' + selectedItemObj.Name + ')' + '">');
-        }
-        else {
-            $this.html('<img src="' + inventoryIconURL + '" bubbletext="' + selectedItemObj.Name + '">');
-        }
-    });
-
-    function updateInventoryIcons() {
-        for (let i = 0; i < 15; i++) {
-            var obj = findObjByID(inventoryItems[i]);
-            var slot = $('.inventory .inventory-slot').eq(i);
-            var imgElement = slot.find('img');
-
-            if (imgElement.length === 0) {
-                let newimgElement = $('<img>');
-                slot.append(newimgElement);
-                imgElement = slot.find('img');
-            }
-            if (obj && obj.IconURLUpscaled) {
-                if (inventoryItemConditions[i] == 1) {
-                    imgElement.attr('src', PresentIconURL);
-                    imgElement.attr('bubbletext', 'Present (' + obj.Name + ')');
-                }
-                else {
-                    imgElement.attr('src', obj.IconURLUpscaled);
-                    imgElement.attr('bubbletext', obj.Name);
-                }
-            }
-            else {
-                imgElement.remove();
-            }
-        }
-    }
-    function uploadSave() {
-        itemData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Items));
-        selectedItemID = "0x0000";
-        selectedItemObj = findObjByID(0);
-        inventoryIconURL = "";
-
-        var formData = new FormData();
-        var file = document.getElementById("fileUpload").files[0];
-        formData.append('fileUpload', file);
-
-        $.ajax({
-            headers: {
-                RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
-            },
-            type: 'POST',
-            url: '@Url.Page("Index/acgc-save-editor")',
-            processData: false,
-            contentType: false,
-            data: formData,
-            success: function (response) {
-                saveFile = Uint8Array.from(atob(response.save_file), c => c.charCodeAt(0));
-                json = response.json;
-
-                document.getElementById("bulletin_board_post_01").value = getString("bulletin_board_post_01");
-                document.getElementById("bulletin_board_post_02").value = getString("bulletin_board_post_02");
-
-                document.getElementById("town_name").value = getString("town_name");
-                document.getElementById("player_name").value = getString("player_name");
-                document.getElementById("player_gender").value = getGender("player_gender");
-                document.getElementById("player_face").value = getFace("player_face");
-                document.getElementById("player_suntan").value = getNumber("player_suntan");
-                document.getElementById("player_suntan_days_remaining").value = getNumber("player_suntan_days_remaining");
-                updateTan();
-                document.getElementById("player_birthday").value = getBirthday("player_birthday");
-                document.getElementById("player_reset_code").value = getReset("player_reset_code");
-                document.getElementById("player_reset_count").value = getNumber("player_reset_count");
-                document.getElementById("player_wallet").value = getNumber("player_wallet");
-                document.getElementById("player_savings").value = getNumber("player_savings");
-                document.getElementById("player_debt").value = getNumber("player_debt");
-
-                document.getElementById("player_equipped_item").value = getID("player_equipped_item");
-                $('#player_equipped_item').trigger('change');
-                document.getElementById("player_clothing").value = getID("player_clothing");
-                $('#player_clothing').trigger('change');
-
-                getInventoryConditions("player_inventory_items_conditions");
-                getInventory("player_inventory_items");
-                getInventoryBackground("player_inventory_background");
-
-                console.log('UPLOADSAVE SUCCESS', response);
-            },
-            error: function (error) {
-                console.error('UPLOADSAVE ERROR', error);
-            }
-        });
-    }
     function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -288,234 +78,18 @@
         }
         evt.currentTarget.classList.add("active");
     }
-    function getJsonData(name) {
-        let jsonDataObject = JSON.parse(json);
-        let saveInfoElement = jsonDataObject[name];
-        let offsetHex = saveInfoElement["Global Byte Offset"];
-        let offset = Hex2Dec(offsetHex);
-        let size = saveInfoElement["Byte Size"];
-        return { index: offset, size: size };
-    }
-    function getSaveData(variable) {
-        let jsonData = getJsonData(variable);
-        let index = jsonData.index + (Player * 9280);
-        size = jsonData.size;
 
-        var saveData = new Uint8Array(size);
-        for (let i = 0; i < size; i++) {
-            saveData[i] = saveFile[index + i];
+    function openInnerTab(evt, tabName) {
+        var i, innerTabcontent, innerTablinks;
+        innerTabcontent = document.getElementsByClassName("inner-tabcontent");
+        for (i = 0; i < innerTabcontent.length; i++) {
+            innerTabcontent[i].style.display = "none";
         }
-        return saveData;
+        innerTablinks = document.getElementsByClassName("tab-button-inner");
+        for (i = 0; i < innerTablinks.length; i++) {
+            innerTablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.classList.add("active");
     }
-    function getString(variable) {
-        let saveData = getSaveData(variable);
-        let saveDataString = replaceChars(saveData);
-        return saveDataString;
-    }
-    function getNumber(variable) {
-        let saveData = getSaveData(variable);
-        var value = 0;
-        for (var i = 0; i < size; i++) {
-            value = (value << 8) + saveData[i];
-        }
-        return value;
-    }
-    function getID(variable) {
-        let saveData = getSaveData(variable);
-        let ID = (saveData[0] << 8) | saveData[1];
-        return Dec2Hex(ID);
-    }
-    function getYMD(variable) {
-        let saveData = getSaveData(variable);
-        let year = saveData[0] << 8 | saveData[1];
-        let month = saveData[2] - 1;
-        let day = saveData[3];
-        let date = new Date(year, month, day);
-        return date.toISOString().split('T')[0];
-    }
-    function getBirthday(variable) {
-        let saveData = getSaveData(variable);
-        let day = saveData[1];
-        if (saveData[0] == 0xFF && day == 0xFF) {
-            return null;
-        }
-        let month = saveData[0] - 1;
-        let year = new Date().getFullYear();
-        let date = new Date(year, month, day);
-        return date.toISOString().split('T')[0];
-    }
-    function updateBackground() {
-        let clothing = document.getElementById("player_inventory_background").value;
-        let clothingObj = findObjByID(Hex2Dec(clothing));
-        let backgroundURL = clothingObj.TextureURLUpscaled;
-
-        let styleTag = document.createElement('style');
-        styleTag.innerHTML = '.section-inventory::after { background-image: url("' + backgroundURL + '") !important; }';
-        document.head.appendChild(styleTag);
-    }
-    function getInventoryConditions(variable) {
-        let saveData = getSaveData(variable);
-        for (var i = 0; i < 15; i++) {
-            let byte = 3 - Math.floor(i / 4);
-            let bitOffset = (i % 4) * 2;
-            let bits = (saveData[byte] >> bitOffset & 0b11); // 0 = None, 1 = Present, 2 = Quest
-            inventoryItemConditions[i] = bits;
-        }
-    }
-    function getInventory(variable) {
-        let saveData = getSaveData(variable);
-        let dataView = new DataView(saveData.buffer);
-        for (var i = 0; i < 30; i += 2) {
-            let item = dataView.getInt16(i, false); /* false for big endian */
-            inventoryItems[i / 2] = item;
-        }
-        updateInventoryIcons();
-    }
-    function getInventoryBackground(variable) {
-        document.getElementById("player_inventory_background").value = getID(variable);
-        $('#player_inventory_background').trigger('change');
-    }
-    function getGender(variable) {
-        gender = getNumber(variable);
-        return gender;
-    }
-    function getFace(variable) {
-        var face = getNumber(variable);
-        if (gender == 0) {
-            if (face >= 0x10 && face < 0x20) {
-                document.getElementById("checkboxBeestung").checked = true;
-            }
-            if (face >= 0x20 && face < 0x30) {
-                document.getElementById("checkboxGyroidFace").checked = true;
-            }
-            if (face >= 0x30) {
-                document.getElementById("checkboxBeestung").checked = true;
-                document.getElementById("checkboxGyroidFace").checked = true;
-            }
-            return face;
-        }
-        if (gender == 1) {
-            if (face >= 0x08 && face < 0x18) {
-                document.getElementById("checkboxBeestung").checked = true;
-            }
-            if (face >= 0x18 && face < 0x28) {
-                document.getElementById("checkboxGyroidFace").checked = true;
-            }
-            if (face >= 0x28 && face < 0xF8) {
-                document.getElementById("checkboxBeestung").checked = true;
-                document.getElementById("checkboxGyroidFace").checked = true;
-            }
-            if (face >= 0xF8) {
-                return face - 0xF8;
-            }
-            else {
-                return face + 8;
-            }
-        }
-    }
-    function updateTan() {
-        let tan = document.getElementById("player_suntan").value;
-        let tanColor = document.getElementById("tan-color");
-
-        if (tan == 0) {
-            tanColor.style.backgroundColor = "#FFBD94";
-        }
-        else if (tan == 1) {
-            tanColor.style.backgroundColor = "#EFAD84";
-        }
-        else if (tan == 2) {
-            tanColor.style.backgroundColor = "#E7A57B";
-        }
-        else if (tan == 3) {
-            tanColor.style.backgroundColor = "#D6946B";
-        }
-        else if (tan == 4) {
-            tanColor.style.backgroundColor = "#CE8C63";
-        }
-        else if (tan == 5) {
-            tanColor.style.backgroundColor = "#C6845A";
-        }
-        else if (tan == 6) {
-            tanColor.style.backgroundColor = "#BD7B52";
-        }
-        else if (tan == 7) {
-            tanColor.style.backgroundColor = "#B5734A";
-        }
-        else if (tan == 8) {
-            tanColor.style.backgroundColor = "#A56339";
-        }
-        else {
-            tanColor.style.backgroundColor = "#FFBD94";
-        }
-    }
-    function getReset(variable) {
-        let saveData = getSaveData(variable);
-        if (saveData[0] > 0) {
-            document.getElementById("checkboxReset").checked = true;
-        }
-    }
-</script>
-<script>
-    // STARTUP
-    var debugMode = @Html.Raw(Json.Serialize(debugMode));
-    if (debugMode) {
-        uploadSave();
-    }
-</script>
-<script>
-    // FORCE NUMBER INPUTS TO MIN/MAX
-    document.addEventListener("DOMContentLoaded", function () {
-        let numberInputs = document.querySelectorAll('input[type="number"]');
-        numberInputs.forEach(function (input) {
-            input.addEventListener("input", function () {
-                let max = parseInt(input.getAttribute("max"), 10);
-                let value = parseInt(input.value, 10);
-
-                if (value < 0) {
-                    input.value = 0;
-                } else if (value > max) {
-                    input.value = max;
-                }
-            });
-        });
-    });
-</script>
-<script>
-    // FOCUS SEARCH FIELD ON DROPDOWN MENUS
-    $(document).ready(function () {
-        $('#itemDropdownInventory').select2();
-        $('#itemDropdownInventory').on('select2:open', function () {
-            window.setTimeout(function () {
-                document.querySelector('.select2-search__field').focus();
-            }, 0);
-        });
-
-        $('#player_inventory_background').select2();
-        $('#player_inventory_background').on('select2:open', function () {
-            window.setTimeout(function () {
-                document.querySelector('.select2-search__field').focus();
-            }, 0);
-        });
-
-        $('#player_equipped_item').select2();
-        $('#player_equipped_item').on('select2:open', function () {
-            window.setTimeout(function () {
-                document.querySelector('.select2-search__field').focus();
-            }, 0);
-        });
-
-        $('#player_clothing').select2();
-        $('#player_clothing').on('select2:open', function () {
-            window.setTimeout(function () {
-                document.querySelector('.select2-search__field').focus();
-            }, 0);
-        });
-
-        $('#villagerDropdown').select2();
-        $('#villagerDropdown').on('select2:open', function () {
-            window.setTimeout(function () {
-                document.querySelector('.select2-search__field').focus();
-            }, 0);
-        });
-    });
 </script>

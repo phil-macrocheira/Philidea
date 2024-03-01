@@ -127,14 +127,14 @@ input[type="file"] {
     overflow: hidden;
     margin-bottom: -5px;
     margin-left: 5px;
-    padding-top:20px;
+    padding-top: 20px;
 }
 .tab-button {
     background-color: #f2f2f2;
     float: left;
     border: 1px solid #ccc;
     cursor: pointer;
-    padding: 10px 15px;
+    padding: 10px 14px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
@@ -146,6 +146,24 @@ input[type="file"] {
 .tab-button.active {
     background-color: #BFFFC2
 }
+.tab-button-inner {
+    background-color: #f2f2f2;
+    float: left;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    padding: 6px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.tab-button-inner:hover {
+    background-color: #ddd;
+}
+.tab-button-inner.active {
+    background-color: #BFFFC2
+}
+.tab-button-inner.inactive {
+    background-color: #f2f2f2;
+}
 .tabcontent {
     display: none;
     padding: 20px;
@@ -156,6 +174,18 @@ input[type="file"] {
     background:white;
 }
 .tabcontent.show {
+    display: block;
+}
+.inner-tabcontent {
+    display: none;
+    padding: 20px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    position: relative;
+    width: 98%;
+    background: white;
+}
+.inner-tabcontent.show {
     display: block;
 }
 
@@ -195,10 +225,21 @@ input[type="file"] {
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url("https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Textures_Upscaled/24E2_big_dot_shirt.png");
     opacity: 0.25;
     z-index: 0;
     animation: animateBackground 75s linear infinite;
+}
+.section-inventory_1::after {
+    background-image: url("https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Textures_Upscaled/24E2_big_dot_shirt.png");
+}
+.section-inventory_2::after {
+    background-image: url("https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Textures_Upscaled/24E2_big_dot_shirt.png");
+}
+.section-inventory_3::after {
+    background-image: url("https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Textures_Upscaled/24E2_big_dot_shirt.png");
+}
+.section-inventory_4::after {
+    background-image: url("https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Textures_Upscaled/24E2_big_dot_shirt.png");
 }
 @keyframes animateBackground {
     0% {

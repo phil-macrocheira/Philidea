@@ -17,6 +17,8 @@ namespace Philidea.Website
                 options.Conventions.AddPageRoute("/home/Index", "");
                 options.Conventions.AddPageRoute("/totk-dc/totk-calculator", "/totk-calculator");
                 options.Conventions.AddPageRoute("/acgc-se/acgc-save-editor", "/acgc-save-editor");
+            }).AddMvcOptions(options => {
+                options.EnableEndpointRouting = false;
             });
 
             services.AddScoped<ImportData>();

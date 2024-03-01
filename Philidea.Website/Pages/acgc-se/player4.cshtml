@@ -1,0 +1,193 @@
+﻿@model Philidea.Website.Pages.acgcModel
+
+<div class="row">
+    <!-- PLAYER DATA -->
+    <div class="col-auto">
+        <div class="section">
+            <div class="row">
+                <div class="section-title">
+                    <h4>Player Data</h4>
+                </div>
+
+                <!-- NAME -->
+                <div class="col-auto" style="margin-left:-100px;"><h5>Name</h5><input type="text" maxlength="8" id="player_name_4" class="form-control"></div>
+
+                <!-- GENDER -->
+                <div class="col-auto">
+                    <h5>Gender</h5><select class="form-control select2" id="player_gender_4" style="width:fit-content">
+                        <option value=0 selected>Boy</option>
+                        <option value=1>Girl</option>
+                    </select>
+                </div>
+
+                <!-- FACE -->
+                <div class="col-auto">
+                    <h5>Face</h5><select class="form-control select2" id="player_face_4" style="width:fit-content">
+                        <option value=0 selected>Boy Face #1</option>
+                        <option value=1>Boy Face #2</option>
+                        <option value=2>Boy Face #3</option>
+                        <option value=3>Boy Face #4</option>
+                        <option value=4>Boy Face #5</option>
+                        <option value=5>Boy Face #6</option>
+                        <option value=6>Boy Face #7</option>
+                        <option value=7>Boy Face #8</option>
+                        <option value=8>Girl Face #1</option>
+                        <option value=9>Girl Face #2</option>
+                        <option value=10>Girl Face #3</option>
+                        <option value=11>Girl Face #4</option>
+                        <option value=12>Girl Face #5</option>
+                        <option value=13>Girl Face #6</option>
+                        <option value=14>Girl Face #7</option>
+                        <option value=15>Girl Face #8</option>
+                    </select>
+                </div>
+                <div class="col-auto" style="margin-top:10px;">
+                    <label class="form-check-label d-block"><input type="checkbox" id="checkboxBeestung_4" class="form-check-input">Beestung</label>
+                    <label class="form-check-label d-block"><input type="checkbox" id="checkboxGyroidFace_4" class="form-check-input">Gyroid Face</label>
+                </div>
+
+                <!-- SUN TAN-->
+                <div class="slider">
+                    <label for="player_suntan" style="display:flex; align-items:center;">
+                        Sun Tan<div id="tan-color_4" class="color-box"></div>
+                    </label>
+                    <input type="range" class="form-range" id="player_suntan_4" min="0" max="8" step="1" onchange="updateTan('_4')">
+                    <div class="d-flex justify-content-between" style="padding-left:4px;padding-right:4px;margin-top:-8px;">
+                        <span>0</span>
+                        <span>2</span>
+                        <span>4</span>
+                        <span>6</span>
+                        <span>8</span>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <h6>Sun Tan Days Remaining</h6><input type="number" max="2" class="form-control" style="width:4em;" id="player_suntan_days_remaining_4" />
+                </div>
+
+                <!-- BIRTHDAY -->
+                <div class="col-auto"><h5>Birthday</h5><input type="date" id="player_birthday_4" /></div>
+
+                <!-- RESET -->
+                <div class="col-auto"><label class="form-check-label d-block"><input type="checkbox" id="player_reset_code_4" class="form-check-input">Reset</label></div>
+                <div class="col-auto"><h6>Reset Count</h6><input type="number" max="255" class="form-control" style="width:5em;" id="player_reset_count_4" /></div>
+            </div>
+
+            <div class="row" style="margin-left:0;">
+                <!-- SAVINGS -->
+                <div class="col-auto"><h5>Savings</h5><input type="number" max="999999999" class="form-control" id="player_savings_4"></div>
+                <!-- DEBT -->
+                <div class="col-auto"><h5>Debt</h5><input type="number" max="999999999" class="form-control" id="player_debt_4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EQUIPMENT -->
+    <div class="col-auto">
+        <div class="section">
+            <div class="section-title">
+                <h4>Equipment</h4>
+            </div>
+            <div class="row">
+                <!-- HANDHELD ITEM -->
+                <div class="col-auto">
+                    <h5 style="margin-top:20px;">Handheld Item</h5>
+                    <select class="form-control select2" id="player_equipped_item_4" style="width:11em;" onchange="updateHandheld('_4')">
+                        @foreach (var item in Model.Items.Where(i => i.Category == "Handheld" && i.Obtainable == 1 || i.Name == "None").OrderBy(i => i.Order)) {
+                            <option value="@item.ID">@item.DropdownName</option>
+                        }
+                    </select>
+                </div>
+                <!-- HANDHELD IMAGE -->
+                <div class="col-auto" style="margin-top:20px;">
+                    <div class="icon" style="width:60px;height:60px;"><img src="acgc-se/ui-icons/None.png" id="handheldImage_4" class="rounded float-left" alt="Handheld Image"></div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- CLOTHING -->
+                <div class="col-auto">
+                    <h5>Clothing</h5>
+                    <select class="form-control select2" id="player_clothing_4" style="width:11em;" onchange="updateClothing('_4')">
+                        @foreach (var item in Model.Items.Where(i => i.Category == "Clothing" && i.Obtainable == 1)) {
+                            <option value="@item.ID">@item.DropdownName</option>
+                        }
+                    </select>
+                </div>
+                <!-- CLOTHING IMAGE -->
+                <div class="col-auto" style="margin-top:5px;">
+                    <div class="icon" style="width:60px;height:60px;"><img src="acgc-se/ui-icons/None.png" id="clothingImage_4" class="rounded float-left" alt="Clothing Image"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- INVENTORY -->
+<h4>Inventory</h4>
+<div class="section section-inventory section-inventory_4" style="margin-left:2px;">
+    <!-- ITEM -->
+    <h5 class="text-over-background" style="width:60px;">Item</h5>
+    <div class="row">
+        <div class="col-auto">
+            <select class="form-control select2" id="itemDropdownInventory_4" style="width:16em;" onchange="updateItem('_4')">
+                @foreach (var item in Model.Items.Where(i => i.Obtainable == 1 && i.Order <= 1785).OrderBy(i => i.Order)) {
+                    <option value="@item.ID">@item.DropdownName</option>
+                }
+            </select>
+            <!-- PRESENT CHECKBOX -->
+            <label class="form-check-label d-block"><input type="checkbox" id="checkboxPresent_4" class="form-check-input">Present</label>
+        </div>
+        <!-- ITEM IMAGE -->
+        <div class="col-auto" style="margin-top:-30px;">
+            <div class="icon" style="width:80px;height:80px;"><img src="acgc-se/ui-icons/None.png" id="itemImage_4" class="rounded float-left" alt="Item Image"></div>
+        </div>
+    </div>
+
+    <!-- INVENTORY UI -->
+    <div class="inventory inventory_4">
+        @for (int i = 0; i < 15; i++) {
+            <div class="inventory-slot inventory-slot_4" data-index="@i" bubbletext=""></div>
+        }
+    </div>
+
+    <div class="row">
+        <!-- WALLET -->
+        <div class="col-auto" style="margin-top:15px;"><h5 class="text-over-background" style="width:60px;">Wallet</h5><input type="number" min="0" max="99999" id="player_wallet_4" class="form-control" style="width:6em;"></div>
+        <!-- BACKGROUND -->
+        <div class="col-auto" style="margin-top:15px;">
+            <h5 class="text-over-background">Background</h5>
+            <select class="form-control select2" id="player_inventory_background_4" style="width:11em;" onchange="updateBackground()">
+                @foreach (var item in Model.Items.Where(i => i.Category == "Clothing" && i.Obtainable == 1).OrderBy(i => i.Order)) {
+                    <option value="@item.ID">@item.DropdownName</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- TOOLTIP BUBBLE FOR INVENTORY -->
+<div class="ac-bubble">
+    <div class="ac-bubble-tooltip">
+        <div class="ac-bubble-triangle">
+            <img src="acgc-se/ui-icons/bubble-triangle.png">
+        </div>
+        <div class="ac-bubble-container">
+            <div class="ac-bubble-tl">
+                <img src="acgc-se/ui-icons/bubble-corner.png">
+            </div>
+            <div class="ac-bubble-tr">
+                <img src="acgc-se/ui-icons/bubble-corner.png">
+            </div>
+            <div class="ac-bubble-mc">
+                <div class="ac-bubble-content">
+                    <p>Present (Buried Pitfall (Bent & Angled Down-Left Slightly))</p>
+                </div>
+            </div>
+            <div class="ac-bubble-bl">
+                <img src="acgc-se/ui-icons/bubble-corner.png">
+            </div>
+            <div class="ac-bubble-br">
+                <img src="acgc-se/ui-icons/bubble-corner.png">
+            </div>
+        </div>
+    </div>
+</div>
