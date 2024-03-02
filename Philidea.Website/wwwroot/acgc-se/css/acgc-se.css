@@ -176,7 +176,7 @@ input[type="file"] {
 .tabcontent.show {
     display: block;
 }
-.inner-tabcontent {
+.tabcontent-inner {
     display: none;
     padding: 20px;
     border: 2px solid gray;
@@ -185,7 +185,7 @@ input[type="file"] {
     width: 98%;
     background: white;
 }
-.inner-tabcontent.show {
+.tabcontent-inner.show {
     display: block;
 }
 

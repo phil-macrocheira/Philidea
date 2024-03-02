@@ -1,4 +1,5 @@
-﻿function updateVillagers() {
+﻿/*
+function updateVillagers() {
     var selectedVillagerIDs = $('#villagerDropdown').val() + "," + "0x4E";
 
     $.ajax({
@@ -30,3 +31,4 @@ $(document).ready(function () {
         }, 0);
     });
 });
+*/

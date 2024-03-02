@@ -4,10 +4,10 @@
 <div class="row" style="margin-top:20px;">
     <div class="col-auto">
         <select class="form-control select2" id="villagerDropdown" onchange="updateVillagers">
-            @foreach (var villager in Model.Villagers) {
-                <option value="@villager.ID">@villager.Name</option>
+            <!-- foreach (var villager in Model.Villagers) { -->
+                <!-- <option value="villager.ID">villager.Name</option> -->
             }
         </select>
     </div>
-    <div class="col-auto"><div class="icon"><img src="@Model.SelectedVillagers?.FirstOrDefault()?.ImageURL" id="villagerImage" class="rounded float-left" alt="Villager Image"></div></div>
+    <!-- <div class="col-auto"><div class="icon"><img src="Model.SelectedVillagers?.FirstOrDefault()?.ImageURL" id="villagerImage" class="rounded float-left" alt="Villager Image"></div></div> -->
 </div>

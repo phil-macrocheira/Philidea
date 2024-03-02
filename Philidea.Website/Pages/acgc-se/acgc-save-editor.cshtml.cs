@@ -57,16 +57,6 @@ namespace Philidea.Website.Pages
         public string SaveFileString { get; set; }
         public IEnumerable<Item> Items { get; private set; }
         public IEnumerable<Object> Objects { get; private set; }
-        public IEnumerable<Villager> Villagers { get; private set; }
-        public List<Item> SelectedItems { get; set; } = new List<Item> { new Item(), new Item(), new Item(), new Item() };
-        public List<Item> SelectedHandhelds { get; set; } = new List<Item> { new Item(), new Item(), new Item(), new Item() };
-        public List<Item> SelectedClothings { get; set; } = new List<Item> { new Item(), new Item(), new Item(), new Item() };
-        public List<Villager> SelectedVillagers { get; set; } = new List<Villager>();
-        public List<string> ItemIconURLs { get; set; } = new List<string> { "acgc-se/ui-icons/None.png", "acgc-se/ui-icons/None.png", "acgc-se/ui-icons/None.png", "acgc-se/ui-icons/None.png" };
-        public List<string> HandheldIconURLs { get; set; } = new List<string> { "acgc-se/ui-icons/None.png", "acgc-se/ui-icons/None.png", "acgc-se/ui-icons/None.png", "acgc-se/ui-icons/None.png" };
-        public List<string> ClothingIconURLs { get; set; } = new List<string> { "acgc-se/ui-icons/None.png", "acgc-se/ui-icons/None.png", "acgc-se/ui-icons/None.png", "acgc-se/ui-icons/None.png" };
-        public List<string> InventoryIconURLs { get; set; } = new List<string> { "", "", "", "" };
-        public string VillagerIconURL { get; set; }
         public acgcModel(ILogger<acgcModel> logger)
         {
             _logger = logger;
@@ -80,7 +70,7 @@ namespace Philidea.Website.Pages
             Objects = JsonSerializer.Deserialize<List<Object>>(ObjectJsonText);
 
             string VillagerJsonText = System.IO.File.ReadAllText("acgc-se/data/villager_data.json");
-            Villagers = JsonSerializer.Deserialize<List<Villager>>(VillagerJsonText);
+            //Villagers = JsonSerializer.Deserialize<List<Villager>>(VillagerJsonText);
         }
         public IActionResult OnGet()
         {
@@ -89,41 +79,22 @@ namespace Philidea.Website.Pages
         }
         public async Task<IActionResult> OnPostAsync()
         {
-            if (Request.Form["func"] == "updateItem") {
-                byte player = byte.Parse(Request.Form["player"]);
-                bool success = UpdateItem(Request.Form["selectedItemID"], player);
+            if (Request.Form["func"] == "getItemURLs") {
+                var URLs = GetItemURLs(Request.Form["selectedItemID"]);
 
                 return new JsonResult(new {
-                    success = success, message = "Success",
-                    itemIconURL = ItemIconURLs[player],
-                    inventoryIconURL = InventoryIconURLs[player],
+                    success = true, message = "Success",
+                    itemImageURL = URLs.ItemImageURL,
+                    inventoryIconURL = URLs.InventoryIconURL,
                 });
             }
-            else if (Request.Form["func"] == "updateHandheld") {
-                byte player = byte.Parse(Request.Form["player"]);
-                bool success = UpdateHandheld(Request.Form["selectedItemID"], player);
-
-                return new JsonResult(new {
-                    success = success, message = "Success",
-                    handheldIconURL = HandheldIconURLs[player],
-                });
-            }
-            else if (Request.Form["func"] == "updateClothing") {
-                byte player = byte.Parse(Request.Form["player"]);
-                bool success = UpdateClothing(Request.Form["selectedItemID"], player);
-
-                return new JsonResult(new {
-                    success = success, message = "Success",
-                    clothingIconURL = ClothingIconURLs[player],
-                });
-            }
-            else if (Request.Form["func"] == "updateVillagers") {
+            /*else if (Request.Form["func"] == "updateVillagers") {
                 bool success = UpdateVillagers(Request.Form["selectedVillagerIDs"]);
                 return new JsonResult(new {
-                    success = success, message = "Success",
+                    success = true, message = "Success",
                     villagerIconURL = VillagerIconURL,
                 });
-            }
+            }*/
             else {
                 IFormFile fileUpload = Request.Form.Files.FirstOrDefault();
 
@@ -135,7 +106,7 @@ namespace Philidea.Website.Pages
                     }
                 }
                 else {
-                    string testsave_filepath = "acgc-se/test-saves/chubby_bub.gci";
+                    string testsave_filepath = "acgc-se/test-saves/fizzy.gci";
                     SaveFile = System.IO.File.ReadAllBytes(testsave_filepath);
                 }
                 string JsonDatastr = JsonData.RootElement.ToString();
@@ -146,49 +117,21 @@ namespace Philidea.Website.Pages
                 });
             }
         }
-        public bool UpdateItem(string selectedItemID, int player)
+        public (string ItemImageURL, string InventoryIconURL) GetItemURLs(string selectedItemID)
         {
-            var SelectedItem = new Item();
+            string itemImageURL = "acgc-se/ui-icons/None.png";
+            string inventoryIconURL = "";
 
             foreach (var item in Items) {
                 if (item.ID == selectedItemID) {
-                    SelectedItems[player] = item;
-                    SelectedItem = item;
+                    itemImageURL = item.ImageURL ?? itemImageURL;
+                    inventoryIconURL = item.IconURL ?? inventoryIconURL;
                     break;
                 }
             }
-            ItemIconURLs[player] = SelectedItem?.ImageURL ?? "acgc-se/ui-icons/None.png";
-            InventoryIconURLs[player] = SelectedItem?.IconURLUpscaled ?? "";
-            return true;
+            return (itemImageURL, inventoryIconURL);
         }
-        public bool UpdateHandheld(string selectedItemID, int player)
-        {
-            var SelectedHandheld = new Item();
-
-            foreach (var item in Items) {
-                if (item.ID == selectedItemID) {
-                    SelectedHandhelds[player] = item;
-                    SelectedHandheld = item;
-                    break;
-                }
-            }
-            HandheldIconURLs[player] = SelectedHandheld?.ImageURL ?? "acgc-se/ui-icons/None.png";
-            return true;
-        }
-        public bool UpdateClothing(string selectedItemID, int player)
-        {
-            var SelectedClothing = new Item();
-
-            foreach (var item in Items) {
-                if (item.ID == selectedItemID) {
-                    SelectedClothings.Add(item);
-                    SelectedClothing = item;
-                    break;
-                }
-            }
-            ClothingIconURLs[player] = SelectedClothing?.ImageURL ?? "acgc-se/ui-icons/None.png";
-            return true;
-        }
+        /*
         public bool UpdateVillagers(string selectedVillagerIDs)
         {
             string[] IDs = selectedVillagerIDs.Split(',');
@@ -202,6 +145,7 @@ namespace Philidea.Website.Pages
             }
             return true;
         }
+        */
         public (int index,int size) GetIndex(string name)
         {
             JsonElement saveInfoElement = JsonData.RootElement.GetProperty(name);

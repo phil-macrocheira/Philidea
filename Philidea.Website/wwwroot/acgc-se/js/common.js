@@ -46,10 +46,10 @@ function uploadSave() {
             document.getElementById("bulletin_board_post_01").value = getString("bulletin_board_post_01");
             document.getElementById("bulletin_board_post_02").value = getString("bulletin_board_post_02");
 
-            console.log('UPLOADSAVE SUCCESS', response);
+            //console.log('Save File Uploaded', response);
         },
         error: function (error) {
-            console.error('UPLOADSAVE ERROR', error);
+            console.error('ERROR: Save File Upload Failed', error);
         }
     });
 }
@@ -73,9 +73,12 @@ function getJsonData(name) {
     let size = saveInfoElement["Byte Size"];
     return { index: offset, size: size };
 }
-function getSaveData(variable) {
+function getSaveData(variable, offset) {
+    if (offset === undefined) {
+        return getSaveData(variable, 0);
+    }
     let jsonData = getJsonData(variable);
-    let index = jsonData.index;
+    let index = jsonData.index + offset;
     size = jsonData.size;
 
     var saveData = new Uint8Array(size);
@@ -84,26 +87,35 @@ function getSaveData(variable) {
     }
     return saveData;
 }
-function getString(variable) {
-    let saveData = getSaveData(variable);
+function getString(variable, offset) {
+    if (offset === undefined) {
+        return getString(variable, 0);
+    }
+    let saveData = getSaveData(variable,offset);
     let saveDataString = replaceChars(saveData);
     return saveDataString;
 };
-function getNumber(variable) {
-    let saveData = getSaveData(variable);
+function getNumber(variable, offset) {
+    if (offset === undefined) {
+        return getNumber(variable, 0);
+    }
+    let saveData = getSaveData(variable,offset);
     var value = 0;
     for (var i = 0; i < size; i++) {
         value = (value << 8) + saveData[i];
     }
     return value;
 }
-function getID(variable) {
-    let saveData = getSaveData(variable);
+function getID(variable, offset) {
+    if (offset === undefined) {
+        return getID(variable, 0);
+    }
+    let saveData = getSaveData(variable,offset);
     let ID = (saveData[0] << 8) | saveData[1];
     return Dec2Hex(ID);
 }
 function getYMD(variable) {
-    let saveData = getSaveData(variable);
+    let saveData = getSaveData(variable,offset);
     let year = saveData[0] << 8 | saveData[1];
     let month = saveData[2] - 1;
     let day = saveData[3];
