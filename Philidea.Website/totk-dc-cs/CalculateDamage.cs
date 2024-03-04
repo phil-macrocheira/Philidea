@@ -38,6 +38,7 @@ namespace Philidea.Website
         public float ElementalMult;
         public float ContinuousFire;
         public float CriticalHit;
+        public float Horseback;
         public float DemonDragon;
         public bool UsingFire;
         public bool UsingIce;
@@ -127,6 +128,7 @@ namespace Philidea.Website
             ZonaiBonus = GetZonaiBonus();
             Sneakstrike = GetSneakstrike();
             CriticalHit = GetCriticalHit();
+            Horseback = GetHorseback();
             OneDurability = GetOneDurability();
             Bone = GetBone();
             FlurryRush = GetFlurryRush();
@@ -246,7 +248,7 @@ namespace Philidea.Website
             DamageOutput = BaseAttack + MineruBonus + FuseUIAdjust((FuseBaseAttack * GerudoBonus) + AttackUpMod + ZonaiBonus);
             DamageOutput *= LowHealth * WetPlayer * Sneakstrike * LowDurability * Bone * FlurryRush * Shatter;
             DamageOutput *= AttackUp * Headshot * Throw * OneDurability * Frozen * TreeCutter;
-            DamageOutput *= ArrowEnemyMult * CriticalHit * DemonDragon;
+            DamageOutput *= ArrowEnemyMult * CriticalHit * Horseback * DemonDragon;
             DamageBeforeElement = DamageOutput;
             if (ElementalMult != 0) {
                 DamageOutput += ElementalDamage;
@@ -395,7 +397,7 @@ namespace Philidea.Website
                 return 1;
             }
 
-            if (WeaponType != 3 && WeaponType != 5 && Data.Input.Durability == 1 && AttackType != "Perfect Parry" && CriticalHit == 1) {
+            if (WeaponType != 3 && WeaponType != 5 && Data.Input.Durability == 1 && AttackType != "Perfect Parry" && CriticalHit == 1 && Horseback == 1) {
                 return 2;
             }
             return 1;
@@ -489,6 +491,13 @@ namespace Philidea.Website
                 if (AttackType == "Combo Finisher" || AttackType == "Flurry Rush") {
                     return 2;
                 }
+            }
+            return 1;
+        }
+        public float GetHorseback()
+        {
+            if (AttackType == "Horseback") {
+                return 2;
             }
             return 1;
         }

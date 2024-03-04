@@ -67,6 +67,7 @@ namespace Philidea.Website.Pages
             Input.Buff2 = Request.Form["Buff2"];
             Input.FreeMode = Request.Form["FreeMode"] == "true";
             Input.TrueDamage = Request.Form["TrueDamage"] == "true";
+            Input.SortFuseByAttack = Request.Form["SortFuseByAttack"] == "true";
 
             SelectedWeapon.Name = Request.Form["NameWeapon"];
             SelectedWeapon.Type = Convert.ToByte(Request.Form["Type"]);
@@ -173,6 +174,7 @@ namespace Philidea.Website.Pages
             if (_calculateDamage.TreeCutter > 1) { Formula += $" * TreeCutter({_calculateDamage.TreeCutter}))"; }
             if (_calculateDamage.ArrowEnemyMult > 1) { Formula += $" * ArrowEnemyMult({_calculateDamage.ArrowEnemyMult})"; }
             if (_calculateDamage.CriticalHit > 1) { Formula += $" * CriticalHit({_calculateDamage.CriticalHit})"; }
+            if (_calculateDamage.Horseback > 1) { Formula += $" * Horseback({_calculateDamage.Horseback})"; }
             if (_calculateDamage.DemonDragon > 1) { Formula += $" * DemonDragon({_calculateDamage.DemonDragon})"; }
             if (_calculateDamage.ElementalDamage > 0) { Formula += $" + ElementalDamage({_calculateDamage.ElementalDamage})"; }
             if (_calculateDamage.ElementalMult > 1) { Formula += $"; Multiply result by ElementalMult({_calculateDamage.ElementalMult})"; }

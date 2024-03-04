@@ -1,5 +1,6 @@
 ﻿@page
 @model Philidea.Website.Pages.totk_calculatorModel
+@using Philidea.Website.Models
 @{
     ViewData["Title"] = "TotK Damage Calculator";
     ViewData["HeaderTitle"] = "TEARS OF THE KINGDOM DAMAGE CALCULATOR";
@@ -70,10 +71,11 @@
                 </button>
             </div>
             <!--FUSE DROPDOWN-->
-            <select name="SelectedFuseName" class="form-control select2 text-wrap" id="fuseDropdown" style="width:18rem;" onchange="update('fuse');">
+            <select name="SelectedFuseName" class="form-control select2 text-wrap" id="fuseDropdown" style="width:20rem;" onchange="update('fuse');">
                 @if (Model.Fuses != null) {
-                    @foreach (var fuse in Model.Fuses) {
-                        <option value="@fuse.Name">@fuse.Name</option>
+                    var FuseList = Model.Fuses.ToList();
+                    @foreach (var fuse in FuseList) {
+                        <option value="@fuse.Name" attack="@fuse.BaseAttack" default-order="@fuse.SortOrder">@fuse.Name (@fuse.BaseAttack)</option>
                     }
                 }
             </select>
@@ -100,6 +102,7 @@
                 <option value="Flurry Rush">Flurry Rush</option>
                 <option value="Combo Finisher">Combo Finisher</option>
                 <option value="Sidon's Water">Sidon's Water</option>
+                <option value="Horseback">Horseback</option>
             </select>
         </div>
 
@@ -315,18 +318,15 @@
                 }, 0);
             });
         });
-
         function toggleInfo() {
             var content = document.getElementById('contentSection');
             content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
         }
-
         function findObjByName(objData, selectedName) {
             return objData.find(function (w) {
                 return w.Name === selectedName;
             });
         }
-
         function bestWeapon() {
             $('#weaponDropdown').val("Royal Guard's Claymore✨");
             $('#numberAttackUpMod').val(10);
@@ -339,7 +339,39 @@
 
             update();
         }
-
+        function updateFuseDropdown() {
+            var checkboxSortFuseByAttack = document.getElementById('checkboxSortFuseByAttack');
+            var selectElement = document.getElementById('fuseDropdown');
+            var firstOption = selectElement.querySelector('option');
+            var options = Array.from(selectElement.querySelectorAll('option:not(:first-child)'));
+            if (checkboxSortFuseByAttack.checked) {
+                options.sort(function (a, b) {
+                    var attackA = parseInt(a.getAttribute('attack'));
+                    var attackB = parseInt(b.getAttribute('attack'));
+                    return attackB - attackA;
+                });
+                options.forEach(function (option) {
+                    selectElement.removeChild(option);
+                });
+                options.forEach(function (option) {
+                    selectElement.appendChild(option);
+                });
+                selectElement.insertBefore(firstOption, selectElement.firstChild);
+            }
+            else {
+                options.sort(function (a, b) {
+                    var orderA = parseInt(a.getAttribute('default-order'));
+                    var orderB = parseInt(b.getAttribute('default-order'));
+                    return orderA - orderB;
+                });
+                options.forEach(function (option) {
+                    selectElement.removeChild(option);
+                });
+                options.forEach(function (option) {
+                    selectElement.appendChild(option);
+                });
+            }
+        }
         function update(dropdownEdited) {
             var weaponData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Weapons));
             var fuseData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Fuses));
@@ -668,6 +700,7 @@
                 Buff2: $('#buffDropdown2').val(),
                 FreeMode: checkboxFreeMode.checked,
                 TrueDamage: $('#checkboxTrueDamage').is(':checked'),
+                SortFuseByAttack: $('#checkboxSortFuseByAttack').is(':checked'),
                 
                 NameWeapon: selectedWeaponObj.Name,
                 Type: selectedWeaponObj.Type,
@@ -787,6 +820,7 @@
                         var Sidon = NewOption("Sidon's Water");
                         var Riju = NewOption("Riju's Lightning");
                         var MasterSwordBeam = NewOption("Master Sword Beam");
+                        var Horseback = NewOption("Horseback");
 
                         while (dropdown.options.length > 0) {
                             dropdown.remove(0);
@@ -813,6 +847,7 @@
                                 dropdown.add(FlurryRush);
                                 dropdown.add(ComboFinisher);
                                 dropdown.add(Sidon);
+                                dropdown.add(Horseback);
 
                                 // add weapon type to fuse data and replace this check
                                 var IsShieldFuse = selectedFuseObj.Name.includes("Shield") || selectedFuseObj.Name == "Pot Lid" || selectedFuseObj.Name == "Daybreaker";
@@ -887,6 +922,7 @@
                             dropdown.add(Shoot);
                             dropdown.add(Riju);
                             dropdown.add(Earthwake);
+                            dropdown.add(Horseback);
                             dropdown.value = dropdownvalue;
                         }
                     }

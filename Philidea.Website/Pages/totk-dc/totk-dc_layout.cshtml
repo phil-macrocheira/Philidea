@@ -37,8 +37,9 @@
                     <h2 style="background:none;margin-left:-20px;">Settings</h2>
                     <!--Settings Checkboxes-->
                     <div>
-                        <label class="setting-label"><input asp-for="Input.FreeMode" id="checkboxFreeMode" class="form-check-input setting-box cookie" type="checkbox" onchange="update()">Unrestricted Inputs</label><br>
-                        <label class="setting-label"><input asp-for="Input.TrueDamage" id="checkboxTrueDamage" class="form-check-input setting-box cookie" type="checkbox" onchange="update()">Weapon Icon True Damage</label><br>
+                        <label class="setting-label"><input asp-for="Input.FreeMode" id="checkboxFreeMode" class="form-check-input setting-box cookie" type="checkbox" onchange="update()">Unrestricted Inputs</label>
+                        <br><label class="setting-label"><input asp-for="Input.TrueDamage" id="checkboxTrueDamage" class="form-check-input setting-box cookie" type="checkbox" onchange="update()">Weapon Icon True Damage</label>
+                        <br><label class="setting-label"><input asp-for="Input.SortFuseByAttack" id="checkboxSortFuseByAttack" class="form-check-input setting-box cookie" type="checkbox" onchange="updateFuseDropdown()">Sort Fuse By Attack Power</label>
                     </div>
                 </div>
             </div>
@@ -94,6 +95,11 @@
             if (trueDamageCookie !== null) {
                 document.getElementById("checkboxTrueDamage").checked = (trueDamageCookie === "true");
             }
+            var sortFuseByAttackCookie = getCookie("SortFuseByAttack");
+            if (sortFuseByAttackCookie !== null) {
+                document.getElementById("checkboxSortFuseByAttack").checked = (sortFuseByAttackCookie === "true");
+                updateFuseDropdown();
+            }
         }
         window.onload = function () {
             initializeSettings();
@@ -107,6 +113,9 @@
         });
         document.getElementById("checkboxTrueDamage").addEventListener("change", function () {
             handleCheckboxChange("checkboxTrueDamage", "TrueDamage");
+        });
+        document.getElementById("checkboxSortFuseByAttack").addEventListener("change", function () {
+            handleCheckboxChange("checkboxSortFuseByAttack", "SortFuseByAttack");
         });
     </script>
 

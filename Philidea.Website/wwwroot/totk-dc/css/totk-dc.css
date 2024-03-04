@@ -255,6 +255,7 @@ ul.horizontal-list {
     width: 400px;
     height: 120px;
     margin-bottom: 200px;
+    overflow-y: hidden;
 }
 .modal-close {
     position: absolute;

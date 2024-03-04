@@ -50,7 +50,6 @@ namespace Philidea.Website.Pages
     public class acgcModel : PageModel
     {
         private readonly ILogger<acgcModel> _logger;
-        public acgcSaveModel acgcSaveModelJson { get; private set; }
         public JsonDocument JsonData { get; }
         public string SaveJsonText { get; }
         public byte[] SaveFile { get; set; }

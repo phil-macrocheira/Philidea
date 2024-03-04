@@ -20,5 +20,6 @@
         public string? Buff2 { get; set; } = "None";
         public bool FreeMode { get; set; }
         public bool TrueDamage { get; set; }
+        public bool SortFuseByAttack { get; set; }
     }
 }

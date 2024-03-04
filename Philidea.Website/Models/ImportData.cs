@@ -41,6 +41,7 @@ namespace Philidea.Website.Models
         public string? BindTypeSword { get; set; }
         public string? BindTypeSpear { get; set; }
         public string? IconURL { get; set; }
+        public short? SortOrder { get; set; }
     }
     public class Enemy
     {
@@ -154,7 +155,8 @@ namespace Philidea.Website.Models
                                 Adjective = reader["Adjective"].ToString(),
                                 BindTypeSword = reader["BindTypeSword"].ToString(),
                                 BindTypeSpear = reader["BindTypeSpear"].ToString(),
-                                IconURL = reader["IconURL"].ToString()
+                                IconURL = reader["IconURL"].ToString(),
+                                SortOrder = (short?)reader["SortOrder"],
                             };
 
                             fuses.Add(fuse);
@@ -236,7 +238,8 @@ namespace Philidea.Website.Models
                                 Adjective = reader["Adjective"].ToString(),
                                 BindTypeSword = reader["BindTypeSword"].ToString(),
                                 BindTypeSpear = reader["BindTypeSpear"].ToString(),
-                                IconURL = reader["IconURL"].ToString()
+                                IconURL = reader["IconURL"].ToString(),
+                                SortOrder = (short?)reader["SortOrder"],
                             };
 
                             fuses.Add(fuse);
