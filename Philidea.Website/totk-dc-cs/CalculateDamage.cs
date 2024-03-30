@@ -504,12 +504,16 @@ namespace Philidea.Website
         public float GetThrow()
         {
             bool ProjectileProperty = ScanProperties("Melee Projectile");
+            bool Boomerang = (WeaponProperty == "Boomerang");
 
             if (AttackType != "Throw" || ProjectileProperty) {
                 return 1;
             }
 
-            if (WeaponProperty == "Boomerang") {
+            if (!Boomerang && OneDurability == 2) {
+                return AttackUp;
+            }
+            else if (Boomerang) {
                 return 1.5f * AttackUp;
             }
 
