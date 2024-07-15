@@ -13,7 +13,8 @@ playerData = {
     face: 0,
     suntan: 0,
     suntanDays: 0,
-    birthday: new Date(),
+    birthday: "2002-09-16",
+    fortune: 0,
     reset: 0,
     resetCount: 0,
     savings: 0,
@@ -27,9 +28,22 @@ playerData = {
     backgroundURL: "https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Textures_Upscaled/24E2_big_dot_shirt.png",
     inventoryItems: new Array(15).fill(0),
     inventoryItemConditions: new Array(15).fill(0),
+
+    letterRecipients: new Array(10).fill(""),
+    letterSenders: new Array(10).fill(""),
+    letterPresents: new Array(10).fill(0),
+    letterNames: new Array(10).fill(0),
+    letterTypes: new Array(10).fill(0),
+    letterStationeries: new Array(10).fill(0),
+    letterTexts: new Array(10).fill("")
 };
 for (let i = 0; i < 4; i++) {
-    let newPlayerData = { ...playerData, inventoryItems: [...playerData.inventoryItems], inventoryItemConditions: [...playerData.inventoryItemConditions] };
+    let newPlayerData = {
+        ...playerData,
+        inventoryItems: [...playerData.inventoryItems],
+        inventoryItemConditions: [...playerData.inventoryItemConditions],
+        letterRecipients: [...playerData.letterRecipients]
+    };
     playerDataArray.push(newPlayerData);
 }
 function uploadSavePlayer() {
@@ -44,6 +58,7 @@ function createPlayerData(playerNumArg) {
     playerNum = playerNumArg;
     playerOffset = playerNum * 9280;
     let exists = getPlayerExists();
+    unhideTab(exists, playerNum);
     playerDataArray[playerNum].exists = exists;
     if (exists == 0) { return; }
 
@@ -56,6 +71,7 @@ function createPlayerData(playerNumArg) {
     document.getElementById("player_suntan").value = getNumber("player_suntan",playerOffset);
     document.getElementById("player_suntan_days_remaining").value = getNumber("player_suntan_days_remaining",playerOffset);
     document.getElementById("player_birthday").value = getBirthday();
+    document.getElementById("player_fortune").value = getNumber("player_fortune",playerOffset);
     document.getElementById("player_reset_code").value = getReset();
     document.getElementById("player_reset_count").value = getNumber("player_reset_count",playerOffset);
     
@@ -70,20 +86,47 @@ function createPlayerData(playerNumArg) {
     getInventoryConditions("player_inventory_items_conditions");
     getInventory("player_inventory_items");
 
+    getLetters("player_inventory_letters");
+
     updatePlayer(playerNum);
 }
-function getPlayerExists() {
-    let exists = getNumber("player_exists", playerOffset);
+function writePlayerData() {
+    for (let i = 0; i < 4; i++) {
+        playerOffset = i * 9280;
+        if (!getPlayerExists()) {
+            continue;
+        }
 
-    let playerNumStr = String(playerNum);
-    unhideTab(exists,playerNumStr);
-    return exists;
+        setString("player_name", playerOffset, playerDataArray[i].name);
+        setNumber("player_gender", playerOffset, playerDataArray[i].gender);
+        setNumber("player_face", playerOffset, playerDataArray[i].face);
+        setNumber("player_suntan", playerOffset, playerDataArray[i].suntan);
+        setNumber("player_suntan_days_remaining", playerOffset, playerDataArray[i].suntanDays);
+        setYMD("player_suntan_updated_ymd", playerOffset, "2024-09-06"); // CHANGE TO TODAY'S DATE LATER
+        setBirthday("player_birthday", playerOffset, playerDataArray[i].birthday);
+        setNumber("player_fortune", playerOffset, playerDataArray[i].fortune);
+        setNumber("player_reset_code", playerOffset, playerDataArray[i].reset);
+        setNumber("player_reset_count", playerOffset, playerDataArray[i].resetCount);
+        setNumber("player_savings", playerOffset, playerDataArray[i].savings);
+        setNumber("player_debt", playerOffset, playerDataArray[i].debt);
+        setID("player_equipped_item", playerOffset, playerDataArray[i].handheldItemID);
+        setID("player_clothing", playerOffset, playerDataArray[i].clothingID);
+        let clothing_texture_id = "0x" + playerDataArray[i].clothingID.slice(-2);
+        setIDbyte("player_clothing_texture_id", playerOffset, clothing_texture_id);
+        setNumber("player_wallet", playerOffset, playerDataArray[i].wallet);
+        setID("player_inventory_background", playerOffset, playerDataArray[i].backgroundID);
+        setInventory("player_inventory_items", playerOffset, playerDataArray[i].inventoryItems);
+        setInventoryConditions("player_inventory_items_conditions", playerOffset, playerDataArray[i].inventoryItemConditions);
+    }
 }
-function unhideTab(exists, playerNumStr) {
+function getPlayerExists() {
+    return getNumber("player_exists", playerOffset);
+}
+function unhideTab(exists, playerNum) {
     if (exists == 1)
-        document.getElementById("tab_player_btn_" + playerNumStr).classList.remove("hidden");
+        document.getElementById("tab_player_btn_" + String(playerNum)).classList.remove("hidden");
     else
-        document.getElementById("tab_player_btn_" + playerNumStr).classList.add("hidden");
+        document.getElementById("tab_player_btn_" + String(playerNum)).classList.add("hidden");
 }
 function getGender() {
     let gender = getNumber("player_gender", playerOffset);
@@ -155,6 +198,17 @@ function getBirthday() {
     let date = new Date(year, month, day);
     return date.toISOString().split('T')[0];
 }
+function setBirthday(variable, offset, dateString) {
+    let jsonData = getJsonData(variable);
+    let index = jsonData.index + offset;
+
+    let date = new Date(dateString);
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    saveFile[index] = month;
+    saveFile[index + 1] = day;
+}
 function getReset() {
     let saveData = getSaveData("player_reset_code", playerOffset);
     let reset = saveData[0];
@@ -185,6 +239,48 @@ function getInventory(variable) {
         currentPlayerInventory[i / 2] = item;
     }
 }
+// Writes inventory data to the save
+function setInventory(variable, offset, inventory) {
+    let jsonData = getJsonData(variable);
+    let index = jsonData.index + offset;
+
+    for (let i = 0; i < 30; i += 2) {
+        let item = inventory[i / 2];
+        saveFile[index + i] = (item >> 8) & 0xFF; // High byte
+        saveFile[index + i + 1] = item & 0xFF; // Low byte
+    }
+}
+// Writes inventory conditions data to the save
+function setInventoryConditions(variable, offset, conditions) {
+    let jsonData = getJsonData(variable);
+    let index = jsonData.index + offset;
+
+    let saveData = new Uint8Array(4);
+
+    for (let i = 0; i < 15; i++) {
+        let byteIndex = 3 - Math.floor(i / 4);
+        let bitOffset = (i % 4) * 2;
+        let conditionBits = conditions[i] & 0b11; // Ensure we only use the 2 least significant bits
+        
+        saveData[byteIndex] &= ~(0b11 << bitOffset); // Clera the relevant bits first
+        saveData[byteIndex] |= (conditionBits << bitOffset); // Set the relevant bits
+    }
+
+    // Write the save data
+    for (let i = 0; i < 4; i++) {
+        saveFile[index + i] = saveData[i];
+    }
+}
+function getLetters(variable) {
+    let jsonData = getJsonData(variable);
+
+    let recipients = playerDataArray[playerNum].letterRecipients;
+
+    for (let i = 0; i < 10; i++) {
+        let recipient = getString("letter_recipient", jsonData.index + playerOffset, true);
+        recipients[i] = recipient;
+    }
+}
 function updatePlayer(playerNumArg) {
     currentPlayerNum = playerNumArg;
 
@@ -194,6 +290,7 @@ function updatePlayer(playerNumArg) {
     updateTan();
     updateTanDays();
     updateBirthday();
+    updateFortune();
     updateReset();
     updateResetCount();
     updateSavings();
@@ -284,6 +381,9 @@ function updateBirthday() {
     playerDataArray[currentPlayerNum].birthday = document.getElementById("player_birthday").value;
     //console.log("Player " + (currentPlayerNum+1) + " Birthday Updated");
 }
+function updateFortune() {
+    playerDataArray[currentPlayerNum].fortune = document.getElementById("player_fortune").value;
+}
 function updateReset() {
     playerDataArray[currentPlayerNum].reset = document.getElementById("player_reset_code").value;
     //console.log("Player " + (currentPlayerNum+1) + " Reset Updated");
@@ -324,6 +424,7 @@ function updateInventoryIcons() {
                 imgElement.attr('src', obj.IconURLUpscaled);
                 imgElement.attr('bubbletext', obj.Name);
             }
+            slot.addClass('inventory-slot-item');
         }
         else {
             imgElement.remove();
@@ -405,6 +506,31 @@ function updateItem() {
         }
     });
 }
+function updateItemLetter() {
+    itemSelectedID = $('#itemDropdownLetter').val();
+
+    $.ajax({
+        headers: {
+            RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+        },
+        type: 'POST',
+        url: uploadURL,
+        contentType: 'application/x-www-form-urlencoded',
+        data: {
+            func: "getItemURLs",
+            selectedItemID: itemSelectedID,
+        },
+        success: function (response) {
+            inventoryIconSelectedURL = response.inventoryIconURL;
+            itemSelectedURL = response.itemImageURL;
+            $('#itemLetterImage').prop('src', response.itemImageURL);
+            //console.log("Player " + (currentPlayerNum+1) + " Item Selected Updated", response);
+        },
+        error: function (error) {
+            console.log("ERROR: Player " + (currentPlayerNum + 1) + " Letter Item Selected Update FAILED", response);
+        }
+    });
+}
 function updateBackground() {
     let clothing = document.getElementById("player_inventory_background").value;
     let clothingObj = findObjByID(Hex2Dec(clothing));
@@ -472,13 +598,16 @@ $('.inventory-slot').click(function () {
     if (inventoryIconSelectedURL == "") {
         playerDataArray[currentPlayerNum].inventoryItems[slot] = 0;
         $this.html('<img src="">');
+        $this.removeClass('inventory-slot-item');
     }
     else if (document.getElementById("checkboxPresent").checked) {
         playerDataArray[currentPlayerNum].inventoryItemConditions[slot] = 1;
         $this.html('<img src="' + PresentIconURL + '" bubbletext="' + 'Present (' + selectedItemName + ')' + '">');
+        $this.addClass('inventory-slot-item');
     }
     else {
         $this.html('<img src="' + inventoryIconSelectedURL + '" bubbletext="' + selectedItemName + '">');
+        $this.addClass('inventory-slot-item');
     }
 });
 // FOCUS SEARCH FIELD ON DROPDOWN MENUS
@@ -506,6 +635,13 @@ $(document).ready(function () {
 
     $('#player_clothing').select2();
     $('#player_clothing').on('select2:open', function () {
+        window.setTimeout(function () {
+            document.querySelector('.select2-search__field').focus();
+        }, 0);
+    });
+
+    $('#itemDropdownLetter').select2();
+    $('#itemDropdownLetter').on('select2:open', function () {
         window.setTimeout(function () {
             document.querySelector('.select2-search__field').focus();
         }, 0);

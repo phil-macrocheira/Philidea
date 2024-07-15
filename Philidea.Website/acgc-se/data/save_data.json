@@ -155,8 +155,15 @@
   },
   "save_game_id_region_flag": {
     "Local Byte Offset": "0x00005",
-    "Global Byte Offset": "0x26045",
+    "Global Byte Offset": "0x26047",
     "Byte Size": 1,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "checksum": {
+    "Local Byte Offset": "0x00012",
+    "Global Byte Offset": "0x26052",
+    "Byte Size": 2,
     "Bit Offset": "",
     "Bit Size": ""
   },
@@ -2933,9 +2940,9 @@
     "Bit Size": ""
   },
   "player_clothing_texture_id": {
-    "Local Byte Offset": "0x1088",
-    "Global Byte Offset": "0x270E8",
-    "Byte Size": 2,
+    "Local Byte Offset": "0x1089",
+    "Global Byte Offset": "0x270E9",
+    "Byte Size": 1,
     "Bit Offset": "",
     "Bit Size": ""
   },

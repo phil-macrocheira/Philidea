@@ -100,7 +100,7 @@ ul.horizontal-list {
 input[type="file"] {
     color: transparent;
 }
-/* Change text inside upload form */
+/* Change text inside upload/download buttons */
 #fileUpload {
     position: relative;
     width: 0;
@@ -117,6 +117,26 @@ input[type="file"] {
     border-radius: 4px;
     cursor: pointer;
     overflow: hidden;
+    border: solid 1px black;
+}
+#downloadButton {
+    position: relative;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+#downloadButtonLabel {
+    display: inline-block;
+    background-color: powderblue;
+    border: solid 2px white;
+    color: black;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    border: solid 1px black;
 }
 
 .row {
@@ -260,7 +280,35 @@ input[type="file"] {
     margin-bottom: 15px;
 }
 .inventory-slot {
+    background-color: rgba(99, 99, 255, 0.5);
+    width: 56px;
+    height: 56px;
+    border: solid 5px #6363FF;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+.inventory-slot-item {
     background-color: #6363FF !important;
+}
+.inventory-slot img {
+    width: 100%;
+}
+
+.letter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 56px);
+    grid-template-rows: repeat(5, 56px);
+    gap: 12px;
+    width: auto;
+    margin-bottom: 15px;
+}
+.letter-slot {
+    background-color: #E74242 !important;
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -268,10 +316,10 @@ input[type="file"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    position:relative;
-    z-index:2;
+    position: relative;
+    z-index: 2;
 }
-.inventory-slot img {
+.letter-slot img {
     width: 100%;
 }
 

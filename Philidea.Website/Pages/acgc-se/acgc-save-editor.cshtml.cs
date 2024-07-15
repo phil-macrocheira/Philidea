@@ -51,6 +51,8 @@ namespace Philidea.Website.Pages
     {
         private readonly ILogger<acgcModel> _logger;
         public JsonDocument JsonData { get; }
+        public JsonDocument JsonLetterData { get; }
+        public JsonDocument JsonVillagerData { get; }
         public string SaveJsonText { get; }
         public byte[] SaveFile { get; set; }
         public string SaveFileString { get; set; }
@@ -153,5 +155,57 @@ namespace Philidea.Website.Pages
             int size = saveInfoElement.GetProperty("Byte Size").GetInt32();
             return (offset,size);
         }
+        public async Task<IActionResult> OnGetDownload(string fileName)
+        {
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "acgc-se", fileName);
+            var fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
+            System.IO.File.Delete(filePath); // Delete file
+            return File(fileBytes, "application/octet-stream", fileName);
+        }
+        public async Task<IActionResult> OnPostCreateSaveFile(string fileName, IFormFile fileContent)
+        {
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "acgc-se", fileName);
+            using (var stream = new FileStream(filePath, FileMode.Create)) {
+                await fileContent.CopyToAsync(stream);
+            }
+
+            // Get the checksum
+            var fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
+            var saveFileBytes = new byte[fileBytes.Length - 0x26040];
+            Array.Copy(fileBytes, 0x26040, saveFileBytes, 0, saveFileBytes.Length);
+            var checksum = new UInt16BEChecksum().Calculate(saveFileBytes, 0x12);
+
+            // Write the checksum
+            uint checksumOffset = (uint)GetIndex("checksum").index;
+            fileBytes[checksumOffset] = (byte)(checksum >> 8);   // High byte
+            fileBytes[checksumOffset + 1] = (byte)(checksum & 0xFF); // Low byte
+
+            // Write file
+            await System.IO.File.WriteAllBytesAsync(filePath, fileBytes);
+
+            return new JsonResult(new { success = true });
+        }
+    }
+
+    // Checksum code by Cuyler
+    public interface IChecksum<T>
+    {
+        T Calculate(in IList<byte> buffer, uint variableArgument);
+        bool Verify(in IList<byte> buffer, T checksum, uint variableArgument);
+    }
+    public sealed class UInt16BEChecksum : IChecksum<ushort>
+    {
+        public ushort Calculate(in IList<byte> buffer, uint checksumOffset)
+        {
+            ushort checksum = 0;
+            for (var i = 0; i < buffer.Count - 1; i += 2) {
+                if (i == checksumOffset) continue;
+                checksum += (ushort)((buffer[i + 0] << 8) | buffer[i + 1]);
+            }
+
+            return (ushort)-checksum;
+        }
+        public bool Verify(in IList<byte> buffer, ushort currentChecksum, uint checksumOffset) =>
+            Calculate(buffer, checksumOffset) == currentChecksum;
     }
 }

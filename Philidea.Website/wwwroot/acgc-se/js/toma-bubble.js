@@ -1,4 +1,5 @@
-﻿function hookTooltipListeners() {
+﻿/* ac-bubble by @tomathepolliwog */
+function hookTooltipListeners() {
     document.querySelectorAll('.inventory-slot').forEach(function (slot) {
         slot.addEventListener('mousemove', function (e) {
             var title = null;
