@@ -272,14 +272,7 @@ function setInventoryConditions(variable, offset, conditions) {
     }
 }
 function getLetters(variable) {
-    let jsonData = getJsonData(variable);
-
-    let recipients = playerDataArray[playerNum].letterRecipients;
-
-    for (let i = 0; i < 10; i++) {
-        let recipient = getString("letter_recipient", jsonData.index + playerOffset, true);
-        recipients[i] = recipient;
-    }
+    let recipient = getString(variable,playerOffset,"letter_recipient");
 }
 function updatePlayer(playerNumArg) {
     currentPlayerNum = playerNumArg;

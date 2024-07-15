@@ -106,6 +106,7 @@ function Dec2Hex(Dec) {
     return '0x' + Dec.toString(16).padStart(4, '0').toUpperCase();
 }
 function getJsonData(name, localName = "") {
+    console.log(name);
     let jsonDataObject = JSON.parse(json);
     let saveInfoElement = jsonDataObject[name];
     let offsetHex = saveInfoElement["Global Byte Offset"];
@@ -125,7 +126,7 @@ function getSaveData(variable, offset, localVariable = "") {
     if (offset === undefined) {
         return getSaveData(variable, 0);
     }
-    let jsonData = getJsonData(variable,local);
+    let jsonData = getJsonData(variable,localVariable);
     let index = jsonData.index + offset;
     size = jsonData.size;
 
@@ -139,12 +140,12 @@ function getString(variable, offset, localVariable="") {
     if (offset === undefined) {
         return getString(variable, 0);
     }
-    let saveData = getSaveData(variable,offset,local);
+    let saveData = getSaveData(variable, offset, localVariable);
     let saveDataString = replaceChars(saveData);
     return saveDataString;
 };
 function setString(variable, offset, value, localVariable = "") {
-    let jsonData = getJsonData(variable, local);
+    let jsonData = getJsonData(variable, localVariable);
     let index = jsonData.index + offset;
     let size = jsonData.size;
 
@@ -152,11 +153,11 @@ function setString(variable, offset, value, localVariable = "") {
         saveFile[index + i] = value.charCodeAt(i) || 0x20; // Set character code or 0x20 if value is shorter than size
     }
 }
-function getNumber(variable, offset) {
+function getNumber(variable, offset, localVariable = "") {
     if (offset === undefined) {
         return getNumber(variable, 0);
     }
-    let saveData = getSaveData(variable,offset);
+    let saveData = getSaveData(variable,offset,localVariable);
     var value = 0;
     for (var i = 0; i < size; i++) {
         value = (value << 8) + saveData[i];
@@ -164,7 +165,7 @@ function getNumber(variable, offset) {
     return value;
 }
 function setNumber(variable, offset, value, localVariable = "") {
-    let jsonData = getJsonData(variable, local);
+    let jsonData = getJsonData(variable, localVariable);
     let index = jsonData.index + offset;
     let size = jsonData.size;
 
@@ -173,16 +174,16 @@ function setNumber(variable, offset, value, localVariable = "") {
         value >>= 8;
     }
 }
-function getID(variable, offset) {
+function getID(variable, offset, localVariable = "") {
     if (offset === undefined) {
         return getID(variable, 0);
     }
-    let saveData = getSaveData(variable,offset);
+    let saveData = getSaveData(variable,offset,localVariable);
     let ID = (saveData[0] << 8) | saveData[1];
     return Dec2Hex(ID);
 }
 function setID(variable, offset, value, localVariable = "") {
-    let jsonData = getJsonData(variable, local);
+    let jsonData = getJsonData(variable, localVariable);
     let index = jsonData.index + offset;
 
     let ID = parseInt(value, 16);
@@ -190,14 +191,14 @@ function setID(variable, offset, value, localVariable = "") {
     saveFile[index + 1] = ID & 0xFF; // Low byte
 }
 function setIDbyte(variable, offset, value, localVariable = "") {
-    let jsonData = getJsonData(variable, local);
+    let jsonData = getJsonData(variable, localVariable);
     let index = jsonData.index + offset;
 
     let ID = parseInt(value, 16);
     saveFile[index] = ID & 0xFF;
 }
-function getYMD(variable) {
-    let saveData = getSaveData(variable,offset);
+function getYMD(variable,localVariable = "") {
+    let saveData = getSaveData(variable,offset,localVariable);
     let year = saveData[0] << 8 | saveData[1];
     let month = saveData[2] - 1;
     let day = saveData[3];
@@ -205,7 +206,7 @@ function getYMD(variable) {
     return date.toISOString().split('T')[0];
 }
 function setYMD(variable, offset, dateString, localVariable = "") {
-    let jsonData = getJsonData(variable, local);
+    let jsonData = getJsonData(variable, localVariable);
     let index = jsonData.index + offset;
 
     let date = new Date(dateString);
