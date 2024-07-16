@@ -106,7 +106,6 @@ function Dec2Hex(Dec) {
     return '0x' + Dec.toString(16).padStart(4, '0').toUpperCase();
 }
 function getJsonData(name, localName = "") {
-    console.log(name);
     let jsonDataObject = JSON.parse(json);
     let saveInfoElement = jsonDataObject[name];
     let offsetHex = saveInfoElement["Global Byte Offset"];

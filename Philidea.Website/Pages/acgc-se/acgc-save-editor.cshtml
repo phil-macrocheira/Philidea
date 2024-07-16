@@ -3,8 +3,8 @@
 @model Philidea.Website.Pages.acgcModel
 @{
     ViewData["Title"] = "ACGC Save Editor";
-    ViewData["HeaderTitle"] = "Animal Crossing GameCube Save Editor (EARLY DEVELOPMENT! NOT FUNCTIONAL!)";
-    ViewData["Version"] = "EARLY DEVELOPMENT";
+    ViewData["HeaderTitle"] = "Animal Crossing GameCube Save Editor";
+    ViewData["Version"] = "EARLY ALPHA";
     Layout = "acgc-se_layout.cshtml";
     bool debugMode = HttpContextAccessor.HttpContext.RequestServices.GetRequiredService<IWebHostEnvironment>().IsDevelopment();
 }

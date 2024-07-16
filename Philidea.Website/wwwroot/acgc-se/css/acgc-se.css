@@ -226,9 +226,8 @@ input[type="file"] {
 }
 .section-inventory {
     position: relative;
-    overflow: hidden;
 }
-.section-inventory::before {
+.section-inventory-background::before {
     content: '';
     width: 100%;
     height: 100%;
@@ -240,14 +239,15 @@ input[type="file"] {
 }
 .section-inventory::after {
     content: '';
-    width: 200%;
-    height: 200%;
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     opacity: 0.25;
     z-index: 0;
-    animation: animateBackground 75s linear infinite;
+    animation: animateBackground 10s linear infinite;
+    border-radius:10px;
 }
 .section-inventory_1::after {
     background-image: url("https://raw.githubusercontent.com/TOTKSheet/ACGCImages/main/Items/Textures_Upscaled/24E2_big_dot_shirt.png");
@@ -263,11 +263,11 @@ input[type="file"] {
 }
 @keyframes animateBackground {
     0% {
-        transform: translate(0, 0);
+        background-position: 0 0;
     }
 
     100% {
-        transform: translate(-50%, -50%);
+        background-position: -64px -64px;
     }
 }
 
@@ -278,6 +278,8 @@ input[type="file"] {
     gap: 12px;
     width: auto;
     margin-bottom: 15px;
+    position:relative;
+    z-index:1;
 }
 .inventory-slot {
     background-color: rgba(99, 99, 255, 0.5);
@@ -287,10 +289,10 @@ input[type="file"] {
     border-radius: 50%;
     cursor: pointer;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
-    z-index: 2;
 }
 .inventory-slot-item {
     background-color: #6363FF !important;
@@ -314,6 +316,7 @@ input[type="file"] {
     border-radius: 50%;
     cursor: pointer;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -441,4 +444,10 @@ select > * {
 
 .hidden {
     display: none !important;
+}
+
+@media (prefers-reduced-motion) {
+    .section-inventory::after {
+        animation: none;
+    }
 }

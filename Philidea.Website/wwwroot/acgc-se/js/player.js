@@ -400,7 +400,7 @@ function updateWallet() {
 function updateInventoryIcons() {
     for (let i = 0; i < 15; i++) {
         var obj = findObjByID(playerDataArray[currentPlayerNum].inventoryItems[i]);
-        var slot = $('.inventory' + ' .inventory-slot').eq(i);
+        var slot = $('.inventory-slot').eq(i);
         var imgElement = slot.find('img');
 
         if (imgElement.length === 0) {
@@ -411,16 +411,17 @@ function updateInventoryIcons() {
         if (obj && obj.IconURLUpscaled) {
             if (playerDataArray[currentPlayerNum].inventoryItemConditions[i] == 1) {
                 imgElement.attr('src', PresentIconURL);
-                imgElement.attr('bubbletext', 'Present (' + obj.Name + ')');
+                slot.find('.bubble').text(`Present (${obj.Name})`);
             }
             else {
                 imgElement.attr('src', obj.IconURLUpscaled);
-                imgElement.attr('bubbletext', obj.Name);
+                slot.find('.bubble').text(obj.Name);
             }
             slot.addClass('inventory-slot-item');
         }
         else {
             imgElement.remove();
+            slot.removeClass('inventory-slot-item');
         }
     }
 }
@@ -584,22 +585,25 @@ function setupPlayerTab(playerNumArg) {
 $('.inventory-slot').click(function () {
     let itemSelectedIDNum = Hex2Dec(itemSelectedID);
     let selectedItemName = findObjByID(itemSelectedIDNum).Name;
-    let slot = $(this).index();
-    playerDataArray[currentPlayerNum].inventoryItems[slot] = itemSelectedIDNum;
+    let slotIndex = $(this).index();
+    playerDataArray[currentPlayerNum].inventoryItems[slotIndex] = itemSelectedIDNum;
     var $this = $(this);
 
     if (inventoryIconSelectedURL == "") {
-        playerDataArray[currentPlayerNum].inventoryItems[slot] = 0;
-        $this.html('<img src="">');
+        playerDataArray[currentPlayerNum].inventoryItems[slotIndex] = 0;
+        $this.find('img').attr('src','');
+        $this.html('<div class="bubble"></div><img src="">');
         $this.removeClass('inventory-slot-item');
     }
     else if (document.getElementById("checkboxPresent").checked) {
-        playerDataArray[currentPlayerNum].inventoryItemConditions[slot] = 1;
-        $this.html('<img src="' + PresentIconURL + '" bubbletext="' + 'Present (' + selectedItemName + ')' + '">');
+        playerDataArray[currentPlayerNum].inventoryItemConditions[slotIndex] = 1;
+        $this.html('<div class="bubble">' + `Present (${selectedItemName})` + '</div>' +
+            '<img src="' + PresentIconURL + '">');
         $this.addClass('inventory-slot-item');
     }
     else {
-        $this.html('<img src="' + inventoryIconSelectedURL + '" bubbletext="' + selectedItemName + '">');
+        $this.html('<div class="bubble">' + selectedItemName + '</div>' +
+            '<img src="' + inventoryIconSelectedURL + '">');
         $this.addClass('inventory-slot-item');
     }
 });

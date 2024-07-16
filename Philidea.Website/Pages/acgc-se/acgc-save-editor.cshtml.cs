@@ -126,7 +126,7 @@ namespace Philidea.Website.Pages
             foreach (var item in Items) {
                 if (item.ID == selectedItemID) {
                     itemImageURL = item.ImageURL ?? itemImageURL;
-                    inventoryIconURL = item.IconURL ?? inventoryIconURL;
+                    inventoryIconURL = item.IconURLUpscaled ?? inventoryIconURL;
                     break;
                 }
             }
