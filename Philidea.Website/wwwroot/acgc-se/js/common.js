@@ -102,8 +102,8 @@ function findObjByID(ID) {
 function Hex2Dec(Hex) {
     return parseInt(Hex, 16);
 }
-function Dec2Hex(Dec) {
-    return '0x' + Dec.toString(16).padStart(4, '0').toUpperCase();
+function Dec2Hex(Dec, pad=4) {
+    return '0x' + Dec.toString(16).padStart(pad, '0').toUpperCase();
 }
 function getJsonData(name, localName = "") {
     let jsonDataObject = JSON.parse(json);
@@ -123,7 +123,7 @@ function getJsonData(name, localName = "") {
 }
 function getSaveData(variable, offset, localVariable = "") {
     if (offset === undefined) {
-        return getSaveData(variable, 0);
+        return getSaveData(variable, 0, localVariable);
     }
     let jsonData = getJsonData(variable,localVariable);
     let index = jsonData.index + offset;
@@ -137,7 +137,7 @@ function getSaveData(variable, offset, localVariable = "") {
 }
 function getString(variable, offset, localVariable="") {
     if (offset === undefined) {
-        return getString(variable, 0);
+        return getString(variable, 0, localVariable);
     }
     let saveData = getSaveData(variable, offset, localVariable);
     let saveDataString = replaceChars(saveData);
@@ -154,7 +154,7 @@ function setString(variable, offset, value, localVariable = "") {
 }
 function getNumber(variable, offset, localVariable = "") {
     if (offset === undefined) {
-        return getNumber(variable, 0);
+        return getNumber(variable, 0, localVariable);
     }
     let saveData = getSaveData(variable,offset,localVariable);
     var value = 0;
@@ -175,11 +175,19 @@ function setNumber(variable, offset, value, localVariable = "") {
 }
 function getID(variable, offset, localVariable = "") {
     if (offset === undefined) {
-        return getID(variable, 0);
+        return getID(variable, 0, localVariable);
     }
     let saveData = getSaveData(variable,offset,localVariable);
     let ID = (saveData[0] << 8) | saveData[1];
     return Dec2Hex(ID);
+}
+function getIDbyte(variable, offset, localVariable = "") {
+    if (offset === undefined) {
+        return getIDbyte(variable, 0, localVariable);
+    }
+    let saveData = getSaveData(variable, offset, localVariable);
+    let ID = saveData[0];
+    return Dec2Hex(ID,2);
 }
 function setID(variable, offset, value, localVariable = "") {
     let jsonData = getJsonData(variable, localVariable);

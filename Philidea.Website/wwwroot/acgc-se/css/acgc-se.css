@@ -308,11 +308,14 @@ input[type="file"] {
     gap: 12px;
     width: auto;
     margin-bottom: 15px;
+    position:relative;
+    z-index:1;
 }
 .letter-slot {
-    background-color: #E74242 !important;
+    background-color: rgba(231, 66, 66, 0.5);
     width: 56px;
     height: 56px;
+    border: solid 5px #E74242;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -320,10 +323,22 @@ input[type="file"] {
     align-items: center;
     justify-content: center;
     position: relative;
-    z-index: 2;
+}
+.letter-slot-item {
+    background-color: #E74242 !important;
 }
 .letter-slot img {
     width: 100%;
+}
+
+.recipient {
+    color: #D0362F;
+}
+.sender {
+    color: #574D99;
+}
+.museum {
+    color: #509F49;
 }
 
 .text-over-background {

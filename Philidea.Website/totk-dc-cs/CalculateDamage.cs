@@ -214,7 +214,7 @@ namespace Philidea.Website
                 if (Data.Input.Buff1 == "Master Sword Beam Up" || Data.Input.Buff2 == "Master Sword Beam Up") {
                     MasterSwordBeamUp = 1.5f;
                 }
-                return (float)Data.SelectedWeapon.ProjectileAttack * MasterSwordBeamUp * AttackUp;
+                return (float)Math.Floor((float)Data.SelectedWeapon.ProjectileAttack * MasterSwordBeamUp * AttackUp * DemonDragon);
             }
 
             // Sidon's Water
@@ -700,6 +700,9 @@ namespace Philidea.Website
             string FuseBaseName = Data.SelectedWeapon.FuseBaseName;
 
             if (Data.SelectedEnemy.Name == "Demon Dragon" && (FuseBaseName == "Master Sword" || FuseBaseName == "Decayed Master Sword")) {
+                if (AttackType == "Master Sword Beam") {
+                    return 30;
+                }
                 return 5;
             }
             return 1;

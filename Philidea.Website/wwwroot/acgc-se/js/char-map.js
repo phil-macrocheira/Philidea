@@ -149,5 +149,6 @@ function replaceChars(array) {
 			saveDataString += String.fromCharCode(char);
 		}
 	}
+
 	return saveDataString.trim();
 }

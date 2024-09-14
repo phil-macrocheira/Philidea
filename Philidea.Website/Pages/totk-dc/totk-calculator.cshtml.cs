@@ -134,6 +134,10 @@ namespace Philidea.Website.Pages
             if (SelectedEnemy.Name == "Blue-White Frox" && DamageOutput > 420)
                 DamageOutput = 420;
 
+            // Clamp Demon Dragon HP
+            if (SelectedEnemy.Name == "Demon Dragon" && DamageOutput > 1200)
+                DamageOutput = 1200;
+
             // Electric Chuchu Charged Instakill
             if (SelectedEnemy.Name.IndexOf("Electric Chuchu") != -1 && Input.Weakened && DamageOutput >= 1) {
                 DamageOutput = (float)SelectedEnemy.HP;

@@ -13,7 +13,7 @@
     color: #5a3c32;
     font-size: 20px;
     font-weight: bold;
-    white-space: nowrap;
+    white-space: pre;
     transform: translate3d(-5px, 10px, 0) scale(0);
     transform-origin: top;
     transition: transform .1s ease-out;
@@ -21,12 +21,15 @@
     pointer-events: none;
 }
 
-.bubble:empty {
-    display: none;
+.bubble-letter {
+    padding: 40% 50% !important;
+    font-size:120%;
+    line-height:105%;
+    justify-content:left;
 }
 
-.inventory-slot:hover .bubble {
-    transform: translate3d(-5px, 10px, 0) scale(1);
+.bubble:empty {
+    display: none;
 }
 
 .bubble::before {
@@ -54,4 +57,12 @@
     image-rendering: auto;
     filter: drop-shadow(6px 6px 0px rgba(0,0,0,0.5));
     z-index: -1;
+}
+
+.inventory-slot:hover .bubble {
+    transform: translate3d(-5px, 10px, 0) scale(1);
+}
+
+.letter-slot:hover .bubble {
+    transform: translate3d(-5px, 10px, 0) scale(1);
 }

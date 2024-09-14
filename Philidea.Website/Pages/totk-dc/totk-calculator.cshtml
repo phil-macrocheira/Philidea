@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "TotK Damage Calculator";
     ViewData["HeaderTitle"] = "TEARS OF THE KINGDOM DAMAGE CALCULATOR";
-    ViewData["Version"] = "v1.2.2";
+    ViewData["Version"] = "v1.2.3";
     Layout = "totk-dc_layout.cshtml";
 }
 @Html.AntiForgeryToken()
@@ -775,6 +775,21 @@
                     }
                     else {
                         $('#WeaponNameText').text(response.fusedName);
+                    }
+
+                    // Master Sword Awakened
+                    if (dropdownEdited === 'enemy') {
+                        let enemy = selectedEnemyObj.Name;
+                        let weapon = selectedWeaponObj.Name;
+                        let dropdown = $('#weaponDropdown');
+
+                        if (enemy === 'Demon Dragon' || enemy.includes('Ganondorf')) {
+                            dropdown.val(dropdown.children()[2].value); // Change to MS +30
+                        }
+                        else if (enemy.includes('Phantom') && (weapon === 'Master Sword' || weapon === 'Master Sword (Awakened +15)')) {
+                            dropdown.val(dropdown.children()[2].value); // Change to MS +30
+                        }
+                        dropdown.trigger('change');
                     }
 
                     $('#DamageOutputText').text(response.damageOutput);

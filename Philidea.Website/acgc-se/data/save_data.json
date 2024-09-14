@@ -4293,14 +4293,42 @@
   "letter_recipient": {
     "Local Byte Offset": "0x000",
     "Global Byte Offset": "",
-    "Byte Size": 22,
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_recipient_ID": {
+    "Local Byte Offset": "0x010",
+    "Global Byte Offset": "",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_recipient_type": {
+    "Local Byte Offset": "0x014",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
     "Bit Offset": "",
     "Bit Size": ""
   },
   "letter_sender": {
     "Local Byte Offset": "0x016",
     "Global Byte Offset": "",
-    "Byte Size": 22,
+    "Byte Size": 8,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_sender_ID": {
+    "Local Byte Offset": "0x026",
+    "Global Byte Offset": "",
+    "Byte Size": 2,
+    "Bit Offset": "",
+    "Bit Size": ""
+  },
+  "letter_sender_type": {
+    "Local Byte Offset": "0x02A",
+    "Global Byte Offset": "",
+    "Byte Size": 1,
     "Bit Offset": "",
     "Bit Size": ""
   },
@@ -4311,7 +4339,7 @@
     "Bit Offset": "",
     "Bit Size": ""
   },
-  "letter_font": {
+  "letter_status": {
     "Local Byte Offset": "0x02E",
     "Global Byte Offset": "",
     "Byte Size": 1,

@@ -29,20 +29,32 @@ playerData = {
     inventoryItems: new Array(15).fill(0),
     inventoryItemConditions: new Array(15).fill(0),
 
-    letterRecipients: new Array(10).fill(""),
-    letterSenders: new Array(10).fill(""),
-    letterPresents: new Array(10).fill(0),
-    letterNames: new Array(10).fill(0),
-    letterTypes: new Array(10).fill(0),
-    letterStationeries: new Array(10).fill(0),
-    letterTexts: new Array(10).fill("")
+    lettersExist: new Array(10).fill(false),
+    lettersRecipient: new Array(10).fill(""),
+    lettersSender: new Array(10).fill(""),
+    lettersPresent: new Array(10).fill(0),
+    lettersRead: new Array(10).fill(false),
+    lettersOutgoing: new Array(10).fill(false),
+    lettersStationery: new Array(10).fill(0),
+    lettersText: new Array(10).fill(""),
+    lettersIconURL: new Array(10).fill(""),
+    lettersBubbleText: new Array(10).fill("")
 };
 for (let i = 0; i < 4; i++) {
     let newPlayerData = {
         ...playerData,
         inventoryItems: [...playerData.inventoryItems],
         inventoryItemConditions: [...playerData.inventoryItemConditions],
-        letterRecipients: [...playerData.letterRecipients]
+        lettersExist: [...playerData.lettersExist],
+        lettersRecipient: [...playerData.lettersRecipient],
+        lettersSender: [...playerData.lettersSender],
+        lettersPresent: [...playerData.lettersPresent],
+        lettersRead: [...playerData.lettersRead],
+        lettersOutgoing: [...playerData.lettersOutgoing],
+        lettersBubbleText: [...playerData.lettersBubbleText],
+        lettersStationery: [...playerData.lettersStationery],
+        lettersText: [...playerData.lettersText],
+        lettersIconURL: [...playerData.lettersIconURL]
     };
     playerDataArray.push(newPlayerData);
 }
@@ -65,7 +77,7 @@ function createPlayerData(playerNumArg) {
     let face = getNumber("player_face", playerOffset);
     let gender = getGender();
 
-    document.getElementById("player_name").value = getString("player_name",playerOffset);
+    document.getElementById("player_name").value = getString("player_name", playerOffset);
     document.getElementById("player_gender").value = getGender();
     document.getElementById("player_face").value = getFace(face,gender);
     document.getElementById("player_suntan").value = getNumber("player_suntan",playerOffset);
@@ -271,9 +283,6 @@ function setInventoryConditions(variable, offset, conditions) {
         saveFile[index + i] = saveData[i];
     }
 }
-function getLetters(variable) {
-    let recipient = getString(variable,playerOffset,"letter_recipient");
-}
 function updatePlayer(playerNumArg) {
     currentPlayerNum = playerNumArg;
 
@@ -295,11 +304,11 @@ function updatePlayer(playerNumArg) {
     $('#player_inventory_background').trigger('change'); // calls updateBackground()
 }
 function updateName() {
-    playerDataArray[currentPlayerNum].name = document.getElementById("player_name").value;
+    playerDataArray[playerNum].name = document.getElementById("player_name").value;
     //console.log("Player " + (currentPlayerNum+1) + " Name Updated");
 }
 function updateGender() {
-    playerDataArray[currentPlayerNum].gender = document.getElementById("player_gender").value;
+    playerDataArray[playerNum].gender = document.getElementById("player_gender").value;
     //console.log("Player " + (currentPlayerNum+1) + " Gender Updated");
 }
 function updateFace() {
@@ -333,11 +342,11 @@ function updateFace() {
                 face += 0xF8;
         }
     }
-    playerDataArray[currentPlayerNum].face = face;
+    playerDataArray[playerNum].face = face;
     //console.log("Player " + (currentPlayerNum + 1) + " Face Updated");
 }
 function updateTan() {
-    playerDataArray[currentPlayerNum].suntan = document.getElementById("player_suntan").value;
+    playerDataArray[playerNum].suntan = document.getElementById("player_suntan").value;
     updateTanColor();
     //console.log("Player " + (currentPlayerNum+1) + " Tan Updated");
 }
@@ -367,34 +376,34 @@ function updateTanColor() {
         tanColor.style.backgroundColor = "#FFBD94";
 }
 function updateTanDays() {
-    playerDataArray[currentPlayerNum].suntanDays = document.getElementById("player_suntan_days_remaining").value;
+    playerDataArray[playerNum].suntanDays = document.getElementById("player_suntan_days_remaining").value;
     //console.log("Player " + (currentPlayerNum+1) + " Tan Days Updated");
 }
 function updateBirthday() {
-    playerDataArray[currentPlayerNum].birthday = document.getElementById("player_birthday").value;
+    playerDataArray[playerNum].birthday = document.getElementById("player_birthday").value;
     //console.log("Player " + (currentPlayerNum+1) + " Birthday Updated");
 }
 function updateFortune() {
-    playerDataArray[currentPlayerNum].fortune = document.getElementById("player_fortune").value;
+    playerDataArray[playerNum].fortune = document.getElementById("player_fortune").value;
 }
 function updateReset() {
-    playerDataArray[currentPlayerNum].reset = document.getElementById("player_reset_code").value;
+    playerDataArray[playerNum].reset = document.getElementById("player_reset_code").value;
     //console.log("Player " + (currentPlayerNum+1) + " Reset Updated");
 }
 function updateResetCount() {
-    playerDataArray[currentPlayerNum].resetCount = document.getElementById("player_reset_count").value;
+    playerDataArray[playerNum].resetCount = document.getElementById("player_reset_count").value;
     //console.log("Player " + (currentPlayerNum+1) + " Reset Count Updated");
 }
 function updateSavings() {
-    playerDataArray[currentPlayerNum].savings = document.getElementById("player_savings").value;
+    playerDataArray[playerNum].savings = document.getElementById("player_savings").value;
     //console.log("Player " + (currentPlayerNum+1) + " Savings Updated");
 }
 function updateDebt() {
-    playerDataArray[currentPlayerNum].debt = document.getElementById("player_debt").value;
+    playerDataArray[playerNum].debt = document.getElementById("player_debt").value;
     //console.log("Player " + (currentPlayerNum+1) + " Debt Updated");
 }
 function updateWallet() {
-    playerDataArray[currentPlayerNum].wallet = document.getElementById("player_wallet").value;
+    playerDataArray[playerNum].wallet = document.getElementById("player_wallet").value;
     //console.log("Player " + (currentPlayerNum+1) + " Wallet Updated");
 }
 function updateInventoryIcons() {
@@ -421,13 +430,14 @@ function updateInventoryIcons() {
         }
         else {
             imgElement.remove();
+            slot.find('.bubble').text('');
             slot.removeClass('inventory-slot-item');
         }
     }
 }
 function updateHandheld() {
     let selectedItemID = $('#player_equipped_item').val();
-    playerDataArray[currentPlayerNum].handheldItemID = selectedItemID;
+    playerDataArray[playerNum].handheldItemID = selectedItemID;
 
     $.ajax({
         headers: {
@@ -441,18 +451,18 @@ function updateHandheld() {
             selectedItemID: selectedItemID,
         },
         success: function (response) {
-            playerDataArray[currentPlayerNum].handheldItemURL = response.itemImageURL;
+            playerDataArray[playerNum].handheldItemURL = response.itemImageURL;
             $('#handheldImage').prop('src', response.itemImageURL);
             //console.log("Player " + (currentPlayerNum+1) + " Handheld Item Updated", response);
         },
         error: function (error) {
-            console.log("ERROR: Player " + (currentPlayerNum+1) + " Handheld Item Update FAILED", response);
+            console.log("ERROR: Player " + (playerNum+1) + " Handheld Item Update FAILED", response);
         }
     });
 }
 function updateClothing() {
     let selectedItemID = $('#player_clothing').val();
-    playerDataArray[currentPlayerNum].clothingID = selectedItemID;
+    playerDataArray[playerNum].clothingID = selectedItemID;
 
     $.ajax({
         headers: {
@@ -466,12 +476,12 @@ function updateClothing() {
             selectedItemID: selectedItemID,
         },
         success: function (response) {
-            playerDataArray[currentPlayerNum].clothingURL = response.itemImageURL;
+            playerDataArray[playerNum].clothingURL = response.itemImageURL;
             $('#clothingImage').prop('src', response.itemImageURL);
             //console.log("Player " + (currentPlayerNum+1) + " Clothing Updated", response);
         },
         error: function (error) {
-            console.log("ERROR: Player " + (currentPlayerNum+1) + " Clothing Update FAILED", response);
+            console.log("ERROR: Player " + (playerNum+1) + " Clothing Update FAILED", response);
         }
     });
 }
@@ -496,32 +506,7 @@ function updateItem() {
             //console.log("Player " + (currentPlayerNum+1) + " Item Selected Updated", response);
         },
         error: function (error) {
-            console.log("ERROR: Player " + (currentPlayerNum+1) + " Item Selected Update FAILED", response);
-        }
-    });
-}
-function updateItemLetter() {
-    itemSelectedID = $('#itemDropdownLetter').val();
-
-    $.ajax({
-        headers: {
-            RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
-        },
-        type: 'POST',
-        url: uploadURL,
-        contentType: 'application/x-www-form-urlencoded',
-        data: {
-            func: "getItemURLs",
-            selectedItemID: itemSelectedID,
-        },
-        success: function (response) {
-            inventoryIconSelectedURL = response.inventoryIconURL;
-            itemSelectedURL = response.itemImageURL;
-            $('#itemLetterImage').prop('src', response.itemImageURL);
-            //console.log("Player " + (currentPlayerNum+1) + " Item Selected Updated", response);
-        },
-        error: function (error) {
-            console.log("ERROR: Player " + (currentPlayerNum + 1) + " Letter Item Selected Update FAILED", response);
+            console.log("ERROR: Player " + (playerNum +1) + " Item Selected Update FAILED", response);
         }
     });
 }
@@ -530,8 +515,8 @@ function updateBackground() {
     let clothingObj = findObjByID(Hex2Dec(clothing));
     let backgroundURL = clothingObj.TextureURLUpscaled;
 
-    playerDataArray[currentPlayerNum].backgroundID = clothing;
-    playerDataArray[currentPlayerNum].backgroundURL = backgroundURL;
+    playerDataArray[playerNum].backgroundID = clothing;
+    playerDataArray[playerNum].backgroundURL = backgroundURL;
 
     let styleTag = document.createElement('style');
     styleTag.innerHTML = '.section-inventory::after { background-image: url("' + backgroundURL + '") !important; }';
@@ -580,23 +565,24 @@ function setupPlayerTab(playerNumArg) {
     $('#player_inventory_background').trigger('change');
 
     updateInventoryIcons();
+    updateLetterIcons();
 }
 // UPDATE INVENTORY SLOT WHEN CLICKED
 $('.inventory-slot').click(function () {
     let itemSelectedIDNum = Hex2Dec(itemSelectedID);
     let selectedItemName = findObjByID(itemSelectedIDNum).Name;
     let slotIndex = $(this).index();
-    playerDataArray[currentPlayerNum].inventoryItems[slotIndex] = itemSelectedIDNum;
+    playerDataArray[playerNum].inventoryItems[slotIndex] = itemSelectedIDNum;
     var $this = $(this);
 
     if (inventoryIconSelectedURL == "") {
-        playerDataArray[currentPlayerNum].inventoryItems[slotIndex] = 0;
+        playerDataArray[playerNum].inventoryItems[slotIndex] = 0;
         $this.find('img').attr('src','');
         $this.html('<div class="bubble"></div><img src="">');
         $this.removeClass('inventory-slot-item');
     }
     else if (document.getElementById("checkboxPresent").checked) {
-        playerDataArray[currentPlayerNum].inventoryItemConditions[slotIndex] = 1;
+        playerDataArray[playerNum].inventoryItemConditions[slotIndex] = 1;
         $this.html('<div class="bubble">' + `Present (${selectedItemName})` + '</div>' +
             '<img src="' + PresentIconURL + '">');
         $this.addClass('inventory-slot-item');
@@ -632,13 +618,6 @@ $(document).ready(function () {
 
     $('#player_clothing').select2();
     $('#player_clothing').on('select2:open', function () {
-        window.setTimeout(function () {
-            document.querySelector('.select2-search__field').focus();
-        }, 0);
-    });
-
-    $('#itemDropdownLetter').select2();
-    $('#itemDropdownLetter').on('select2:open', function () {
         window.setTimeout(function () {
             document.querySelector('.select2-search__field').focus();
         }, 0);
